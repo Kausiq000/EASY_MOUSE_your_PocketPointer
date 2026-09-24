@@ -258,74 +258,105 @@
     }
 
     /* -------------------------------------------------------------
-       PLAYFUL HANGING MOUSE EASTER EGG (HERO LEFT MARGIN)
-       Suspended from a thin golden wire with physical sway physics
-       Exclusion area: Left margin outside main text column
+       PLAYFUL HANGING MOUSE EASTER EGG (HERO LEFT SAFE ZONE)
+       Suspended from a thin realistic cord with true physical pendulum sway
+       Exclusion area: Left margin dedicated safe zone outside main text
+       CRITICAL: Single global cursor only. NO hand, NO grab, NO second pointer.
        ------------------------------------------------------------- */
     .hanging-mouse-rig {
       position: absolute;
       top: 0;
-      left: clamp(20px, 3.5vw, 60px);
+      left: clamp(24px, 3.8vw, 72px);
       width: 48px;
-      height: 180px;
-      z-index: 20;
+      height: 220px;
+      z-index: 25;
       pointer-events: auto;
-      cursor: grab;
+      cursor: default; /* Single global pointer only */
       transform-origin: top center;
-      transition: transform 0.12s ease-out;
+      user-select: none;
+      touch-action: none;
     }
 
-    .hanging-mouse-rig:active {
-      cursor: grabbing;
+    .hanging-mouse-anchor {
+      width: 8px;
+      height: 4px;
+      background: linear-gradient(180deg, #FAF8F2 0%, var(--yellow-gold) 100%);
+      border-radius: 2px;
+      margin: 0 auto;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
     }
 
     .hanging-wire {
-      width: 1.5px;
-      height: 112px;
-      background: linear-gradient(to bottom, rgba(224, 198, 83, 0.25), var(--yellow-gold));
+      width: 1px;
+      height: 124px;
+      background: linear-gradient(to bottom, rgba(224, 198, 83, 0.45) 0%, rgba(224, 198, 83, 0.85) 100%);
       margin: 0 auto;
-      box-shadow: 0 0 4px rgba(224, 198, 83, 0.3);
+      box-shadow: 0 0 3px rgba(224, 198, 83, 0.25);
     }
 
     .hanging-mouse-body {
-      width: 34px;
-      height: 52px;
-      background: linear-gradient(165deg, #22221c 0%, #131310 60%, #181814 100%);
-      border: 1.5px solid var(--yellow-gold);
-      border-radius: 17px 17px 14px 14px;
+      width: 36px;
+      height: 58px;
+      background: radial-gradient(circle at 45% 25%, #ebd264 0%, var(--yellow-gold) 45%, #bfa22f 100%);
+      border: 1px solid rgba(224, 198, 83, 0.85);
+      border-radius: 18px 18px 15px 15px;
       margin: 0 auto;
       position: relative;
+      cursor: default;
+      touch-action: none;
       box-shadow: 
-        inset 1px 1px 2px rgba(250, 248, 242, 0.3),
-        inset -1px -1px 3px rgba(0, 0, 0, 0.9),
-        0 14px 28px rgba(0, 0, 0, 0.9),
-        0 0 12px rgba(224, 198, 83, 0.18);
+        inset 1px 1.5px 2px rgba(250, 248, 242, 0.45),
+        inset -1px -1.5px 3px rgba(0, 0, 0, 0.7),
+        0 18px 32px rgba(0, 0, 0, 0.95),
+        0 0 14px rgba(224, 198, 83, 0.2);
     }
 
-    /* Tactile Scroll Wheel */
-    .hanging-mouse-body::before {
-      content: "";
+    /* Darker side grip edges */
+    .hanging-mouse-grip {
       position: absolute;
-      top: 7px;
+      top: 14px;
+      bottom: 14px;
+      width: 3px;
+      background: #161612;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+
+    .hanging-mouse-grip.grip-left {
+      left: 1px;
+      box-shadow: inset 1px 0 1px rgba(0, 0, 0, 0.8);
+    }
+
+    .hanging-mouse-grip.grip-right {
+      right: 1px;
+      box-shadow: inset -1px 0 1px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Tactile Metallic Scroll Wheel */
+    .hanging-mouse-wheel {
+      position: absolute;
+      top: 8px;
       left: 50%;
       transform: translateX(-50%);
       width: 5px;
       height: 12px;
-      background: linear-gradient(to bottom, var(--yellow-gold), #8c7820, var(--yellow-gold));
+      background: linear-gradient(to bottom, #181814, #2a2a22, #141411);
+      border: 1px solid rgba(224, 198, 83, 0.6);
       border-radius: 3px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      pointer-events: none;
     }
 
-    /* Mouse seam line */
-    .hanging-mouse-body::after {
-      content: "";
+    /* Subtle Parting Seam */
+    .hanging-mouse-seam {
       position: absolute;
-      top: 20px;
+      top: 22px;
       left: 50%;
       transform: translateX(-50%);
       width: 1px;
-      height: 14px;
-      background: rgba(224, 198, 83, 0.35);
+      height: 16px;
+      background: rgba(20, 20, 16, 0.45);
+      pointer-events: none;
     }
 
     @media (max-width: 1140px) {
@@ -549,14 +580,15 @@
       text-shadow: 0 4px 24px rgba(224, 198, 83, 0.25);
     }
 
-    /* Letter by letter sequential physics */
+    /* Letter by letter physical typography entrance */
     .hero-char {
       display: inline-block;
       overflow: visible !important;
-      transform: translateY(34px) rotate(4deg);
+      transform: translateY(18px);
       opacity: 0;
-      transition: transform 0.85s var(--ease-cinema), opacity 0.8s ease;
-      transition-delay: calc(0.18s + var(--c-i, 0) * 0.055s);
+      filter: blur(4px);
+      transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.75s ease, filter 0.75s ease;
+      transition-delay: calc(0.15s + var(--c-i, 0) * 0.05s);
     }
 
     .hero-char.char-y {
@@ -570,8 +602,9 @@
     }
 
     .hero-entered .hero-char {
-      transform: translateY(0) rotate(0deg);
+      transform: translateY(0);
       opacity: 1;
+      filter: blur(0);
     }
 
     /* Supporting Statement (Role 2: Celtic Garamond style) */
@@ -682,6 +715,62 @@
     }
 
     /* -------------------------------------------------------------
+       NEW HERO INSTRUCTIONS BLOCK: PHYSICAL PRODUCT SEQUENCE
+       Directly below CTA buttons. Uses supporting font (var(--font-ui)).
+       Numbered markers in muted warm yellow, cream/off-white text.
+       ------------------------------------------------------------- */
+    .hero-instructions-block {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      max-width: 440px;
+      position: relative;
+      z-index: 6;
+    }
+
+    .hero-instruction-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(224, 198, 83, 0.12);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: calc(0.85s + var(--step-i, 0) * 0.12s);
+    }
+
+    .hero-instruction-item:last-child {
+      border-bottom: none;
+    }
+
+    .hero-entered .hero-instruction-item {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .instruction-num {
+      font-family: var(--font-ui);
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--yellow-gold);
+      flex-shrink: 0;
+      width: 22px;
+    }
+
+    .instruction-text {
+      font-family: var(--font-ui);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-hero);
+      line-height: 1.25;
+    }
+
+    /* -------------------------------------------------------------
        HERO: REALISTIC PHYSICAL 3D SMARTPHONE CHASSIS
        Sharper physical edges, visible metal thickness, glass reflection
        ------------------------------------------------------------- */
@@ -714,30 +803,34 @@
     .phone-chassis {
       position: absolute;
       inset: 0;
-      background: linear-gradient(155deg, #282822 0%, #161612 40%, #0e0e0c 100%);
+      background: linear-gradient(155deg, #2b2b24 0%, #161612 35%, #0d0d0a 100%);
       border-radius: 46px;
-      padding: 12px;
+      padding: 11px;
       box-shadow: 
-        -25px 35px 80px rgba(0, 0, 0, 0.95),
-        -10px 15px 30px rgba(0, 0, 0, 0.8),
-        inset 0 0 0 1.5px rgba(224, 198, 83, 0.28),
-        inset 0 2px 2px rgba(250, 248, 242, 0.35),
-        inset 0 -2px 3px rgba(0, 0, 0, 0.8),
-        0 0 20px rgba(224, 198, 83, 0.08);
-      border: 1px solid rgba(224, 198, 83, 0.18);
+        -28px 38px 90px rgba(0, 0, 0, 0.98),
+        -12px 16px 36px rgba(0, 0, 0, 0.85),
+        inset 0 0 0 1px rgba(224, 198, 83, 0.32),
+        inset 0 1.5px 2px rgba(250, 248, 242, 0.45),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.9),
+        inset 1.5px 0 2px rgba(255, 255, 255, 0.14),
+        0 0 24px rgba(224, 198, 83, 0.07);
+      border: 1px solid rgba(224, 198, 83, 0.22);
       display: flex;
       flex-direction: column;
+      transform: translateZ(24px); /* Stable 3D layer separation prevents reload overlap */
     }
 
     /* Front Glass Screen with Natural Specular Lighting & Depth */
     .phone-glass-screen {
       flex: 1;
-      background: radial-gradient(circle at 50% 12%, #1a1a15 0%, #0b0b09 85%);
+      background: radial-gradient(circle at 50% 12%, #181814 0%, #080807 85%);
       border-radius: 36px;
       position: relative;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.9);
+      box-shadow: 
+        inset 0 0 18px rgba(0, 0, 0, 0.95),
+        inset 0 1px 1px rgba(255, 255, 255, 0.12);
       user-select: none;
     }
 
@@ -745,31 +838,35 @@
     .phone-glass-screen::before {
       content: "";
       position: absolute;
-      top: -100px;
-      left: -100px;
-      width: 320px;
-      height: 600px;
-      background: linear-gradient(135deg, rgba(224, 198, 83, 0.04) 0%, transparent 60%);
-      transform: rotate(25deg);
+      top: -120px;
+      left: -80px;
+      width: 380px;
+      height: 640px;
+      background: linear-gradient(130deg, 
+        rgba(250, 248, 242, 0.07) 0%, 
+        rgba(224, 198, 83, 0.03) 25%, 
+        transparent 55%);
+      transform: rotate(22deg);
       pointer-events: none;
     }
 
-    /* Sensor Dynamic Island */
+    /* Sensor Dynamic Island - Sits naturally near top of screen with realistic smartphone proportions */
     .phone-dynamic-island {
-      width: 82px;
-      height: 18px;
+      width: 76px;
+      height: 16px;
       background: #000000;
       border-radius: 9999px;
-      margin: 12px auto 0;
+      margin: 6px auto 0;
       position: relative;
       z-index: 5;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
     }
 
     /* Active Touchpad Glass Field */
     .phone-trackpad-area {
       position: absolute;
-      inset: 48px 16px 20px;
+      inset: 38px 16px 18px;
       border-radius: 24px;
       border: 1px dashed var(--yellow-border);
       background: rgba(224, 198, 83, 0.015);
@@ -778,6 +875,42 @@
       align-items: center;
       justify-content: center;
       cursor: crosshair;
+    }
+
+    /* Screen Branding Content: EASY MOUSE + CONNECTED */
+    .phone-screen-os-display {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .phone-os-brand-title {
+      font-family: var(--font-brand);
+      font-size: 2.1rem;
+      line-height: 1.1;
+      color: var(--yellow-gold);
+      opacity: 0.45;
+      letter-spacing: 0.03em;
+      text-shadow: 0 0 16px rgba(224, 198, 83, 0.22);
+    }
+
+    .phone-os-status {
+      font-family: var(--font-brand);
+      font-size: 0.82rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-hero);
+      opacity: 0.30;
+      margin-top: 6px;
     }
 
     .trackpad-instruction {
@@ -814,7 +947,7 @@
       border: 1px solid var(--yellow-border);
       border-radius: 14px;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
-      transform: translateZ(-80px) rotateY(-8deg);
+      transform: translateZ(-110px) rotateY(-8deg); /* Generous Z separation prevents reload overlap */
       padding: 12px;
       display: flex;
       flex-direction: column;
@@ -989,18 +1122,211 @@
       flex-direction: column;
     }
 
-    .touchpad-live-header {
-      padding: 14px 20px;
+    .feature-panel-meta-card {
+      padding: 16px 22px;
       background: #141410;
       border-bottom: 1px solid var(--yellow-border);
+      transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .feature-panel-topline {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .feature-panel-kicker {
       font-family: var(--font-ui);
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      letter-spacing: 0.06em;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--yellow-muted);
       text-transform: uppercase;
+    }
+
+    .feature-panel-state-pill {
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--yellow-gold);
+      background: rgba(224, 198, 83, 0.1);
+      border: 1px solid var(--yellow-border);
+      padding: 3px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    .feature-panel-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--text-hero);
+      margin-bottom: 5px;
+    }
+
+    .feature-panel-desc {
+      font-family: var(--font-body);
+      font-size: 0.94rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    /* Subtle grid mesh for precision capacitive tracking */
+    .touchpad-grid-mesh {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(224, 198, 83, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(224, 198, 83, 0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+
+    .haptic-surface-hint {
+      position: absolute;
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--yellow-muted);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    /* -------------------------------------------------------------
+       SECTION 04: LOW LATENCY CONDUIT VISUALIZATION
+       Phone -> yellow input pulse -> Computer -> Cursor moves
+       ------------------------------------------------------------- */
+    .low-latency-feature-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .latency-vis-flow {
+      margin-top: auto;
+      padding: 18px 20px;
+      background: #0d0d0a;
+      border: 1px solid var(--yellow-border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .latency-flow-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .node-icon-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+    }
+
+    .node-caption {
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--yellow-muted);
+      text-transform: uppercase;
+    }
+
+    .latency-flow-conduit {
+      flex: 1;
+      position: relative;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .conduit-wire {
+      width: 100%;
+      height: 2px;
+      background: repeating-linear-gradient(90deg, var(--yellow-border) 0, var(--yellow-border) 4px, transparent 4px, transparent 8px);
+    }
+
+    .conduit-yellow-pulse {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 12px;
+      height: 4px;
+      background: var(--yellow-gold);
+      border-radius: 2px;
+      box-shadow: 0 0 10px var(--yellow-gold);
+      transform: translateY(-50%);
+      animation: pulseTravel 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    .latency-touch-point {
+      animation: touchEmit 1.8s ease-in-out infinite;
+    }
+
+    .latency-screen-pointer {
+      transform-origin: 8px 5px;
+      animation: cursorReact 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulseTravel {
+      0% {
+        left: 0;
+        opacity: 0;
+        transform: translateY(-50%) scaleX(0.5);
+      }
+      15% {
+        opacity: 1;
+      }
+      75% {
+        left: calc(100% - 12px);
+        opacity: 1;
+      }
+      100% {
+        left: 100%;
+        opacity: 0;
+        transform: translateY(-50%) scaleX(0.5);
+      }
+    }
+
+    @keyframes touchEmit {
+      0%, 10% {
+        transform: scale(0.8);
+        opacity: 0.4;
+      }
+      20%, 30% {
+        transform: scale(1.4);
+        opacity: 1;
+      }
+      40%, 100% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+    }
+
+    @keyframes cursorReact {
+      0%, 70% {
+        transform: translate(0, 0);
+      }
+      85% {
+        transform: translate(6px, 4px) scale(1.15);
+      }
+      100% {
+        transform: translate(0, 0);
+      }
     }
 
     .touchpad-live-canvas {
@@ -2079,23 +2405,23 @@
         cursor: none !important;
       }
 
-      /* Sharp Realistic Pointer Arrow */
+      /* Sharp Realistic Pointer Arrow (Enlarged ~1.55x with localized soft glow) */
       .custom-pointer-arrow {
         position: fixed;
         top: 0;
         left: 0;
-        width: 19px;
-        height: 19px;
+        width: 29px;
+        height: 29px;
         pointer-events: none;
         z-index: 9999;
         transform: translate(-1px, -1px);
         transition: transform 0.12s var(--ease-cinema);
-        filter: drop-shadow(0 0 6px rgba(224, 198, 83, 0.5));
+        filter: drop-shadow(0 0 5px rgba(224, 198, 83, 0.45));
       }
 
       .custom-pointer-arrow.hover-scale {
-        transform: scale(1.2) translate(-1px, -1px);
-        filter: drop-shadow(0 0 12px rgba(224, 198, 83, 0.8));
+        transform: scale(1.15) translate(-1px, -1px);
+        filter: drop-shadow(0 0 8px rgba(224, 198, 83, 0.65));
       }
 
       .custom-pointer-canvas {
@@ -2205,10 +2531,16 @@
   <main id="main-content">
     <!-- HERO: DOMINANT EASY MOUSE WITH LETTER-BY-LETTER ENTRANCE & PLAYFUL HANGING MOUSE -->
     <section class="hero-stage" id="hero">
-      <!-- Playful Hanging Mouse Easter Egg with Physics Sway -->
-      <div class="hanging-mouse-rig" id="hanging-mouse" aria-hidden="true" title="Easy Mouse Easter Egg">
+      <!-- Playful Hanging Mouse Easter Egg with Real Physics Sway & Drag (Single pointer only, no native tooltip) -->
+      <div class="hanging-mouse-rig" id="hanging-mouse" aria-label="Interactive hanging mouse">
+        <div class="hanging-mouse-anchor"></div>
         <div class="hanging-wire"></div>
-        <div class="hanging-mouse-body"></div>
+        <div class="hanging-mouse-body" id="hanging-mouse-body">
+          <div class="hanging-mouse-grip grip-left"></div>
+          <div class="hanging-mouse-grip grip-right"></div>
+          <div class="hanging-mouse-wheel"></div>
+          <div class="hanging-mouse-seam"></div>
+        </div>
       </div>
 
       <div class="container hero-split-grid">
@@ -2252,6 +2584,26 @@
               </svg>
             </a>
           </div>
+
+          <!-- NEW Hero Instructions Section: Exactly 4 Steps, One Below Another -->
+          <div class="hero-instructions-block" id="hero-instructions" aria-label="How to use Easy Mouse">
+            <div class="hero-instruction-item" style="--step-i: 0;">
+              <span class="instruction-num">01</span>
+              <span class="instruction-text">DOWNLOAD THE FILE</span>
+            </div>
+            <div class="hero-instruction-item" style="--step-i: 1;">
+              <span class="instruction-num">02</span>
+              <span class="instruction-text">SETUP AND RUN THE EXE FILE</span>
+            </div>
+            <div class="hero-instruction-item" style="--step-i: 2;">
+              <span class="instruction-num">03</span>
+              <span class="instruction-text">SCAN THE QR AND ENTER THE CODE</span>
+            </div>
+            <div class="hero-instruction-item" style="--step-i: 3;">
+              <span class="instruction-num">04</span>
+              <span class="instruction-text">YOUR POCKETPOINTER IS READY</span>
+            </div>
+          </div>
         </div>
 
         <!-- 3D Spatial Smartphone & Interactive Companion Monitor -->
@@ -2260,6 +2612,10 @@
             <div class="phone-chassis">
               <div class="phone-dynamic-island"></div>
               <div class="phone-glass-screen">
+                <div class="phone-screen-os-display" aria-hidden="true">
+                  <div class="phone-os-brand-title">EASY MOUSE</div>
+                  <div class="phone-os-status">CONNECTED</div>
+                </div>
                 <div class="phone-trackpad-area" id="hero-phone-surface" tabindex="0" role="region" aria-label="Interactive Phone Trackpad Surface">
                   <span class="trackpad-instruction" id="hero-trackpad-hint">Touch or glide to drive pointer</span>
                   <div class="phone-touch-ripple" id="hero-phone-touch"></div>
@@ -2360,15 +2716,29 @@
 
           <!-- Functional Pointer/Touch Demonstration Stage -->
           <div class="narrative-visual-chassis">
-            <div class="touchpad-live-header">
-              <span id="touchpad-mode-heading">Capacitive Glass Surface</span>
-              <span id="touchpad-action-state">Glide / Tap / Drag</span>
+            <div class="feature-panel-meta-card" id="feature-panel-meta">
+              <div class="feature-panel-topline">
+                <span class="feature-panel-kicker" id="touchpad-feature-kicker">INTERACTIVE MODE</span>
+                <span class="feature-panel-state-pill" id="touchpad-action-state">Glide / Tap / Drag</span>
+              </div>
+              <h3 class="feature-panel-title" id="touchpad-feature-title">CAPACITIVE GLASS</h3>
+              <p class="feature-panel-desc" id="touchpad-feature-desc">
+                Your phone's touchscreen becomes the physical surface used to move the computer pointer.
+              </p>
             </div>
             <div class="touchpad-live-canvas" id="section1-touch-surface" tabindex="0" role="region" aria-label="Interactive Touchpad Simulator">
+              <!-- Grid mesh for precision capacitive tracking -->
+              <div class="touchpad-grid-mesh"></div>
+              <!-- Primary Touch Point -->
               <div class="touchpad-active-dot" id="section1-touch-dot"></div>
+              <!-- Secondary Multi-Touch Point -->
               <div class="touchpad-active-dot-2" id="section1-touch-dot-2"></div>
+              <!-- Gesture Vector Line -->
               <div class="touchpad-vector-line" id="section1-touch-vector"></div>
+              <!-- Linear Resonant Haptic Pulse Ring -->
               <div class="haptic-pulse-ring" id="section1-haptic-ring"></div>
+              <!-- Haptic Instruction Overlay -->
+              <div class="haptic-surface-hint" id="section1-haptic-hint">Tap anywhere on the surface to trigger tactile confirmation</div>
               <div class="touchpad-status-badge" id="touchpad-coords-badge">X: 50% &bull; Y: 50%</div>
             </div>
           </div>
@@ -2692,12 +3062,44 @@
               </p>
             </div>
 
-            <div class="capability-feature-panel">
-              <div class="editorial-label" style="margin-bottom: 10px;">Universal Support</div>
-              <h3 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; color: var(--text-hero); margin-bottom: 10px;">Cross-Platform Freedom</h3>
-              <p style="font-size: 1.02rem;">
-                Compatible with Windows, macOS, and Linux desktop environments, controlled from both iOS and Android handsets.
+            <div class="capability-feature-panel low-latency-feature-box">
+              <div class="editorial-label" style="margin-bottom: 10px;">Immediate Response</div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; color: var(--text-hero); margin-bottom: 10px;">LOW LATENCY</h3>
+              <p style="font-size: 1.02rem; margin-bottom: 18px;">
+                Low-latency input keeps pointer movement and touch actions feeling immediate between the phone and computer.
               </p>
+              
+              <!-- Meaningful Physical Visualization: PHONE -> yellow input pulse -> COMPUTER -> CURSOR MOVES -->
+              <div class="latency-vis-flow" aria-hidden="true">
+                <!-- Phone Node -->
+                <div class="latency-flow-node node-phone">
+                  <div class="node-icon-box phone-outline">
+                    <svg width="20" height="28" viewBox="0 0 20 28" fill="none">
+                      <rect x="2" y="2" width="16" height="24" rx="3.5" stroke="var(--yellow-gold)" stroke-width="1.6" fill="#141410"/>
+                      <circle class="latency-touch-point" cx="10" cy="9" r="2.2" fill="var(--yellow-gold)"/>
+                    </svg>
+                  </div>
+                  <span class="node-caption">PHONE</span>
+                </div>
+
+                <!-- Conduit with Traveling Yellow Pulse -->
+                <div class="latency-flow-conduit">
+                  <div class="conduit-wire"></div>
+                  <div class="conduit-yellow-pulse"></div>
+                </div>
+
+                <!-- Computer Node -->
+                <div class="latency-flow-node node-computer">
+                  <div class="node-icon-box computer-outline">
+                    <svg width="32" height="26" viewBox="0 0 32 26" fill="none">
+                      <rect x="2" y="2" width="28" height="17" rx="2" stroke="var(--text-hero)" stroke-width="1.6" fill="#0d0d0a"/>
+                      <path d="M11 23H21M16 19V23" stroke="var(--text-hero)" stroke-width="1.6" stroke-linecap="round"/>
+                      <polygon class="latency-screen-pointer" points="8,5 17,9 13,11 11,15" fill="var(--yellow-gold)" stroke="#080808" stroke-width="0.8"/>
+                    </svg>
+                  </div>
+                  <span class="node-caption">COMPUTER</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -2814,51 +3216,111 @@
     })();
 
     /* -------------------------------------------------------------
-       PLAYFUL HANGING MOUSE RIG (EASTER EGG SPRING PHYSICS - LEFT MARGIN)
+       PLAYFUL HANGING MOUSE RIG: REAL PHYSICAL PENDULUM & DRAG
+       Suspended on left margin safe zone.
+       Physics: Gravity, spring force, angular velocity, air damping.
+       Interaction: Proximity sway, pointer capture drag, damped release.
+       CRITICAL: Single global cursor only. NO hand cursor, NO title tooltip.
        ------------------------------------------------------------- */
     (function initHangingMouseEasterEgg() {
       const rig = document.getElementById('hanging-mouse');
-      if (!rig) return;
+      const mouseBody = document.getElementById('hanging-mouse-body');
+      if (!rig || !mouseBody) return;
 
-      let rotation = 0;
-      let rotVelocity = 0;
-      let lastX = 0;
+      let angle = 0;          // radians
+      let angularVel = 0;     // rad/s
+      let isDragging = false;
+      let lastPointerX = 0;
+      let lastPointerY = 0;
+      let dragPointerId = null;
 
-      // Pointer proximity detection
+      // Physical constants
+      const length = 160;     // pendulum length in px
+      const gravity = 0.0016; // gravitational restoring acceleration
+      const damping = 0.975;  // air resistance damping
+      const maxAngle = 0.74;  // max deflection clamp (~42 degrees)
+
+      // Pointer proximity detection: gentle physical sway on approach
       window.addEventListener('pointermove', (e) => {
+        if (isDragging) return;
         const rect = rig.getBoundingClientRect();
-        if (rect.width === 0) return; // Hidden on smaller viewports
+        if (rect.width === 0) return; // Hidden on small viewports
 
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + 30;
-        const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+        const anchorX = rect.left + rect.width / 2;
+        const anchorY = rect.top + 8;
+        const dist = Math.hypot(e.clientX - anchorX, e.clientY - (anchorY + length));
 
-        if (dist < 180) {
-          const vx = e.clientX - lastX;
-          const proximityFactor = (180 - dist) / 180;
-          rotVelocity += Math.max(-2.5, Math.min(2.5, vx * 0.08 * proximityFactor));
+        if (dist < 140) {
+          const vx = e.movementX || (e.clientX - lastPointerX);
+          const proximityFactor = (140 - dist) / 140;
+          angularVel += Math.max(-0.018, Math.min(0.018, vx * 0.0006 * proximityFactor));
         }
-        lastX = e.clientX;
+        lastPointerX = e.clientX;
+        lastPointerY = e.clientY;
       }, { passive: true });
 
-      rig.addEventListener('click', () => {
-        rotVelocity += (Math.random() > 0.5 ? 1 : -1) * 14;
-        rig.style.transform = 'translateY(6px) scale(0.96)';
-        setTimeout(() => {
-          rig.style.transform = '';
-        }, 160);
+      // Drag / Pull Interaction with single cursor
+      rig.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0) return;
+        isDragging = true;
+        dragPointerId = e.pointerId;
+        try {
+          rig.setPointerCapture(e.pointerId);
+        } catch (err) {}
+        lastPointerX = e.clientX;
+        lastPointerY = e.clientY;
       });
 
-      function loop() {
-        if (Math.abs(rotVelocity) > 0.02 || Math.abs(rotation) > 0.02) {
-          rotVelocity -= rotation * 0.045; // Spring restoration
-          rotVelocity *= 0.955; // Air damping
-          rotation += rotVelocity;
-          rig.style.transform = `rotate(${rotation.toFixed(2)}deg)`;
+      window.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        const rect = rig.getBoundingClientRect();
+        const anchorX = rect.left + rect.width / 2;
+        const anchorY = rect.top + 8;
+
+        const dx = e.clientX - anchorX;
+        const dy = Math.max(30, e.clientY - anchorY);
+        const targetAngle = Math.atan2(dx, dy);
+
+        // Constrain displacement so mouse cannot fly away
+        const clampedTarget = Math.max(-maxAngle, Math.min(maxAngle, targetAngle));
+        // Mouse follows with subtle physical lag
+        angle += (clampedTarget - angle) * 0.32;
+        angularVel = (clampedTarget - angle) * 0.15;
+      });
+
+      function handleDragEnd(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        if (dragPointerId !== null) {
+          try {
+            rig.releasePointerCapture(dragPointerId);
+          } catch (err) {}
+          dragPointerId = null;
         }
-        requestAnimationFrame(loop);
       }
-      requestAnimationFrame(loop);
+
+      rig.addEventListener('pointerup', handleDragEnd);
+      rig.addEventListener('pointercancel', handleDragEnd);
+      window.addEventListener('pointerup', handleDragEnd);
+
+      // Continuous lightweight physics simulation loop
+      function updatePhysics() {
+        if (!isDragging) {
+          // Pendulum restoring acceleration: alpha = -(g/L) * sin(theta)
+          const accel = -gravity * Math.sin(angle);
+          angularVel += accel;
+          angularVel *= damping;
+          angle += angularVel;
+        }
+
+        // Apply angular rotation in degrees
+        const deg = (angle * 180 / Math.PI);
+        rig.style.transform = `rotate(${deg.toFixed(2)}deg)`;
+
+        requestAnimationFrame(updatePhysics);
+      }
+
+      requestAnimationFrame(updatePhysics);
     })();
 
     /* -------------------------------------------------------------
@@ -2899,8 +3361,12 @@
     /* -------------------------------------------------------------
        HERO: 3D SMARTPHONE INTERACTION & COMPANION MONITOR
        Tactile touch ripples, continuous drag, and wheel response
+       FIX 3D RELOAD OVERLAPPING: Singleton initialization and deterministic coordinates
        ------------------------------------------------------------- */
     (function initHero3DInteraction() {
+      if (window.__easyMouseHero3DInit) return;
+      window.__easyMouseHero3DInit = true;
+
       const surface = document.getElementById('hero-phone-surface');
       const ripple = document.getElementById('hero-phone-touch');
       const pointer = document.getElementById('hero-laptop-pointer');
@@ -2928,6 +3394,9 @@
         const rotX = 12 - (y - 0.5) * 14;
         phoneRig.style.transform = `rotateY(${rotY}deg) rotateX(${rotX}deg) rotateZ(-3deg)`;
       }
+
+      // Establish deterministic initial transforms immediately
+      updateCoords(0.5, 0.5);
 
       function handleMove(e) {
         isInteracting = true;
@@ -2998,6 +3467,7 @@
     /* -------------------------------------------------------------
        SECTION 01: FUNCTIONAL TOUCHPAD SIMULATOR & MULTI-TOUCH
        Interactive Mode Switcher: Capacitive Glass | Multi-Touch | Haptic
+       Features update title, explanation, and visual demonstration with 300-500ms transitions
        ------------------------------------------------------------- */
     (function initSection1Touchpad() {
       const surface = document.getElementById('section1-touch-surface');
@@ -3005,9 +3475,12 @@
       const dot2 = document.getElementById('section1-touch-dot-2');
       const vector = document.getElementById('section1-touch-vector');
       const hapticRing = document.getElementById('section1-haptic-ring');
+      const hapticHint = document.getElementById('section1-haptic-hint');
       const badge = document.getElementById('touchpad-coords-badge');
       const actionState = document.getElementById('touchpad-action-state');
-      const modeHeading = document.getElementById('touchpad-mode-heading');
+      const titleEl = document.getElementById('touchpad-feature-title');
+      const descEl = document.getElementById('touchpad-feature-desc');
+      const metaCard = document.getElementById('feature-panel-meta');
       const modeBtns = document.querySelectorAll('.device-mode-btn');
 
       if (!surface || !dot1 || !badge || !actionState) return;
@@ -3016,7 +3489,28 @@
       const activePointers = new Map();
       let startX = 0, startY = 0;
 
-      // Mode Switcher Buttons
+      const featureContent = {
+        glass: {
+          title: 'CAPACITIVE GLASS',
+          desc: "Your phone's touchscreen becomes the physical surface used to move the computer pointer.",
+          state: 'Glide / Tap / Drag',
+          badge: 'Surface: Precision Coordinate Grid'
+        },
+        multitouch: {
+          title: 'MULTI-TOUCH DETECTION',
+          desc: 'Use multiple touch points to trigger gesture-based desktop interactions.',
+          state: 'Multi-Point Gesture Active',
+          badge: 'Two-Point Vector Span Tracked'
+        },
+        haptic: {
+          title: 'HAPTIC FEEDBACK',
+          desc: 'Touch feedback provides subtle confirmation when supported by the device.',
+          state: 'Tap Anywhere on Surface',
+          badge: 'Linear Resonant Impulse Engine'
+        }
+      };
+
+      // Mode Switcher Buttons with smooth 350ms transition
       modeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           modeBtns.forEach(b => {
@@ -3028,21 +3522,50 @@
           currentMode = btn.getAttribute('data-mode') || 'glass';
 
           // Reset demonstration state
-          if (dot2) dot2.style.opacity = '0';
-          if (vector) vector.style.opacity = '0';
+          if (dot2) dot2.style.opacity = currentMode === 'multitouch' ? '1' : '0';
+          if (vector) vector.style.opacity = currentMode === 'multitouch' ? '0.85' : '0';
+          if (hapticHint) hapticHint.style.opacity = currentMode === 'haptic' ? '1' : '0';
 
-          if (currentMode === 'glass') {
-            if (modeHeading) modeHeading.textContent = 'Capacitive Glass Surface';
-            actionState.textContent = 'Single Pointer Precision Tracking';
-            badge.textContent = 'Mode: Capacitive Glass (Sub-Pixel)';
-          } else if (currentMode === 'multitouch') {
-            if (modeHeading) modeHeading.textContent = 'Multi-Touch Sensor Array';
-            actionState.textContent = 'Dual Touch Point Detection Active';
-            badge.textContent = 'Mode: 2 Active Touch Points';
-          } else if (currentMode === 'haptic') {
-            if (modeHeading) modeHeading.textContent = 'Haptic Tactile Feedback';
-            actionState.textContent = 'Tap Anywhere to Fire Haptic Pulse';
-            badge.textContent = 'Tactile Engine: Standing By';
+          // Smooth transition (opacity 1 -> 0 -> 1 with subtle translateY)
+          if (metaCard) {
+            metaCard.style.opacity = '0';
+            metaCard.style.transform = 'translateY(-5px)';
+            setTimeout(() => {
+              const data = featureContent[currentMode];
+              if (titleEl) titleEl.textContent = data.title;
+              if (descEl) descEl.textContent = data.desc;
+              if (actionState) actionState.textContent = data.state;
+              if (badge) badge.textContent = data.badge;
+
+              metaCard.style.opacity = '1';
+              metaCard.style.transform = 'translateY(0)';
+            }, 160);
+          }
+
+          if (currentMode === 'multitouch') {
+            // Display initial dual touch points and gesture vector
+            dot1.style.opacity = '1';
+            dot1.style.left = '35%';
+            dot1.style.top = '48%';
+            if (dot2) {
+              dot2.style.opacity = '1';
+              dot2.style.left = '65%';
+              dot2.style.top = '52%';
+            }
+            if (vector) {
+              const rect = surface.getBoundingClientRect();
+              const x1 = 0.35 * rect.width;
+              const y1 = 0.48 * rect.height;
+              const x2 = 0.65 * rect.width;
+              const y2 = 0.52 * rect.height;
+              const dist = Math.hypot(x2 - x1, y2 - y1);
+              const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+              vector.style.left = x1 + 'px';
+              vector.style.top = y1 + 'px';
+              vector.style.width = dist + 'px';
+              vector.style.transform = `rotate(${angle}deg)`;
+              vector.style.opacity = '0.85';
+            }
           }
         });
       });
@@ -3507,16 +4030,16 @@
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
           const dist = Math.hypot(mouseX - prevMouseX, mouseY - prevMouseY);
           const speed = Math.min(dist, 45);
-          // Velocity-adaptive physical thickness: 2.0px when calm/slow, up to 3.8px-4.0px on fast flick
-          const thickness = 2.0 + (speed / 45) * 1.9;
+          // Velocity-adaptive physical thickness: 3.0px when calm/slow, up to 5.2px on fast flick
+          const thickness = 3.0 + (speed / 45) * 2.2;
 
           trail.unshift({
             x: mouseX + 2,
             y: mouseY + 2,
-            alpha: 0.92,
+            alpha: 0.94,
             size: thickness
           });
-          if (trail.length > MAX_TRAIL) trail.pop();
+          if (trail.length > 22) trail.pop();
 
           prevMouseX = mouseX;
           prevMouseY = mouseY;
@@ -3529,7 +4052,8 @@
         }, 2500);
       });
 
-      const hoverElements = 'a, button, [role="tab"], .feature-tab-btn, .touchpad-live-canvas, .phone-trackpad-area, .hanging-mouse-rig, .conn-phone-trackpad, .device-mode-btn, .flow-card';
+      // Hover scale target elements (Excludes hanging-mouse-rig so dangle reacts purely with its own physical drag)
+      const hoverElements = 'a, button, [role="tab"], .feature-tab-btn, .touchpad-live-canvas, .phone-trackpad-area, .conn-phone-trackpad, .device-mode-btn, .flow-card';
       document.addEventListener('mouseover', (e) => {
         if (e.target.closest(hoverElements)) pointer.classList.add('hover-scale');
       });
@@ -3542,15 +4066,15 @@
 
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && trail.length > 1) {
           for (let i = 0; i < trail.length; i++) {
-            trail[i].alpha *= 0.85; // Short persistence
-            trail[i].size *= 0.91;  // Smooth tapering
+            trail[i].alpha *= 0.88; // Opacity decay
+            trail[i].size *= 0.92;  // Smooth physical tapering
           }
 
           ctx.save();
           ctx.lineCap = 'round';
           ctx.lineJoin = 'round';
           ctx.shadowBlur = 4;
-          ctx.shadowColor = 'rgba(224, 198, 83, 0.35)';
+          ctx.shadowColor = 'rgba(224, 198, 83, 0.4)';
 
           for (let i = 0; i < trail.length - 1; i++) {
             const p1 = trail[i];
@@ -3559,8 +4083,8 @@
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(224, 198, 83, ${p1.alpha * 0.65})`;
-            ctx.lineWidth = Math.max(1.0, p1.size);
+            ctx.strokeStyle = `rgba(224, 198, 83, ${p1.alpha * 0.72})`;
+            ctx.lineWidth = Math.max(1.5, p1.size);
             ctx.stroke();
           }
           ctx.restore();
