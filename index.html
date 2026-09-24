@@ -1833,8 +1833,95 @@
     }
 
     /* -------------------------------------------------------------
+       CUSTOM DESKTOP CURSOR SYSTEM
+       ------------------------------------------------------------- */
+    @media (hover: hover) and (pointer: fine) {
+      body {
+        cursor: none;
+      }
+
+      a, button, input, [role="tab"], [tabindex="0"] {
+        cursor: none !important;
+      }
+
+      .custom-cursor-dot {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 8px;
+        height: 8px;
+        background: var(--accent-red);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 10px var(--accent-red);
+        transition: opacity 0.25s ease, transform 0.12s ease;
+      }
+
+      .custom-cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 36px;
+        height: 36px;
+        border: 1.5px solid rgba(255, 42, 75, 0.55);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+                    height 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+                    border-color 0.22s ease, 
+                    background-color 0.22s ease,
+                    opacity 0.25s ease;
+      }
+
+      .custom-cursor-ring.hover-active {
+        width: 54px;
+        height: 54px;
+        border-color: var(--accent-red);
+        background: rgba(255, 42, 75, 0.12);
+        box-shadow: 0 0 16px var(--accent-red-glow);
+      }
+
+      .custom-cursor-ring.click-active {
+        transform: translate(-50%, -50%) scale(0.8);
+        background: rgba(255, 42, 75, 0.25);
+      }
+
+      .custom-cursor-canvas {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 9997;
+      }
+
+      .cursor-hidden {
+        opacity: 0 !important;
+      }
+    }
+
+    @media (hover: none) or (pointer: coarse) or (max-width: 768px) {
+      .custom-cursor-dot,
+      .custom-cursor-ring,
+      .custom-cursor-canvas {
+        display: none !important;
+      }
+      body {
+        cursor: auto !important;
+      }
+      a, button, input, [role="tab"], [tabindex="0"] {
+        cursor: pointer !important;
+      }
+    }
+
+    /* -------------------------------------------------------------
        PREFERS-REDUCED-MOTION
        ------------------------------------------------------------- */
+
 
 
 
@@ -2395,9 +2482,15 @@
       <span class="status-ping"></span>
       <span id="toast-message">Download destination ready for release URL attachment.</span>
     </div>
+
+    <!-- Desktop Custom Cursor Elements -->
+    <div class="custom-cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+    <div class="custom-cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+    <canvas class="custom-cursor-canvas" id="cursor-canvas" aria-hidden="true"></canvas>
   </div>
 
   <script>
+
     /* Mobile Menu Toggle Logic */
     (function initMobileNav() {
       const toggleBtn = document.getElementById('mobile-toggle');
@@ -2835,6 +2928,124 @@
         btn.addEventListener('click', triggerDownloadNotice);
       });
     })();
+
+    /* -------------------------------------------------------------
+       CUSTOM DESKTOP CURSOR & CANVAS TRAIL ENGINE
+       ------------------------------------------------------------- */
+    (function initCustomCursor() {
+      // Gate: only initialize on fine pointer devices (desktop mouse)
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+      const dot = document.getElementById('cursor-dot');
+      const ring = document.getElementById('cursor-ring');
+      const canvas = document.getElementById('cursor-canvas');
+      if (!dot || !ring || !canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let ringX = mouseX;
+      let ringY = mouseY;
+      let isVisible = false;
+      let idleTimer = null;
+
+      // Trail Points Array
+      const points = [];
+      const MAX_POINTS = 12;
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      // Track pointer movement
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        if (!isVisible) {
+          isVisible = true;
+          dot.classList.remove('cursor-hidden');
+          ring.classList.remove('cursor-hidden');
+        }
+
+        dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+
+        // Push new point into trail
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          points.unshift({ x: mouseX, y: mouseY, alpha: 1.0, size: 3.0 });
+          if (points.length > MAX_POINTS) points.pop();
+        }
+
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => {
+          dot.classList.add('cursor-hidden');
+          ring.classList.add('cursor-hidden');
+          isVisible = false;
+        }, 2800);
+      });
+
+      // Mouse Down / Up feedback
+      window.addEventListener('mousedown', () => {
+        ring.classList.add('click-active');
+      });
+      window.addEventListener('mouseup', () => {
+        ring.classList.remove('click-active');
+      });
+
+      // Interactive hover morph
+      const interactiveElements = 'a, button, [role="tab"], .phone-touchpad, .btn-primary, .btn-secondary, .sandbox-trackpad';
+      document.addEventListener('mouseover', (e) => {
+        if (e.target.closest(interactiveElements)) {
+          ring.classList.add('hover-active');
+        }
+      });
+
+      document.addEventListener('mouseout', (e) => {
+        if (e.target.closest(interactiveElements)) {
+          ring.classList.remove('hover-active');
+        }
+      });
+
+      // Animation Loop
+      function renderLoop() {
+        // Smooth lerp for outer ring
+        const lerpFactor = 0.18;
+        ringX += (mouseX - ringX) * lerpFactor;
+        ringY += (mouseY - ringY) * lerpFactor;
+        ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+
+        // Canvas trail rendering with alpha decay
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && points.length > 1) {
+          for (let i = 0; i < points.length; i++) {
+            points[i].alpha *= 0.86;
+            points[i].size *= 0.92;
+          }
+
+          for (let i = 0; i < points.length - 1; i++) {
+            const p1 = points[i];
+            const p2 = points[i + 1];
+
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(255, 42, 75, ${p1.alpha * 0.45})`;
+            ctx.lineWidth = Math.max(0.5, p1.size);
+            ctx.lineCap = 'round';
+            ctx.stroke();
+          }
+        }
+
+        requestAnimationFrame(renderLoop);
+      }
+
+      requestAnimationFrame(renderLoop);
+    })();
+
 
 
 
