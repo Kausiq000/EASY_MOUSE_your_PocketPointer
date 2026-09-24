@@ -7,33 +7,37 @@
   <meta name="description" content="Easy Mouse turns your smartphone into a high-precision wireless trackpad and presentation controller for your computer. Black and muted yellow physical product experience.">
   <meta name="theme-color" content="#080808">
 
-  <!-- Typography Pairing: Playlist Script Inspired (Kaushan Script) + Bold Condensed (Bebas Neue) + Plus Jakarta Sans -->
+  <!-- Typography Roles:
+       1. Brand: Playlist Script style (Kaushan Script)
+       2. Headings: Celtic Garamond style (Cormorant Garamond)
+       3. Body / UI: Racing Sans One style + Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kaushan+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Kaushan+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Racing+Sans+One&display=swap" rel="stylesheet">
 
   <style>
     /* -------------------------------------------------------------
-       EASY MOUSE BESPOKE DESIGN SYSTEM
-       Color Palette: Pure Black (#080808) + Muted Golden Yellow (#D8BE45 / #E0C653)
-       Typography: Playlist Script Style Hero + Bold Condensed Grotesk
+       EASY MOUSE REFINED DESIGN SYSTEM
+       Color Palette: Strict Deep Black + Warm Muted Yellow + Off-White
+       Zero Accidental Colors (No red, pink, purple, cyan, green, blue)
+       Natural Localized Lighting (No wide artificial halos)
        ------------------------------------------------------------- */
     :root {
-      /* Pure Black Tonal Foundations */
+      /* Deep Black Tonal Foundations */
       --bg-void: #080808;
       --bg-charcoal: #0c0c0b;
       --bg-graphite: #11110f;
-      --bg-surface: #181814;
-      --bg-surface-elevated: #20201a;
+      --bg-surface: #171714;
+      --bg-surface-elevated: #1e1e19;
 
-      /* Muted Warm Yellow Hierarchy - Strictly No Red / Neon */
+      /* Warm Muted Yellow Hierarchy (Physical reflected light, not neon) */
       --yellow-muted: #D8BE45;
       --yellow-gold: #E0C653;
       --yellow-deep: #C9AD3A;
-      --yellow-glow: rgba(224, 198, 83, 0.22);
-      --yellow-subtle: rgba(224, 198, 83, 0.06);
-      --yellow-stroke: rgba(224, 198, 83, 0.28);
-      --yellow-border: rgba(224, 198, 83, 0.16);
+      --yellow-glow: rgba(224, 198, 83, 0.16);
+      --yellow-subtle: rgba(224, 198, 83, 0.05);
+      --yellow-stroke: rgba(224, 198, 83, 0.22);
+      --yellow-border: rgba(224, 198, 83, 0.14);
 
       /* Typography Tones */
       --text-hero: #FAF8F2;
@@ -41,12 +45,13 @@
       --text-secondary: #9E9C91;
       --text-muted: #5F5E56;
 
-      /* Fonts */
-      --font-script: 'Playlist Script', 'Kaushan Script', cursive;
-      --font-condensed: 'Bebas Neue', 'Impact', sans-serif;
+      /* Typography Roles */
+      --font-brand: 'Playlist Script', 'Kaushan Script', cursive;
+      --font-heading: 'Celtic Garamond', 'Cormorant Garamond', Georgia, serif;
+      --font-ui: 'Racing Sans One', 'Plus Jakarta Sans', sans-serif;
       --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-      /* Motion */
+      /* Physics & Motion */
       --ease-cinema: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-fluid: cubic-bezier(0.25, 0.46, 0.45, 0.94);
       --nav-height: 72px;
@@ -80,8 +85,11 @@
       overflow-x: hidden;
     }
 
-    /* Tactile Atmospheric Layers: Fine Grain & Warm Radial Illumination */
-    .atmosphere-ambient {
+    /* -------------------------------------------------------------
+       SUBTLE SLOW-MOVING SMOKE / ATMOSPHERIC LAYER
+       Thin warm haze + slow dark smoke + low-opacity yellow light
+       ------------------------------------------------------------- */
+    .atmosphere-layer {
       position: fixed;
       inset: 0;
       pointer-events: none;
@@ -92,55 +100,95 @@
     .atmosphere-noise {
       position: absolute;
       inset: 0;
-      opacity: 0.024;
-      background-image: radial-gradient(rgba(255, 255, 255, 0.8) 1px, transparent 0);
-      background-size: 28px 28px;
+      opacity: 0.022;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.7) 1px, transparent 0);
+      background-size: 26px 26px;
     }
 
-    .ambient-warm-glow {
+    /* Slow drifting dark smoke puffs with soft warm light */
+    .smoke-puff {
       position: absolute;
-      top: -240px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 1000px;
-      height: 650px;
-      background: radial-gradient(ellipse at center, rgba(224, 198, 83, 0.09) 0%, rgba(224, 198, 83, 0.02) 55%, transparent 70%);
-      filter: blur(70px);
-      transition: opacity 1s ease;
-    }
-
-    .ambient-side-glow {
-      position: absolute;
-      top: 48%;
-      right: -250px;
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, rgba(224, 198, 83, 0.05) 0%, transparent 65%);
+      border-radius: 50%;
       filter: blur(80px);
+      pointer-events: none;
+      will-change: transform, opacity;
     }
 
-    /* Typography & Hierarchy */
+    .smoke-puff-1 {
+      top: -150px;
+      left: 30%;
+      width: 650px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(224, 198, 83, 0.045) 0%, rgba(14, 14, 12, 0.8) 60%, transparent 80%);
+      animation: driftSlow 36s ease-in-out infinite alternate;
+    }
+
+    .smoke-puff-2 {
+      top: 40%;
+      right: -150px;
+      width: 700px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(224, 198, 83, 0.035) 0%, rgba(12, 12, 10, 0.6) 55%, transparent 75%);
+      animation: driftSlow 44s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes driftSlow {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, 30px) scale(1.08); }
+      100% { transform: translate(-30px, 60px) scale(0.95); }
+    }
+
+    /* -------------------------------------------------------------
+       WATERY / INK TEXT INTERACTION SYSTEM
+       Pointer passing over text reveals wet ink / yellow illumination
+       ------------------------------------------------------------- */
+    .liquid-heading {
+      position: relative;
+      display: inline-block;
+      overflow: visible !important;
+    }
+
+    .liquid-base-text {
+      color: var(--text-hero);
+      display: block;
+      position: relative;
+      z-index: 1;
+      overflow: visible !important;
+    }
+
+    .liquid-ink-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      color: var(--yellow-gold);
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0;
+      overflow: visible !important;
+      transition: opacity 0.4s ease-out;
+      -webkit-mask-image: radial-gradient(circle 90px at var(--ink-x, -999px) var(--ink-y, -999px), black 0%, rgba(0, 0, 0, 0.5) 55%, transparent 100%);
+      mask-image: radial-gradient(circle 90px at var(--ink-x, -999px) var(--ink-y, -999px), black 0%, rgba(0, 0, 0, 0.5) 55%, transparent 100%);
+    }
+
+    .liquid-heading.ink-active .liquid-ink-overlay {
+      opacity: 1;
+    }
+
+    /* Typography Defaults */
     h1, h2, h3, h4 {
       color: var(--text-hero);
-      font-weight: 800;
-      line-height: 1.02;
-    }
-
-    .condensed-title {
-      font-family: var(--font-condensed);
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      font-weight: 400;
-      line-height: 0.95;
+      line-height: 1.05;
     }
 
     .editorial-label {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-family: var(--font-condensed);
-      font-size: 1.05rem;
-      letter-spacing: 0.16em;
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--yellow-gold);
       margin-bottom: 16px;
@@ -148,11 +196,11 @@
 
     .editorial-label::before {
       content: "";
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--yellow-gold);
-      box-shadow: 0 0 10px var(--yellow-gold);
+      box-shadow: 0 0 8px var(--yellow-gold);
     }
 
     p {
@@ -210,6 +258,74 @@
     }
 
     /* -------------------------------------------------------------
+       PLAYFUL HANGING MOUSE EASTER EGG (HERO CORNER)
+       Suspended from a thin golden wire with physical sway physics
+       ------------------------------------------------------------- */
+    .hanging-mouse-rig {
+      position: absolute;
+      top: 0;
+      right: 70px;
+      width: 44px;
+      height: 150px;
+      z-index: 20;
+      pointer-events: auto;
+      cursor: grab;
+      transform-origin: top center;
+      transition: transform 0.3s var(--ease-cinema);
+    }
+
+    .hanging-mouse-rig:hover {
+      animation: swingMouse 1.8s ease-in-out infinite alternate;
+    }
+
+    .hanging-mouse-rig:active {
+      cursor: grabbing;
+      transform: translateY(8px) scale(0.96);
+    }
+
+    .hanging-wire {
+      width: 1.5px;
+      height: 95px;
+      background: linear-gradient(to bottom, rgba(224, 198, 83, 0.4), var(--yellow-gold));
+      margin: 0 auto;
+    }
+
+    .hanging-mouse-body {
+      width: 28px;
+      height: 44px;
+      background: #151512;
+      border: 1.5px solid var(--yellow-gold);
+      border-radius: 14px 14px 12px 12px;
+      margin: 0 auto;
+      position: relative;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8), 0 0 10px rgba(224, 198, 83, 0.2);
+    }
+
+    .hanging-mouse-body::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 10px;
+      background: var(--yellow-gold);
+      border-radius: 2px;
+    }
+
+    @keyframes swingMouse {
+      0% { transform: rotate(-8deg); }
+      50% { transform: rotate(8deg); }
+      100% { transform: rotate(-6deg); }
+    }
+
+    @media (max-width: 1080px) {
+      .hanging-mouse-rig {
+        display: none;
+      }
+    }
+
+    /* -------------------------------------------------------------
        MINIMAL PRODUCT NAVIGATION
        ------------------------------------------------------------- */
     .site-nav {
@@ -218,7 +334,7 @@
       left: 0;
       width: 100%;
       height: var(--nav-height);
-      background: rgba(8, 8, 8, 0.82);
+      background: rgba(8, 8, 8, 0.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -252,13 +368,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      filter: drop-shadow(0 0 6px rgba(224, 198, 83, 0.35));
+      filter: drop-shadow(0 0 6px rgba(224, 198, 83, 0.3));
     }
 
     .brand-title-nav {
-      font-family: var(--font-condensed);
-      font-size: 1.45rem;
-      letter-spacing: 0.08em;
+      font-family: var(--font-ui);
+      font-size: 1.3rem;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--text-hero);
     }
@@ -298,24 +414,29 @@
       width: 100%;
     }
 
+    /* Tactile Physical Navigation Button */
     .nav-cta-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 9px 22px;
-      border-radius: 9999px;
-      background: rgba(224, 198, 83, 0.08);
+      padding: 10px 22px;
+      border-radius: 8px;
+      background: #141410;
       border: 1px solid var(--yellow-border);
       color: var(--yellow-gold);
-      font-size: 0.88rem;
-      font-weight: 600;
-      transition: all 0.3s var(--ease-cinema);
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.25s var(--ease-cinema);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
 
     .nav-cta-btn:hover {
       background: var(--yellow-gold);
       color: #080808;
-      box-shadow: 0 0 24px var(--yellow-glow);
+      border-color: var(--yellow-gold);
+      box-shadow: 0 4px 16px var(--yellow-glow);
       transform: translateY(-1px);
     }
 
@@ -367,7 +488,7 @@
 
     .mobile-nav-drawer a {
       font-size: 1.25rem;
-      font-family: var(--font-condensed);
+      font-family: var(--font-ui);
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--text-hero);
@@ -375,7 +496,8 @@
     }
 
     /* -------------------------------------------------------------
-       HERO: PLAYLIST SCRIPT BRANDING + REALISTIC 3D SMARTPHONE
+       HERO: PLAYLIST SCRIPT BRANDING & LETTER-BY-LETTER ENTRANCE
+       Fixed Bug: Letter 'Y' has generous clearance and zero clipping
        ------------------------------------------------------------- */
     .hero-stage {
       min-height: 94vh;
@@ -394,64 +516,72 @@
       gap: 50px;
     }
 
-    /* Dramatic Hero Brand Statement */
     .hero-editorial-col {
       position: relative;
       z-index: 5;
     }
 
-    /* Opening Line Reveal Sweep */
-    .hero-sweep-line {
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--yellow-gold), transparent);
-      margin-bottom: 24px;
-      transition: width 1.2s var(--ease-cinema) 0.1s;
+    /* Brand Letter-by-Letter Entrance Container */
+    .hero-brand-wrap {
+      margin-bottom: 12px;
+      position: relative;
+      overflow: visible !important; /* CRITICAL: Must not clip descender of 'y' */
+      padding-bottom: 18px;
+      padding-right: 30px;
     }
 
-    .hero-entered .hero-sweep-line {
-      width: 180px;
-    }
-
-    /* Major Playlist Script Brand Headline */
-    .brand-script-wrapper {
-      margin-bottom: 8px;
-      overflow: hidden;
-    }
-
-    .brand-script-title {
-      display: inline-block;
-      font-family: var(--font-script);
-      font-size: clamp(4.5rem, 8.8vw, 7.8rem);
-      line-height: 0.96;
+    .hero-brand-title {
+      font-family: var(--font-brand);
+      font-size: clamp(4.4rem, 8.8vw, 7.8rem);
+      line-height: 1.18; /* Generous vertical clearance for flourishes */
       color: var(--yellow-gold);
-      text-shadow: 0 4px 30px rgba(224, 198, 83, 0.28);
-      transform: translateY(115%) rotate(-2deg);
-      opacity: 0;
-      transition: transform 1s var(--ease-cinema) 0.3s, opacity 0.8s ease 0.3s;
+      display: inline-block;
+      overflow: visible !important;
+      text-shadow: 0 4px 24px rgba(224, 198, 83, 0.25);
     }
 
-    .hero-entered .brand-script-title {
+    /* Letter by letter sequential physics */
+    .hero-char {
+      display: inline-block;
+      overflow: visible !important;
+      transform: translateY(34px) rotate(4deg);
+      opacity: 0;
+      transition: transform 0.85s var(--ease-cinema), opacity 0.8s ease;
+      transition-delay: calc(0.18s + var(--c-i, 0) * 0.055s);
+    }
+
+    .hero-char.char-y {
+      padding-right: 14px; /* Unclip descender and flourishing tail */
+      margin-right: -4px;
+    }
+
+    .hero-char-space {
+      display: inline-block;
+      width: 0.28em;
+    }
+
+    .hero-entered .hero-char {
       transform: translateY(0) rotate(0deg);
       opacity: 1;
     }
 
-    /* Supporting Condensed Tagline */
+    /* Supporting Statement (Role 2: Celtic Garamond style) */
     .hero-condensed-tagline {
-      overflow: hidden;
       margin-bottom: 24px;
+      overflow: visible;
     }
 
     .hero-condensed-inner {
       display: block;
-      font-family: var(--font-condensed);
-      font-size: clamp(2rem, 3.8vw, 3.4rem);
-      letter-spacing: 0.04em;
-      line-height: 1;
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3.8vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.08;
       color: var(--text-hero);
-      transform: translateY(110%);
+      transform: translateY(20px);
       opacity: 0;
-      transition: transform 0.85s var(--ease-cinema) 0.5s, opacity 0.8s ease 0.5s;
+      transition: transform 0.8s var(--ease-cinema) 0.65s, opacity 0.8s ease 0.65s;
     }
 
     .hero-entered .hero-condensed-inner {
@@ -461,13 +591,13 @@
 
     .hero-summary-copy {
       max-width: 48ch;
-      font-size: 1.18rem;
+      font-size: 1.16rem;
       line-height: 1.68;
       margin-bottom: 38px;
       color: var(--text-secondary);
       transform: translateY(20px);
       opacity: 0;
-      transition: transform 0.8s var(--ease-cinema) 0.7s, opacity 0.8s ease 0.7s;
+      transition: transform 0.8s var(--ease-cinema) 0.8s, opacity 0.8s ease 0.8s;
     }
 
     .hero-entered .hero-summary-copy {
@@ -475,6 +605,7 @@
       opacity: 1;
     }
 
+    /* Physical Tactile Buttons */
     .hero-actions-row {
       display: flex;
       align-items: center;
@@ -482,7 +613,7 @@
       flex-wrap: wrap;
       transform: translateY(20px);
       opacity: 0;
-      transition: transform 0.8s var(--ease-cinema) 0.85s, opacity 0.8s ease 0.85s;
+      transition: transform 0.8s var(--ease-cinema) 0.95s, opacity 0.8s ease 0.95s;
     }
 
     .hero-entered .hero-actions-row {
@@ -497,19 +628,24 @@
       padding: 18px 36px;
       background: var(--yellow-gold);
       color: #080808;
-      font-family: var(--font-condensed);
-      font-size: 1.35rem;
-      letter-spacing: 0.06em;
+      font-family: var(--font-ui);
+      font-size: 1.15rem;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      border-radius: 9999px;
-      box-shadow: 0 10px 32px var(--yellow-glow);
-      transition: all 0.3s var(--ease-cinema);
+      border-radius: 10px;
+      box-shadow: 0 4px 18px var(--yellow-glow), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      transition: transform 0.25s var(--ease-cinema), box-shadow 0.25s ease, background 0.25s ease;
     }
 
     .btn-hero-primary:hover {
       background: #ebd264;
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 14px 40px rgba(224, 198, 83, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(224, 198, 83, 0.35);
+    }
+
+    .btn-hero-primary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(224, 198, 83, 0.3);
     }
 
     .btn-hero-secondary {
@@ -517,25 +653,28 @@
       align-items: center;
       gap: 10px;
       padding: 17px 28px;
-      background: rgba(255, 255, 255, 0.03);
+      background: #11110f;
       border: 1px solid var(--yellow-border);
-      border-radius: 9999px;
+      border-radius: 10px;
       color: var(--text-hero);
-      font-family: var(--font-condensed);
-      font-size: 1.25rem;
-      letter-spacing: 0.06em;
+      font-family: var(--font-ui);
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      transition: all 0.3s var(--ease-cinema);
+      transition: all 0.25s var(--ease-cinema);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
 
     .btn-hero-secondary:hover {
       background: rgba(224, 198, 83, 0.08);
       border-color: var(--yellow-gold);
+      color: var(--yellow-gold);
       transform: translateY(-2px);
     }
 
     /* -------------------------------------------------------------
-       HERO: REALISTIC 3D SMARTPHONE CHASSIS & COMPANION MONITOR
+       HERO: REALISTIC PHYSICAL 3D SMARTPHONE CHASSIS
+       Sharper physical edges, visible metal thickness, glass reflection
        ------------------------------------------------------------- */
     .hero-3d-scene {
       perspective: 1200px;
@@ -562,7 +701,7 @@
       transition: transform 0.4s var(--ease-fluid), opacity 0.8s ease 0.4s;
     }
 
-    /* Physical Machined Smartphone Chassis */
+    /* Physical Machined Smartphone Chassis with Beveled Rim */
     .phone-chassis {
       position: absolute;
       inset: 0;
@@ -571,15 +710,15 @@
       padding: 12px;
       box-shadow: 
         -25px 35px 75px rgba(0, 0, 0, 0.9),
-        inset 0 0 0 1.5px rgba(224, 198, 83, 0.28),
-        inset 0 2px 4px rgba(255, 255, 255, 0.25),
-        0 0 50px var(--yellow-subtle);
-      border: 1px solid rgba(224, 198, 83, 0.14);
+        inset 0 0 0 1.5px rgba(224, 198, 83, 0.26),
+        inset 0 2px 3px rgba(255, 255, 255, 0.25),
+        0 0 35px var(--yellow-subtle);
+      border: 1px solid rgba(224, 198, 83, 0.12);
       display: flex;
       flex-direction: column;
     }
 
-    /* Smartphone Glass Screen */
+    /* Front Glass Screen with Natural Specular Lighting */
     .phone-glass-screen {
       flex: 1;
       background: radial-gradient(circle at 50% 15%, #181814 0%, #0c0c0a 85%);
@@ -590,7 +729,7 @@
       user-select: none;
     }
 
-    /* Diagonal Glass Highlight Specular */
+    /* Realistic Glass Glare Specular Highlight */
     .phone-glass-screen::before {
       content: "";
       position: absolute;
@@ -598,12 +737,12 @@
       left: -100px;
       width: 320px;
       height: 600px;
-      background: linear-gradient(135deg, rgba(224, 198, 83, 0.06) 0%, transparent 60%);
+      background: linear-gradient(135deg, rgba(224, 198, 83, 0.05) 0%, transparent 60%);
       transform: rotate(25deg);
       pointer-events: none;
     }
 
-    /* Dynamic Island & Speaker */
+    /* Sensor Dynamic Island */
     .phone-dynamic-island {
       width: 82px;
       height: 18px;
@@ -615,13 +754,13 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    /* Interactive Trackpad Field */
+    /* Active Touchpad Glass Field */
     .phone-trackpad-area {
       position: absolute;
       inset: 48px 16px 20px;
       border-radius: 24px;
       border: 1px dashed var(--yellow-border);
-      background: rgba(224, 198, 83, 0.02);
+      background: rgba(224, 198, 83, 0.015);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -640,19 +779,19 @@
 
     .phone-touch-ripple {
       position: absolute;
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(224, 198, 83, 0.7) 0%, transparent 70%);
       transform: translate(-50%, -50%);
       pointer-events: none;
       top: 50%;
       left: 50%;
-      box-shadow: 0 0 20px var(--yellow-gold);
-      transition: width 0.2s ease, height 0.2s ease;
+      box-shadow: 0 0 16px var(--yellow-gold);
+      transition: width 0.18s ease, height 0.18s ease;
     }
 
-    /* Companion Laptop Screen Behind in Perspective */
+    /* Companion Laptop Screen Behind */
     .laptop-companion-card {
       position: absolute;
       top: -30px;
@@ -662,7 +801,7 @@
       background: #11110f;
       border: 1px solid var(--yellow-border);
       border-radius: 14px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
       transform: translateZ(-80px) rotateY(-8deg);
       padding: 12px;
       display: flex;
@@ -703,10 +842,9 @@
       transform: translate(-50%, -50%);
       transition: top 0.08s ease-out, left 0.08s ease-out;
       fill: var(--yellow-gold);
-      filter: drop-shadow(0 0 8px var(--yellow-gold));
+      filter: drop-shadow(0 0 6px var(--yellow-gold));
     }
 
-    /* Flowing Physical Yellow Signal Path */
     .spatial-beam-svg {
       position: absolute;
       top: 50%;
@@ -743,7 +881,7 @@
     }
 
     /* -------------------------------------------------------------
-       KINETIC TYPOGRAPHY ROLLING BANDS (DUAL VELOCITY)
+       KINETIC TYPOGRAPHY ROLLING BANDS
        ------------------------------------------------------------- */
     .kinetic-bands-wrap {
       padding: 36px 0;
@@ -768,11 +906,11 @@
     }
 
     .kinetic-word {
-      font-family: var(--font-condensed);
-      font-size: clamp(2.4rem, 4.2vw, 3.8rem);
-      letter-spacing: 0.05em;
+      font-family: var(--font-ui);
+      font-size: clamp(2rem, 3.6vw, 3.2rem);
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.18);
+      color: rgba(255, 255, 255, 0.16);
       transition: color 0.3s ease;
     }
 
@@ -782,7 +920,7 @@
 
     .kinetic-dot {
       color: var(--yellow-muted);
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
 
     .track-reverse {
@@ -795,7 +933,7 @@
     }
 
     /* -------------------------------------------------------------
-       SECTION 01: THE PHONE (PHYSICAL PRODUCT STORY)
+       SECTION 01: THE DEVICE (TOUCHPAD INTERACTION THAT WORKS)
        ------------------------------------------------------------- */
     .section-phone {
       background: var(--bg-charcoal);
@@ -811,56 +949,88 @@
     }
 
     .editorial-statement-huge {
-      font-family: var(--font-condensed);
-      font-size: clamp(3rem, 5vw, 4.6rem);
-      letter-spacing: 0.02em;
-      line-height: 0.95;
+      font-family: var(--font-heading);
+      font-size: clamp(2.8rem, 4.6vw, 4.4rem);
+      font-weight: 700;
+      line-height: 1.02;
       margin-bottom: 24px;
       color: var(--text-hero);
     }
 
     .statement-lead-paragraph {
-      font-size: 1.2rem;
+      font-size: 1.18rem;
       line-height: 1.7;
       margin-bottom: 32px;
       color: var(--text-secondary);
     }
 
+    /* Functional Live Touchpad Simulation Box */
     .narrative-visual-chassis {
       position: relative;
-      border-radius: 28px;
+      border-radius: 24px;
       overflow: hidden;
       border: 1px solid var(--yellow-border);
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
       background: #11110f;
-      aspect-ratio: 4 / 3;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .touchpad-live-header {
+      padding: 14px 20px;
+      background: #141410;
+      border-bottom: 1px solid var(--yellow-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .touchpad-live-canvas {
+      flex: 1;
+      position: relative;
+      background: radial-gradient(circle at center, rgba(224, 198, 83, 0.02) 0%, #0d0d0a 80%);
+      cursor: crosshair;
+      touch-action: none; /* Pointer Events enabled */
+      user-select: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 30px;
     }
 
-    /* Bespoke SVG Macro Touch Visualization */
-    .macro-touch-svg {
-      width: 100%;
-      height: 100%;
-      filter: drop-shadow(0 0 20px rgba(224, 198, 83, 0.15));
-    }
-
-    .visual-art-caption {
+    .touchpad-active-dot {
       position: absolute;
-      bottom: 20px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--yellow-gold);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      box-shadow: 0 0 16px var(--yellow-gold);
+      top: 50%;
+      left: 50%;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .touchpad-status-badge {
+      position: absolute;
+      bottom: 16px;
       left: 20px;
-      background: rgba(8, 8, 8, 0.9);
-      backdrop-filter: blur(12px);
-      padding: 10px 20px;
-      border-radius: 9999px;
+      background: rgba(8, 8, 8, 0.85);
       border: 1px solid var(--yellow-border);
-      font-family: var(--font-condensed);
-      font-size: 1.05rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
       color: var(--yellow-gold);
+      text-transform: uppercase;
     }
 
     /* -------------------------------------------------------------
@@ -881,45 +1051,44 @@
     .flow-card-stack {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 20px;
     }
 
     .flow-card {
-      padding: 28px 32px;
+      padding: 24px 28px;
       background: rgba(224, 198, 83, 0.02);
       border: 1px solid var(--yellow-border);
-      border-radius: 20px;
+      border-radius: 16px;
       transition: all 0.3s var(--ease-cinema);
     }
 
     .flow-card.active, .flow-card:hover {
-      background: rgba(224, 198, 83, 0.06);
+      background: rgba(224, 198, 83, 0.05);
       border-color: var(--yellow-gold);
-      transform: translateX(8px);
+      transform: translateX(6px);
     }
 
     .flow-card-num {
-      font-family: var(--font-condensed);
-      font-size: 1.15rem;
-      letter-spacing: 0.1em;
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
       color: var(--yellow-gold);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .flow-card-title {
-      font-family: var(--font-condensed);
-      font-size: 1.8rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 700;
       color: var(--text-hero);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .flow-canvas-box {
-      height: 480px;
+      height: 440px;
       background: #0d0d0b;
       border: 1px solid var(--yellow-border);
-      border-radius: 24px;
+      border-radius: 20px;
       position: relative;
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
@@ -934,108 +1103,285 @@
     }
 
     /* -------------------------------------------------------------
-       SECTION 03: THE CONTROL (MOVE. CLICK. SCROLL.)
+       SECTION 03: FEATURES (OVERHAULED WITH 5 INTERACTIVE CATEGORIES)
+       SHORTCUTS | KEYBOARD TYPING | GESTURES | SCREENSHOTS | SYSTEM LOCKS
        ------------------------------------------------------------- */
-    .section-control {
+    .section-features {
       background: var(--bg-charcoal);
       border-bottom: 1px solid var(--yellow-border);
     }
 
-    .control-big-words {
+    .features-selector-nav {
       display: flex;
-      align-items: baseline;
-      gap: 24px;
+      gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
 
-    .action-reveal-word {
-      font-family: var(--font-condensed);
-      font-size: clamp(3.4rem, 7vw, 6.5rem);
-      letter-spacing: 0.02em;
-      line-height: 1;
-      color: var(--text-secondary);
-      transition: color 0.4s ease, transform 0.4s var(--ease-cinema);
-    }
-
-    .action-reveal-word.active-word {
-      color: var(--yellow-gold);
-      transform: scale(1.04);
-    }
-
-    .action-reveal-word.active-word::after {
-      content: ".";
-      color: var(--text-hero);
-    }
-
-    .workspace-interactive-stage {
+    .feature-tab-btn {
+      padding: 12px 24px;
       background: #11110f;
       border: 1px solid var(--yellow-border);
-      border-radius: 24px;
-      padding: 32px;
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stage-sub-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      padding-bottom: 18px;
-      margin-bottom: 24px;
-    }
-
-    .stage-title {
-      font-family: var(--font-condensed);
-      font-size: 1.5rem;
+      border-radius: 8px;
+      font-family: var(--font-ui);
+      font-size: 1.05rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--text-hero);
-    }
-
-    .simulated-screen-grid {
-      height: 380px;
-      background: #080808;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-secondary);
+      transition: all 0.25s var(--ease-cinema);
       position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: crosshair;
     }
 
-    .mock-desktop-window {
-      width: 70%;
-      height: 60%;
-      background: rgba(224, 198, 83, 0.02);
+    .feature-tab-btn.active, .feature-tab-btn:hover {
+      background: var(--yellow-gold);
+      color: #080808;
+      border-color: var(--yellow-gold);
+      box-shadow: 0 4px 16px var(--yellow-glow);
+    }
+
+    /* Two-Pane Persistent Feature Product Stage */
+    .features-stage-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 36px;
+      background: #11110f;
       border: 1px solid var(--yellow-border);
-      border-radius: 12px;
+      border-radius: 22px;
+      padding: 32px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Left: Feature Phone Controller View */
+    .feature-phone-unit {
+      background: #080808;
+      border: 2px solid #22221c;
+      border-radius: 26px;
       padding: 16px;
+      height: 420px;
       display: flex;
       flex-direction: column;
+      position: relative;
+    }
+
+    .feature-phone-header {
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      color: var(--yellow-gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 14px;
+    }
+
+    .feature-panel-layer {
+      display: none;
+      flex: 1;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .feature-panel-layer.active {
+      display: flex;
+    }
+
+    /* Shortcuts Phone Screen Grid */
+    .shortcuts-key-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
+      flex: 1;
+      align-content: center;
     }
 
-    .mock-doc-bar {
-      height: 10px;
-      background: rgba(255, 255, 255, 0.06);
+    .btn-macro-shortcut {
+      background: #141410;
+      border: 1px solid var(--yellow-border);
+      border-radius: 12px;
+      padding: 18px 10px;
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-hero);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s var(--ease-cinema);
+    }
+
+    .btn-macro-shortcut:hover, .btn-macro-shortcut:active {
+      background: var(--yellow-gold);
+      color: #080808;
+      border-color: var(--yellow-gold);
+      transform: scale(0.97);
+    }
+
+    /* Keyboard Phone Screen */
+    .soft-keyboard-view {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 12px 0;
+    }
+
+    .keyboard-input-preview {
+      background: #12120e;
+      border: 1px solid var(--yellow-border);
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 0.9rem;
+      color: var(--yellow-gold);
+      min-height: 42px;
+    }
+
+    .keyboard-keys-rack {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .keyboard-row {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+    }
+
+    .key-cap {
+      background: #1a1a15;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 6px;
+      padding: 8px 10px;
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      color: var(--text-hero);
+      cursor: pointer;
     }
 
-    .interactive-stage-pointer {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 26px;
-      height: 26px;
-      pointer-events: none;
-      transition: top 0.06s ease-out, left 0.06s ease-out;
-      filter: drop-shadow(0 0 10px var(--yellow-gold));
+    .key-cap:hover {
+      background: var(--yellow-gold);
+      color: #080808;
+    }
+
+    /* Gestures Phone Screen */
+    .gestures-surface-view {
+      flex: 1;
+      background: #0d0d0a;
+      border: 1px dashed var(--yellow-border);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Screenshots Phone Screen */
+    .screenshots-trigger-view {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .btn-capture-flash {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #141410;
+      border: 2px solid var(--yellow-gold);
+      color: var(--yellow-gold);
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 0 20px var(--yellow-glow);
+      transition: all 0.2s var(--ease-cinema);
+    }
+
+    .btn-capture-flash:hover {
+      background: var(--yellow-gold);
+      color: #080808;
+      transform: scale(1.05);
+    }
+
+    /* System Locks Phone Screen */
+    .locks-toggle-view {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .btn-lock-toggle {
+      padding: 16px 28px;
+      background: #151511;
+      border: 1.5px solid var(--yellow-gold);
+      border-radius: 10px;
+      color: var(--yellow-gold);
+      font-family: var(--font-ui);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.25s var(--ease-cinema);
+    }
+
+    .btn-lock-toggle:hover {
+      background: var(--yellow-gold);
+      color: #080808;
+    }
+
+    /* Right: Desktop Workspace View */
+    .feature-desktop-display {
+      background: #080808;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .desktop-display-bar {
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .desktop-scene-layer {
+      display: none;
+      flex: 1;
+      position: relative;
+      border-radius: 12px;
+      border: 1px solid var(--yellow-border);
+      background: #0c0c0a;
+      overflow: hidden;
+    }
+
+    .desktop-scene-layer.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (max-width: 900px) {
+      .narrative-editorial-row,
+      .connection-story-grid,
+      .features-stage-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* -------------------------------------------------------------
@@ -1056,7 +1402,7 @@
     .capability-hero-feature {
       background: #10100d;
       border: 1px solid var(--yellow-border);
-      border-radius: 28px;
+      border-radius: 24px;
       padding: 44px;
       display: flex;
       flex-direction: column;
@@ -1066,14 +1412,14 @@
     .capability-side-stack {
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 36px;
     }
 
     .capability-feature-panel {
       background: #10100d;
       border: 1px solid var(--yellow-border);
-      border-radius: 24px;
-      padding: 36px;
+      border-radius: 20px;
+      padding: 34px;
       transition: border-color 0.3s ease;
     }
 
@@ -1082,10 +1428,9 @@
     }
 
     .capability-h3 {
-      font-family: var(--font-condensed);
-      font-size: clamp(2.2rem, 3.2vw, 2.8rem);
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3vw, 2.5rem);
+      font-weight: 700;
       margin-bottom: 14px;
       color: var(--text-hero);
     }
@@ -1103,7 +1448,7 @@
       width: 22px;
       height: 22px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: var(--text-muted);
       display: flex;
@@ -1130,291 +1475,29 @@
     }
 
     /* -------------------------------------------------------------
-       SECTION 05: CLEAN CONSUMER CONTROLLER MODES
-       ------------------------------------------------------------- */
-    .section-modes {
-      background: var(--bg-charcoal);
-      border-bottom: 1px solid var(--yellow-border);
-    }
-
-    .modes-selector-nav {
-      display: inline-flex;
-      gap: 12px;
-      padding: 6px;
-      background: #080808;
-      border: 1px solid var(--yellow-border);
-      border-radius: 9999px;
-      margin-bottom: 40px;
-    }
-
-    .mode-tab-button {
-      padding: 12px 28px;
-      border-radius: 9999px;
-      font-family: var(--font-condensed);
-      font-size: 1.25rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      transition: all 0.25s var(--ease-cinema);
-    }
-
-    .mode-tab-button.active {
-      background: var(--yellow-gold);
-      color: #080808;
-      box-shadow: 0 4px 20px var(--yellow-glow);
-    }
-
-    .modes-interactive-stage {
-      display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 40px;
-      background: #11110f;
-      border: 1px solid var(--yellow-border);
-      border-radius: 24px;
-      padding: 36px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
-    }
-
-    /* Phone Controller Unit */
-    .phone-controller-simulator {
-      background: #080808;
-      border: 2px solid #24241e;
-      border-radius: 26px;
-      padding: 18px;
-      height: 420px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-
-    .controller-unit-header {
-      font-family: var(--font-condensed);
-      font-size: 1.1rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--yellow-gold);
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      margin-bottom: 16px;
-    }
-
-    .controller-panel {
-      display: none;
-      flex: 1;
-      flex-direction: column;
-      height: 100%;
-    }
-
-    .controller-panel.active {
-      display: flex;
-    }
-
-    .simulator-touch-pad {
-      flex: 1;
-      background: radial-gradient(circle at center, rgba(224, 198, 83, 0.05) 0%, #10100d 80%);
-      border: 1px dashed var(--yellow-border);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      cursor: crosshair;
-      user-select: none;
-      overflow: hidden;
-    }
-
-    .simulator-touch-indicator {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: var(--yellow-gold);
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 16px var(--yellow-gold);
-      pointer-events: none;
-      top: 50%;
-      left: 50%;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-
-    /* Scroll Wheel Simulator Ribbon */
-    .scroll-wheel-ribbon {
-      flex: 1;
-      background: #0f0f0c;
-      border: 1px solid var(--yellow-border);
-      border-radius: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 0;
-      position: relative;
-      cursor: ns-resize;
-      user-select: none;
-    }
-
-    .scroll-thumb-handle {
-      width: 44px;
-      height: 60px;
-      background: var(--yellow-gold);
-      border-radius: 12px;
-      box-shadow: 0 0 20px var(--yellow-glow);
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: top 0.08s ease-out;
-    }
-
-    /* Keynote Remote Buttons */
-    .keynote-remote-layout {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      justify-content: center;
-    }
-
-    .btn-keynote-action {
-      background: rgba(224, 198, 83, 0.04);
-      border: 1px solid var(--yellow-border);
-      border-radius: 16px;
-      padding: 22px;
-      color: var(--text-hero);
-      font-family: var(--font-condensed);
-      font-size: 1.4rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      transition: all 0.25s var(--ease-cinema);
-    }
-
-    .btn-keynote-action:hover {
-      background: var(--yellow-gold);
-      color: #080808;
-      box-shadow: 0 0 24px var(--yellow-glow);
-    }
-
-    /* Computer Screen Display Response */
-    .computer-response-display {
-      background: #080808;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .computer-display-title {
-      font-family: var(--font-condensed);
-      font-size: 1.2rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 18px;
-    }
-
-    .output-panel-layer {
-      display: none;
-      flex: 1;
-      position: relative;
-      height: 100%;
-    }
-
-    .output-panel-layer.active {
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Screen 1: Desktop Workspace */
-    .workspace-canvas-field {
-      flex: 1;
-      position: relative;
-      background: #0c0c0a;
-      border-radius: 12px;
-      border: 1px solid var(--yellow-border);
-      overflow: hidden;
-    }
-
-    .screen-pointer-arrow {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 22px;
-      height: 22px;
-      pointer-events: none;
-      transition: top 0.06s ease-out, left 0.06s ease-out;
-      fill: var(--yellow-gold);
-      filter: drop-shadow(0 0 8px var(--yellow-gold));
-    }
-
-    /* Screen 2: Scroll Document Stream */
-    .document-stream-sheet {
-      flex: 1;
-      background: #0c0c0a;
-      border-radius: 12px;
-      border: 1px solid var(--yellow-border);
-      padding: 24px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .document-flow-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      transition: transform 0.15s ease-out;
-    }
-
-    .doc-bar {
-      height: 12px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.06);
-    }
-    .doc-bar.accent {
-      background: var(--yellow-gold);
-      width: 45%;
-      height: 16px;
-    }
-
-    /* Screen 3: Keynote Slide Card */
-    .keynote-slide-display {
-      flex: 1;
-      background: linear-gradient(135deg, #151512, #0d0d0a);
-      border-radius: 16px;
-      border: 1px solid var(--yellow-border);
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: opacity 0.25s ease, transform 0.25s ease;
-    }
-
-    @media (max-width: 900px) {
-      .narrative-editorial-row,
-      .connection-story-grid,
-      .capabilities-asymmetric-layout,
-      .modes-interactive-stage {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* -------------------------------------------------------------
        SECTION 06: CINEMATIC DOWNLOAD CTA
        ------------------------------------------------------------- */
     .section-download {
-      background: radial-gradient(circle at 50% 40%, rgba(224, 198, 83, 0.12) 0%, var(--bg-void) 75%);
+      background: radial-gradient(circle at 50% 40%, rgba(224, 198, 83, 0.09) 0%, var(--bg-void) 75%);
       padding-top: 160px;
       padding-bottom: 160px;
       text-align: center;
       position: relative;
       overflow: hidden;
+    }
+
+    .download-giant-brand-backdrop {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-brand);
+      font-size: clamp(6rem, 16vw, 15rem);
+      color: rgba(224, 198, 83, 0.03);
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 1;
     }
 
     .download-central-box {
@@ -1424,32 +1507,17 @@
       z-index: 2;
     }
 
-    .download-giant-brand-backdrop {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: var(--font-script);
-      font-size: clamp(6rem, 16vw, 15rem);
-      color: rgba(224, 198, 83, 0.035);
-      user-select: none;
-      pointer-events: none;
-      white-space: nowrap;
-      z-index: 1;
-    }
-
     .download-giant-h2 {
-      font-family: var(--font-condensed);
-      font-size: clamp(3.2rem, 6.5vw, 5.8rem);
-      letter-spacing: 0.02em;
-      line-height: 0.96;
+      font-family: var(--font-heading);
+      font-size: clamp(3.2rem, 5.8vw, 5.2rem);
+      font-weight: 700;
+      line-height: 1.02;
       margin-bottom: 24px;
-      text-transform: uppercase;
       color: var(--text-hero);
     }
 
     .download-supporting-p {
-      font-size: 1.22rem;
+      font-size: 1.2rem;
       max-width: 50ch;
       margin: 0 auto 44px;
       color: var(--text-secondary);
@@ -1459,22 +1527,22 @@
       display: inline-flex;
       align-items: center;
       gap: 14px;
-      padding: 22px 54px;
-      font-family: var(--font-condensed);
-      font-size: 1.55rem;
+      padding: 22px 52px;
+      font-family: var(--font-ui);
+      font-size: 1.35rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      border-radius: 9999px;
+      border-radius: 12px;
       background: var(--yellow-gold);
       color: #080808;
-      box-shadow: 0 16px 50px var(--yellow-glow);
+      box-shadow: 0 12px 40px var(--yellow-glow), inset 0 1px 0 rgba(255, 255, 255, 0.4);
       transition: all 0.35s var(--ease-cinema);
     }
 
     .download-btn-prominent:hover {
       background: #ebd264;
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 20px 60px rgba(224, 198, 83, 0.45);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 16px 50px rgba(224, 198, 83, 0.38);
     }
 
     .platform-specs-cluster {
@@ -1487,12 +1555,12 @@
     }
 
     .platform-pill {
-      font-family: var(--font-condensed);
-      font-size: 1.05rem;
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       padding: 8px 20px;
-      border-radius: 9999px;
+      border-radius: 6px;
       background: rgba(224, 198, 83, 0.03);
       border: 1px solid var(--yellow-border);
       color: var(--text-secondary);
@@ -1523,8 +1591,8 @@
     }
 
     .footer-links-cluster a {
-      font-family: var(--font-condensed);
-      font-size: 1.15rem;
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--text-secondary);
@@ -1541,9 +1609,9 @@
       right: 28px;
       background: #141410;
       border: 1px solid var(--yellow-gold);
-      border-radius: 12px;
+      border-radius: 10px;
       padding: 16px 24px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9), 0 0 30px var(--yellow-glow);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9), 0 0 24px var(--yellow-glow);
       font-size: 0.95rem;
       color: var(--text-hero);
       z-index: 1000;
@@ -1561,34 +1629,34 @@
     }
 
     /* -------------------------------------------------------------
-       CUSTOM SHARP MUTED YELLOW POINTER & FLUID LIGHT TRAIL
+       CUSTOM ORGANIC YELLOW POINTER & WATER LIGHT TRAIL
        ------------------------------------------------------------- */
     @media (hover: hover) and (pointer: fine) {
       body {
         cursor: none;
       }
 
-      a, button, input, [role="tab"], .simulator-touch-pad, .scroll-wheel-ribbon, .phone-trackpad-area, .simulated-screen-grid {
+      a, button, input, [role="tab"], .touchpad-live-canvas, .phone-trackpad-area, .feature-tab-btn, .btn-macro-shortcut, .btn-capture-flash, .btn-lock-toggle {
         cursor: none !important;
       }
 
-      /* Sharp Realistic Yellow Pointer */
+      /* Sharp Realistic Pointer Arrow */
       .custom-pointer-arrow {
         position: fixed;
         top: 0;
         left: 0;
-        width: 20px;
-        height: 20px;
+        width: 19px;
+        height: 19px;
         pointer-events: none;
         z-index: 9999;
         transform: translate(-1px, -1px);
         transition: transform 0.12s var(--ease-cinema);
-        filter: drop-shadow(0 0 8px rgba(224, 198, 83, 0.6));
+        filter: drop-shadow(0 0 6px rgba(224, 198, 83, 0.5));
       }
 
       .custom-pointer-arrow.hover-scale {
-        transform: scale(1.25) translate(-1px, -1px);
-        filter: drop-shadow(0 0 14px rgba(224, 198, 83, 0.85));
+        transform: scale(1.2) translate(-1px, -1px);
+        filter: drop-shadow(0 0 12px rgba(224, 198, 83, 0.8));
       }
 
       .custom-pointer-canvas {
@@ -1625,7 +1693,7 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
-      .brand-script-title, .hero-condensed-inner {
+      .hero-char, .hero-condensed-inner {
         transform: none !important;
         opacity: 1 !important;
       }
@@ -1633,16 +1701,19 @@
         transform: none !important;
         opacity: 1 !important;
       }
+      .smoke-puff-1, .smoke-puff-2 {
+        display: none !important;
+      }
     }
   </style>
 </head>
 
 <body>
-  <!-- Atmospheric Layers: Noise & Warm Muted Yellow Ambient Glow -->
-  <div class="atmosphere-ambient" aria-hidden="true">
+  <!-- Subtle Slow-Moving Smoke Atmosphere -->
+  <div class="atmosphere-layer" aria-hidden="true">
     <div class="atmosphere-noise"></div>
-    <div class="ambient-warm-glow"></div>
-    <div class="ambient-side-glow"></div>
+    <div class="smoke-puff smoke-puff-1"></div>
+    <div class="smoke-puff smoke-puff-2"></div>
   </div>
 
   <!-- Editorial Sticky Navigation -->
@@ -1650,7 +1721,6 @@
     <div class="container nav-inner">
       <a href="#" class="brand-mark" aria-label="Easy Mouse Home">
         <div class="brand-logo-svg" aria-hidden="true">
-          <!-- Geometric Phone-to-Mouse Minimal Mark in Golden Yellow -->
           <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
             <rect x="7" y="3" width="18" height="26" rx="6" stroke="#E0C653" stroke-width="2.2" fill="#11110F"/>
             <line x1="16" y1="7" x2="16" y2="12" stroke="#E0C653" stroke-width="2.2" stroke-linecap="round"/>
@@ -1662,11 +1732,11 @@
 
       <nav aria-label="Primary Navigation">
         <ul class="nav-links">
-          <li class="nav-link-item"><a href="#narrative-phone">The Phone</a></li>
+          <li class="nav-link-item"><a href="#narrative-phone">The Device</a></li>
           <li class="nav-link-item"><a href="#narrative-connection">Connection</a></li>
-          <li class="nav-link-item"><a href="#narrative-control">Controls</a></li>
-          <li class="nav-link-item"><a href="#capabilities">Features</a></li>
-          <li class="nav-link-item"><a href="#modes">Modes</a></li>
+          <li class="nav-link-item"><a href="#features">Features</a></li>
+          <li class="nav-link-item"><a href="#capabilities">Capabilities</a></li>
+          <li class="nav-link-item"><a href="#download">Download</a></li>
         </ul>
       </nav>
 
@@ -1685,36 +1755,50 @@
 
     <!-- Mobile Navigation Drawer -->
     <div class="mobile-nav-drawer" id="mobile-drawer" aria-hidden="true">
-      <a href="#narrative-phone" class="mobile-link">The Phone</a>
+      <a href="#narrative-phone" class="mobile-link">The Device</a>
       <a href="#narrative-connection" class="mobile-link">Connection</a>
-      <a href="#narrative-control" class="mobile-link">Controls</a>
-      <a href="#capabilities" class="mobile-link">Features</a>
-      <a href="#modes" class="mobile-link">Modes</a>
+      <a href="#features" class="mobile-link">Features</a>
+      <a href="#capabilities" class="mobile-link">Capabilities</a>
       <a href="#download" class="btn-hero-primary mobile-link" style="justify-content: center; margin-top: 10px;">Download Easy Mouse</a>
     </div>
   </header>
 
   <main id="main-content">
-    <!-- HERO: DOMINANT PLAYLIST SCRIPT BRANDING & REALISTIC 3D SMARTPHONE -->
+    <!-- HERO: DOMINANT EASY MOUSE WITH LETTER-BY-LETTER ENTRANCE & PLAYFUL HANGING MOUSE -->
     <section class="hero-stage" id="hero">
+      <!-- Playful Hanging Mouse Easter Egg with Physics Sway -->
+      <div class="hanging-mouse-rig" id="hanging-mouse" aria-hidden="true" title="Easy Mouse Easter Egg">
+        <div class="hanging-wire"></div>
+        <div class="hanging-mouse-body"></div>
+      </div>
+
       <div class="container hero-split-grid">
-        <!-- Hero Editorial Left Column: EASY MOUSE Dominant -->
+        <!-- Hero Editorial Left Column -->
         <div class="hero-editorial-col">
           <div class="editorial-label">Physical Desktop Controller</div>
-          <div class="hero-sweep-line"></div>
 
-          <!-- Major Brand Hero Presentation: Playlist Script Style -->
-          <div class="brand-script-wrapper">
-            <h1 class="brand-script-title">Easy Mouse</h1>
+          <!-- Major Brand Title: Letter by Letter Animated Entrance -->
+          <div class="hero-brand-wrap">
+            <h1 class="hero-brand-title liquid-heading" aria-label="Easy Mouse">
+              <span class="liquid-base-text">
+                <span class="hero-char" style="--c-i: 0;">E</span><span class="hero-char" style="--c-i: 1;">a</span><span class="hero-char" style="--c-i: 2;">s</span><span class="hero-char char-y" style="--c-i: 3;">y</span><span class="hero-char-space">&nbsp;</span><span class="hero-char" style="--c-i: 4;">M</span><span class="hero-char" style="--c-i: 5;">o</span><span class="hero-char" style="--c-i: 6;">u</span><span class="hero-char" style="--c-i: 7;">s</span><span class="hero-char" style="--c-i: 8;">e</span>
+              </span>
+              <span class="liquid-ink-overlay" aria-hidden="true">
+                <span class="hero-char">E</span><span class="hero-char">a</span><span class="hero-char">s</span><span class="hero-char char-y">y</span><span class="hero-char-space">&nbsp;</span><span class="hero-char">M</span><span class="hero-char">o</span><span class="hero-char">u</span><span class="hero-char">s</span><span class="hero-char">e</span>
+              </span>
+            </h1>
           </div>
 
-          <!-- Supporting Condensed Statement -->
+          <!-- Supporting Statement (Celtic Garamond style) -->
           <div class="hero-condensed-tagline">
-            <span class="hero-condensed-inner">YOUR PHONE IS YOUR POINTER.</span>
+            <span class="hero-condensed-inner liquid-heading">
+              <span class="liquid-base-text">Your phone is your pointer.</span>
+              <span class="liquid-ink-overlay" aria-hidden="true">Your phone is your pointer.</span>
+            </span>
           </div>
 
           <p class="hero-summary-copy">
-            Transform the glass touchscreen in your hand into an instant, high-precision trackpad and remote navigator for your computer. No extra hardware. Zero friction.
+            Transform the glass touchscreen in your hand into an instant trackpad and remote navigator for your computer. No adapters, no extra cables, zero friction.
           </p>
 
           <div class="hero-actions-row">
@@ -1733,7 +1817,7 @@
           </div>
         </div>
 
-        <!-- Hero 3D Spatial Smartphone & Interactive Companion Monitor -->
+        <!-- 3D Spatial Smartphone & Interactive Companion Monitor -->
         <div class="hero-3d-scene" id="hero-3d-scene">
           <div class="spatial-phone-rig" id="spatial-phone-rig">
             <div class="phone-chassis">
@@ -1746,13 +1830,13 @@
               </div>
             </div>
 
-            <!-- Laptop View Responding in Spatial Depth Behind -->
+            <!-- Companion Laptop Monitor Responding in Depth Behind -->
             <div class="laptop-companion-card" id="laptop-companion">
               <div class="laptop-card-header">
                 <div class="dot-mini gold"></div>
                 <div class="dot-mini"></div>
                 <div class="dot-mini"></div>
-                <span style="font-family: var(--font-condensed); font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-left: 6px;">Computer Screen</span>
+                <span style="font-family: var(--font-ui); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-left: 6px;">Computer Screen</span>
               </div>
               <div class="laptop-canvas-preview" id="laptop-screen-preview">
                 <svg class="laptop-pointer-icon" id="hero-laptop-pointer" viewBox="0 0 24 24">
@@ -1762,7 +1846,7 @@
             </div>
           </div>
 
-          <!-- Flowing Physical Signal Connection Beam SVG in Warm Yellow -->
+          <!-- Flowing Physical Signal Connection Beam SVG in Warm Muted Yellow -->
           <svg class="spatial-beam-svg" viewBox="0 0 360 220" fill="none" aria-hidden="true">
             <path id="hero-energy-beam" d="M120 150 C 200 120, 240 70, 290 50" stroke="url(#hero-beam-gradient)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 6"/>
             <defs>
@@ -1776,7 +1860,7 @@
       </div>
     </section>
 
-    <!-- KINETIC ROLLING TYPOGRAPHY BANDS (DUAL VELOCITY) -->
+    <!-- KINETIC ROLLING TYPOGRAPHY BANDS -->
     <section class="kinetic-bands-wrap" aria-hidden="true">
       <div class="kinetic-track" id="kinetic-track-forward">
         <div class="kinetic-group">
@@ -1808,105 +1892,94 @@
       </div>
     </section>
 
-    <!-- SECTION 01: THE PHONE (SCROLL STORYTELLING) -->
+    <!-- SECTION 01: THE DEVICE (FUNCTIONAL TOUCHPAD INTERACTION) -->
     <section class="section-phone section-spacing" id="narrative-phone">
       <div class="container">
         <div class="narrative-editorial-row">
           <div>
             <div class="editorial-label">Act 01: The Device</div>
-            <h2 class="editorial-statement-huge">
-              The glass in your palm is already a trackpad.
+            <h2 class="editorial-statement-huge liquid-heading">
+              <span class="liquid-base-text">The glass in your palm is already a trackpad.</span>
+              <span class="liquid-ink-overlay" aria-hidden="true">The glass in your palm is already a trackpad.</span>
             </h2>
             <p class="statement-lead-paragraph">
-              You do not need to carry another peripheral. The glass screen already resting in your pocket has capacitive sensitivity and multi-touch fidelity ready to drive your workspace with surgical accuracy.
+              You do not need another plastic peripheral. The capacitive glass surface in your hand provides fluid multi-touch tracking, single taps, and two-finger scrolling with surgical physical accuracy.
             </p>
-            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
               <span class="platform-pill" style="border-color: var(--yellow-gold); color: var(--yellow-gold);">Capacitive Glass</span>
               <span class="platform-pill">Multi-Touch Detection</span>
-              <span class="platform-pill">Haptic Confirmation</span>
+              <span class="platform-pill">Haptic Feedback</span>
             </div>
           </div>
 
-          <!-- Bespoke Art-Directed Touch Surface Visual -->
+          <!-- Functional Pointer/Touch Demonstration Stage -->
           <div class="narrative-visual-chassis">
-            <svg class="macro-touch-svg" viewBox="0 0 400 300" fill="none">
-              <!-- Touch Screen Plane with Gold Ripple Geometry -->
-              <rect x="40" y="30" width="320" height="240" rx="16" fill="#141410" stroke="#E0C653" stroke-width="1.5"/>
-              <circle cx="200" cy="150" r="80" stroke="rgba(224, 198, 83, 0.15)" stroke-width="1.5"/>
-              <circle cx="200" cy="150" r="55" stroke="rgba(224, 198, 83, 0.3)" stroke-width="2"/>
-              <circle cx="200" cy="150" r="30" stroke="rgba(224, 198, 83, 0.6)" stroke-width="2.5"/>
-              <circle cx="200" cy="150" r="8" fill="#E0C653"/>
-              
-              <!-- Subtle Grid Dots -->
-              <g fill="rgba(224, 198, 83, 0.2)">
-                <circle cx="80" cy="70" r="1.5"/><circle cx="120" cy="70" r="1.5"/><circle cx="160" cy="70" r="1.5"/>
-                <circle cx="240" cy="70" r="1.5"/><circle cx="280" cy="70" r="1.5"/><circle cx="320" cy="70" r="1.5"/>
-                <circle cx="80" cy="110" r="1.5"/><circle cx="120" cy="110" r="1.5"/><circle cx="280" cy="110" r="1.5"/>
-                <circle cx="320" cy="110" r="1.5"/><circle cx="80" cy="190" r="1.5"/><circle cx="120" cy="190" r="1.5"/>
-                <circle cx="280" cy="190" r="1.5"/><circle cx="320" cy="190" r="1.5"/><circle cx="80" cy="230" r="1.5"/>
-                <circle cx="120" cy="230" r="1.5"/><circle cx="160" cy="230" r="1.5"/><circle cx="240" cy="230" r="1.5"/>
-                <circle cx="280" cy="230" r="1.5"/><circle cx="320" cy="230" r="1.5"/>
-              </g>
-            </svg>
-            <div class="visual-art-caption">Smooth Sub-Pixel Tracking</div>
+            <div class="touchpad-live-header">
+              <span>Interactive Glass Trackpad Surface</span>
+              <span id="touchpad-action-state">Glide / Tap / Drag</span>
+            </div>
+            <div class="touchpad-live-canvas" id="section1-touch-surface" tabindex="0" role="region" aria-label="Interactive Touchpad Simulator">
+              <div class="touchpad-active-dot" id="section1-touch-dot"></div>
+              <div class="touchpad-status-badge" id="touchpad-coords-badge">X: 50% &bull; Y: 50%</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 02: THE FLOWING CONNECTION -->
+    <!-- SECTION 02: THE PHYSICAL CONNECTION -->
     <section class="section-connection section-spacing" id="narrative-connection">
       <div class="container">
         <div class="connection-story-grid">
           <div>
             <div class="editorial-label">Act 02: The Link</div>
-            <h2 class="editorial-statement-huge" style="margin-bottom: 20px;">
-              An invisible thread of instant control.
+            <h2 class="editorial-statement-huge liquid-heading" style="margin-bottom: 20px;">
+              <span class="liquid-base-text">An invisible physical conduit.</span>
+              <span class="liquid-ink-overlay" aria-hidden="true">An invisible physical conduit.</span>
             </h2>
             <p class="statement-lead-paragraph">
-              A light stream of continuous connection between phone and computer across your local network. No external cloud intermediaries, no cables, and no Bluetooth dongles required.
+              A continuous direct connection between phone and computer across your private local network. Zero cloud relays, zero accounts, and zero proprietary wireless dongles.
             </p>
 
             <div class="flow-card-stack">
               <div class="flow-card active">
-                <div class="flow-card-num">01 / DISCOVERY</div>
+                <div class="flow-card-num">01 / LOCAL DISCOVERY</div>
                 <div class="flow-card-title">Instant Network Presence</div>
                 <p>Both devices detect each other automatically within milliseconds on your private local network.</p>
               </div>
               <div class="flow-card">
-                <div class="flow-card-num">02 / SECURE LINK</div>
+                <div class="flow-card-num">02 / PRIVATE LINK</div>
                 <div class="flow-card-title">Direct Device Conduit</div>
-                <p>Coordinates flow directly between phone and laptop with ultra-low latency and zero cloud accounts.</p>
+                <p>Coordinates travel directly between handset and computer with clean local peer-to-peer routing.</p>
               </div>
             </div>
           </div>
 
           <div class="flow-canvas-box">
-            <!-- Fluid Flowing Muted Yellow Connection SVG -->
+            <!-- Fluid Physical Yellow Signal SVG -->
             <svg class="connection-smoke-svg" viewBox="0 0 500 400" fill="none" aria-hidden="true">
               <circle cx="250" cy="200" r="160" fill="url(#haze-radial-gold)" opacity="0.3"/>
               
-              <!-- Flowing Wave Paths in Golden Yellow -->
-              <path d="M 60 200 C 180 80, 320 320, 440 200" stroke="url(#flow-gradient-1)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+              <path d="M 60 200 C 180 80, 320 320, 440 200" stroke="url(#flow-gradient-1)" stroke-width="3" stroke-linecap="round" fill="none"/>
               <path d="M 60 200 C 180 300, 320 100, 440 200" stroke="url(#flow-gradient-2)" stroke-width="2" stroke-linecap="round" fill="none"/>
               
               <!-- Phone Node -->
               <g transform="translate(60, 200)">
-                <circle r="28" fill="#141410" stroke="var(--yellow-border)" stroke-width="2"/>
+                <circle r="26" fill="#141410" stroke="var(--yellow-border)" stroke-width="2"/>
                 <circle r="10" fill="var(--yellow-gold)"/>
                 <circle r="18" stroke="var(--yellow-gold)" stroke-width="1.5" stroke-dasharray="3 3"/>
               </g>
 
               <!-- Computer Node -->
               <g transform="translate(440, 200)">
-                <circle r="34" fill="#141410" stroke="var(--yellow-border)" stroke-width="2"/>
+                <circle r="32" fill="#141410" stroke="var(--yellow-border)" stroke-width="2"/>
                 <circle r="12" fill="#FAF8F2"/>
                 <circle r="22" stroke="var(--yellow-gold)" stroke-width="1.5"/>
               </g>
 
               <defs>
                 <radialGradient id="haze-radial-gold" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#E0C653" stop-opacity="0.3"/>
+                  <stop offset="0%" stop-color="#E0C653" stop-opacity="0.25"/>
                   <stop offset="100%" stop-color="#E0C653" stop-opacity="0"/>
                 </radialGradient>
                 <linearGradient id="flow-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -1916,7 +1989,7 @@
                 </linearGradient>
                 <linearGradient id="flow-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stop-color="#D8BE45" stop-opacity="0.2"/>
-                  <stop offset="50%" stop-color="#E0C653" stop-opacity="0.6"/>
+                  <stop offset="50%" stop-color="#E0C653" stop-opacity="0.5"/>
                   <stop offset="100%" stop-color="#D8BE45" stop-opacity="0.2"/>
                 </linearGradient>
               </defs>
@@ -1926,51 +1999,169 @@
       </div>
     </section>
 
-    <!-- SECTION 03: THE CONTROL (MOVE. CLICK. SCROLL.) -->
-    <section class="section-control section-spacing" id="narrative-control">
+    <!-- SECTION 03: FEATURES (OVERHAULED 5 INTERACTIVE CATEGORIES) -->
+    <section class="section-features section-spacing" id="features">
       <div class="container">
-        <div class="editorial-label">Act 03: Precision Navigation</div>
-        
-        <div class="control-big-words" id="control-words-row">
-          <span class="action-reveal-word active-word" data-word="move">MOVE</span>
-          <span class="action-reveal-word" data-word="click">CLICK</span>
-          <span class="action-reveal-word" data-word="scroll">SCROLL</span>
+        <div style="margin-bottom: 24px;">
+          <div class="editorial-label">Interactive Demonstration</div>
+          <h2 class="editorial-statement-huge liquid-heading" style="margin-bottom: 14px;">
+            <span class="liquid-base-text">Features</span>
+            <span class="liquid-ink-overlay" aria-hidden="true">Features</span>
+          </h2>
+          <p style="max-width: 52ch; font-size: 1.15rem;">
+            Select a feature below to experience how Easy Mouse transforms phone touches into instantaneous computer actions.
+          </p>
         </div>
 
-        <div class="workspace-interactive-stage">
-          <div class="stage-sub-header">
-            <div class="stage-title">Desktop Workspace Preview</div>
-            <span style="font-size: 0.88rem; color: var(--text-muted); font-weight: 500;">Glide your mouse or touch below</span>
-          </div>
+        <!-- 5 Category Feature Selector -->
+        <div class="features-selector-nav" role="tablist" aria-label="Feature Category Selector">
+          <button class="feature-tab-btn active" data-feature="shortcuts" role="tab" aria-selected="true">Shortcuts</button>
+          <button class="feature-tab-btn" data-feature="typing" role="tab" aria-selected="false">Keyboard Typing</button>
+          <button class="feature-tab-btn" data-feature="gestures" role="tab" aria-selected="false">Gestures</button>
+          <button class="feature-tab-btn" data-feature="screenshots" role="tab" aria-selected="false">Screenshots</button>
+          <button class="feature-tab-btn" data-feature="locks" role="tab" aria-selected="false">System Locks</button>
+        </div>
 
-          <div class="simulated-screen-grid" id="control-workspace-canvas">
-            <div class="mock-desktop-window">
-              <div class="mock-doc-bar" style="width: 40%; background: var(--yellow-gold);"></div>
-              <div class="mock-doc-bar" style="width: 85%;"></div>
-              <div class="mock-doc-bar" style="width: 70%;"></div>
-              <div class="mock-doc-bar" style="width: 90%;"></div>
-              <div class="mock-doc-bar" style="width: 60%; margin-top: 14px;"></div>
-              <div class="mock-doc-bar" style="width: 80%;"></div>
+        <!-- Persistent Feature Stage -->
+        <div class="features-stage-grid">
+          <!-- Left: Phone Interface View -->
+          <div class="feature-phone-unit">
+            <div class="feature-phone-header" id="feature-phone-caption">Mode: Shortcuts</div>
+
+            <!-- Panel 1: Shortcuts -->
+            <div class="feature-panel-layer active" id="feat-panel-shortcuts">
+              <div class="shortcuts-key-grid">
+                <button class="btn-macro-shortcut" id="btn-macro-copy" type="button">
+                  <span>Copy</span>
+                  <small style="color: var(--yellow-gold); font-size: 0.75rem;">Ctrl + C</small>
+                </button>
+                <button class="btn-macro-shortcut" id="btn-macro-paste" type="button">
+                  <span>Paste</span>
+                  <small style="color: var(--yellow-gold); font-size: 0.75rem;">Ctrl + V</small>
+                </button>
+                <button class="btn-macro-shortcut" id="btn-macro-undo" type="button">
+                  <span>Undo</span>
+                  <small style="color: var(--yellow-gold); font-size: 0.75rem;">Ctrl + Z</small>
+                </button>
+                <button class="btn-macro-shortcut" id="btn-macro-switch" type="button">
+                  <span>Switch</span>
+                  <small style="color: var(--yellow-gold); font-size: 0.75rem;">Alt + Tab</small>
+                </button>
+              </div>
             </div>
 
-            <!-- Controlled Pointer Element -->
-            <svg class="interactive-stage-pointer" id="control-stage-pointer" viewBox="0 0 24 24">
-              <polygon points="2,2 22,10 13,13 10,22" fill="#E0C653" stroke="#080808" stroke-width="1.5" stroke-linejoin="round"/>
-            </svg>
+            <!-- Panel 2: Keyboard Typing -->
+            <div class="feature-panel-layer" id="feat-panel-typing">
+              <div class="soft-keyboard-view">
+                <div class="keyboard-input-preview" id="phone-typing-echo">Tap keyboard to type...</div>
+                <div class="keyboard-keys-rack">
+                  <div class="keyboard-row">
+                    <span class="key-cap" data-key="E">E</span>
+                    <span class="key-cap" data-key="A">A</span>
+                    <span class="key-cap" data-key="S">S</span>
+                    <span class="key-cap" data-key="Y">Y</span>
+                  </div>
+                  <div class="keyboard-row">
+                    <span class="key-cap" data-key="M">M</span>
+                    <span class="key-cap" data-key="O">O</span>
+                    <span class="key-cap" data-key="U">U</span>
+                    <span class="key-cap" data-key="S">S</span>
+                    <span class="key-cap" data-key="E">E</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 3: Gestures -->
+            <div class="feature-panel-layer" id="feat-panel-gestures">
+              <div class="gestures-surface-view" id="gestures-phone-pad">
+                <span style="font-size: 0.9rem; color: var(--text-muted); pointer-events: none;">Drag 2 fingers or wheel</span>
+                <div class="touchpad-active-dot" id="gestures-touch-dot" style="opacity: 1;"></div>
+              </div>
+            </div>
+
+            <!-- Panel 4: Screenshots -->
+            <div class="feature-panel-layer" id="feat-panel-screenshots">
+              <div class="screenshots-trigger-view">
+                <button class="btn-capture-flash" id="btn-snap-trigger" type="button">Capture</button>
+                <span style="font-size: 0.85rem; color: var(--text-muted);">Tap to trigger screenshot</span>
+              </div>
+            </div>
+
+            <!-- Panel 5: System Locks -->
+            <div class="feature-panel-layer" id="feat-panel-locks">
+              <div class="locks-toggle-view">
+                <button class="btn-lock-toggle" id="btn-system-lock-toggle" type="button">Toggle Lock</button>
+                <span style="font-size: 0.85rem; color: var(--text-muted);" id="lock-state-desc">Desktop is Unlocked</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Desktop Workspace View -->
+          <div class="feature-desktop-display">
+            <div class="desktop-display-bar">
+              <span id="feat-desktop-title">Workspace Document Feed</span>
+              <span style="color: var(--yellow-gold);">Simulated Live Reaction</span>
+            </div>
+
+            <!-- Scene 1: Shortcuts Desktop Feedback -->
+            <div class="desktop-scene-layer active" id="feat-scene-shortcuts" style="padding: 24px;">
+              <div style="font-family: var(--font-ui); font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px;">Active Text Document:</div>
+              <div id="desktop-doc-content" style="background: #141410; border: 1px solid var(--yellow-border); border-radius: 8px; padding: 18px; min-height: 140px; font-family: monospace; font-size: 1rem; color: var(--text-hero);">
+                Easy Mouse brings desktop control directly to your smartphone. Tap [Copy] or [Paste] on phone.
+              </div>
+            </div>
+
+            <!-- Scene 2: Keyboard Typing Desktop Feed -->
+            <div class="desktop-scene-layer" id="feat-scene-typing" style="padding: 24px;">
+              <div style="font-family: var(--font-ui); font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px;">Live Text Input Stream:</div>
+              <div id="desktop-typing-target" style="background: #141410; border: 1px solid var(--yellow-border); border-radius: 8px; padding: 18px; min-height: 140px; font-family: monospace; font-size: 1.15rem; color: var(--yellow-gold);">
+                &gt; <span id="typed-text-receiver">READY</span><span style="animation: blink 1s infinite;">_</span>
+              </div>
+            </div>
+
+            <!-- Scene 3: Gestures Desktop Pan -->
+            <div class="desktop-scene-layer" id="feat-scene-gestures" style="padding: 24px; position: relative;">
+              <div id="gestures-panning-container" style="display: flex; flex-direction: column; gap: 12px; transition: transform 0.15s ease-out;">
+                <div style="height: 12px; width: 45%; background: var(--yellow-gold); border-radius: 6px;"></div>
+                <div style="height: 12px; width: 90%; background: rgba(255,255,255,0.06); border-radius: 6px;"></div>
+                <div style="height: 12px; width: 85%; background: rgba(255,255,255,0.06); border-radius: 6px;"></div>
+                <div style="height: 12px; width: 75%; background: rgba(255,255,255,0.06); border-radius: 6px;"></div>
+                <div style="height: 12px; width: 95%; background: rgba(255,255,255,0.06); border-radius: 6px;"></div>
+              </div>
+            </div>
+
+            <!-- Scene 4: Screenshots Flash -->
+            <div class="desktop-scene-layer" id="feat-scene-screenshots" style="padding: 24px; display: none; align-items: center; justify-content: center; position: relative;">
+              <div id="screenshot-flash-box" style="position: absolute; inset: 0; background: #ffffff; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;"></div>
+              <div id="screenshot-card-badge" style="background: #141410; border: 1px solid var(--yellow-gold); padding: 16px 28px; border-radius: 12px; font-family: var(--font-ui); color: var(--yellow-gold); text-transform: uppercase;">
+                Snapshot Stored to Desktop
+              </div>
+            </div>
+
+            <!-- Scene 5: System Locks State -->
+            <div class="desktop-scene-layer" id="feat-scene-locks" style="padding: 24px; display: none; align-items: center; justify-content: center; flex-direction: column;">
+              <div id="desktop-lock-overlay" style="text-align: center;">
+                <div style="font-size: 2.4rem; margin-bottom: 8px;">&#128274;</div>
+                <h4 style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--text-hero); margin-bottom: 6px;">Workstation Secured</h4>
+                <p style="font-size: 0.95rem; color: var(--text-muted);">Protected by phone lock switch</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 04: EDITORIAL CAPABILITIES (ASYMMETRIC LAYOUT) -->
+    <!-- SECTION 04: EDITORIAL CAPABILITIES -->
     <section class="section-capabilities section-spacing" id="capabilities">
       <div class="container">
         <div class="editorial-label">Engineered Utility</div>
-        <h2 class="condensed-title" style="font-size: clamp(2.8rem, 5vw, 4.4rem); margin-bottom: 16px;">
-          Designed for pure convenience.
+        <h2 class="editorial-statement-huge liquid-heading" style="margin-bottom: 16px;">
+          <span class="liquid-base-text">Designed for pure convenience.</span>
+          <span class="liquid-ink-overlay" aria-hidden="true">Designed for pure convenience.</span>
         </h2>
         <p style="max-width: 52ch; font-size: 1.15rem; margin-bottom: 40px;">
-          No extra chargers, cables, or AA batteries in your bag. Easy Mouse turns what you already carry into your main navigation tool.
+          No extra chargers, cables, or AA batteries in your bag. Easy Mouse turns what you already carry into your primary desktop controller.
         </p>
 
         <div class="capabilities-asymmetric-layout">
@@ -2008,7 +2199,7 @@
           <div class="capability-side-stack">
             <div class="capability-feature-panel">
               <div class="editorial-label" style="margin-bottom: 10px;">Zero Setup Friction</div>
-              <h3 style="font-family: var(--font-condensed); font-size: 1.9rem; text-transform: uppercase; color: var(--text-hero); margin-bottom: 10px;">Instant Auto-Discovery</h3>
+              <h3 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; color: var(--text-hero); margin-bottom: 10px;">Instant Auto-Discovery</h3>
               <p style="font-size: 1.02rem;">
                 No manual IP address typing or complicated configuration. Easy Mouse links phone and laptop smoothly on local Wi-Fi.
               </p>
@@ -2016,117 +2207,10 @@
 
             <div class="capability-feature-panel">
               <div class="editorial-label" style="margin-bottom: 10px;">Universal Support</div>
-              <h3 style="font-family: var(--font-condensed); font-size: 1.9rem; text-transform: uppercase; color: var(--text-hero); margin-bottom: 10px;">Cross-Platform Freedom</h3>
+              <h3 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; color: var(--text-hero); margin-bottom: 10px;">Cross-Platform Freedom</h3>
               <p style="font-size: 1.02rem;">
                 Compatible with Windows, macOS, and Linux desktop environments, controlled from both iOS and Android handsets.
               </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 05: CLEAN CONSUMER CONTROLLER MODES -->
-    <section class="section-modes section-spacing" id="modes">
-      <div class="container">
-        <div style="margin-bottom: 40px;">
-          <div class="editorial-label">Interactive Experience</div>
-          <h2 class="condensed-title" style="font-size: clamp(2.8rem, 5vw, 4.4rem); margin-bottom: 14px;">
-            Three ways to steer your workflow.
-          </h2>
-          <p style="max-width: 52ch; font-size: 1.15rem;">
-            Switch between control modes below to explore the responsive feedback directly in your browser.
-          </p>
-        </div>
-
-        <!-- Mode Nav Pills -->
-        <div class="modes-selector-nav" role="tablist" aria-label="Controller Modes Selector">
-          <button class="mode-tab-button active" id="tab-btn-trackpad" role="tab" aria-selected="true" aria-controls="view-trackpad">Trackpad</button>
-          <button class="mode-tab-button" id="tab-btn-scroll" role="tab" aria-selected="false" aria-controls="view-scroll">Scroll Wheel</button>
-          <button class="mode-tab-button" id="tab-btn-remote" role="tab" aria-selected="false" aria-controls="view-remote">Presentation Remote</button>
-        </div>
-
-        <!-- Interactive Sandbox -->
-        <div class="modes-interactive-stage">
-          <!-- Smartphone Controller -->
-          <div class="phone-controller-simulator">
-            <div class="controller-unit-header" id="active-mode-caption">Mode: Trackpad</div>
-
-            <!-- Panel 1: Trackpad -->
-            <div class="controller-panel active" id="view-trackpad">
-              <div class="simulator-touch-pad" id="sim-touchpad" tabindex="0">
-                <span style="font-size: 0.9rem; color: var(--text-muted); pointer-events: none;">Drag to drive pointer</span>
-                <div class="simulator-touch-indicator" id="sim-touch-dot"></div>
-              </div>
-            </div>
-
-            <!-- Panel 2: Scroll Ribbon -->
-            <div class="controller-panel" id="view-scroll">
-              <div class="scroll-wheel-ribbon" id="sim-scroll-surface">
-                <span style="font-family: var(--font-condensed); font-size: 0.9rem; color: var(--text-muted); font-weight: 600;">UP</span>
-                <div class="scroll-thumb-handle" id="sim-scroll-thumb"></div>
-                <span style="font-family: var(--font-condensed); font-size: 0.9rem; color: var(--text-muted); font-weight: 600;">DOWN</span>
-              </div>
-            </div>
-
-            <!-- Panel 3: Keynote Remote -->
-            <div class="controller-panel" id="view-remote">
-              <div class="keynote-remote-layout">
-                <button class="btn-keynote-action" id="btn-next-slide" type="button">
-                  <span>Next Slide</span>
-                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-                    <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                  </svg>
-                </button>
-                <button class="btn-keynote-action" id="btn-prev-slide" type="button" style="padding: 16px; font-size: 1.15rem;">
-                  <span>Previous Slide</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Computer Screen Display -->
-          <div class="computer-response-display">
-            <div class="computer-display-title" id="screen-display-caption">Desktop Workspace View</div>
-
-            <!-- Output 1: Workspace -->
-            <div class="output-panel-layer active" id="output-trackpad">
-              <div class="workspace-canvas-field" id="output-canvas-field">
-                <svg class="screen-pointer-arrow" id="output-screen-pointer" viewBox="0 0 24 24">
-                  <polygon points="2,2 22,10 13,13 10,22" fill="#E0C653" stroke="#080808" stroke-width="1.5" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Output 2: Scroll Document -->
-            <div class="output-panel-layer" id="output-scroll">
-              <div class="document-stream-sheet">
-                <div class="document-flow-inner" id="document-flow-lines">
-                  <div class="doc-bar accent"></div>
-                  <div class="doc-bar" style="width: 90%;"></div>
-                  <div class="doc-bar" style="width: 80%;"></div>
-                  <div class="doc-bar" style="width: 85%;"></div>
-                  <div class="doc-bar" style="width: 70%;"></div>
-                  <div class="doc-bar accent" style="width: 35%; margin-top: 20px;"></div>
-                  <div class="doc-bar" style="width: 95%;"></div>
-                  <div class="doc-bar" style="width: 75%;"></div>
-                  <div class="doc-bar" style="width: 88%;"></div>
-                  <div class="doc-bar" style="width: 65%;"></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Output 3: Keynote Slide -->
-            <div class="output-panel-layer" id="output-remote">
-              <div class="keynote-slide-display" id="slide-stage-card">
-                <div>
-                  <div class="editorial-label" id="slide-index-tag" style="margin-bottom: 8px;">Slide 01 / 03</div>
-                  <h3 id="slide-heading-text" style="font-family: var(--font-condensed); font-size: 2.2rem; text-transform: uppercase; color: var(--text-hero);">Effortless Slide Transitions</h3>
-                </div>
-                <p id="slide-body-text" style="color: var(--text-secondary); font-size: 1.05rem;">
-                  Step away from your laptop. Advance decks fluidly during pitches and keynote lectures.
-                </p>
-              </div>
             </div>
           </div>
         </div>
@@ -2140,8 +2224,9 @@
       <div class="container">
         <div class="download-central-box">
           <div class="editorial-label" style="justify-content: center;">Instant Wireless Control</div>
-          <h2 class="download-giant-h2">
-            Your phone. Your computer. One simple connection.
+          <h2 class="download-giant-h2 liquid-heading">
+            <span class="liquid-base-text">Your phone. Your computer. One simple connection.</span>
+            <span class="liquid-ink-overlay" aria-hidden="true">Your phone. Your computer. One simple connection.</span>
           </h2>
           <p class="download-supporting-p">
             Download Easy Mouse today and experience smooth, wireless desktop control from the device already in your hands.
@@ -2182,11 +2267,10 @@
 
       <nav aria-label="Footer Navigation">
         <ul class="footer-links-cluster">
-          <li><a href="#narrative-phone">The Phone</a></li>
+          <li><a href="#narrative-phone">The Device</a></li>
           <li><a href="#narrative-connection">Connection</a></li>
-          <li><a href="#narrative-control">Controls</a></li>
-          <li><a href="#capabilities">Features</a></li>
-          <li><a href="#modes">Modes</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#capabilities">Capabilities</a></li>
           <li><a href="#download">Download</a></li>
         </ul>
       </nav>
@@ -2204,7 +2288,7 @@
     <span id="toast-text-msg">Easy Mouse package ready for deployment.</span>
   </div>
 
-  <!-- Custom Sharp Muted Yellow Pointer & Fluid Yellow Light Trail Canvas -->
+  <!-- Custom Sharp Muted Yellow Pointer & Organic Water Trail Canvas -->
   <svg class="custom-pointer-arrow" id="custom-cursor-pointer" viewBox="0 0 24 24" aria-hidden="true">
     <polygon points="2,2 22,10 13,13 10,22" fill="#E0C653" stroke="#080808" stroke-width="1.5" stroke-linejoin="round"/>
   </svg>
@@ -2212,11 +2296,73 @@
 
   <script>
     /* -------------------------------------------------------------
-       HERO PROGRESSIVE ENTRANCE SEQUENCE
+       HERO ENTRANCE SEQUENCE
+       Letter-by-letter entrance trigger
        ------------------------------------------------------------- */
     window.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('hero-entered');
     });
+
+    /* -------------------------------------------------------------
+       WATERY / INK TEXT INTERACTION ENGINE
+       Reveals accent layer within cursor radius with smooth fadeout
+       ------------------------------------------------------------- */
+    (function initLiquidInkInteraction() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const headings = document.querySelectorAll('.liquid-heading');
+
+      headings.forEach(h => {
+        h.addEventListener('pointermove', (e) => {
+          const rect = h.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          h.style.setProperty('--ink-x', `${x}px`);
+          h.style.setProperty('--ink-y', `${y}px`);
+          h.classList.add('ink-active');
+        });
+
+        h.addEventListener('pointerleave', () => {
+          h.classList.remove('ink-active');
+        });
+      });
+    })();
+
+    /* -------------------------------------------------------------
+       PLAYFUL HANGING MOUSE RIG (EASTER EGG PHYSICS)
+       ------------------------------------------------------------- */
+    (function initHangingMouseEasterEgg() {
+      const rig = document.getElementById('hanging-mouse');
+      if (!rig) return;
+
+      let rotation = 0;
+      let rotVelocity = 0;
+      let isHovered = false;
+
+      rig.addEventListener('pointerenter', () => {
+        isHovered = true;
+        rotVelocity = (Math.random() > 0.5 ? 1 : -1) * 14;
+      });
+
+      rig.addEventListener('click', () => {
+        rotVelocity = (Math.random() > 0.5 ? 1 : -1) * 22;
+        rig.style.transform = 'translateY(12px) scale(0.94)';
+        setTimeout(() => {
+          rig.style.transform = '';
+        }, 180);
+      });
+
+      function loop() {
+        if (Math.abs(rotVelocity) > 0.1 || Math.abs(rotation) > 0.1) {
+          rotVelocity -= rotation * 0.08; // Spring restoration
+          rotVelocity *= 0.94; // Air damping
+          rotation += rotVelocity;
+          rig.style.transform = `rotate(${rotation}deg)`;
+        }
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    })();
 
     /* -------------------------------------------------------------
        STICKY NAVBAR SCROLL REACTION & MOBILE DRAWER
@@ -2254,7 +2400,7 @@
     })();
 
     /* -------------------------------------------------------------
-       HERO: 3D SMARTPHONE INTERACTION & COMPUTER RESPONSE
+       HERO: 3D SMARTPHONE INTERACTION & COMPANION MONITOR
        ------------------------------------------------------------- */
     (function initHero3DInteraction() {
       const surface = document.getElementById('hero-phone-surface');
@@ -2280,7 +2426,6 @@
         pointer.style.left = (x * 100) + '%';
         pointer.style.top = (y * 100) + '%';
 
-        // Subtle 3D perspective shift on interaction
         const rotY = -14 + (x - 0.5) * 16;
         const rotX = 12 - (y - 0.5) * 14;
         phoneRig.style.transform = `rotateY(${rotY}deg) rotateX(${rotX}deg) rotateZ(-3deg)`;
@@ -2292,8 +2437,8 @@
         if (hint) hint.style.opacity = '0';
 
         const rect = surface.getBoundingClientRect();
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        const clientX = e.clientX;
+        const clientY = e.clientY;
 
         const relX = (clientX - rect.left) / rect.width;
         const relY = (clientY - rect.top) / rect.height;
@@ -2305,11 +2450,7 @@
         }, 3000);
       }
 
-      surface.addEventListener('mousemove', handleMove);
-      surface.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-        handleMove(e);
-      }, { passive: false });
+      surface.addEventListener('pointermove', handleMove);
 
       function startAmbientGlide() {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -2334,8 +2475,228 @@
     })();
 
     /* -------------------------------------------------------------
-       KINETIC TYPOGRAPHY SCROLL-VELOCITY CONTROLLER
-       Dual opposite directions responding dynamically to scroll
+       SECTION 01: FUNCTIONAL TOUCHPAD SIMULATOR
+       Pointer Events: single pointer move, click, drag, wheel scroll
+       ------------------------------------------------------------- */
+    (function initSection1Touchpad() {
+      const surface = document.getElementById('section1-touch-surface');
+      const dot = document.getElementById('section1-touch-dot');
+      const badge = document.getElementById('touchpad-coords-badge');
+      const actionState = document.getElementById('touchpad-action-state');
+
+      if (!surface || !dot || !badge || !actionState) return;
+
+      let isDown = false;
+      let startX = 0, startY = 0;
+
+      function updatePoint(e) {
+        const rect = surface.getBoundingClientRect();
+        const rx = Math.max(0.05, Math.min(0.95, (e.clientX - rect.left) / rect.width));
+        const ry = Math.max(0.08, Math.min(0.92, (e.clientY - rect.top) / rect.height));
+
+        dot.style.left = (rx * 100) + '%';
+        dot.style.top = (ry * 100) + '%';
+        dot.style.opacity = '1';
+
+        badge.textContent = `X: ${Math.round(rx * 100)}% • Y: ${Math.round(ry * 100)}%`;
+      }
+
+      surface.addEventListener('pointerdown', (e) => {
+        isDown = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        actionState.textContent = 'Touch Down / Press';
+        dot.style.transform = 'translate(-50%, -50%) scale(1.35)';
+        updatePoint(e);
+      });
+
+      surface.addEventListener('pointermove', (e) => {
+        if (isDown) {
+          actionState.textContent = 'Dragging Pointer';
+        } else {
+          actionState.textContent = 'Gliding Tracking';
+        }
+        updatePoint(e);
+      });
+
+      surface.addEventListener('pointerup', (e) => {
+        const dist = Math.hypot(e.clientX - startX, e.clientY - startY);
+        if (dist < 8) {
+          actionState.textContent = 'Click Registered';
+        } else {
+          actionState.textContent = 'Touch Released';
+        }
+        isDown = false;
+        dot.style.transform = 'translate(-50%, -50%) scale(1)';
+        setTimeout(() => {
+          actionState.textContent = 'Glide / Tap / Drag';
+        }, 1200);
+      });
+
+      surface.addEventListener('pointerleave', () => {
+        dot.style.opacity = '0';
+        isDown = false;
+      });
+
+      surface.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        actionState.textContent = e.deltaY < 0 ? 'Two-Finger Scroll Up' : 'Two-Finger Scroll Down';
+        setTimeout(() => {
+          actionState.textContent = 'Glide / Tap / Drag';
+        }, 800);
+      }, { passive: false });
+    })();
+
+    /* -------------------------------------------------------------
+       SECTION 03: INTERACTIVE 5-CATEGORY FEATURE ENGINE
+       Shortcuts, Keyboard Typing, Gestures, Screenshots, System Locks
+       ------------------------------------------------------------- */
+    (function initFeaturesEngine() {
+      const tabs = document.querySelectorAll('.feature-tab-btn');
+      const phoneCaption = document.getElementById('feature-phone-caption');
+      const desktopTitle = document.getElementById('feat-desktop-title');
+
+      const phonePanels = {
+        shortcuts: document.getElementById('feat-panel-shortcuts'),
+        typing: document.getElementById('feat-panel-typing'),
+        gestures: document.getElementById('feat-panel-gestures'),
+        screenshots: document.getElementById('feat-panel-screenshots'),
+        locks: document.getElementById('feat-panel-locks')
+      };
+
+      const desktopScenes = {
+        shortcuts: document.getElementById('feat-scene-shortcuts'),
+        typing: document.getElementById('feat-scene-typing'),
+        gestures: document.getElementById('feat-scene-gestures'),
+        screenshots: document.getElementById('feat-scene-screenshots'),
+        locks: document.getElementById('feat-scene-locks')
+      };
+
+      function switchFeature(feat) {
+        tabs.forEach(t => {
+          const isTarget = t.getAttribute('data-feature') === feat;
+          t.classList.toggle('active', isTarget);
+          t.setAttribute('aria-selected', isTarget);
+        });
+
+        Object.keys(phonePanels).forEach(k => {
+          if (phonePanels[k]) phonePanels[k].classList.toggle('active', k === feat);
+          if (desktopScenes[k]) {
+            desktopScenes[k].classList.toggle('active', k === feat);
+            desktopScenes[k].style.display = k === feat ? 'flex' : 'none';
+          }
+        });
+
+        if (phoneCaption) phoneCaption.textContent = 'Mode: ' + feat.charAt(0).toUpperCase() + feat.slice(1);
+        if (desktopTitle) {
+          if (feat === 'shortcuts') desktopTitle.textContent = 'Workspace Document Feed';
+          if (feat === 'typing') desktopTitle.textContent = 'Live Text Input Stream';
+          if (feat === 'gestures') desktopTitle.textContent = 'Document Gesture Panning';
+          if (feat === 'screenshots') desktopTitle.textContent = 'Screen Capture Snapping';
+          if (feat === 'locks') desktopTitle.textContent = 'Security Access Control';
+        }
+      }
+
+      tabs.forEach(t => {
+        t.addEventListener('click', () => {
+          switchFeature(t.getAttribute('data-feature'));
+        });
+      });
+
+      // Feature 1: Shortcuts Interaction
+      const docContent = document.getElementById('desktop-doc-content');
+      const btnCopy = document.getElementById('btn-macro-copy');
+      const btnPaste = document.getElementById('btn-macro-paste');
+      const btnUndo = document.getElementById('btn-macro-undo');
+      const btnSwitch = document.getElementById('btn-macro-switch');
+
+      if (docContent) {
+        const initialText = "Easy Mouse brings desktop control directly to your smartphone. Tap [Copy] or [Paste] on phone.";
+        if (btnCopy) btnCopy.addEventListener('click', () => {
+          docContent.style.background = 'rgba(224, 198, 83, 0.15)';
+          setTimeout(() => docContent.style.background = '#141410', 350);
+        });
+        if (btnPaste) btnPaste.addEventListener('click', () => {
+          docContent.textContent += ' [Pasted from Easy Mouse]';
+        });
+        if (btnUndo) btnUndo.addEventListener('click', () => {
+          docContent.textContent = initialText;
+        });
+        if (btnSwitch) btnSwitch.addEventListener('click', () => {
+          docContent.textContent = "Switched to Active Window: Code Workspace";
+        });
+      }
+
+      // Feature 2: Keyboard Typing Interaction
+      const phoneEcho = document.getElementById('phone-typing-echo');
+      const typeReceiver = document.getElementById('typed-text-receiver');
+      const keyCaps = document.querySelectorAll('.key-cap');
+
+      keyCaps.forEach(k => {
+        k.addEventListener('click', () => {
+          const char = k.getAttribute('data-key');
+          if (phoneEcho && typeReceiver) {
+            if (typeReceiver.textContent === 'READY') typeReceiver.textContent = '';
+            typeReceiver.textContent += char;
+            phoneEcho.textContent = typeReceiver.textContent;
+          }
+        });
+      });
+
+      // Feature 3: Gestures Panning Interaction
+      const gesturesPad = document.getElementById('gestures-phone-pad');
+      const gesturesDot = document.getElementById('gestures-touch-dot');
+      const panContainer = document.getElementById('gestures-panning-container');
+      let panOffset = 0;
+
+      if (gesturesPad && panContainer) {
+        gesturesPad.addEventListener('pointermove', (e) => {
+          const rect = gesturesPad.getBoundingClientRect();
+          const ry = (e.clientY - rect.top) / rect.height;
+          panOffset = (ry - 0.5) * 80;
+          panContainer.style.transform = `translateY(${-panOffset}px)`;
+          if (gesturesDot) {
+            gesturesDot.style.left = `${(e.clientX - rect.left)}px`;
+            gesturesDot.style.top = `${(e.clientY - rect.top)}px`;
+          }
+        });
+      }
+
+      // Feature 4: Screenshot Flash Trigger
+      const btnSnap = document.getElementById('btn-snap-trigger');
+      const flashBox = document.getElementById('screenshot-flash-box');
+
+      if (btnSnap && flashBox) {
+        btnSnap.addEventListener('click', () => {
+          flashBox.style.opacity = '0.9';
+          setTimeout(() => flashBox.style.opacity = '0', 250);
+        });
+      }
+
+      // Feature 5: System Lock Trigger
+      const btnLock = document.getElementById('btn-system-lock-toggle');
+      const lockOverlay = document.getElementById('desktop-lock-overlay');
+      const lockDesc = document.getElementById('lock-state-desc');
+      let isLocked = false;
+
+      if (btnLock && lockOverlay && lockDesc) {
+        btnLock.addEventListener('click', () => {
+          isLocked = !isLocked;
+          btnLock.textContent = isLocked ? 'Unlock Workstation' : 'Lock Workstation';
+          lockDesc.textContent = isLocked ? 'Desktop is Locked' : 'Desktop is Unlocked';
+          lockOverlay.innerHTML = isLocked
+            ? `<div style="font-size: 2.6rem; color: #E0C653; margin-bottom: 8px;">&#128274;</div>
+               <h4 style="font-family: var(--font-heading); font-size: 1.8rem; color: #FAF8F2; margin-bottom: 6px;">Workstation Locked</h4>
+               <p style="font-size: 0.95rem; color: #9E9C91;">Secured remotely by Easy Mouse</p>`
+            : `<div style="font-size: 2.6rem; color: #FAF8F2; margin-bottom: 8px;">&#128275;</div>
+               <h4 style="font-family: var(--font-heading); font-size: 1.8rem; color: #FAF8F2; margin-bottom: 6px;">Workstation Active</h4>
+               <p style="font-size: 0.95rem; color: #9E9C91;">Direct phone connection established</p>`;
+        });
+      }
+    })();
+
+    /* -------------------------------------------------------------
+       KINETIC TYPOGRAPHY SCROLL VELOCITY CONTROLLER
        ------------------------------------------------------------- */
     (function initKineticBands() {
       const trackFwd = document.getElementById('kinetic-track-forward');
@@ -2349,7 +2710,7 @@
 
       window.addEventListener('scroll', () => {
         const delta = Math.abs(window.scrollY - lastScrollY);
-        velocity = Math.min(10, 1 + delta * 0.12);
+        velocity = Math.min(8, 1 + delta * 0.1);
         lastScrollY = window.scrollY;
       }, { passive: true });
 
@@ -2371,196 +2732,6 @@
     })();
 
     /* -------------------------------------------------------------
-       SECTION 03: MOVE / CLICK / SCROLL SEQUENTIAL WORD ENTRANCE
-       ------------------------------------------------------------- */
-    (function initControlWords() {
-      const words = document.querySelectorAll('.action-reveal-word');
-      const stagePointer = document.getElementById('control-stage-pointer');
-      const canvasField = document.getElementById('control-workspace-canvas');
-
-      if (!words.length || !stagePointer || !canvasField) return;
-
-      let wordIndex = 0;
-      setInterval(() => {
-        words.forEach(w => w.classList.remove('active-word'));
-        wordIndex = (wordIndex + 1) % words.length;
-        words[wordIndex].classList.add('active-word');
-      }, 2400);
-
-      canvasField.addEventListener('mousemove', (e) => {
-        const rect = canvasField.getBoundingClientRect();
-        const rx = (e.clientX - rect.left) / rect.width;
-        const ry = (e.clientY - rect.top) / rect.height;
-        stagePointer.style.left = (rx * 100) + '%';
-        stagePointer.style.top = (ry * 100) + '%';
-      });
-    })();
-
-    /* -------------------------------------------------------------
-       SECTION 05: CLEAN CONSUMER CONTROLLER MODES
-       ------------------------------------------------------------- */
-    (function initControllerModes() {
-      const tabTrackpad = document.getElementById('tab-btn-trackpad');
-      const tabScroll = document.getElementById('tab-btn-scroll');
-      const tabRemote = document.getElementById('tab-btn-remote');
-      const allTabs = [tabTrackpad, tabScroll, tabRemote];
-
-      const panels = {
-        trackpad: document.getElementById('view-trackpad'),
-        scroll: document.getElementById('view-scroll'),
-        remote: document.getElementById('view-remote')
-      };
-
-      const outputs = {
-        trackpad: document.getElementById('output-trackpad'),
-        scroll: document.getElementById('output-scroll'),
-        remote: document.getElementById('output-remote')
-      };
-
-      const modeCaption = document.getElementById('active-mode-caption');
-      const displayCaption = document.getElementById('screen-display-caption');
-
-      function setMode(key) {
-        allTabs.forEach(tab => {
-          if (!tab) return;
-          const isTarget = tab.id === 'tab-btn-' + key;
-          tab.classList.toggle('active', isTarget);
-          tab.setAttribute('aria-selected', isTarget);
-        });
-
-        Object.keys(panels).forEach(k => {
-          if (panels[k]) panels[k].classList.toggle('active', k === key);
-          if (outputs[k]) outputs[k].classList.toggle('active', k === key);
-        });
-
-        if (modeCaption) modeCaption.textContent = 'Mode: ' + key.charAt(0).toUpperCase() + key.slice(1);
-        if (displayCaption) {
-          if (key === 'trackpad') displayCaption.textContent = 'Desktop Workspace View';
-          if (key === 'scroll') displayCaption.textContent = 'Continuous Document View';
-          if (key === 'remote') displayCaption.textContent = 'Presentation Slide View';
-        }
-      }
-
-      if (tabTrackpad) tabTrackpad.addEventListener('click', () => setMode('trackpad'));
-      if (tabScroll) tabScroll.addEventListener('click', () => setMode('scroll'));
-      if (tabRemote) tabRemote.addEventListener('click', () => setMode('remote'));
-
-      // Mode 1: Simulator Touchpad
-      const simTouchpad = document.getElementById('sim-touchpad');
-      const simDot = document.getElementById('sim-touch-dot');
-      const outputPointer = document.getElementById('output-screen-pointer');
-
-      if (simTouchpad && simDot && outputPointer) {
-        function moveSimulatorPointer(e) {
-          const rect = simTouchpad.getBoundingClientRect();
-          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-          const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-
-          const rx = Math.max(0.06, Math.min(0.94, (clientX - rect.left) / rect.width));
-          const ry = Math.max(0.08, Math.min(0.92, (clientY - rect.top) / rect.height));
-
-          simDot.style.left = (rx * 100) + '%';
-          simDot.style.top = (ry * 100) + '%';
-          simDot.style.opacity = '1';
-
-          outputPointer.style.left = (rx * 100) + '%';
-          outputPointer.style.top = (ry * 100) + '%';
-        }
-
-        simTouchpad.addEventListener('mousemove', moveSimulatorPointer);
-        simTouchpad.addEventListener('touchmove', (e) => {
-          e.preventDefault();
-          moveSimulatorPointer(e);
-        }, { passive: false });
-
-        simTouchpad.addEventListener('mouseleave', () => {
-          simDot.style.opacity = '0';
-        });
-      }
-
-      // Mode 2: Scroll Ribbon
-      const simScroll = document.getElementById('sim-scroll-surface');
-      const simThumb = document.getElementById('sim-scroll-thumb');
-      const docLines = document.getElementById('document-flow-lines');
-      let scrollFrac = 0.5;
-
-      if (simScroll && simThumb && docLines) {
-        function updateScroll(frac) {
-          scrollFrac = Math.max(0.12, Math.min(0.88, frac));
-          simThumb.style.top = (scrollFrac * 100) + '%';
-          const shift = (scrollFrac - 0.5) * 200;
-          docLines.style.transform = `translateY(-${shift}px)`;
-        }
-
-        simScroll.addEventListener('mousemove', (e) => {
-          if (e.buttons === 1) {
-            const rect = simScroll.getBoundingClientRect();
-            updateScroll((e.clientY - rect.top) / rect.height);
-          }
-        });
-
-        simScroll.addEventListener('wheel', (e) => {
-          e.preventDefault();
-          updateScroll(scrollFrac + e.deltaY * 0.002);
-        }, { passive: false });
-      }
-
-      // Mode 3: Keynote Deck
-      const keynoteSlides = [
-        {
-          index: 'Slide 01 / 03',
-          title: 'Effortless Slide Transitions',
-          body: 'Step away from your laptop. Advance decks fluidly during pitches and keynote lectures.'
-        },
-        {
-          index: 'Slide 02 / 03',
-          title: 'Low Latency Network Control',
-          body: 'Immediate response across local Wi-Fi with zero perceptible lag during critical moments.'
-        },
-        {
-          index: 'Slide 03 / 03',
-          title: 'Zero Dongles or Peripherals',
-          body: 'Walk into any conference room and command the screen without digging for USB adapters.'
-        }
-      ];
-
-      let activeSlide = 0;
-      const btnNext = document.getElementById('btn-next-slide');
-      const btnPrev = document.getElementById('btn-prev-slide');
-      const slideCard = document.getElementById('slide-stage-card');
-      const slideTag = document.getElementById('slide-index-tag');
-      const slideHead = document.getElementById('slide-heading-text');
-      const slideBody = document.getElementById('slide-body-text');
-
-      function renderSlide() {
-        if (!slideCard || !slideTag || !slideHead || !slideBody) return;
-        slideCard.style.opacity = '0';
-        slideCard.style.transform = 'scale(0.98)';
-        setTimeout(() => {
-          slideTag.textContent = keynoteSlides[activeSlide].index;
-          slideHead.textContent = keynoteSlides[activeSlide].title;
-          slideBody.textContent = keynoteSlides[activeSlide].body;
-          slideCard.style.opacity = '1';
-          slideCard.style.transform = 'scale(1)';
-        }, 120);
-      }
-
-      if (btnNext) {
-        btnNext.addEventListener('click', () => {
-          activeSlide = (activeSlide + 1) % keynoteSlides.length;
-          renderSlide();
-        });
-      }
-
-      if (btnPrev) {
-        btnPrev.addEventListener('click', () => {
-          activeSlide = (activeSlide - 1 + keynoteSlides.length) % keynoteSlides.length;
-          renderSlide();
-        });
-      }
-    })();
-
-    /* -------------------------------------------------------------
        DOWNLOAD CTA ROUTING & TOAST NOTIFICATION
        Preserves id="download-app" and data-download="true"
        ------------------------------------------------------------- */
@@ -2578,7 +2749,7 @@
             if (toast) {
               clearTimeout(timer);
               toast.classList.add('active');
-              if (toastText) toastText.textContent = 'Easy Mouse download package ready for production URL attachment.';
+              if (toastText) toastText.textContent = 'Easy Mouse package ready for deployment.';
               timer = setTimeout(() => {
                 toast.classList.remove('active');
               }, 4000);
@@ -2589,9 +2760,9 @@
     })();
 
     /* -------------------------------------------------------------
-       CUSTOM SHARP MUTED YELLOW POINTER & FLUID LIGHT TRAIL
+       ORGANIC CUSTOM POINTER & WATER LIGHT TRAIL CANVAS
        ------------------------------------------------------------- */
-    (function initCustomPointer() {
+    (function initOrganicPointer() {
       if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
       const pointer = document.getElementById('custom-cursor-pointer');
@@ -2605,7 +2776,7 @@
       let fadeTimer = null;
 
       const trail = [];
-      const MAX_TRAIL = 12;
+      const MAX_TRAIL = 14;
 
       function resize() {
         canvas.width = window.innerWidth;
@@ -2614,7 +2785,7 @@
       window.addEventListener('resize', resize);
       resize();
 
-      window.addEventListener('mousemove', (e) => {
+      window.addEventListener('pointermove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
 
@@ -2626,7 +2797,7 @@
         pointer.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
 
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          trail.unshift({ x: mouseX + 3, y: mouseY + 3, alpha: 0.85, size: 2.5 });
+          trail.unshift({ x: mouseX + 3, y: mouseY + 3, alpha: 0.85, size: 2.8 });
           if (trail.length > MAX_TRAIL) trail.pop();
         }
 
@@ -2637,7 +2808,7 @@
         }, 2500);
       });
 
-      const hoverElements = 'a, button, [role="tab"], .simulator-touch-pad, .scroll-wheel-ribbon, .phone-trackpad-area, .simulated-screen-grid';
+      const hoverElements = 'a, button, [role="tab"], .feature-tab-btn, .touchpad-live-canvas, .phone-trackpad-area, .hanging-mouse-rig';
       document.addEventListener('mouseover', (e) => {
         if (e.target.closest(hoverElements)) pointer.classList.add('hover-scale');
       });
@@ -2650,7 +2821,7 @@
 
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && trail.length > 1) {
           for (let i = 0; i < trail.length; i++) {
-            trail[i].alpha *= 0.85;
+            trail[i].alpha *= 0.86;
             trail[i].size *= 0.90;
           }
 
@@ -2662,7 +2833,7 @@
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = `rgba(224, 198, 83, ${p1.alpha * 0.45})`;
-            ctx.lineWidth = Math.max(0.6, p1.size);
+            ctx.lineWidth = Math.max(0.5, p1.size);
             ctx.lineCap = 'round';
             ctx.stroke();
           }
