@@ -1066,8 +1066,251 @@
     }
 
     /* -------------------------------------------------------------
+       CORE CAPABILITIES SECTION (ASYMMETRIC 7-5 / 5-7 BENTO)
+       ------------------------------------------------------------- */
+    .features-section {
+      position: relative;
+    }
+
+    .features-layout-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .feature-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .feature-panel:hover {
+      border-color: rgba(255, 42, 75, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+    }
+
+    .panel-span-7 {
+      grid-column: span 7;
+    }
+
+    .panel-span-5 {
+      grid-column: span 5;
+    }
+
+    .feature-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-red);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .feature-h3 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .feature-text {
+      font-size: 0.96rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      max-width: 48ch;
+    }
+
+    /* Graphic 1: Wireless Space Map */
+    .graphic-space-map {
+      height: 140px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 16px;
+      overflow: hidden;
+    }
+
+    .space-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      z-index: 1;
+    }
+
+    .space-node-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      background: #151922;
+      border: 1px solid #282f3d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-primary);
+    }
+
+    .space-node.active .space-node-icon {
+      border-color: var(--accent-red);
+      color: var(--accent-red);
+      box-shadow: 0 0 12px var(--accent-red-glow);
+    }
+
+    /* Graphic 2: Gesture Pills */
+    .graphic-gestures {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .gesture-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      transition: border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .gesture-row:hover {
+      border-color: rgba(255, 42, 75, 0.4);
+      background: rgba(255, 42, 75, 0.06);
+      color: var(--text-primary);
+    }
+
+    .gesture-badge {
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      background: #171b25;
+      border: 1px solid #282e3c;
+      color: var(--accent-red);
+      font-weight: 600;
+      font-size: 0.72rem;
+    }
+
+    /* Graphic 3: Friction vs Phone Checklist */
+    .graphic-friction {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .friction-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .friction-cross {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(255, 60, 60, 0.12);
+      border: 1px solid rgba(255, 60, 60, 0.3);
+      color: #ff5050;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .friction-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(56, 239, 125, 0.12);
+      border: 1px solid rgba(56, 239, 125, 0.3);
+      color: #38ef7d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* Graphic 4: Auto-Discovery Radar */
+    .graphic-discovery {
+      height: 140px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .radar-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 42, 75, 0.25);
+    }
+
+    .radar-circle:nth-child(1) { width: 40px; height: 40px; }
+    .radar-circle:nth-child(2) { width: 90px; height: 90px; }
+    .radar-circle:nth-child(3) { width: 140px; height: 140px; }
+
+    .radar-center-host {
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--bg-surface);
+      border: 1px solid var(--accent-red);
+      border-radius: var(--radius-pill);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #ffffff;
+      box-shadow: 0 0 16px var(--accent-red-glow);
+    }
+
+    @media (max-width: 900px) {
+      .features-layout-grid {
+        grid-template-columns: 1fr;
+      }
+      .panel-span-7, .panel-span-5 {
+        grid-column: span 1;
+      }
+      .feature-panel {
+        padding: 24px;
+      }
+    }
+
+    /* -------------------------------------------------------------
        PREFERS-REDUCED-MOTION
        ------------------------------------------------------------- */
+
 
 
     @media (prefers-reduced-motion: reduce) {
@@ -1305,7 +1548,125 @@
         </div>
       </section>
 
-      <!-- Remaining Sections will be mounted in Tasks 5-7 -->
+      <!-- CORE CAPABILITIES SECTION -->
+      <section class="features-section section-spacing" id="features">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Engineered for pure control.</h2>
+            <p class="section-lead">
+              Transform your everyday phone into a responsive, zero-friction desktop controller.
+            </p>
+          </div>
+
+          <div class="features-layout-grid">
+            <!-- Feature 1: Wide Technical Panel (span-7) -->
+            <div class="feature-panel panel-span-7">
+              <div>
+                <span class="feature-tag">Freedom of Movement</span>
+                <h3 class="feature-h3">Wireless desktop control from anywhere in the room.</h3>
+                <p class="feature-text">
+                  Navigate slides during presentations, control streaming media from your couch, or drive your laptop without being tethered to a physical desk surface.
+                </p>
+              </div>
+              <div class="graphic-space-map" aria-hidden="true">
+                <div class="space-node active">
+                  <div class="space-node-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="5" y="2" width="14" height="20" rx="3"/>
+                      <line x1="12" y1="18" x2="12.01" y2="18"/>
+                    </svg>
+                  </div>
+                  <span>Phone</span>
+                </div>
+                <div style="height: 1px; flex: 1; margin: 0 16px; background: linear-gradient(90deg, #ff2a4b, rgba(255,42,75,0.2));"></div>
+                <div class="space-node">
+                  <div class="space-node-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="3" width="20" height="14" rx="2"/>
+                      <line x1="8" y1="21" x2="16" y2="21"/>
+                      <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                  </div>
+                  <span>Computer</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 2: Gesture Breakdown Panel (span-5) -->
+            <div class="feature-panel panel-span-5">
+              <div>
+                <span class="feature-tag">Intuitive Gestures</span>
+                <h3 class="feature-h3">Natural multi-touch control.</h3>
+                <p class="feature-text">
+                  Your smartphone screen operates like a high-end trackpad with familiar, fluid gestures.
+                </p>
+              </div>
+              <div class="graphic-gestures">
+                <div class="gesture-row">
+                  <span>Single Tap</span>
+                  <span class="gesture-badge">Left Click</span>
+                </div>
+                <div class="gesture-row">
+                  <span>Two-Finger Tap</span>
+                  <span class="gesture-badge">Right Click</span>
+                </div>
+                <div class="gesture-row">
+                  <span>Two-Finger Slide</span>
+                  <span class="gesture-badge">Smooth Scroll</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 3: Hardware Comparison Panel (span-5) -->
+            <div class="feature-panel panel-span-5">
+              <div>
+                <span class="feature-tag">Zero Bulk</span>
+                <h3 class="feature-h3">Never get stuck without a mouse.</h3>
+                <p class="feature-text">
+                  Eliminate dongles, dead batteries, and clunky peripherals when travelling or working on the go.
+                </p>
+              </div>
+              <div class="graphic-friction">
+                <div class="friction-item">
+                  <span class="friction-cross">x</span>
+                  <span>No proprietary USB receivers to misplace</span>
+                </div>
+                <div class="friction-item">
+                  <span class="friction-cross">x</span>
+                  <span>No AA or AAA batteries running empty</span>
+                </div>
+                <div class="friction-item">
+                  <span class="friction-check">&#10003;</span>
+                  <span>Always available on the phone you carry</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Feature 4: Discovery Radar Panel (span-7) -->
+            <div class="feature-panel panel-span-7">
+              <div>
+                <span class="feature-tag">Instant Connectivity</span>
+                <h3 class="feature-h3">Automatic local network discovery.</h3>
+                <p class="feature-text">
+                  No complex IP address configuration. Easy Mouse broadcasts a local heartbeat so your devices pair with a single tap.
+                </p>
+              </div>
+              <div class="graphic-discovery" aria-hidden="true">
+                <div class="radar-circle"></div>
+                <div class="radar-circle"></div>
+                <div class="radar-circle"></div>
+                <div class="radar-center-host">
+                  <span class="badge-dot"></span>
+                  <span>Host Found: My-Workstation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Remaining Sections will be mounted in Tasks 6-7 -->
+
 
     </main>
 
