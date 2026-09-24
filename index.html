@@ -258,68 +258,77 @@
     }
 
     /* -------------------------------------------------------------
-       PLAYFUL HANGING MOUSE EASTER EGG (HERO CORNER)
+       PLAYFUL HANGING MOUSE EASTER EGG (HERO LEFT MARGIN)
        Suspended from a thin golden wire with physical sway physics
+       Exclusion area: Left margin outside main text column
        ------------------------------------------------------------- */
     .hanging-mouse-rig {
       position: absolute;
       top: 0;
-      right: 70px;
-      width: 44px;
-      height: 150px;
+      left: clamp(20px, 3.5vw, 60px);
+      width: 48px;
+      height: 180px;
       z-index: 20;
       pointer-events: auto;
       cursor: grab;
       transform-origin: top center;
-      transition: transform 0.3s var(--ease-cinema);
-    }
-
-    .hanging-mouse-rig:hover {
-      animation: swingMouse 1.8s ease-in-out infinite alternate;
+      transition: transform 0.12s ease-out;
     }
 
     .hanging-mouse-rig:active {
       cursor: grabbing;
-      transform: translateY(8px) scale(0.96);
     }
 
     .hanging-wire {
       width: 1.5px;
-      height: 95px;
-      background: linear-gradient(to bottom, rgba(224, 198, 83, 0.4), var(--yellow-gold));
+      height: 112px;
+      background: linear-gradient(to bottom, rgba(224, 198, 83, 0.25), var(--yellow-gold));
       margin: 0 auto;
+      box-shadow: 0 0 4px rgba(224, 198, 83, 0.3);
     }
 
     .hanging-mouse-body {
-      width: 28px;
-      height: 44px;
-      background: #151512;
+      width: 34px;
+      height: 52px;
+      background: linear-gradient(165deg, #22221c 0%, #131310 60%, #181814 100%);
       border: 1.5px solid var(--yellow-gold);
-      border-radius: 14px 14px 12px 12px;
+      border-radius: 17px 17px 14px 14px;
       margin: 0 auto;
       position: relative;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8), 0 0 10px rgba(224, 198, 83, 0.2);
+      box-shadow: 
+        inset 1px 1px 2px rgba(250, 248, 242, 0.3),
+        inset -1px -1px 3px rgba(0, 0, 0, 0.9),
+        0 14px 28px rgba(0, 0, 0, 0.9),
+        0 0 12px rgba(224, 198, 83, 0.18);
     }
 
+    /* Tactile Scroll Wheel */
     .hanging-mouse-body::before {
       content: "";
       position: absolute;
-      top: 6px;
+      top: 7px;
       left: 50%;
       transform: translateX(-50%);
-      width: 4px;
-      height: 10px;
-      background: var(--yellow-gold);
-      border-radius: 2px;
+      width: 5px;
+      height: 12px;
+      background: linear-gradient(to bottom, var(--yellow-gold), #8c7820, var(--yellow-gold));
+      border-radius: 3px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.4);
     }
 
-    @keyframes swingMouse {
-      0% { transform: rotate(-8deg); }
-      50% { transform: rotate(8deg); }
-      100% { transform: rotate(-6deg); }
+    /* Mouse seam line */
+    .hanging-mouse-body::after {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 14px;
+      background: rgba(224, 198, 83, 0.35);
     }
 
-    @media (max-width: 1080px) {
+    @media (max-width: 1140px) {
       .hanging-mouse-rig {
         display: none;
       }
@@ -701,31 +710,34 @@
       transition: transform 0.4s var(--ease-fluid), opacity 0.8s ease 0.4s;
     }
 
-    /* Physical Machined Smartphone Chassis with Beveled Rim */
+    /* Physical Machined Smartphone Chassis with Beveled Rim & Realistic Thickness */
     .phone-chassis {
       position: absolute;
       inset: 0;
-      background: linear-gradient(145deg, #24241f 0%, #151512 50%, #1a1a15 100%);
+      background: linear-gradient(155deg, #282822 0%, #161612 40%, #0e0e0c 100%);
       border-radius: 46px;
       padding: 12px;
       box-shadow: 
-        -25px 35px 75px rgba(0, 0, 0, 0.9),
-        inset 0 0 0 1.5px rgba(224, 198, 83, 0.26),
-        inset 0 2px 3px rgba(255, 255, 255, 0.25),
-        0 0 35px var(--yellow-subtle);
-      border: 1px solid rgba(224, 198, 83, 0.12);
+        -25px 35px 80px rgba(0, 0, 0, 0.95),
+        -10px 15px 30px rgba(0, 0, 0, 0.8),
+        inset 0 0 0 1.5px rgba(224, 198, 83, 0.28),
+        inset 0 2px 2px rgba(250, 248, 242, 0.35),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(224, 198, 83, 0.08);
+      border: 1px solid rgba(224, 198, 83, 0.18);
       display: flex;
       flex-direction: column;
     }
 
-    /* Front Glass Screen with Natural Specular Lighting */
+    /* Front Glass Screen with Natural Specular Lighting & Depth */
     .phone-glass-screen {
       flex: 1;
-      background: radial-gradient(circle at 50% 15%, #181814 0%, #0c0c0a 85%);
+      background: radial-gradient(circle at 50% 12%, #1a1a15 0%, #0b0b09 85%);
       border-radius: 36px;
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.9);
       user-select: none;
     }
 
@@ -737,7 +749,7 @@
       left: -100px;
       width: 320px;
       height: 600px;
-      background: linear-gradient(135deg, rgba(224, 198, 83, 0.05) 0%, transparent 60%);
+      background: linear-gradient(135deg, rgba(224, 198, 83, 0.04) 0%, transparent 60%);
       transform: rotate(25deg);
       pointer-events: none;
     }
@@ -1031,31 +1043,148 @@
       letter-spacing: 0.05em;
       color: var(--yellow-gold);
       text-transform: uppercase;
+      z-index: 5;
+    }
+
+    /* Section 01 Interactive Mode Switcher */
+    .device-modes-nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .device-mode-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: #11110f;
+      border: 1px solid var(--yellow-border);
+      border-radius: 8px;
+      font-family: var(--font-ui);
+      font-size: 0.92rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.25s var(--ease-cinema);
+    }
+
+    .device-mode-btn:hover {
+      color: var(--text-hero);
+      border-color: rgba(224, 198, 83, 0.4);
+    }
+
+    .device-mode-btn.active {
+      background: rgba(224, 198, 83, 0.08);
+      color: var(--yellow-gold);
+      border-color: var(--yellow-gold);
+      box-shadow: 0 0 14px rgba(224, 198, 83, 0.16);
+    }
+
+    .device-mode-btn .mode-led {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      transition: background 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .device-mode-btn.active .mode-led {
+      background: var(--yellow-gold);
+      box-shadow: 0 0 8px var(--yellow-gold);
+    }
+
+    /* Multi-Touch Detection Point & Vector Line */
+    .touchpad-active-dot-2 {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #FAF8F2;
+      border: 2px solid var(--yellow-gold);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      box-shadow: 0 0 16px rgba(250, 248, 242, 0.6);
+      top: 50%;
+      left: 65%;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      z-index: 4;
+    }
+
+    .touchpad-vector-line {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, var(--yellow-gold), #FAF8F2);
+      transform-origin: 0 50%;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 3;
+      box-shadow: 0 0 8px rgba(224, 198, 83, 0.4);
+    }
+
+    /* Haptic Tactile Feedback Pulse Wave */
+    .haptic-pulse-ring {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--yellow-gold);
+      transform: translate(-50%, -50%) scale(0.2);
+      pointer-events: none;
+      opacity: 0;
+      z-index: 2;
+    }
+
+    .haptic-pulse-ring.firing {
+      animation: hapticWave 0.55s ease-out forwards;
+    }
+
+    @keyframes hapticWave {
+      0% {
+        transform: translate(-50%, -50%) scale(0.3);
+        opacity: 0.95;
+        border-width: 3px;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(3.8);
+        opacity: 0;
+        border-width: 1px;
+      }
     }
 
     /* -------------------------------------------------------------
        SECTION 02: THE PHYSICAL CONNECTION
        ------------------------------------------------------------- */
     .section-connection {
-      background: radial-gradient(circle at 50% 50%, #141410 0%, var(--bg-void) 90%);
+      background: var(--bg-void);
       border-bottom: 1px solid var(--yellow-border);
     }
 
     .connection-story-grid {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 60px;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 50px;
       align-items: center;
     }
 
     .flow-card-stack {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
     }
 
     .flow-card {
-      padding: 24px 28px;
+      display: block;
+      width: 100%;
+      text-align: left;
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+      outline: none;
+      padding: 22px 26px;
       background: rgba(224, 198, 83, 0.02);
       border: 1px solid var(--yellow-border);
       border-radius: 16px;
@@ -1063,9 +1192,10 @@
     }
 
     .flow-card.active, .flow-card:hover {
-      background: rgba(224, 198, 83, 0.05);
+      background: rgba(224, 198, 83, 0.06);
       border-color: var(--yellow-gold);
       transform: translateX(6px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
 
     .flow-card-num {
@@ -1084,22 +1214,287 @@
       margin-bottom: 6px;
     }
 
+    /* Meaningful Physical Product Visualization Box */
     .flow-canvas-box {
-      height: 440px;
+      min-height: 440px;
       background: #0d0d0b;
       border: 1px solid var(--yellow-border);
       border-radius: 20px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22px 24px;
+    }
+
+    .conn-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-ui);
+      font-size: 0.84rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid rgba(224, 198, 83, 0.1);
+      padding-bottom: 12px;
+      width: 100%;
+    }
+
+    .conn-latency-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(224, 198, 83, 0.08);
+      border: 1px solid var(--yellow-border);
+      color: var(--yellow-gold);
+      font-size: 0.78rem;
+    }
+
+    .conn-physical-stage {
+      display: grid;
+      grid-template-columns: 110px 1fr 190px;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    /* Mini Phone on left */
+    .conn-device-phone {
+      width: 105px;
+      height: 195px;
+      background: linear-gradient(150deg, #24241e, #11110e);
+      border: 1.5px solid var(--yellow-border);
+      border-radius: 22px;
+      padding: 7px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      position: relative;
+      margin: 0 auto;
+      cursor: crosshair;
+    }
+
+    .conn-phone-notch {
+      width: 30px;
+      height: 7px;
+      background: #000;
+      border-radius: 6px;
+      margin: 2px auto 6px;
+    }
+
+    .conn-phone-screen {
+      flex: 1;
+      background: #090908;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .conn-phone-trackpad {
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+      border: 1px dashed rgba(224, 198, 83, 0.22);
+      border-radius: 11px;
+      margin: 5px;
+      background: rgba(224, 198, 83, 0.02);
     }
 
-    .connection-smoke-svg {
+    .conn-phone-label {
+      font-family: var(--font-brand);
+      font-size: 0.9rem;
+      color: rgba(224, 198, 83, 0.4);
+      pointer-events: none;
+    }
+
+    .conn-phone-touch-dot {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--yellow-gold);
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      box-shadow: 0 0 10px var(--yellow-gold);
+      pointer-events: none;
+      transition: transform 0.08s ease;
+    }
+
+    /* Conduit in center */
+    .conn-conduit-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
       width: 100%;
-      height: 100%;
+    }
+
+    .conn-signal-path-svg {
+      width: 100%;
+      height: 48px;
+      overflow: visible;
+    }
+
+    .signal-pulse {
+      animation: signalPulseTravel 2.4s linear infinite;
+    }
+    .signal-pulse.pulse-2 { animation-delay: 0.8s; }
+    .signal-pulse.pulse-3 { animation-delay: 1.6s; }
+
+    @keyframes signalPulseTravel {
+      0% { cx: 10px; opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { cx: 190px; opacity: 0; }
+    }
+
+    .conn-signal-badge {
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--yellow-gold);
+      background: rgba(8, 8, 8, 0.9);
+      border: 1px solid var(--yellow-border);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-top: 6px;
+      white-space: nowrap;
+    }
+
+    /* Mini Laptop on right */
+    .conn-device-laptop {
+      width: 185px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+    }
+
+    .conn-laptop-screen {
+      width: 180px;
+      height: 120px;
+      background: #11110f;
+      border: 1.5px solid var(--yellow-border);
+      border-radius: 10px 10px 2px 2px;
+      padding: 6px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.85);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .conn-laptop-header {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 4px;
+    }
+
+    .laptop-mini-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .laptop-app-tag {
+      font-size: 0.65rem;
+      font-family: var(--font-ui);
+      color: var(--text-muted);
+      margin-left: 4px;
+      letter-spacing: 0.03em;
+    }
+
+    .conn-laptop-display {
+      flex: 1;
+      background: #080808;
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .conn-laptop-base {
+      width: 200px;
+      height: 8px;
+      background: linear-gradient(180deg, #24241e, #141410);
+      border: 1px solid var(--yellow-border);
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    }
+
+    .conn-device-caption {
+      font-family: var(--font-ui);
+      font-size: 0.74rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .conn-cursor-pointer {
+      position: absolute;
+      top: 45%;
+      left: 55%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      transition: top 0.06s ease-out, left 0.06s ease-out;
+      filter: drop-shadow(0 0 6px var(--yellow-gold));
+    }
+
+    .conn-discovery-box {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(8, 8, 8, 0.92);
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: var(--yellow-gold);
+      padding: 10px;
+      text-align: center;
+      transition: opacity 0.3s ease;
+    }
+
+    .conn-radar-ping {
+      width: 22px;
+      height: 22px;
+      border: 1.5px solid var(--yellow-gold);
+      border-radius: 50%;
+      margin-bottom: 6px;
+      animation: radarPing 1.8s ease-out infinite;
+    }
+
+    @keyframes radarPing {
+      0% { transform: scale(0.3); opacity: 1; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+
+    .conn-footer-note {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      border-top: 1px solid rgba(224, 198, 83, 0.1);
+      padding-top: 10px;
+      width: 100%;
+      line-height: 1.5;
     }
 
     /* -------------------------------------------------------------
@@ -1338,37 +1733,81 @@
       color: #080808;
     }
 
-    /* Right: Desktop Workspace View */
+    /* Right: Realistic OS Computer Application Window */
     .feature-desktop-display {
       background: #080808;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--yellow-border);
       border-radius: 18px;
-      padding: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
       display: flex;
       flex-direction: column;
       position: relative;
       overflow: hidden;
+      min-height: 420px;
     }
 
-    .desktop-display-bar {
-      font-family: var(--font-ui);
-      font-size: 0.95rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 18px;
+    .desktop-window-titlebar {
+      background: #151512;
+      border-bottom: 1px solid var(--yellow-border);
+      padding: 10px 16px;
       display: flex;
+      align-items: center;
       justify-content: space-between;
+    }
+
+    .window-controls-group {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .win-control-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #2b2b25;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .win-control-dot.active { background: var(--yellow-gold); box-shadow: 0 0 6px var(--yellow-gold); }
+
+    .window-title-text {
+      font-family: var(--font-ui);
+      font-size: 0.86rem;
+      letter-spacing: 0.04em;
+      color: var(--text-hero);
+    }
+
+    .window-status-pill {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--yellow-gold);
+      background: rgba(224, 198, 83, 0.08);
+      border: 1px solid var(--yellow-border);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .desktop-window-menubar {
+      background: #11110f;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 6px 16px;
+      display: flex;
+      gap: 16px;
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
     }
 
     .desktop-scene-layer {
       display: none;
       flex: 1;
       position: relative;
-      border-radius: 12px;
-      border: 1px solid var(--yellow-border);
       background: #0c0c0a;
       overflow: hidden;
+      padding: 20px;
     }
 
     .desktop-scene-layer.active {
@@ -1775,8 +2214,6 @@
       <div class="container hero-split-grid">
         <!-- Hero Editorial Left Column -->
         <div class="hero-editorial-col">
-          <div class="editorial-label">Physical Desktop Controller</div>
-
           <!-- Major Brand Title: Letter by Letter Animated Entrance -->
           <div class="hero-brand-wrap">
             <h1 class="hero-brand-title liquid-heading" aria-label="Easy Mouse">
@@ -1789,11 +2226,11 @@
             </h1>
           </div>
 
-          <!-- Supporting Statement (Celtic Garamond style) -->
+          <!-- Supporting Tagline: EXACTLY "YOUR PocketPointer." -->
           <div class="hero-condensed-tagline">
             <span class="hero-condensed-inner liquid-heading">
-              <span class="liquid-base-text">Your phone is your pointer.</span>
-              <span class="liquid-ink-overlay" aria-hidden="true">Your phone is your pointer.</span>
+              <span class="liquid-base-text">YOUR PocketPointer.</span>
+              <span class="liquid-ink-overlay" aria-hidden="true">YOUR PocketPointer.</span>
             </span>
           </div>
 
@@ -1905,21 +2342,33 @@
             <p class="statement-lead-paragraph">
               You do not need another plastic peripheral. The capacitive glass surface in your hand provides fluid multi-touch tracking, single taps, and two-finger scrolling with surgical physical accuracy.
             </p>
-            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-              <span class="platform-pill" style="border-color: var(--yellow-gold); color: var(--yellow-gold);">Capacitive Glass</span>
-              <span class="platform-pill">Multi-Touch Detection</span>
-              <span class="platform-pill">Haptic Feedback</span>
+            <div class="device-modes-nav" role="tablist" aria-label="Touch Surface Demonstration Modes">
+              <button type="button" class="device-mode-btn active" data-mode="glass" role="tab" aria-selected="true">
+                <span class="mode-led"></span>
+                <span>Capacitive Glass</span>
+              </button>
+              <button type="button" class="device-mode-btn" data-mode="multitouch" role="tab" aria-selected="false">
+                <span class="mode-led"></span>
+                <span>Multi-Touch Detection</span>
+              </button>
+              <button type="button" class="device-mode-btn" data-mode="haptic" role="tab" aria-selected="false">
+                <span class="mode-led"></span>
+                <span>Haptic Feedback</span>
+              </button>
             </div>
           </div>
 
           <!-- Functional Pointer/Touch Demonstration Stage -->
           <div class="narrative-visual-chassis">
             <div class="touchpad-live-header">
-              <span>Interactive Glass Trackpad Surface</span>
+              <span id="touchpad-mode-heading">Capacitive Glass Surface</span>
               <span id="touchpad-action-state">Glide / Tap / Drag</span>
             </div>
             <div class="touchpad-live-canvas" id="section1-touch-surface" tabindex="0" role="region" aria-label="Interactive Touchpad Simulator">
               <div class="touchpad-active-dot" id="section1-touch-dot"></div>
+              <div class="touchpad-active-dot-2" id="section1-touch-dot-2"></div>
+              <div class="touchpad-vector-line" id="section1-touch-vector"></div>
+              <div class="haptic-pulse-ring" id="section1-haptic-ring"></div>
               <div class="touchpad-status-badge" id="touchpad-coords-badge">X: 50% &bull; Y: 50%</div>
             </div>
           </div>
@@ -1941,59 +2390,81 @@
               A continuous direct connection between phone and computer across your private local network. Zero cloud relays, zero accounts, and zero proprietary wireless dongles.
             </p>
 
-            <div class="flow-card-stack">
-              <div class="flow-card active">
+            <div class="flow-card-stack" role="tablist" aria-label="Connection Flow Modes">
+              <button type="button" class="flow-card active" data-flow="discovery" role="tab" aria-selected="true">
                 <div class="flow-card-num">01 / LOCAL DISCOVERY</div>
                 <div class="flow-card-title">Instant Network Presence</div>
                 <p>Both devices detect each other automatically within milliseconds on your private local network.</p>
-              </div>
-              <div class="flow-card">
+              </button>
+              <button type="button" class="flow-card" data-flow="link" role="tab" aria-selected="false">
                 <div class="flow-card-num">02 / PRIVATE LINK</div>
                 <div class="flow-card-title">Direct Device Conduit</div>
                 <p>Coordinates travel directly between handset and computer with clean local peer-to-peer routing.</p>
-              </div>
+              </button>
             </div>
           </div>
 
-          <div class="flow-canvas-box">
-            <!-- Fluid Physical Yellow Signal SVG -->
-            <svg class="connection-smoke-svg" viewBox="0 0 500 400" fill="none" aria-hidden="true">
-              <circle cx="250" cy="200" r="160" fill="url(#haze-radial-gold)" opacity="0.3"/>
-              
-              <path d="M 60 200 C 180 80, 320 320, 440 200" stroke="url(#flow-gradient-1)" stroke-width="3" stroke-linecap="round" fill="none"/>
-              <path d="M 60 200 C 180 300, 320 100, 440 200" stroke="url(#flow-gradient-2)" stroke-width="2" stroke-linecap="round" fill="none"/>
-              
-              <!-- Phone Node -->
-              <g transform="translate(60, 200)">
-                <circle r="26" fill="#141410" stroke="var(--yellow-border)" stroke-width="2"/>
-                <circle r="10" fill="var(--yellow-gold)"/>
-                <circle r="18" stroke="var(--yellow-gold)" stroke-width="1.5" stroke-dasharray="3 3"/>
-              </g>
+          <div class="flow-canvas-box" id="conn-visual-stage">
+            <div class="conn-header-bar">
+              <span id="conn-status-mode-text">Active Mode: 01 / Local Discovery</span>
+              <span class="conn-latency-pill" id="conn-latency-metric">Local UDP &bull; Direct Peer</span>
+            </div>
 
-              <!-- Computer Node -->
-              <g transform="translate(440, 200)">
-                <circle r="32" fill="#141410" stroke="var(--yellow-border)" stroke-width="2"/>
-                <circle r="12" fill="#FAF8F2"/>
-                <circle r="22" stroke="var(--yellow-gold)" stroke-width="1.5"/>
-              </g>
+            <div class="conn-physical-stage">
+              <!-- Phone on Left -->
+              <div class="conn-device-unit conn-device-phone" id="conn-phone-unit">
+                <div class="conn-phone-notch"></div>
+                <div class="conn-phone-screen">
+                  <div class="conn-phone-trackpad" id="conn-phone-interact">
+                    <span class="conn-phone-label">Easy Mouse</span>
+                    <div class="conn-phone-touch-dot" id="conn-phone-dot"></div>
+                  </div>
+                </div>
+                <span class="conn-device-caption">Handset Controller</span>
+              </div>
 
-              <defs>
-                <radialGradient id="haze-radial-gold" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#E0C653" stop-opacity="0.25"/>
-                  <stop offset="100%" stop-color="#E0C653" stop-opacity="0"/>
-                </radialGradient>
-                <linearGradient id="flow-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#E0C653" stop-opacity="0.9"/>
-                  <stop offset="50%" stop-color="#FAF8F2" stop-opacity="0.8"/>
-                  <stop offset="100%" stop-color="#E0C653" stop-opacity="0.9"/>
-                </linearGradient>
-                <linearGradient id="flow-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#D8BE45" stop-opacity="0.2"/>
-                  <stop offset="50%" stop-color="#E0C653" stop-opacity="0.5"/>
-                  <stop offset="100%" stop-color="#D8BE45" stop-opacity="0.2"/>
-                </linearGradient>
-              </defs>
-            </svg>
+              <!-- Center Animated Signal Conduit -->
+              <div class="conn-conduit-unit">
+                <svg class="conn-signal-path-svg" viewBox="0 0 200 60" fill="none" preserveAspectRatio="none">
+                  <path d="M 0 30 C 50 30, 70 30, 100 30 C 130 30, 150 30, 200 30" stroke="rgba(224, 198, 83, 0.25)" stroke-width="2" stroke-dasharray="4 4" id="conn-wire-path"/>
+                  <!-- Traveling signal pulses -->
+                  <circle cx="30" cy="30" r="4" fill="var(--yellow-gold)" class="signal-pulse pulse-1"/>
+                  <circle cx="90" cy="30" r="4" fill="var(--yellow-gold)" class="signal-pulse pulse-2"/>
+                  <circle cx="150" cy="30" r="4" fill="var(--yellow-gold)" class="signal-pulse pulse-3"/>
+                </svg>
+                <div class="conn-signal-badge" id="conn-stream-badge">Network Broadcast Beacon</div>
+              </div>
+
+              <!-- Laptop / Computer on Right -->
+              <div class="conn-device-unit conn-device-laptop" id="conn-laptop-unit">
+                <div class="conn-laptop-screen">
+                  <div class="conn-laptop-header">
+                    <span class="laptop-mini-dot"></span>
+                    <span class="laptop-mini-dot"></span>
+                    <span class="laptop-mini-dot"></span>
+                    <span class="laptop-app-tag">Easy Mouse Receiver</span>
+                  </div>
+                  <div class="conn-laptop-display" id="conn-laptop-display">
+                    <div class="conn-cursor-pointer" id="conn-screen-cursor">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                        <polygon points="2,2 22,10 13,13 10,22" fill="#E0C653" stroke="#080808" stroke-width="1.5"/>
+                      </svg>
+                    </div>
+                    <div class="conn-discovery-box" id="conn-discovery-view">
+                      <div class="conn-radar-ping"></div>
+                      <span id="conn-discovery-status">Broadcasting local presence...</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="conn-laptop-base"></div>
+                <span class="conn-device-caption">Computer Host</span>
+              </div>
+            </div>
+
+            <!-- Mode-specific descriptor footer -->
+            <div class="conn-footer-note" id="conn-footer-explanation">
+              Local network discovery automatically identifies your desktop host within your private subnet without cloud relays.
+            </div>
           </div>
         </div>
       </div>
@@ -2002,8 +2473,7 @@
     <!-- SECTION 03: FEATURES (OVERHAULED 5 INTERACTIVE CATEGORIES) -->
     <section class="section-features section-spacing" id="features">
       <div class="container">
-        <div style="margin-bottom: 24px;">
-          <div class="editorial-label">Interactive Demonstration</div>
+        <div style="margin-bottom: 32px;">
           <h2 class="editorial-statement-huge liquid-heading" style="margin-bottom: 14px;">
             <span class="liquid-base-text">Features</span>
             <span class="liquid-ink-overlay" aria-hidden="true">Features</span>
@@ -2097,54 +2567,72 @@
             </div>
           </div>
 
-          <!-- Right: Desktop Workspace View -->
+          <!-- Right: Desktop Workspace View (Realistic OS Application Window) -->
           <div class="feature-desktop-display">
-            <div class="desktop-display-bar">
-              <span id="feat-desktop-title">Workspace Document Feed</span>
-              <span style="color: var(--yellow-gold);">Simulated Live Reaction</span>
+            <div class="desktop-window-titlebar">
+              <div class="window-controls-group">
+                <span class="win-control-dot"></span>
+                <span class="win-control-dot"></span>
+                <span class="win-control-dot active"></span>
+              </div>
+              <span class="window-title-text" id="feat-desktop-title">Easy Mouse Remote Session - Notes.txt</span>
+              <span class="window-status-pill">Connected Host</span>
+            </div>
+            <div class="desktop-window-menubar">
+              <span>File</span>
+              <span>Edit</span>
+              <span>Selection</span>
+              <span>View</span>
+              <span>Window</span>
             </div>
 
             <!-- Scene 1: Shortcuts Desktop Feedback -->
-            <div class="desktop-scene-layer active" id="feat-scene-shortcuts" style="padding: 24px;">
-              <div style="font-family: var(--font-ui); font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px;">Active Text Document:</div>
-              <div id="desktop-doc-content" style="background: #141410; border: 1px solid var(--yellow-border); border-radius: 8px; padding: 18px; min-height: 140px; font-family: monospace; font-size: 1rem; color: var(--text-hero);">
+            <div class="desktop-scene-layer active" id="feat-scene-shortcuts">
+              <div style="font-family: var(--font-ui); font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; display: flex; justify-content: space-between;">
+                <span>Active Document Buffer</span>
+                <span id="shortcuts-action-status" style="color: var(--yellow-gold);">Ready for phone command</span>
+              </div>
+              <div id="desktop-doc-content" style="background: #141410; border: 1px solid var(--yellow-border); border-radius: 8px; padding: 18px; min-height: 160px; font-family: 'Courier New', monospace; font-size: 0.95rem; line-height: 1.6; color: var(--text-hero); transition: background 0.2s ease;">
                 Easy Mouse brings desktop control directly to your smartphone. Tap [Copy] or [Paste] on phone.
               </div>
             </div>
 
             <!-- Scene 2: Keyboard Typing Desktop Feed -->
-            <div class="desktop-scene-layer" id="feat-scene-typing" style="padding: 24px;">
-              <div style="font-family: var(--font-ui); font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px;">Live Text Input Stream:</div>
-              <div id="desktop-typing-target" style="background: #141410; border: 1px solid var(--yellow-border); border-radius: 8px; padding: 18px; min-height: 140px; font-family: monospace; font-size: 1.15rem; color: var(--yellow-gold);">
+            <div class="desktop-scene-layer" id="feat-scene-typing">
+              <div style="font-family: var(--font-ui); font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Live Text Input Stream:</div>
+              <div id="desktop-typing-target" style="background: #141410; border: 1px solid var(--yellow-border); border-radius: 8px; padding: 18px; min-height: 160px; font-family: 'Courier New', monospace; font-size: 1.15rem; color: var(--yellow-gold);">
                 &gt; <span id="typed-text-receiver">READY</span><span style="animation: blink 1s infinite;">_</span>
               </div>
             </div>
 
             <!-- Scene 3: Gestures Desktop Pan -->
-            <div class="desktop-scene-layer" id="feat-scene-gestures" style="padding: 24px; position: relative;">
-              <div id="gestures-panning-container" style="display: flex; flex-direction: column; gap: 12px; transition: transform 0.15s ease-out;">
-                <div style="height: 12px; width: 45%; background: var(--yellow-gold); border-radius: 6px;"></div>
-                <div style="height: 12px; width: 90%; background: rgba(255,255,255,0.06); border-radius: 6px;"></div>
-                <div style="height: 12px; width: 85%; background: rgba(255,255,255,0.06); border-radius: 6px;"></div>
-                <div style="height: 12px; width: 75%; background: rgba(255,255,255,0.06); border-radius: 6px;"></div>
-                <div style="height: 12px; width: 95%; background: rgba(255,255,255,0.06); border-radius: 6px;"></div>
+            <div class="desktop-scene-layer" id="feat-scene-gestures" style="position: relative;">
+              <div style="font-family: var(--font-ui); font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Two-Finger Document Scroll:</div>
+              <div id="gestures-panning-container" style="display: flex; flex-direction: column; gap: 12px; transition: transform 0.15s ease-out; background: #141410; border: 1px solid var(--yellow-border); border-radius: 8px; padding: 18px; min-height: 160px;">
+                <div style="height: 14px; width: 45%; background: var(--yellow-gold); border-radius: 4px;"></div>
+                <div style="height: 12px; width: 90%; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                <div style="height: 12px; width: 85%; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                <div style="height: 12px; width: 75%; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                <div style="height: 12px; width: 95%; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
               </div>
             </div>
 
             <!-- Scene 4: Screenshots Flash -->
-            <div class="desktop-scene-layer" id="feat-scene-screenshots" style="padding: 24px; display: none; align-items: center; justify-content: center; position: relative;">
-              <div id="screenshot-flash-box" style="position: absolute; inset: 0; background: #ffffff; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;"></div>
-              <div id="screenshot-card-badge" style="background: #141410; border: 1px solid var(--yellow-gold); padding: 16px 28px; border-radius: 12px; font-family: var(--font-ui); color: var(--yellow-gold); text-transform: uppercase;">
-                Snapshot Stored to Desktop
+            <div class="desktop-scene-layer" id="feat-scene-screenshots" style="display: none; align-items: center; justify-content: center; position: relative;">
+              <div id="screenshot-flash-box" style="position: absolute; inset: 0; background: #ffffff; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 5;"></div>
+              <div id="screenshot-card-badge" style="background: #141410; border: 1px solid var(--yellow-gold); padding: 18px 28px; border-radius: 12px; font-family: var(--font-ui); color: var(--yellow-gold); text-transform: uppercase; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.8);">
+                <div style="font-size: 1.4rem; margin-bottom: 6px;">&#128248;</div>
+                <div>Snapshot Stored to Desktop</div>
+                <small style="color: var(--text-muted); font-size: 0.75rem;">Resolution: 1920 &times; 1080 &bull; PNG</small>
               </div>
             </div>
 
             <!-- Scene 5: System Locks State -->
-            <div class="desktop-scene-layer" id="feat-scene-locks" style="padding: 24px; display: none; align-items: center; justify-content: center; flex-direction: column;">
+            <div class="desktop-scene-layer" id="feat-scene-locks" style="display: none; align-items: center; justify-content: center; flex-direction: column;">
               <div id="desktop-lock-overlay" style="text-align: center;">
-                <div style="font-size: 2.4rem; margin-bottom: 8px;">&#128274;</div>
-                <h4 style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--text-hero); margin-bottom: 6px;">Workstation Secured</h4>
-                <p style="font-size: 0.95rem; color: var(--text-muted);">Protected by phone lock switch</p>
+                <div style="font-size: 2.6rem; color: #FAF8F2; margin-bottom: 8px;">&#128275;</div>
+                <h4 style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--text-hero); margin-bottom: 6px;">Workstation Active</h4>
+                <p style="font-size: 0.95rem; color: var(--text-muted);">Direct phone connection established</p>
               </div>
             </div>
           </div>
@@ -2155,7 +2643,6 @@
     <!-- SECTION 04: EDITORIAL CAPABILITIES -->
     <section class="section-capabilities section-spacing" id="capabilities">
       <div class="container">
-        <div class="editorial-label">Engineered Utility</div>
         <h2 class="editorial-statement-huge liquid-heading" style="margin-bottom: 16px;">
           <span class="liquid-base-text">Designed for pure convenience.</span>
           <span class="liquid-ink-overlay" aria-hidden="true">Designed for pure convenience.</span>
@@ -2240,11 +2727,9 @@
           </a>
 
           <div class="platform-specs-cluster">
-            <span class="platform-pill">Windows 10 / 11</span>
-            <span class="platform-pill">macOS 12+</span>
-            <span class="platform-pill">Linux</span>
-            <span class="platform-pill">iOS 15+</span>
-            <span class="platform-pill">Android 9+</span>
+            <span class="platform-pill">WINDOWS</span>
+            <span class="platform-pill">IPHONE</span>
+            <span class="platform-pill">ANDROID</span>
           </div>
         </div>
       </div>
@@ -2329,7 +2814,7 @@
     })();
 
     /* -------------------------------------------------------------
-       PLAYFUL HANGING MOUSE RIG (EASTER EGG PHYSICS)
+       PLAYFUL HANGING MOUSE RIG (EASTER EGG SPRING PHYSICS - LEFT MARGIN)
        ------------------------------------------------------------- */
     (function initHangingMouseEasterEgg() {
       const rig = document.getElementById('hanging-mouse');
@@ -2337,27 +2822,39 @@
 
       let rotation = 0;
       let rotVelocity = 0;
-      let isHovered = false;
+      let lastX = 0;
 
-      rig.addEventListener('pointerenter', () => {
-        isHovered = true;
-        rotVelocity = (Math.random() > 0.5 ? 1 : -1) * 14;
-      });
+      // Pointer proximity detection
+      window.addEventListener('pointermove', (e) => {
+        const rect = rig.getBoundingClientRect();
+        if (rect.width === 0) return; // Hidden on smaller viewports
+
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + 30;
+        const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+
+        if (dist < 180) {
+          const vx = e.clientX - lastX;
+          const proximityFactor = (180 - dist) / 180;
+          rotVelocity += Math.max(-2.5, Math.min(2.5, vx * 0.08 * proximityFactor));
+        }
+        lastX = e.clientX;
+      }, { passive: true });
 
       rig.addEventListener('click', () => {
-        rotVelocity = (Math.random() > 0.5 ? 1 : -1) * 22;
-        rig.style.transform = 'translateY(12px) scale(0.94)';
+        rotVelocity += (Math.random() > 0.5 ? 1 : -1) * 14;
+        rig.style.transform = 'translateY(6px) scale(0.96)';
         setTimeout(() => {
           rig.style.transform = '';
-        }, 180);
+        }, 160);
       });
 
       function loop() {
-        if (Math.abs(rotVelocity) > 0.1 || Math.abs(rotation) > 0.1) {
-          rotVelocity -= rotation * 0.08; // Spring restoration
-          rotVelocity *= 0.94; // Air damping
+        if (Math.abs(rotVelocity) > 0.02 || Math.abs(rotation) > 0.02) {
+          rotVelocity -= rotation * 0.045; // Spring restoration
+          rotVelocity *= 0.955; // Air damping
           rotation += rotVelocity;
-          rig.style.transform = `rotate(${rotation}deg)`;
+          rig.style.transform = `rotate(${rotation.toFixed(2)}deg)`;
         }
         requestAnimationFrame(loop);
       }
@@ -2401,6 +2898,7 @@
 
     /* -------------------------------------------------------------
        HERO: 3D SMARTPHONE INTERACTION & COMPANION MONITOR
+       Tactile touch ripples, continuous drag, and wheel response
        ------------------------------------------------------------- */
     (function initHero3DInteraction() {
       const surface = document.getElementById('hero-phone-surface');
@@ -2452,6 +2950,29 @@
 
       surface.addEventListener('pointermove', handleMove);
 
+      surface.addEventListener('pointerdown', (e) => {
+        isInteracting = true;
+        ripple.style.width = '46px';
+        ripple.style.height = '46px';
+        ripple.style.boxShadow = '0 0 24px var(--yellow-gold)';
+        pointer.style.filter = 'drop-shadow(0 0 10px var(--yellow-gold))';
+      });
+
+      surface.addEventListener('pointerup', () => {
+        ripple.style.width = '34px';
+        ripple.style.height = '34px';
+        ripple.style.boxShadow = '0 0 16px var(--yellow-gold)';
+        pointer.style.filter = 'drop-shadow(0 0 6px var(--yellow-gold))';
+      });
+
+      surface.addEventListener('wheel', (e) => {
+        isInteracting = true;
+        const dy = Math.max(-0.2, Math.min(0.2, e.deltaY * 0.002));
+        const currentTop = parseFloat(pointer.style.top) || 50;
+        const newTop = Math.max(10, Math.min(90, currentTop + dy * 100));
+        pointer.style.top = newTop + '%';
+      }, { passive: true });
+
       function startAmbientGlide() {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
           updateCoords(0.5, 0.5);
@@ -2475,76 +2996,252 @@
     })();
 
     /* -------------------------------------------------------------
-       SECTION 01: FUNCTIONAL TOUCHPAD SIMULATOR
-       Pointer Events: single pointer move, click, drag, wheel scroll
+       SECTION 01: FUNCTIONAL TOUCHPAD SIMULATOR & MULTI-TOUCH
+       Interactive Mode Switcher: Capacitive Glass | Multi-Touch | Haptic
        ------------------------------------------------------------- */
     (function initSection1Touchpad() {
       const surface = document.getElementById('section1-touch-surface');
-      const dot = document.getElementById('section1-touch-dot');
+      const dot1 = document.getElementById('section1-touch-dot');
+      const dot2 = document.getElementById('section1-touch-dot-2');
+      const vector = document.getElementById('section1-touch-vector');
+      const hapticRing = document.getElementById('section1-haptic-ring');
       const badge = document.getElementById('touchpad-coords-badge');
       const actionState = document.getElementById('touchpad-action-state');
+      const modeHeading = document.getElementById('touchpad-mode-heading');
+      const modeBtns = document.querySelectorAll('.device-mode-btn');
 
-      if (!surface || !dot || !badge || !actionState) return;
+      if (!surface || !dot1 || !badge || !actionState) return;
 
-      let isDown = false;
+      let currentMode = 'glass';
+      const activePointers = new Map();
       let startX = 0, startY = 0;
 
-      function updatePoint(e) {
+      // Mode Switcher Buttons
+      modeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          modeBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          currentMode = btn.getAttribute('data-mode') || 'glass';
+
+          // Reset demonstration state
+          if (dot2) dot2.style.opacity = '0';
+          if (vector) vector.style.opacity = '0';
+
+          if (currentMode === 'glass') {
+            if (modeHeading) modeHeading.textContent = 'Capacitive Glass Surface';
+            actionState.textContent = 'Single Pointer Precision Tracking';
+            badge.textContent = 'Mode: Capacitive Glass (Sub-Pixel)';
+          } else if (currentMode === 'multitouch') {
+            if (modeHeading) modeHeading.textContent = 'Multi-Touch Sensor Array';
+            actionState.textContent = 'Dual Touch Point Detection Active';
+            badge.textContent = 'Mode: 2 Active Touch Points';
+          } else if (currentMode === 'haptic') {
+            if (modeHeading) modeHeading.textContent = 'Haptic Tactile Feedback';
+            actionState.textContent = 'Tap Anywhere to Fire Haptic Pulse';
+            badge.textContent = 'Tactile Engine: Standing By';
+          }
+        });
+      });
+
+      function updateVisualization() {
         const rect = surface.getBoundingClientRect();
-        const rx = Math.max(0.05, Math.min(0.95, (e.clientX - rect.left) / rect.width));
-        const ry = Math.max(0.08, Math.min(0.92, (e.clientY - rect.top) / rect.height));
+        const pts = Array.from(activePointers.values());
 
-        dot.style.left = (rx * 100) + '%';
-        dot.style.top = (ry * 100) + '%';
-        dot.style.opacity = '1';
+        if (pts.length === 0) return;
 
-        badge.textContent = `X: ${Math.round(rx * 100)}% • Y: ${Math.round(ry * 100)}%`;
+        const p1 = pts[0];
+        const rx1 = Math.max(0.05, Math.min(0.95, (p1.x - rect.left) / rect.width));
+        const ry1 = Math.max(0.08, Math.min(0.92, (p1.y - rect.top) / rect.height));
+
+        dot1.style.left = (rx1 * 100) + '%';
+        dot1.style.top = (ry1 * 100) + '%';
+        dot1.style.opacity = '1';
+
+        if (currentMode === 'glass') {
+          badge.textContent = `X: ${Math.round(rx1 * 100)}% • Y: ${Math.round(ry1 * 100)}%`;
+        } else if (currentMode === 'multitouch') {
+          let rx2 = rx1 + 0.16;
+          let ry2 = ry1 + 0.12;
+
+          if (pts.length > 1) {
+            const p2 = pts[1];
+            rx2 = Math.max(0.05, Math.min(0.95, (p2.x - rect.left) / rect.width));
+            ry2 = Math.max(0.08, Math.min(0.92, (p2.y - rect.top) / rect.height));
+          }
+
+          if (dot2) {
+            dot2.style.left = (rx2 * 100) + '%';
+            dot2.style.top = (ry2 * 100) + '%';
+            dot2.style.opacity = '1';
+          }
+
+          if (vector) {
+            const x1 = rx1 * rect.width;
+            const y1 = ry1 * rect.height;
+            const x2 = rx2 * rect.width;
+            const y2 = ry2 * rect.height;
+            const dist = Math.hypot(x2 - x1, y2 - y1);
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+
+            vector.style.left = x1 + 'px';
+            vector.style.top = y1 + 'px';
+            vector.style.width = dist + 'px';
+            vector.style.transform = `rotate(${angle}deg)`;
+            vector.style.opacity = '0.85';
+          }
+
+          const spanPx = Math.round(Math.hypot((rx2 - rx1) * rect.width, (ry2 - ry1) * rect.height));
+          badge.textContent = `P1: (${Math.round(rx1*100)}%, ${Math.round(ry1*100)}%) • P2: Span ${spanPx}px`;
+          actionState.textContent = 'Two-Finger Gesture / Scroll Tracking';
+        } else if (currentMode === 'haptic') {
+          badge.textContent = `Coordinate (${Math.round(rx1 * 100)}%, ${Math.round(ry1 * 100)}%)`;
+        }
+      }
+
+      function triggerHapticFeedback(clientX, clientY) {
+        if (!hapticRing) return;
+        const rect = surface.getBoundingClientRect();
+        const rx = clientX - rect.left;
+        const ry = clientY - rect.top;
+
+        hapticRing.style.left = rx + 'px';
+        hapticRing.style.top = ry + 'px';
+        hapticRing.classList.remove('firing');
+        void hapticRing.offsetWidth; // Force reflow
+        hapticRing.classList.add('firing');
+
+        actionState.textContent = 'Tactile Impulse: 14ms @ 175Hz';
+        badge.textContent = 'Haptic Ring Fired (Linear Resonant)';
       }
 
       surface.addEventListener('pointerdown', (e) => {
-        isDown = true;
+        activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
         startX = e.clientX;
         startY = e.clientY;
-        actionState.textContent = 'Touch Down / Press';
-        dot.style.transform = 'translate(-50%, -50%) scale(1.35)';
-        updatePoint(e);
+
+        if (currentMode === 'haptic') {
+          triggerHapticFeedback(e.clientX, e.clientY);
+        } else {
+          actionState.textContent = activePointers.size > 1 ? 'Dual Touch Active' : 'Touch Down / Press';
+          dot1.style.transform = 'translate(-50%, -50%) scale(1.35)';
+        }
+
+        updateVisualization();
       });
 
       surface.addEventListener('pointermove', (e) => {
-        if (isDown) {
-          actionState.textContent = 'Dragging Pointer';
-        } else {
-          actionState.textContent = 'Gliding Tracking';
+        if (activePointers.has(e.pointerId)) {
+          activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        } else if (activePointers.size === 0) {
+          activePointers.set('hover', { x: e.clientX, y: e.clientY });
         }
-        updatePoint(e);
+        updateVisualization();
       });
 
-      surface.addEventListener('pointerup', (e) => {
-        const dist = Math.hypot(e.clientX - startX, e.clientY - startY);
-        if (dist < 8) {
-          actionState.textContent = 'Click Registered';
-        } else {
-          actionState.textContent = 'Touch Released';
-        }
-        isDown = false;
-        dot.style.transform = 'translate(-50%, -50%) scale(1)';
-        setTimeout(() => {
-          actionState.textContent = 'Glide / Tap / Drag';
-        }, 1200);
-      });
+      function handlePointerEnd(e) {
+        activePointers.delete(e.pointerId);
+        activePointers.delete('hover');
 
-      surface.addEventListener('pointerleave', () => {
-        dot.style.opacity = '0';
-        isDown = false;
+        if (activePointers.size === 0) {
+          dot1.style.transform = 'translate(-50%, -50%) scale(1)';
+          if (currentMode !== 'haptic') {
+            const dist = Math.hypot(e.clientX - startX, e.clientY - startY);
+            if (dist < 8) {
+              actionState.textContent = 'Single Tap Registered';
+            } else {
+              actionState.textContent = 'Touch Released';
+            }
+          }
+          if (dot2 && currentMode !== 'multitouch') dot2.style.opacity = '0';
+          if (vector) vector.style.opacity = '0';
+        }
+      }
+
+      surface.addEventListener('pointerup', handlePointerEnd);
+      surface.addEventListener('pointercancel', handlePointerEnd);
+      surface.addEventListener('pointerleave', (e) => {
+        dot1.style.opacity = '0';
+        if (dot2) dot2.style.opacity = '0';
+        if (vector) vector.style.opacity = '0';
+        activePointers.clear();
       });
 
       surface.addEventListener('wheel', (e) => {
         e.preventDefault();
         actionState.textContent = e.deltaY < 0 ? 'Two-Finger Scroll Up' : 'Two-Finger Scroll Down';
         setTimeout(() => {
-          actionState.textContent = 'Glide / Tap / Drag';
+          actionState.textContent = currentMode === 'haptic' ? 'Tap Anywhere to Fire Haptic Pulse' : 'Glide / Tap / Drag';
         }, 800);
       }, { passive: false });
+    })();
+
+    /* -------------------------------------------------------------
+       SECTION 02: THE PHYSICAL CONNECTION INTERACTION ENGINE
+       Toggles between 01 / LOCAL DISCOVERY and 02 / PRIVATE LINK
+       ------------------------------------------------------------- */
+    (function initSection2Connection() {
+      const flowCards = document.querySelectorAll('.flow-card');
+      const modeText = document.getElementById('conn-status-mode-text');
+      const latencyPill = document.getElementById('conn-latency-metric');
+      const streamBadge = document.getElementById('conn-stream-badge');
+      const discoveryBox = document.getElementById('conn-discovery-view');
+      const discoveryStatus = document.getElementById('conn-discovery-status');
+      const footerNote = document.getElementById('conn-footer-explanation');
+      const phoneInteract = document.getElementById('conn-phone-interact');
+      const phoneDot = document.getElementById('conn-phone-dot');
+      const screenCursor = document.getElementById('conn-screen-cursor');
+
+      let currentFlow = 'discovery';
+
+      flowCards.forEach(card => {
+        card.addEventListener('click', () => {
+          flowCards.forEach(c => {
+            c.classList.remove('active');
+            c.setAttribute('aria-selected', 'false');
+          });
+          card.classList.add('active');
+          card.setAttribute('aria-selected', 'true');
+          currentFlow = card.getAttribute('data-flow') || 'discovery';
+
+          if (currentFlow === 'discovery') {
+            if (modeText) modeText.textContent = 'Active Mode: 01 / Local Discovery';
+            if (latencyPill) latencyPill.textContent = 'Local UDP • Direct Peer';
+            if (streamBadge) streamBadge.textContent = 'Network Broadcast Beacon';
+            if (discoveryBox) discoveryBox.style.opacity = '1';
+            if (discoveryStatus) discoveryStatus.textContent = 'Host Found: Desktop-Workstation (Handshake Verified)';
+            if (footerNote) footerNote.textContent = 'Local network discovery automatically identifies your desktop host within your private subnet without cloud relays.';
+          } else {
+            if (modeText) modeText.textContent = 'Active Mode: 02 / Private Link';
+            if (latencyPill) latencyPill.textContent = 'Sub-8ms • Direct Conduit';
+            if (streamBadge) streamBadge.textContent = 'Direct Peer-to-Peer Stream';
+            if (discoveryBox) discoveryBox.style.opacity = '0';
+            if (footerNote) footerNote.textContent = 'Direct local peer-to-peer data stream. Control coordinates travel instantly with negligible input latency.';
+          }
+        });
+      });
+
+      // Interactive mini handset: gliding on phone moves computer cursor
+      if (phoneInteract && phoneDot && screenCursor) {
+        phoneInteract.addEventListener('pointermove', (e) => {
+          const rect = phoneInteract.getBoundingClientRect();
+          const rx = Math.max(0.1, Math.min(0.9, (e.clientX - rect.left) / rect.width));
+          const ry = Math.max(0.1, Math.min(0.9, (e.clientY - rect.top) / rect.height));
+
+          phoneDot.style.left = (rx * 100) + '%';
+          phoneDot.style.top = (ry * 100) + '%';
+
+          screenCursor.style.left = (rx * 100) + '%';
+          screenCursor.style.top = (ry * 100) + '%';
+
+          if (currentFlow === 'link' && discoveryBox) {
+            discoveryBox.style.opacity = '0';
+          }
+        });
+      }
     })();
 
     /* -------------------------------------------------------------
@@ -2589,11 +3286,11 @@
 
         if (phoneCaption) phoneCaption.textContent = 'Mode: ' + feat.charAt(0).toUpperCase() + feat.slice(1);
         if (desktopTitle) {
-          if (feat === 'shortcuts') desktopTitle.textContent = 'Workspace Document Feed';
-          if (feat === 'typing') desktopTitle.textContent = 'Live Text Input Stream';
-          if (feat === 'gestures') desktopTitle.textContent = 'Document Gesture Panning';
-          if (feat === 'screenshots') desktopTitle.textContent = 'Screen Capture Snapping';
-          if (feat === 'locks') desktopTitle.textContent = 'Security Access Control';
+          if (feat === 'shortcuts') desktopTitle.textContent = 'Easy Mouse Remote Session - Notes.txt';
+          if (feat === 'typing') desktopTitle.textContent = 'Active Terminal - bash';
+          if (feat === 'gestures') desktopTitle.textContent = 'Document Viewer - Specifications.pdf';
+          if (feat === 'screenshots') desktopTitle.textContent = 'Desktop Capture Utility';
+          if (feat === 'locks') desktopTitle.textContent = 'Workstation Security Manager';
         }
       }
 
@@ -2605,6 +3302,7 @@
 
       // Feature 1: Shortcuts Interaction
       const docContent = document.getElementById('desktop-doc-content');
+      const shortcutsStatus = document.getElementById('shortcuts-action-status');
       const btnCopy = document.getElementById('btn-macro-copy');
       const btnPaste = document.getElementById('btn-macro-paste');
       const btnUndo = document.getElementById('btn-macro-undo');
@@ -2613,17 +3311,24 @@
       if (docContent) {
         const initialText = "Easy Mouse brings desktop control directly to your smartphone. Tap [Copy] or [Paste] on phone.";
         if (btnCopy) btnCopy.addEventListener('click', () => {
-          docContent.style.background = 'rgba(224, 198, 83, 0.15)';
+          docContent.style.background = 'rgba(224, 198, 83, 0.18)';
+          if (shortcutsStatus) shortcutsStatus.textContent = 'Copied selected line (Ctrl+C)';
           setTimeout(() => docContent.style.background = '#141410', 350);
         });
         if (btnPaste) btnPaste.addEventListener('click', () => {
-          docContent.textContent += ' [Pasted from Easy Mouse]';
+          docContent.textContent += '\nactiveController.listen({ haptic: true });';
+          if (shortcutsStatus) shortcutsStatus.textContent = 'Pasted coordinate stream (Ctrl+V)';
         });
         if (btnUndo) btnUndo.addEventListener('click', () => {
           docContent.textContent = initialText;
+          if (shortcutsStatus) shortcutsStatus.textContent = 'Reverted last edit buffer (Ctrl+Z)';
         });
         if (btnSwitch) btnSwitch.addEventListener('click', () => {
-          docContent.textContent = "Switched to Active Window: Code Workspace";
+          if (shortcutsStatus) shortcutsStatus.textContent = 'Switched to Active Window: Code Workspace (Alt+Tab)';
+          if (desktopTitle) desktopTitle.textContent = 'Code Workspace - app.tsx';
+          setTimeout(() => {
+            if (desktopTitle) desktopTitle.textContent = 'Easy Mouse Remote Session - Notes.txt';
+          }, 2400);
         });
       }
 
@@ -2760,7 +3465,8 @@
     })();
 
     /* -------------------------------------------------------------
-       ORGANIC CUSTOM POINTER & WATER LIGHT TRAIL CANVAS
+       ORGANIC CUSTOM POINTER & VISIBLY THICKER WATER LIGHT TRAIL
+       Velocity-based stroke (2.0px to 4.0px), tapered, soft edge
        ------------------------------------------------------------- */
     (function initOrganicPointer() {
       if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
@@ -2772,11 +3478,13 @@
       const ctx = canvas.getContext('2d');
       let mouseX = window.innerWidth / 2;
       let mouseY = window.innerHeight / 2;
+      let prevMouseX = mouseX;
+      let prevMouseY = mouseY;
       let isVisible = false;
       let fadeTimer = null;
 
       const trail = [];
-      const MAX_TRAIL = 14;
+      const MAX_TRAIL = 18;
 
       function resize() {
         canvas.width = window.innerWidth;
@@ -2797,8 +3505,21 @@
         pointer.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
 
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          trail.unshift({ x: mouseX + 3, y: mouseY + 3, alpha: 0.85, size: 2.8 });
+          const dist = Math.hypot(mouseX - prevMouseX, mouseY - prevMouseY);
+          const speed = Math.min(dist, 45);
+          // Velocity-adaptive physical thickness: 2.0px when calm/slow, up to 3.8px-4.0px on fast flick
+          const thickness = 2.0 + (speed / 45) * 1.9;
+
+          trail.unshift({
+            x: mouseX + 2,
+            y: mouseY + 2,
+            alpha: 0.92,
+            size: thickness
+          });
           if (trail.length > MAX_TRAIL) trail.pop();
+
+          prevMouseX = mouseX;
+          prevMouseY = mouseY;
         }
 
         clearTimeout(fadeTimer);
@@ -2808,7 +3529,7 @@
         }, 2500);
       });
 
-      const hoverElements = 'a, button, [role="tab"], .feature-tab-btn, .touchpad-live-canvas, .phone-trackpad-area, .hanging-mouse-rig';
+      const hoverElements = 'a, button, [role="tab"], .feature-tab-btn, .touchpad-live-canvas, .phone-trackpad-area, .hanging-mouse-rig, .conn-phone-trackpad, .device-mode-btn, .flow-card';
       document.addEventListener('mouseover', (e) => {
         if (e.target.closest(hoverElements)) pointer.classList.add('hover-scale');
       });
@@ -2821,9 +3542,15 @@
 
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && trail.length > 1) {
           for (let i = 0; i < trail.length; i++) {
-            trail[i].alpha *= 0.86;
-            trail[i].size *= 0.90;
+            trail[i].alpha *= 0.85; // Short persistence
+            trail[i].size *= 0.91;  // Smooth tapering
           }
+
+          ctx.save();
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+          ctx.shadowBlur = 4;
+          ctx.shadowColor = 'rgba(224, 198, 83, 0.35)';
 
           for (let i = 0; i < trail.length - 1; i++) {
             const p1 = trail[i];
@@ -2832,11 +3559,11 @@
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(224, 198, 83, ${p1.alpha * 0.45})`;
-            ctx.lineWidth = Math.max(0.5, p1.size);
-            ctx.lineCap = 'round';
+            ctx.strokeStyle = `rgba(224, 198, 83, ${p1.alpha * 0.65})`;
+            ctx.lineWidth = Math.max(1.0, p1.size);
             ctx.stroke();
           }
+          ctx.restore();
         }
 
         requestAnimationFrame(renderTrail);
