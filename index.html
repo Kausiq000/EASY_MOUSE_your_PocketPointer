@@ -395,8 +395,562 @@
     }
 
     /* -------------------------------------------------------------
+       HERO SECTION STYLES
+       ------------------------------------------------------------- */
+    .hero-section {
+      position: relative;
+      padding-top: clamp(40px, 8vh, 80px);
+      padding-bottom: clamp(60px, 10vh, 110px);
+      overflow: hidden;
+    }
+
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      z-index: 2;
+    }
+
+    /* Restrained Eyebrow Badge (1 of max 3 allowed across entire page) */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 42, 75, 0.08);
+      border: 1px solid rgba(255, 42, 75, 0.25);
+      margin-bottom: 24px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-red);
+      box-shadow: 0 0 6px var(--accent-red);
+    }
+
+    .badge-text {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-red);
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+    }
+
+    .hero-description {
+      font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      max-width: 48ch;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    /* Primary CTA Button */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 28px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-red);
+      color: #ffffff;
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 24px rgba(255, 42, 75, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-red-hover);
+      box-shadow: 0 6px 30px rgba(255, 42, 75, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* Secondary Action Button */
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 24px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: 1px solid var(--border-medium);
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-elevated);
+      border-color: rgba(255, 255, 255, 0.28);
+      color: var(--text-white);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .meta-label {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .meta-sep {
+      color: var(--border-medium);
+    }
+
+    /* -------------------------------------------------------------
+       HERO VISUAL: HARDWARE LINK SCHEMATIC
+       ------------------------------------------------------------- */
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      background: linear-gradient(145deg, rgba(20, 23, 32, 0.7) 0%, rgba(14, 16, 21, 0.85) 100%);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 42, 75, 0.6), transparent);
+    }
+
+    .schematic-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 16px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .schematic-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #38ef7d;
+      font-weight: 600;
+    }
+
+    .status-ping {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #38ef7d;
+      box-shadow: 0 0 6px #38ef7d;
+    }
+
+    /* Interactive Simulation Canvas Container */
+    .schematic-stage {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    /* Simulated Phone Controller */
+    .phone-device {
+      width: 140px;
+      height: 270px;
+      background: #0b0d12;
+      border: 2px solid #282f3d;
+      border-radius: 20px;
+      padding: 10px 8px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+      position: relative;
+    }
+
+    .phone-notch {
+      width: 40px;
+      height: 4px;
+      background: #1f2533;
+      border-radius: 2px;
+      margin: 0 auto 8px auto;
+    }
+
+    .phone-touchpad {
+      flex: 1;
+      background: radial-gradient(circle at center, rgba(255, 42, 75, 0.08) 0%, rgba(18, 22, 30, 0.95) 75%);
+      border: 1px dashed rgba(255, 42, 75, 0.35);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: crosshair;
+      user-select: none;
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--transition-fast);
+    }
+
+    .phone-touchpad:hover, .phone-touchpad.touch-active {
+      border-color: var(--accent-red);
+      box-shadow: inset 0 0 20px rgba(255, 42, 75, 0.15);
+    }
+
+    .touchpad-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      pointer-events: none;
+      text-align: center;
+      padding: 0 4px;
+    }
+
+    .touch-indicator {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 42, 75, 0.7) 0%, rgba(255, 42, 75, 0) 70%);
+      border: 1px solid var(--accent-red);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .phone-touchpad:hover .touch-indicator, .phone-touchpad.touch-active .touch-indicator {
+      opacity: 1;
+    }
+
+    .phone-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-top: 8px;
+      height: 32px;
+    }
+
+    .phone-btn {
+      background: #161a23;
+      border: 1px solid #282f3d;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .phone-btn:hover, .phone-btn.sim-active {
+      background: var(--accent-red);
+      color: #ffffff;
+      border-color: var(--accent-red);
+      box-shadow: 0 0 10px var(--accent-red-glow);
+    }
+
+    /* Wireless Link Stream */
+    .wireless-conduit {
+      position: absolute;
+      left: 145px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 70px;
+      height: 40px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Laptop Display Screen */
+    .laptop-device {
+      position: relative;
+      width: 100%;
+      height: 290px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .laptop-screen-frame {
+      width: 100%;
+      height: 250px;
+      background: #0a0b0e;
+      border: 3px solid #262c38;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+    }
+
+    .laptop-screen-header {
+      height: 24px;
+      background: #131720;
+      border-bottom: 1px solid #222733;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      gap: 6px;
+    }
+
+    .window-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2a3140;
+    }
+
+    .window-dot:nth-child(1) { background: #ff5f56; }
+    .window-dot:nth-child(2) { background: #ffbd2e; }
+    .window-dot:nth-child(3) { background: #27c93f; }
+
+    .window-title {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      margin-left: 8px;
+    }
+
+    .laptop-canvas-area {
+      position: relative;
+      width: 100%;
+      height: calc(100% - 24px);
+      background: radial-gradient(circle at 50% 50%, #151a24 0%, #0d0f14 100%);
+      overflow: hidden;
+    }
+
+    /* Target UI elements inside simulated laptop */
+    .sim-desktop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 16px;
+    }
+
+    .sim-app-card {
+      height: 60px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .sim-app-card.card-highlight {
+      border-color: rgba(255, 42, 75, 0.4);
+      background: rgba(255, 42, 75, 0.08);
+    }
+
+    .sim-card-bar {
+      height: 6px;
+      width: 60%;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+    }
+
+    .sim-card-pill {
+      height: 4px;
+      width: 40%;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 2px;
+    }
+
+    /* Simulated Pointer */
+    .sim-pointer {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+      transform: translate(-2px, -2px);
+      z-index: 10;
+      transition: transform 0.04s linear;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8));
+    }
+
+    .sim-pointer-icon {
+      fill: #ffffff;
+      stroke: var(--accent-red);
+      stroke-width: 1.5;
+    }
+
+    .sim-click-ripple {
+      position: absolute;
+      border: 2px solid var(--accent-red);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      animation: rippleEffect 0.6s ease-out forwards;
+    }
+
+    @keyframes rippleEffect {
+      0% { width: 4px; height: 4px; opacity: 1; }
+      100% { width: 46px; height: 46px; opacity: 0; }
+    }
+
+    /* Laptop Base */
+    .laptop-base {
+      width: 110%;
+      height: 10px;
+      background: #1d222c;
+      border-radius: 0 0 10px 10px;
+      border-top: 1px solid #363e4f;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+    }
+
+    .schematic-caption {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .schematic-caption strong {
+      color: var(--accent-red);
+    }
+
+    @media (max-width: 1024px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero-content {
+        max-width: 650px;
+      }
+      .hero-visual {
+        max-width: 600px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        padding-top: 36px;
+        padding-bottom: 60px;
+      }
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      .hero-cta-group {
+        flex-direction: column;
+        width: 100%;
+        align-items: stretch;
+      }
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        text-align: center;
+      }
+      .hero-visual {
+        height: auto;
+        padding: 16px;
+      }
+      .schematic-stage {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .phone-device {
+        width: 100%;
+        height: 140px;
+        flex-direction: row;
+        gap: 12px;
+        align-items: center;
+      }
+      .phone-notch {
+        display: none;
+      }
+      .phone-buttons {
+        flex-direction: column;
+        height: 100%;
+        margin-top: 0;
+        width: 80px;
+      }
+      .wireless-conduit {
+        display: none;
+      }
+      .laptop-device {
+        height: 220px;
+      }
+      .laptop-screen-frame {
+        height: 200px;
+      }
+    }
+
+    /* -------------------------------------------------------------
        PREFERS-REDUCED-MOTION
        ------------------------------------------------------------- */
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -447,8 +1001,130 @@
     </header>
 
     <main id="main-content">
-      <!-- Sections will be mounted in Tasks 3-7 -->
+      <!-- HERO SECTION -->
+      <section class="hero-section" id="hero">
+        <div class="container hero-container">
+          <!-- Left Column: Copy & Actions -->
+          <div class="hero-content">
+            <div class="hero-badge">
+              <span class="badge-dot"></span>
+              <span class="badge-text">Instant Desktop Utility</span>
+            </div>
+
+            <h1 class="hero-title">Turn your phone into a wireless mouse.</h1>
+
+            <p class="hero-description">
+              Control your laptop or PC with precision touch gestures, zero extra hardware, and instant wireless pairing.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="#download" class="btn-primary" id="download-app" data-download="true">
+                <span>Download Easy Mouse</span>
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a href="#how-it-works" class="btn-secondary">
+                <span>See How It Works</span>
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+
+            <div class="hero-meta">
+              <span class="meta-label">Platforms:</span>
+              <span class="meta-item">Windows</span>
+              <span class="meta-sep">/</span>
+              <span class="meta-item">macOS</span>
+              <span class="meta-sep">/</span>
+              <span class="meta-item">Linux</span>
+              <span class="meta-sep">/</span>
+              <span class="meta-item">Android</span>
+              <span class="meta-sep">/</span>
+              <span class="meta-item">iOS</span>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Hardware Link Schematic -->
+          <div class="hero-visual" id="hero-visual">
+            <div class="schematic-header">
+              <span>SYSTEM SCHEMATIC: LINK_V2</span>
+              <div class="schematic-status">
+                <span class="status-ping"></span>
+                <span id="schematic-link-text">LINK ACTIVE</span>
+              </div>
+            </div>
+
+            <div class="schematic-stage">
+              <!-- Smartphone Controller -->
+              <div class="phone-device" id="sim-phone">
+                <div class="phone-notch"></div>
+                <div class="phone-touchpad" id="hero-touchpad" tabindex="0" role="region" aria-label="Interactive Touchpad Simulator">
+                  <span class="touchpad-label">Touch / Drag Surface</span>
+                  <div class="touch-indicator" id="hero-touch-dot"></div>
+                </div>
+                <div class="phone-buttons">
+                  <button class="phone-btn" id="btn-left-click" type="button" aria-label="Left Click Button">L-CLICK</button>
+                  <button class="phone-btn" id="btn-right-click" type="button" aria-label="Right Click Button">R-CLICK</button>
+                </div>
+              </div>
+
+              <!-- Animated Signal Conduit SVG -->
+              <svg class="wireless-conduit" id="wireless-stream" viewBox="0 0 80 40" fill="none" aria-hidden="true">
+                <path d="M 0 20 Q 40 5 80 20" stroke="rgba(255, 42, 75, 0.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <circle id="signal-packet-1" cx="10" cy="18" r="3" fill="#ff2a4b"/>
+                <circle id="signal-packet-2" cx="40" cy="12" r="3.5" fill="#ff2a4b"/>
+                <circle id="signal-packet-3" cx="70" cy="18" r="3" fill="#ff2a4b"/>
+              </svg>
+
+              <!-- Laptop Display Screen -->
+              <div class="laptop-device">
+                <div class="laptop-screen-frame">
+                  <div class="laptop-screen-header">
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                    <span class="window-title">Desktop Display - 60Hz Remote Feed</span>
+                  </div>
+                  <div class="laptop-canvas-area" id="laptop-screen">
+                    <div class="sim-desktop-grid">
+                      <div class="sim-app-card" id="card-1">
+                        <div class="sim-card-bar"></div>
+                        <div class="sim-card-pill"></div>
+                      </div>
+                      <div class="sim-app-card" id="card-2">
+                        <div class="sim-card-bar" style="width: 75%;"></div>
+                        <div class="sim-card-pill"></div>
+                      </div>
+                      <div class="sim-app-card" id="card-3">
+                        <div class="sim-card-bar" style="width: 50%;"></div>
+                        <div class="sim-card-pill"></div>
+                      </div>
+                    </div>
+
+                    <!-- Laptop Cursor Element -->
+                    <div class="sim-pointer" id="laptop-cursor">
+                      <svg class="sim-pointer-icon" width="20" height="20" viewBox="0 0 24 24">
+                        <path d="M4 2L20 10L12 13L8 21L4 2Z"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="laptop-base"></div>
+              </div>
+            </div>
+
+            <div class="schematic-caption" id="schematic-caption">
+              Mode: <strong>Live Interactive</strong> - Hover or drag your finger on the phone trackpad to control the laptop pointer.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Remaining Sections will be mounted in Tasks 4-7 -->
     </main>
+
   </div>
 
   <script>
@@ -488,6 +1164,184 @@
         }
       }, { passive: true });
     })();
+
+    /* -------------------------------------------------------------
+       HERO HARDWARE LINK SIMULATION CONTROLLER
+       ------------------------------------------------------------- */
+    (function initHeroSimulation() {
+      const touchpad = document.getElementById('hero-touchpad');
+      const touchDot = document.getElementById('hero-touch-dot');
+      const laptopCursor = document.getElementById('laptop-cursor');
+      const laptopScreen = document.getElementById('laptop-screen');
+      const leftBtn = document.getElementById('btn-left-click');
+      const rightBtn = document.getElementById('btn-right-click');
+      const caption = document.getElementById('schematic-caption');
+      const signalPackets = [
+        document.getElementById('signal-packet-1'),
+        document.getElementById('signal-packet-2'),
+        document.getElementById('signal-packet-3')
+      ];
+      const appCards = [
+        document.getElementById('card-1'),
+        document.getElementById('card-2'),
+        document.getElementById('card-3')
+      ];
+
+      if (!touchpad || !laptopCursor || !laptopScreen) return;
+
+      let isUserInteracting = false;
+      let idleTimer = null;
+      let autoAnimId = null;
+      let autoTime = 0;
+
+      function spawnRipple(xPercent, yPercent) {
+        const ripple = document.createElement('div');
+        ripple.className = 'sim-click-ripple';
+        ripple.style.left = xPercent + '%';
+        ripple.style.top = yPercent + '%';
+        laptopScreen.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      }
+
+      function updatePointer(relX, relY, isClick = false) {
+        const clampedX = Math.max(0.05, Math.min(0.95, relX));
+        const clampedY = Math.max(0.08, Math.min(0.92, relY));
+
+        // Update phone touch dot
+        touchDot.style.left = (clampedX * 100) + '%';
+        touchDot.style.top = (clampedY * 100) + '%';
+
+        // Update laptop pointer
+        laptopCursor.style.left = (clampedX * 100) + '%';
+        laptopCursor.style.top = (clampedY * 100) + '%';
+
+        // Highlight card if hovered
+        appCards.forEach((card, index) => {
+          if (!card) return;
+          const targetIndex = Math.floor(clampedX * 3);
+          if (targetIndex === index && clampedY < 0.6) {
+            card.classList.add('card-highlight');
+          } else {
+            card.classList.remove('card-highlight');
+          }
+        });
+
+        // Trigger signal packet animation
+        signalPackets.forEach((pkt, i) => {
+          if (!pkt) return;
+          const shift = Math.sin(Date.now() * 0.01 + i) * 3;
+          pkt.setAttribute('r', (3 + Math.abs(shift) * 0.5).toString());
+        });
+
+        if (isClick) {
+          spawnRipple(clampedX * 100, clampedY * 100);
+        }
+      }
+
+      function handleInteraction(e) {
+        isUserInteracting = true;
+        clearTimeout(idleTimer);
+
+        if (caption) {
+          caption.innerHTML = 'Mode: <strong>User Active</strong> - Laptop pointer responds to your touch gestures.';
+        }
+
+        const rect = touchpad.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        const relX = (clientX - rect.left) / rect.width;
+        const relY = (clientY - rect.top) / rect.height;
+
+        updatePointer(relX, relY);
+
+        // Reset to auto demo after 3.5 seconds of inactivity
+        idleTimer = setTimeout(() => {
+          isUserInteracting = false;
+          if (caption) {
+            caption.innerHTML = 'Mode: <strong>Live Interactive</strong> - Hover or drag your finger on the phone trackpad to control the laptop pointer.';
+          }
+          startAutoDemo();
+        }, 3500);
+      }
+
+      // Event listeners for phone touchpad
+      touchpad.addEventListener('mousemove', handleInteraction);
+      touchpad.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        handleInteraction(e);
+      }, { passive: false });
+
+      touchpad.addEventListener('touchstart', (e) => {
+        touchpad.classList.add('touch-active');
+        handleInteraction(e);
+      }, { passive: false });
+
+      touchpad.addEventListener('touchend', () => {
+        touchpad.classList.remove('touch-active');
+      });
+
+      touchpad.addEventListener('click', (e) => {
+        const rect = touchpad.getBoundingClientRect();
+        const relX = (e.clientX - rect.left) / rect.width;
+        const relY = (e.clientY - rect.top) / rect.height;
+        updatePointer(relX, relY, true);
+      });
+
+      // Buttons
+      if (leftBtn) {
+        leftBtn.addEventListener('click', () => {
+          leftBtn.classList.add('sim-active');
+          const currX = parseFloat(laptopCursor.style.left || '50') / 100;
+          const currY = parseFloat(laptopCursor.style.top || '50') / 100;
+          spawnRipple(currX * 100, currY * 100);
+          setTimeout(() => leftBtn.classList.remove('sim-active'), 200);
+        });
+      }
+
+      if (rightBtn) {
+        rightBtn.addEventListener('click', () => {
+          rightBtn.classList.add('sim-active');
+          const currX = parseFloat(laptopCursor.style.left || '50') / 100;
+          const currY = parseFloat(laptopCursor.style.top || '50') / 100;
+          spawnRipple(currX * 100, currY * 100);
+          setTimeout(() => rightBtn.classList.remove('sim-active'), 200);
+        });
+      }
+
+      // Smooth auto-demonstration loop
+      function startAutoDemo() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          updatePointer(0.5, 0.45);
+          return;
+        }
+
+        function step() {
+          if (isUserInteracting) return;
+          autoTime += 0.022;
+          const x = 0.5 + 0.32 * Math.cos(autoTime * 0.85);
+          const y = 0.48 + 0.28 * Math.sin(autoTime * 1.4);
+          updatePointer(x, y);
+
+          // Periodic click simulation during auto demo
+          if (Math.floor(autoTime * 10) % 95 === 0) {
+            spawnRipple(x * 100, y * 100);
+            if (leftBtn) {
+              leftBtn.classList.add('sim-active');
+              setTimeout(() => leftBtn.classList.remove('sim-active'), 200);
+            }
+          }
+
+          autoAnimId = requestAnimationFrame(step);
+        }
+
+        cancelAnimationFrame(autoAnimId);
+        autoAnimId = requestAnimationFrame(step);
+      }
+
+      startAutoDemo();
+    })();
+
   </script>
 </body>
 </html>
