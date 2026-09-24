@@ -4,52 +4,53 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Easy Mouse - Turn Your Phone into a Wireless Mouse</title>
-  <meta name="description" content="Turn your smartphone into a wireless mouse and trackpad controller for laptops and PCs. Instant pairing, multi-touch gestures, zero extra hardware.">
-  <meta name="theme-color" content="#08090b">
+  <meta name="description" content="Easy Mouse turns your smartphone into a high-precision wireless mouse, multi-touch trackpad, and presentation controller for your laptop or PC.">
+  <meta name="theme-color" content="#060709">
 
   <style>
     /* -------------------------------------------------------------
-       EASY MOUSE DESIGN SYSTEM TOKENS
-       Industrial Dark-Tech Palette with Laser Crimson Highlights
+       EASY MOUSE BESPOKE DESIGN SYSTEM
+       High Design Variance (9/10) | Motion Intensity (8/10) | Density (4/10)
        ------------------------------------------------------------- */
     :root {
-      --bg-canvas: #08090b;
-      --bg-surface: #0e1015;
-      --bg-elevated: #141720;
-      --bg-panel: #181d27;
-      --bg-panel-hover: #1f2532;
-      
-      --border-subtle: rgba(255, 255, 255, 0.07);
-      --border-medium: rgba(255, 255, 255, 0.14);
-      --border-focus: rgba(255, 42, 75, 0.6);
-      
-      --accent-red: #ff2a4b;
-      --accent-red-hover: #ff4765;
-      --accent-red-glow: rgba(255, 42, 75, 0.25);
-      --accent-red-dim: rgba(255, 42, 75, 0.12);
-      --accent-red-ring: rgba(255, 42, 75, 0.4);
-      
-      --text-primary: #f4f5f7;
-      --text-secondary: #9aa2b1;
-      --text-muted: #5e6677;
+      --bg-base: #060709;
+      --bg-surface: #0c0e13;
+      --bg-elevated: #12151e;
+      --bg-card: #181d29;
+      --bg-card-hover: #1f2535;
+
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --border-medium: rgba(255, 255, 255, 0.12);
+      --border-strong: rgba(255, 255, 255, 0.22);
+      --border-accent: rgba(255, 40, 77, 0.4);
+
+      --accent-red: #ff284d;
+      --accent-red-hover: #ff4767;
+      --accent-red-dim: rgba(255, 40, 77, 0.12);
+      --accent-red-glow: rgba(255, 40, 77, 0.25);
+      --accent-red-beam: rgba(255, 40, 77, 0.7);
+
+      --text-primary: #f5f6f8;
+      --text-secondary: #9aa2b2;
+      --text-muted: #5a6375;
       --text-white: #ffffff;
-      
-      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+      --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --font-mono: "SF Mono", "Segoe UI Mono", "Roboto Mono", "Cascadia Code", "Courier New", monospace;
-      
+
       --radius-sm: 4px;
       --radius-md: 8px;
-      --radius-lg: 12px;
+      --radius-lg: 16px;
       --radius-pill: 9999px;
-      
-      --max-width: 1200px;
-      --nav-height: 64px;
-      --transition-fast: 0.18s ease;
-      --transition-normal: 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+
+      --max-width: 1280px;
+      --nav-height: 68px;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     /* -------------------------------------------------------------
-       CSS RESET & BASE TYPOGRAPHY
+       BASE RESET & ATMOSPHERIC ENVIRONMENT
        ------------------------------------------------------------- */
     *, *::before, *::after {
       box-sizing: border-box;
@@ -59,69 +60,105 @@
 
     html {
       scroll-behavior: smooth;
-      background-color: var(--bg-canvas);
+      background-color: var(--bg-base);
       color: var(--text-primary);
-      font-family: var(--font-sans);
+      font-family: var(--font-display);
       font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
       overflow-x: hidden;
     }
 
     body {
       min-height: 100vh;
-      background-color: var(--bg-canvas);
+      background-color: var(--bg-base);
       color: var(--text-primary);
       position: relative;
       overflow-x: hidden;
     }
 
-    /* Subtle technical grid background */
-    body::before {
-      content: "";
+    /* Atmospheric Background Layer: Fine Technical Grid + Ambient Laser Beam */
+    .ambient-background {
       position: fixed;
       inset: 0;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 48px 48px;
       pointer-events: none;
       z-index: 0;
+      overflow: hidden;
     }
 
-    /* Top ambient red illumination */
-    body::after {
-      content: "";
-      position: fixed;
-      top: -200px;
+    .ambient-grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    .ambient-haze-top {
+      position: absolute;
+      top: -240px;
       left: 50%;
       transform: translateX(-50%);
-      width: 800px;
-      height: 450px;
-      background: radial-gradient(ellipse at center, rgba(255, 42, 75, 0.08) 0%, rgba(255, 42, 75, 0.02) 45%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+      width: 1000px;
+      height: 550px;
+      background: radial-gradient(ellipse at center, rgba(255, 40, 77, 0.12) 0%, rgba(255, 40, 77, 0.03) 45%, transparent 70%);
+      filter: blur(40px);
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    .ambient-haze-mid {
+      position: absolute;
+      top: 45%;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255, 40, 77, 0.06) 0%, transparent 65%);
+      filter: blur(60px);
+    }
+
+    /* -------------------------------------------------------------
+       TYPOGRAPHY ARCHITECTURE
+       ------------------------------------------------------------- */
+    h1, h2, h3, h4 {
       color: var(--text-primary);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.038em;
+    }
+
+    .mono-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mono-tag::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-red);
+      box-shadow: 0 0 8px var(--accent-red);
     }
 
     p {
       color: var(--text-secondary);
-      font-size: 1.05rem;
-      max-width: 60ch;
+      font-size: 1.08rem;
+      line-height: 1.65;
+      font-weight: 400;
     }
 
     a {
       color: inherit;
       text-decoration: none;
-      transition: color var(--transition-fast);
+      transition: color 0.2s ease;
     }
 
     button {
@@ -131,7 +168,6 @@
       background: none;
     }
 
-    /* Accessibility focus styling */
     :focus-visible {
       outline: 2px solid var(--accent-red);
       outline-offset: 3px;
@@ -142,30 +178,30 @@
       max-width: var(--max-width);
       margin-left: auto;
       margin-right: auto;
-      padding-left: 24px;
-      padding-right: 24px;
+      padding-left: 28px;
+      padding-right: 28px;
       position: relative;
       z-index: 1;
     }
 
     .section-spacing {
-      padding-top: 100px;
-      padding-bottom: 100px;
+      padding-top: 130px;
+      padding-bottom: 130px;
     }
 
     @media (max-width: 768px) {
       .section-spacing {
-        padding-top: 64px;
-        padding-bottom: 64px;
+        padding-top: 70px;
+        padding-bottom: 70px;
       }
       .container {
-        padding-left: 18px;
-        padding-right: 18px;
+        padding-left: 20px;
+        padding-right: 20px;
       }
     }
 
     /* -------------------------------------------------------------
-       NAVIGATION BAR & HEADER STYLES
+       STICKY NAVIGATION BAR
        ------------------------------------------------------------- */
     .site-header {
       position: sticky;
@@ -173,18 +209,18 @@
       left: 0;
       width: 100%;
       height: var(--nav-height);
-      background: rgba(8, 9, 11, 0.85);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      background: rgba(6, 7, 9, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-subtle);
       z-index: 100;
-      transition: border-color var(--transition-fast), background var(--transition-fast);
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
 
     .site-header.scrolled {
-      background: rgba(8, 9, 11, 0.96);
+      background: rgba(6, 7, 9, 0.96);
       border-bottom-color: var(--border-medium);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
     }
 
     .nav-container {
@@ -197,51 +233,47 @@
     .brand-link {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       font-weight: 800;
       font-size: 1.05rem;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text-primary);
     }
 
-    .brand-beacon {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent-red);
-      box-shadow: 0 0 10px var(--accent-red);
+    .brand-symbol {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--accent-red);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
+      box-shadow: 0 0 10px var(--accent-red-glow);
     }
 
-    .brand-beacon::after {
+    .brand-symbol::after {
       content: "";
-      position: absolute;
-      inset: -4px;
+      width: 4px;
+      height: 4px;
+      background: #ffffff;
       border-radius: 50%;
-      border: 1px solid var(--accent-red);
-      opacity: 0.6;
-      animation: beaconPulse 2.4s infinite ease-out;
-    }
-
-    @keyframes beaconPulse {
-      0% { transform: scale(0.8); opacity: 0.8; }
-      100% { transform: scale(2.4); opacity: 0; }
     }
 
     .nav-links-desktop {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 36px;
       list-style: none;
     }
 
     .nav-link {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 500;
       color: var(--text-secondary);
       position: relative;
-      padding: 6px 0;
+      padding: 8px 0;
     }
 
     .nav-link:hover {
@@ -251,12 +283,12 @@
     .nav-link::after {
       content: "";
       position: absolute;
-      bottom: 0;
+      bottom: 2px;
       left: 0;
       width: 0;
       height: 2px;
       background: var(--accent-red);
-      transition: width var(--transition-fast);
+      transition: width 0.25s var(--ease-out-expo);
     }
 
     .nav-link:hover::after {
@@ -269,45 +301,43 @@
       gap: 16px;
     }
 
-    .btn-nav-download {
+    /* Tactile Physical Button */
+    .btn-nav-action {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 8px 18px;
+      padding: 9px 20px;
       border-radius: var(--radius-sm);
-      background: rgba(255, 42, 75, 0.12);
-      border: 1px solid rgba(255, 42, 75, 0.4);
-      color: var(--text-white);
+      background: rgba(255, 40, 77, 0.12);
+      border: 1px solid var(--border-accent);
+      color: #ffffff;
       font-size: 0.88rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      transition: all var(--transition-fast);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: all 0.25s var(--ease-out-expo);
     }
 
-    .btn-nav-download:hover {
+    .btn-nav-action:hover {
       background: var(--accent-red);
-      box-shadow: 0 0 16px var(--accent-red-glow);
+      box-shadow: 0 0 20px var(--accent-red-glow);
       transform: translateY(-1px);
     }
 
-    /* Mobile Hamburger Trigger */
     .mobile-menu-btn {
       display: none;
       width: 40px;
       height: 40px;
-      position: relative;
-      justify-content: center;
-      align-items: center;
       border-radius: var(--radius-sm);
       border: 1px solid var(--border-subtle);
       background: var(--bg-surface);
       color: var(--text-primary);
+      justify-content: center;
+      align-items: center;
     }
 
     .hamburger-icon {
       width: 18px;
       height: 14px;
-      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -319,7 +349,7 @@
       width: 100%;
       background-color: var(--text-primary);
       border-radius: 1px;
-      transition: all var(--transition-fast);
+      transition: transform 0.25s ease, opacity 0.25s ease;
     }
 
     .mobile-menu-btn[aria-expanded="true"] .hamburger-icon span:nth-child(1) {
@@ -332,24 +362,23 @@
       transform: translateY(-6px) rotate(-45deg);
     }
 
-    /* Mobile Menu Drawer */
+    /* Mobile Drawer */
     .mobile-drawer {
       display: none;
       position: fixed;
       top: var(--nav-height);
       left: 0;
       right: 0;
-      background: rgba(14, 16, 21, 0.98);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(12, 14, 19, 0.98);
+      backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border-medium);
       padding: 24px;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
       z-index: 99;
       transform: translateY(-100%);
       opacity: 0;
-      transition: transform var(--transition-normal), opacity var(--transition-normal);
+      transition: transform 0.3s var(--ease-out-expo), opacity 0.3s ease;
       pointer-events: none;
     }
 
@@ -360,322 +389,278 @@
     }
 
     .mobile-drawer a {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: var(--text-secondary);
-      padding: 8px 0;
+      padding: 10px 0;
       border-bottom: 1px solid var(--border-subtle);
     }
 
-    .mobile-drawer a:hover {
-      color: var(--accent-red);
-    }
-
-    .mobile-drawer .btn-drawer-download {
-      margin-top: 8px;
-      padding: 14px;
-      border-radius: var(--radius-sm);
-      background: var(--accent-red);
-      color: var(--text-white);
-      text-align: center;
-      font-weight: 700;
-      border: none;
-    }
-
     @media (max-width: 768px) {
-      .nav-links-desktop {
-        display: none;
-      }
-      .mobile-menu-btn {
-        display: flex;
-      }
-      .mobile-drawer {
-        display: flex;
-      }
+      .nav-links-desktop { display: none; }
+      .mobile-menu-btn { display: flex; }
+      .mobile-drawer { display: flex; }
     }
 
     /* -------------------------------------------------------------
-       HERO SECTION STYLES
+       HERO SECTION (ACT 01: THE SPATIAL HANDSHAKE)
        ------------------------------------------------------------- */
-    .hero-section {
+    .hero-stage {
       position: relative;
-      padding-top: clamp(40px, 8vh, 80px);
-      padding-bottom: clamp(60px, 10vh, 110px);
+      padding-top: clamp(48px, 9vh, 90px);
+      padding-bottom: clamp(60px, 12vh, 120px);
       overflow: hidden;
     }
 
-    .hero-container {
+    .hero-grid {
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
-      gap: 48px;
+      gap: 56px;
       align-items: center;
     }
 
-    .hero-content {
+    .hero-editorial {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       z-index: 2;
     }
 
-    /* Restrained Eyebrow Badge (1 of max 3 allowed across entire page) */
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border-radius: var(--radius-pill);
-      background: rgba(255, 42, 75, 0.08);
-      border: 1px solid rgba(255, 42, 75, 0.25);
+    .hero-h1 {
+      font-size: clamp(2.6rem, 4.6vw, 4.4rem);
+      font-weight: 850;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-top: 20px;
       margin-bottom: 24px;
-    }
-
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent-red);
-      box-shadow: 0 0 6px var(--accent-red);
-    }
-
-    .badge-text {
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      color: #ffffff;
       text-transform: uppercase;
-      color: var(--accent-red);
     }
 
-    .hero-title {
-      font-size: clamp(2.4rem, 4.2vw, 3.8rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.035em;
-      margin-bottom: 20px;
-      color: var(--text-primary);
+    .hero-h1 span.outline-word {
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--accent-red);
     }
 
-    .hero-description {
-      font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+    .hero-lead {
+      font-size: clamp(1.08rem, 1.35vw, 1.25rem);
       line-height: 1.6;
       color: var(--text-secondary);
-      margin-bottom: 32px;
+      margin-bottom: 36px;
       max-width: 48ch;
     }
 
-    .hero-cta-group {
+    .hero-cta-box {
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
       gap: 16px;
+      flex-wrap: wrap;
       margin-bottom: 32px;
     }
 
-    /* Primary CTA Button */
-    .btn-primary {
+    /* Magnetic Primary CTA Button */
+    .btn-magnetic-cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      padding: 16px 28px;
+      gap: 14px;
+      padding: 18px 34px;
       border-radius: var(--radius-sm);
       background: var(--accent-red);
       color: #ffffff;
-      font-size: 0.98rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      box-shadow: 0 4px 24px rgba(255, 42, 75, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+      box-shadow: 0 4px 30px rgba(255, 40, 77, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transition: transform 0.25s var(--ease-spring), box-shadow 0.25s ease, background 0.2s ease;
       position: relative;
       overflow: hidden;
       white-space: nowrap;
     }
 
-    .btn-primary:hover {
+    .btn-magnetic-cta:hover {
       background: var(--accent-red-hover);
-      box-shadow: 0 6px 30px rgba(255, 42, 75, 0.5);
+      box-shadow: 0 8px 36px rgba(255, 40, 77, 0.65);
       transform: translateY(-2px);
     }
 
-    .btn-primary:active {
+    .btn-magnetic-cta:active {
       transform: translateY(0) scale(0.98);
     }
 
-    /* Secondary Action Button */
-    .btn-secondary {
+    .btn-secondary-link {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 8px;
-      padding: 16px 24px;
+      padding: 18px 26px;
       border-radius: var(--radius-sm);
       background: var(--bg-surface);
       color: var(--text-primary);
       font-size: 0.95rem;
       font-weight: 600;
       border: 1px solid var(--border-medium);
-      transition: all var(--transition-fast);
+      transition: all 0.25s ease;
       white-space: nowrap;
     }
 
-    .btn-secondary:hover {
+    .btn-secondary-link:hover {
       background: var(--bg-elevated);
-      border-color: rgba(255, 255, 255, 0.28);
-      color: var(--text-white);
+      border-color: var(--border-strong);
+      color: #ffffff;
       transform: translateY(-2px);
     }
 
-    .btn-secondary:active {
-      transform: translateY(0) scale(0.98);
-    }
-
-    .hero-meta {
+    .hero-specs-row {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
     }
 
-    .meta-label {
+    .hero-specs-row strong {
       color: var(--text-secondary);
-      font-weight: 600;
-    }
-
-    .meta-sep {
-      color: var(--border-medium);
     }
 
     /* -------------------------------------------------------------
-       HERO VISUAL: HARDWARE LINK SCHEMATIC
+       HERO SPATIAL PRODUCT SHOWCASE (3D + REAL VISUAL + LIVE LINK)
        ------------------------------------------------------------- */
-    .hero-visual {
+    .hero-spatial-canvas {
       position: relative;
       width: 100%;
-      height: 480px;
-      background: linear-gradient(145deg, rgba(20, 23, 32, 0.7) 0%, rgba(14, 16, 21, 0.85) 100%);
-      border: 1px solid var(--border-medium);
       border-radius: var(--radius-lg);
+      background: #090b10;
+      border: 1px solid var(--border-medium);
       padding: 24px;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7);
       overflow: hidden;
     }
 
-    .hero-visual::before {
+    .hero-spatial-canvas::before {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 42, 75, 0.6), transparent);
+      background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
     }
 
-    .schematic-header {
+    .spatial-topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding-bottom: 14px;
       border-bottom: 1px solid var(--border-subtle);
-      margin-bottom: 16px;
       font-family: var(--font-mono);
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       color: var(--text-muted);
+      margin-bottom: 16px;
     }
 
-    .schematic-status {
+    .beacon-live {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       color: #38ef7d;
-      font-weight: 600;
+      font-weight: 700;
     }
 
-    .status-ping {
+    .beacon-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
       background: #38ef7d;
-      box-shadow: 0 0 6px #38ef7d;
+      box-shadow: 0 0 8px #38ef7d;
+      animation: beaconFlash 2s infinite ease-in-out;
     }
 
-    /* Interactive Simulation Canvas Container */
-    .schematic-stage {
-      position: relative;
-      flex: 1;
+    @keyframes beaconFlash {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    /* Product Photographic Frame */
+    .product-photo-frame {
       width: 100%;
+      height: 220px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 16px;
+    }
+
+    .product-photo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: contrast(1.05) brightness(0.95);
+      transition: transform 0.6s var(--ease-out-expo);
+    }
+
+    .product-photo-frame:hover .product-photo-img {
+      transform: scale(1.03);
+    }
+
+    .photo-overlay-tag {
+      position: absolute;
+      bottom: 10px;
+      left: 12px;
+      background: rgba(6, 7, 9, 0.85);
+      border: 1px solid var(--border-medium);
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: #ffffff;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Live Interactive Controller Surface */
+    .live-trackpad-console {
+      background: #0e1118;
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      padding: 14px;
       display: grid;
       grid-template-columns: 140px 1fr;
-      gap: 20px;
+      gap: 16px;
       align-items: center;
     }
 
-    /* Simulated Phone Controller */
-    .phone-device {
-      width: 140px;
-      height: 270px;
-      background: #0b0d12;
-      border: 2px solid #282f3d;
-      border-radius: 20px;
-      padding: 10px 8px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    .console-phone-touchpad {
+      height: 120px;
+      background: radial-gradient(circle at center, rgba(255, 40, 77, 0.1) 0%, #131722 80%);
+      border: 1px dashed rgba(255, 40, 77, 0.45);
+      border-radius: var(--radius-sm);
       position: relative;
-    }
-
-    .phone-notch {
-      width: 40px;
-      height: 4px;
-      background: #1f2533;
-      border-radius: 2px;
-      margin: 0 auto 8px auto;
-    }
-
-    .phone-touchpad {
-      flex: 1;
-      background: radial-gradient(circle at center, rgba(255, 42, 75, 0.08) 0%, rgba(18, 22, 30, 0.95) 75%);
-      border: 1px dashed rgba(255, 42, 75, 0.35);
-      border-radius: 10px;
+      cursor: crosshair;
+      user-select: none;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      cursor: crosshair;
-      user-select: none;
-      position: relative;
       overflow: hidden;
-      transition: border-color var(--transition-fast);
     }
 
-    .phone-touchpad:hover, .phone-touchpad.touch-active {
+    .console-phone-touchpad:hover, .console-phone-touchpad.is-active {
       border-color: var(--accent-red);
-      box-shadow: inset 0 0 20px rgba(255, 42, 75, 0.15);
+      box-shadow: inset 0 0 16px rgba(255, 40, 77, 0.2);
     }
 
-    .touchpad-label {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.05em;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      pointer-events: none;
-      text-align: center;
-      padding: 0 4px;
-    }
-
-    .touch-indicator {
+    .touchpad-point-dot {
       position: absolute;
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 42, 75, 0.7) 0%, rgba(255, 42, 75, 0) 70%);
+      background: radial-gradient(circle, rgba(255, 40, 77, 0.8) 0%, transparent 70%);
       border: 1px solid var(--accent-red);
       transform: translate(-50%, -50%);
       pointer-events: none;
@@ -683,584 +668,395 @@
       transition: opacity 0.15s ease;
     }
 
-    .phone-touchpad:hover .touch-indicator, .phone-touchpad.touch-active .touch-indicator {
+    .console-phone-touchpad:hover .touchpad-point-dot, 
+    .console-phone-touchpad.is-active .touchpad-point-dot {
       opacity: 1;
     }
 
-    .phone-buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-      margin-top: 8px;
-      height: 32px;
-    }
-
-    .phone-btn {
-      background: #161a23;
-      border: 1px solid #282f3d;
-      border-radius: 6px;
+    .touchpad-caption {
       font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      font-weight: 600;
-      transition: all var(--transition-fast);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    .phone-btn:hover, .phone-btn.sim-active {
-      background: var(--accent-red);
-      color: #ffffff;
-      border-color: var(--accent-red);
-      box-shadow: 0 0 10px var(--accent-red-glow);
-    }
-
-    /* Wireless Link Stream */
-    .wireless-conduit {
-      position: absolute;
-      left: 145px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 70px;
-      height: 40px;
+      font-size: 0.68rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
       pointer-events: none;
-      z-index: 2;
     }
 
-    /* Laptop Display Screen */
-    .laptop-device {
-      position: relative;
-      width: 100%;
-      height: 290px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .laptop-screen-frame {
-      width: 100%;
-      height: 250px;
-      background: #0a0b0e;
-      border: 3px solid #262c38;
-      border-radius: 12px;
+    /* Simulated Laptop Viewport */
+    .console-laptop-monitor {
+      height: 120px;
+      background: #08090d;
+      border: 1px solid #252b3a;
+      border-radius: var(--radius-sm);
       position: relative;
       overflow: hidden;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
-    }
-
-    .laptop-screen-header {
-      height: 24px;
-      background: #131720;
-      border-bottom: 1px solid #222733;
-      display: flex;
-      align-items: center;
-      padding: 0 10px;
-      gap: 6px;
-    }
-
-    .window-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #2a3140;
-    }
-
-    .window-dot:nth-child(1) { background: #ff5f56; }
-    .window-dot:nth-child(2) { background: #ffbd2e; }
-    .window-dot:nth-child(3) { background: #27c93f; }
-
-    .window-title {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      margin-left: 8px;
-    }
-
-    .laptop-canvas-area {
-      position: relative;
-      width: 100%;
-      height: calc(100% - 24px);
-      background: radial-gradient(circle at 50% 50%, #151a24 0%, #0d0f14 100%);
-      overflow: hidden;
-    }
-
-    /* Target UI elements inside simulated laptop */
-    .sim-desktop-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      padding: 16px;
-    }
-
-    .sim-app-card {
-      height: 60px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 6px;
-      padding: 8px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      transition: border-color 0.2s, background 0.2s;
     }
 
-    .sim-app-card.card-highlight {
-      border-color: rgba(255, 42, 75, 0.4);
-      background: rgba(255, 42, 75, 0.08);
+    .monitor-header {
+      height: 20px;
+      background: #11141e;
+      border-bottom: 1px solid #1f2535;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      gap: 5px;
     }
 
-    .sim-card-bar {
+    .monitor-dot {
+      width: 6px;
       height: 6px;
-      width: 60%;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 3px;
+      border-radius: 50%;
+      background: #2a3142;
     }
 
-    .sim-card-pill {
-      height: 4px;
-      width: 40%;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 2px;
+    .monitor-canvas {
+      flex: 1;
+      position: relative;
+      background: radial-gradient(circle at 60% 40%, #151a26 0%, #08090d 100%);
     }
 
-    /* Simulated Pointer */
-    .sim-pointer {
+    .monitor-pointer {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       pointer-events: none;
       transform: translate(-2px, -2px);
       z-index: 10;
       transition: transform 0.04s linear;
-      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8));
     }
 
-    .sim-pointer-icon {
+    .pointer-icon-svg {
       fill: #ffffff;
       stroke: var(--accent-red);
       stroke-width: 1.5;
     }
 
-    .sim-click-ripple {
+    .click-flash-ripple {
       position: absolute;
       border: 2px solid var(--accent-red);
       border-radius: 50%;
       transform: translate(-50%, -50%);
       pointer-events: none;
-      animation: rippleEffect 0.6s ease-out forwards;
+      animation: rippleExpand 0.5s ease-out forwards;
     }
 
-    @keyframes rippleEffect {
+    @keyframes rippleExpand {
       0% { width: 4px; height: 4px; opacity: 1; }
-      100% { width: 46px; height: 46px; opacity: 0; }
-    }
-
-    /* Laptop Base */
-    .laptop-base {
-      width: 110%;
-      height: 10px;
-      background: #1d222c;
-      border-radius: 0 0 10px 10px;
-      border-top: 1px solid #363e4f;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
-    }
-
-    .schematic-caption {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      text-align: center;
-      margin-top: 12px;
-    }
-
-    .schematic-caption strong {
-      color: var(--accent-red);
+      100% { width: 40px; height: 40px; opacity: 0; }
     }
 
     @media (max-width: 1024px) {
-      .hero-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      .hero-content {
-        max-width: 650px;
-      }
-      .hero-visual {
-        max-width: 600px;
-      }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-spatial-canvas { max-width: 640px; }
     }
 
     @media (max-width: 768px) {
-      .hero-section {
-        padding-top: 36px;
-        padding-bottom: 60px;
-      }
-      .hero-title {
-        font-size: 2.2rem;
-      }
-      .hero-cta-group {
-        flex-direction: column;
-        width: 100%;
-        align-items: stretch;
-      }
-      .btn-primary, .btn-secondary {
-        width: 100%;
-        text-align: center;
-      }
-      .hero-visual {
-        height: auto;
-        padding: 16px;
-      }
-      .schematic-stage {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      .phone-device {
-        width: 100%;
-        height: 140px;
-        flex-direction: row;
-        gap: 12px;
-        align-items: center;
-      }
-      .phone-notch {
-        display: none;
-      }
-      .phone-buttons {
-        flex-direction: column;
-        height: 100%;
-        margin-top: 0;
-        width: 80px;
-      }
-      .wireless-conduit {
-        display: none;
-      }
-      .laptop-device {
-        height: 220px;
-      }
-      .laptop-screen-frame {
-        height: 200px;
-      }
+      .hero-h1 { font-size: 2.4rem; }
+      .hero-cta-box { flex-direction: column; align-items: stretch; width: 100%; }
+      .btn-magnetic-cta, .btn-secondary-link { width: 100%; text-align: center; }
+      .live-trackpad-console { grid-template-columns: 1fr; }
+      .product-photo-frame { height: 180px; }
     }
 
     /* -------------------------------------------------------------
-       HOW IT WORKS PIPELINE STYLES
+       KINETIC TYPOGRAPHY TRANSITION RIBBON (ACT 02)
        ------------------------------------------------------------- */
-    .how-it-works-section {
+    .kinetic-ribbon-section {
+      width: 100%;
+      padding: 30px 0;
+      background: #090b10;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      gap: 32px;
+      animation: marqueeScroll 28s linear infinite;
+    }
+
+    .marquee-track.reverse {
+      animation-direction: reverse;
+      animation-duration: 32s;
+      margin-top: 12px;
+      opacity: 0.65;
+    }
+
+    .marquee-item {
+      font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      white-space: nowrap;
+    }
+
+    .marquee-item span.accent-symbol {
+      color: var(--accent-red);
+    }
+
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* -------------------------------------------------------------
+       STICKY STORYTELLING PIPELINE (ACT 03: HOW IT WORKS)
+       ------------------------------------------------------------- */
+    .narrative-section {
       position: relative;
       background: var(--bg-surface);
-      border-top: 1px solid var(--border-subtle);
       border-bottom: 1px solid var(--border-subtle);
     }
 
-    .section-header {
-      margin-bottom: 56px;
+    .narrative-header {
+      margin-bottom: 60px;
     }
 
-    .section-title {
-      font-size: clamp(2rem, 3.2vw, 2.7rem);
-      margin-bottom: 14px;
+    .narrative-h2 {
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      margin-top: 12px;
+      margin-bottom: 16px;
     }
 
-    .section-lead {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      max-width: 52ch;
-    }
-
-    .pipeline-grid {
+    .narrative-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      position: relative;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
     }
 
-    .pipeline-grid::before {
-      content: "";
-      position: absolute;
-      top: 54px;
-      left: 12%;
-      right: 12%;
-      height: 2px;
-      background: linear-gradient(90deg, 
-        rgba(255, 42, 75, 0.2) 0%, 
-        var(--accent-red) 50%, 
-        rgba(255, 42, 75, 0.2) 100%
-      );
-      z-index: 0;
-    }
-
-    .pipeline-card {
-      position: relative;
-      background: var(--bg-canvas);
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-lg);
-      padding: 32px 24px;
+    .story-steps-col {
       display: flex;
       flex-direction: column;
-      z-index: 1;
-      transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
-    }
-
-    .pipeline-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255, 42, 75, 0.45);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 42, 75, 0.08);
-    }
-
-    .step-badge {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--bg-elevated);
-      border: 2px solid var(--accent-red);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-mono);
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 24px;
-      box-shadow: 0 0 16px var(--accent-red-glow);
-    }
-
-    .step-preview {
-      height: 120px;
-      background: rgba(255, 255, 255, 0.015);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .step-title {
-      font-size: 1.35rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: var(--text-primary);
-    }
-
-    .step-desc {
-      font-size: 0.96rem;
-      line-height: 1.6;
-      color: var(--text-secondary);
-    }
-
-    @media (max-width: 900px) {
-      .pipeline-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-      .pipeline-grid::before {
-        display: none;
-      }
-    }
-
-    /* -------------------------------------------------------------
-       CORE CAPABILITIES SECTION (ASYMMETRIC 7-5 / 5-7 BENTO)
-       ------------------------------------------------------------- */
-    .features-section {
-      position: relative;
-    }
-
-    .features-layout-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
       gap: 24px;
     }
 
-    .feature-panel {
-      background: var(--bg-surface);
+    .story-step-card {
+      background: var(--bg-base);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out-expo);
+      position: relative;
+    }
+
+    .story-step-card.active {
+      border-color: var(--accent-red);
+      background: rgba(255, 40, 77, 0.04);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 40, 77, 0.1);
+    }
+
+    .step-num-badge {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-red);
+      margin-bottom: 8px;
+    }
+
+    .step-heading {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .step-paragraph {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Reactive Narrative Display Window */
+    .story-display-col {
+      position: sticky;
+      top: 120px;
+      height: 420px;
+      background: #090b10;
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-lg);
-      padding: 36px;
+      padding: 28px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-      transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-    }
-
-    .feature-panel:hover {
-      border-color: rgba(255, 42, 75, 0.4);
-      transform: translateY(-3px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
-    }
-
-    .panel-span-7 {
-      grid-column: span 7;
-    }
-
-    .panel-span-5 {
-      grid-column: span 5;
-    }
-
-    .feature-tag {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--accent-red);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      display: inline-block;
-    }
-
-    .feature-h3 {
-      font-size: 1.45rem;
-      font-weight: 700;
-      line-height: 1.25;
-      margin-bottom: 12px;
-      color: var(--text-primary);
-    }
-
-    .feature-text {
-      font-size: 0.96rem;
-      line-height: 1.6;
-      color: var(--text-secondary);
-      margin-bottom: 24px;
-      max-width: 48ch;
-    }
-
-    /* Graphic 1: Wireless Space Map */
-    .graphic-space-map {
-      height: 140px;
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      padding: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
       overflow: hidden;
     }
 
-    .space-node {
+    .story-display-col::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+    }
+
+    .story-display-header {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
+      justify-content: space-between;
       font-family: var(--font-mono);
       font-size: 0.72rem;
       color: var(--text-muted);
-      z-index: 1;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
     }
 
-    .space-node-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: var(--radius-sm);
-      background: #151922;
-      border: 1px solid #282f3d;
+    .story-screen-visual {
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-primary);
+      position: relative;
     }
 
-    .space-node.active .space-node-icon {
-      border-color: var(--accent-red);
-      color: var(--accent-red);
-      box-shadow: 0 0 12px var(--accent-red-glow);
-    }
-
-    /* Graphic 2: Gesture Pills */
-    .graphic-gestures {
+    .story-phase-layer {
+      position: absolute;
+      inset: 0;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.96);
+      transition: all 0.35s var(--ease-out-expo);
+      pointer-events: none;
     }
 
-    .gesture-row {
-      display: flex;
+    .story-phase-layer.active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    @media (max-width: 900px) {
+      .narrative-grid { grid-template-columns: 1fr; }
+      .story-display-col { position: relative; top: 0; height: 320px; }
+    }
+
+    /* -------------------------------------------------------------
+       CORE CAPABILITIES: ASYMMETRIC EDITORIAL LAYOUTS (ACT 04)
+       ------------------------------------------------------------- */
+    .capabilities-section {
+      position: relative;
+    }
+
+    .capabilities-header {
+      margin-bottom: 60px;
+    }
+
+    .editorial-statement-block {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-lg);
+      padding: clamp(36px, 6vw, 64px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
       align-items: center;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .editorial-img-wrap {
+      width: 100%;
+      height: 280px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-medium);
+    }
+
+    .editorial-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .asymmetric-duo-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+    }
+
+    .capability-card-dark {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      padding: 10px 14px;
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-sm);
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      transition: border-color var(--transition-fast), background var(--transition-fast);
+      position: relative;
+      transition: transform 0.25s var(--ease-out-expo), border-color 0.25s ease;
     }
 
-    .gesture-row:hover {
-      border-color: rgba(255, 42, 75, 0.4);
-      background: rgba(255, 42, 75, 0.06);
-      color: var(--text-primary);
+    .capability-card-dark:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-accent);
     }
 
-    .gesture-badge {
-      padding: 3px 8px;
-      border-radius: var(--radius-sm);
-      background: #171b25;
-      border: 1px solid #282e3c;
-      color: var(--accent-red);
-      font-weight: 600;
-      font-size: 0.72rem;
-    }
-
-    /* Graphic 3: Friction vs Phone Checklist */
-    .graphic-friction {
+    .stark-contrast-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 16px;
+      margin-top: 24px;
     }
 
-    .friction-item {
+    .stark-row {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 0.88rem;
+      gap: 14px;
+      font-size: 0.95rem;
       color: var(--text-secondary);
     }
 
-    .friction-cross {
-      width: 18px;
-      height: 18px;
+    .cross-glyph {
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       background: rgba(255, 60, 60, 0.12);
-      border: 1px solid rgba(255, 60, 60, 0.3);
-      color: #ff5050;
+      border: 1px solid rgba(255, 60, 60, 0.35);
+      color: #ff5555;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
       font-weight: bold;
+      font-size: 0.8rem;
       flex-shrink: 0;
     }
 
-    .friction-check {
-      width: 18px;
-      height: 18px;
+    .check-glyph {
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       background: rgba(56, 239, 125, 0.12);
-      border: 1px solid rgba(56, 239, 125, 0.3);
+      border: 1px solid rgba(56, 239, 125, 0.35);
       color: #38ef7d;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
       font-weight: bold;
+      font-size: 0.85rem;
       flex-shrink: 0;
     }
 
-    /* Graphic 4: Auto-Discovery Radar */
-    .graphic-discovery {
-      height: 140px;
-      background: rgba(0, 0, 0, 0.35);
+    .radar-visual-box {
+      height: 180px;
+      background: #090b10;
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       position: relative;
@@ -1268,150 +1064,128 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      margin-top: 24px;
     }
 
-    .radar-circle {
+    .radar-sweep-beam {
       position: absolute;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
-      border: 1px solid rgba(255, 42, 75, 0.25);
+      border: 1px solid rgba(255, 40, 77, 0.25);
     }
 
-    .radar-circle:nth-child(1) { width: 40px; height: 40px; }
-    .radar-circle:nth-child(2) { width: 90px; height: 90px; }
-    .radar-circle:nth-child(3) { width: 140px; height: 140px; }
+    .radar-sweep-beam:nth-child(1) { width: 60px; height: 60px; }
+    .radar-sweep-beam:nth-child(2) { width: 120px; height: 120px; }
+    .radar-sweep-beam:nth-child(3) { width: 180px; height: 180px; }
 
-    .radar-center-host {
+    .radar-tag-badge {
       z-index: 2;
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 14px;
+      padding: 8px 18px;
       background: var(--bg-surface);
       border: 1px solid var(--accent-red);
       border-radius: var(--radius-pill);
       font-family: var(--font-mono);
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       color: #ffffff;
-      box-shadow: 0 0 16px var(--accent-red-glow);
+      box-shadow: 0 0 20px var(--accent-red-glow);
     }
 
     @media (max-width: 900px) {
-      .features-layout-grid {
-        grid-template-columns: 1fr;
-      }
-      .panel-span-7, .panel-span-5 {
-        grid-column: span 1;
-      }
-      .feature-panel {
-        padding: 24px;
-      }
+      .editorial-statement-block { grid-template-columns: 1fr; }
+      .asymmetric-duo-grid { grid-template-columns: 1fr; }
     }
 
     /* -------------------------------------------------------------
-       INTERACTIVE CONTROLLER MODES SANDBOX
+       INTERACTIVE CONTROLLER CONSOLE (ACT 05: THE EXPERIENCE)
        ------------------------------------------------------------- */
-    .modes-section {
+    .console-section {
       position: relative;
       background: var(--bg-surface);
       border-top: 1px solid var(--border-subtle);
       border-bottom: 1px solid var(--border-subtle);
     }
 
-    .modes-tablist {
+    .modes-tab-bar {
       display: inline-flex;
-      gap: 6px;
+      gap: 8px;
       padding: 6px;
-      background: var(--bg-canvas);
+      background: var(--bg-base);
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-pill);
-      margin-bottom: 36px;
+      margin-bottom: 40px;
       flex-wrap: wrap;
     }
 
-    .mode-tab {
-      padding: 10px 20px;
+    .console-mode-tab {
+      padding: 10px 22px;
       border-radius: var(--radius-pill);
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 600;
       color: var(--text-secondary);
-      background: transparent;
-      transition: all var(--transition-fast);
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      transition: all 0.25s var(--ease-out-expo);
     }
 
-    .mode-tab.active {
+    .console-mode-tab.active {
       background: var(--accent-red);
       color: #ffffff;
-      box-shadow: 0 0 16px var(--accent-red-glow);
+      box-shadow: 0 0 20px var(--accent-red-glow);
     }
 
-    .mode-tab:hover:not(.active) {
-      color: var(--text-primary);
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .modes-sandbox-container {
+    .sandbox-console-layout {
       display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 36px;
-      background: var(--bg-canvas);
+      grid-template-columns: 320px 1fr;
+      gap: 40px;
+      background: var(--bg-base);
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-lg);
-      padding: 32px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      padding: 36px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
     }
 
-    /* Left Phone Simulator */
-    .sandbox-phone {
-      background: #0b0d12;
-      border: 2px solid #282f3d;
-      border-radius: 20px;
-      padding: 14px;
-      height: 380px;
+    /* Left Controller Hardware */
+    .hardware-unit {
+      background: #0a0c12;
+      border: 2px solid #282f40;
+      border-radius: 22px;
+      padding: 16px;
+      height: 400px;
       display: flex;
       flex-direction: column;
       position: relative;
     }
 
-    .sandbox-phone-top {
+    .hardware-top {
       font-family: var(--font-mono);
       font-size: 0.72rem;
       color: var(--text-muted);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 10px;
+      padding-bottom: 12px;
       border-bottom: 1px solid var(--border-subtle);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
-    .sandbox-phone-body {
-      flex: 1;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Mode Panel Views */
-    .phone-mode-view {
+    .hardware-view-panel {
       display: none;
       flex: 1;
       flex-direction: column;
       height: 100%;
     }
 
-    .phone-mode-view.active {
+    .hardware-view-panel.active {
       display: flex;
     }
 
-    /* Mode 1: Trackpad View */
-    .sandbox-trackpad {
+    .tactile-trackpad-surface {
       flex: 1;
-      background: radial-gradient(circle at center, rgba(255, 42, 75, 0.06) 0%, rgba(18, 22, 30, 0.95) 75%);
-      border: 1px dashed rgba(255, 42, 75, 0.35);
-      border-radius: 10px;
+      background: radial-gradient(circle at center, rgba(255, 40, 77, 0.08) 0%, #111520 80%);
+      border: 1px dashed rgba(255, 40, 77, 0.4);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1421,30 +1195,24 @@
       overflow: hidden;
     }
 
-    .sandbox-trackpad:hover {
-      border-color: var(--accent-red);
-    }
-
-    /* Mode 2: Scroll Ribbon */
-    .sandbox-scroll-area {
+    .tactile-scroll-ribbon {
       flex: 1;
-      background: #11141c;
-      border: 1px solid #282f3d;
-      border-radius: 10px;
+      background: #10131b;
+      border: 1px solid #252b3b;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
       cursor: ns-resize;
       user-select: none;
-      overflow: hidden;
+      position: relative;
     }
 
-    .scroll-ribbon-track {
-      width: 48px;
+    .ribbon-track-inner {
+      width: 52px;
       height: 80%;
-      background: #171b24;
-      border: 1px solid rgba(255, 42, 75, 0.3);
+      background: #171b26;
+      border: 1px solid rgba(255, 40, 77, 0.35);
       border-radius: var(--radius-pill);
       display: flex;
       flex-direction: column;
@@ -1454,300 +1222,265 @@
       position: relative;
     }
 
-    .scroll-handle {
-      width: 38px;
-      height: 38px;
+    .ribbon-thumb {
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: var(--accent-red);
-      box-shadow: 0 0 12px var(--accent-red-glow);
+      box-shadow: 0 0 16px var(--accent-red-glow);
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       transition: top 0.05s ease-out;
     }
 
-    /* Mode 3: Remote Clicker */
-    .sandbox-remote {
+    .remote-clicker-stack {
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      padding: 10px 0;
       gap: 12px;
     }
 
-    .remote-btn-large {
-      padding: 18px;
-      background: #161b24;
-      border: 1px solid #2c3444;
+    .btn-keynote-big {
+      padding: 20px;
+      background: #141824;
+      border: 1px solid #2d364a;
       border-radius: var(--radius-md);
-      color: var(--text-primary);
-      font-weight: 700;
-      font-size: 0.95rem;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      transition: all var(--transition-fast);
+      transition: all 0.2s ease;
     }
 
-    .remote-btn-large:hover, .remote-btn-large:active {
+    .btn-keynote-big:hover, .btn-keynote-big:active {
       background: var(--accent-red);
-      color: #ffffff;
-      box-shadow: 0 0 16px var(--accent-red-glow);
+      box-shadow: 0 0 20px var(--accent-red-glow);
       border-color: var(--accent-red);
     }
 
-    .remote-actions-row {
+    .remote-sub-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
 
-    .remote-btn-small {
+    .btn-keynote-small {
       padding: 12px;
-      background: #141720;
-      border: 1px solid #262c3a;
+      background: #11141e;
+      border: 1px solid #232a3a;
       border-radius: var(--radius-sm);
       color: var(--text-secondary);
       font-family: var(--font-mono);
       font-size: 0.76rem;
       font-weight: 600;
-      transition: all var(--transition-fast);
+      transition: all 0.2s ease;
     }
 
-    .remote-btn-small:hover {
+    .btn-keynote-small:hover {
       background: var(--bg-elevated);
-      color: var(--accent-red);
-      border-color: rgba(255, 42, 75, 0.4);
+      color: #ffffff;
+      border-color: var(--border-accent);
     }
 
-    /* Right Computer Screen */
-    .sandbox-screen {
-      background: #0b0d12;
-      border: 2px solid #232835;
+    /* Right Output Display */
+    .output-unit {
+      background: #080a0f;
+      border: 2px solid #242a38;
       border-radius: var(--radius-md);
-      height: 380px;
+      height: 400px;
       display: flex;
       flex-direction: column;
       overflow: hidden;
       position: relative;
     }
 
-    .sandbox-screen-header {
-      height: 28px;
-      background: #141822;
-      border-bottom: 1px solid #222733;
+    .output-unit-header {
+      height: 30px;
+      background: #121622;
+      border-bottom: 1px solid #1f2535;
       display: flex;
       align-items: center;
-      padding: 0 12px;
+      padding: 0 14px;
       justify-content: space-between;
       font-family: var(--font-mono);
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
     }
 
-    .sandbox-screen-content {
+    .output-content-stage {
       flex: 1;
       position: relative;
       overflow: hidden;
     }
 
-    /* Screen Views */
-    .screen-mode-view {
+    .output-mode-layer {
       display: none;
       width: 100%;
       height: 100%;
       position: relative;
     }
 
-    .screen-mode-view.active {
+    .output-mode-layer.active {
       display: block;
     }
 
-    /* Screen 1: Desktop Workspace */
-    .screen-workspace {
-      padding: 24px;
+    /* View 1 Workspace */
+    .screen-grid-workspace {
+      padding: 28px;
       height: 100%;
-      background: radial-gradient(circle at 60% 40%, #151a24 0%, #0d0f14 100%);
+      background: radial-gradient(circle at 60% 40%, #151a28 0%, #080a0f 100%);
       position: relative;
     }
 
-    .workspace-pointer {
+    .workspace-cursor-elem {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       pointer-events: none;
       transform: translate(-2px, -2px);
       z-index: 10;
       transition: transform 0.04s linear;
     }
 
-    /* Screen 2: Scroll Document */
-    .screen-document {
+    /* View 2 Document */
+    .screen-document-scroll {
       height: 100%;
       overflow-y: hidden;
-      padding: 24px;
-      background: #10131a;
+      padding: 28px;
+      background: #0d1017;
       position: relative;
     }
 
-    .doc-inner {
+    .doc-flow-inner {
       transition: transform 0.1s ease-out;
     }
 
-    .doc-line-title {
-      height: 14px;
+    .doc-bar-title {
+      height: 16px;
       width: 50%;
       background: var(--accent-red);
-      opacity: 0.7;
+      opacity: 0.75;
       border-radius: 4px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
-    .doc-line {
+    .doc-bar-line {
       height: 8px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 3px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    /* Screen 3: Slide Presentation */
-    .screen-presentation {
+    /* View 3 Slide */
+    .screen-slide-stage {
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #0e1118;
+      background: #0a0c12;
       padding: 24px;
-      position: relative;
     }
 
-    .slide-card {
+    .keynote-card-box {
       width: 100%;
-      max-width: 440px;
-      height: 240px;
-      background: #151922;
-      border: 1px solid #2a3140;
+      max-width: 480px;
+      height: 260px;
+      background: #141722;
+      border: 1px solid #282f42;
       border-radius: var(--radius-md);
-      padding: 28px;
+      padding: 32px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .slide-num {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--accent-red);
-      font-weight: 700;
-    }
-
-    .slide-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--text-primary);
-    }
-
-    .slide-footer {
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--text-muted);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      transition: all 0.25s var(--ease-out-expo);
     }
 
     @media (max-width: 900px) {
-      .modes-sandbox-container {
-        grid-template-columns: 1fr;
-        padding: 20px;
-        gap: 24px;
-      }
-      .sandbox-phone {
-        height: 260px;
-      }
-      .sandbox-screen {
-        height: 280px;
-      }
+      .sandbox-console-layout { grid-template-columns: 1fr; padding: 20px; }
+      .hardware-unit { height: 280px; }
+      .output-unit { height: 300px; }
     }
 
     /* -------------------------------------------------------------
-       HIGH-IMPACT DOWNLOAD CTA SECTION
+       HIGH-IMPACT CLOSING STAGE & DOWNLOAD (ACT 06)
        ------------------------------------------------------------- */
-    .download-section {
+    .closing-download-section {
       position: relative;
-      padding-top: 80px;
-      padding-bottom: 100px;
+      padding-top: 100px;
+      padding-bottom: 120px;
       overflow: hidden;
     }
 
-    .download-card {
-      background: linear-gradient(180deg, #131720 0%, #0c0e13 100%);
+    .closing-card-hero {
+      background: linear-gradient(180deg, #131722 0%, #08090d 100%);
       border: 1px solid var(--border-medium);
       border-radius: var(--radius-lg);
-      padding: clamp(48px, 8vw, 80px) 24px;
+      padding: clamp(56px, 9vw, 96px) 24px;
       text-align: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
     }
 
-    .download-card::before {
+    .closing-card-hero::before {
       content: "";
       position: absolute;
       top: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 440px;
-      height: 220px;
-      background: radial-gradient(ellipse at top, rgba(255, 42, 75, 0.22) 0%, transparent 70%);
+      width: 500px;
+      height: 260px;
+      background: radial-gradient(ellipse at top, rgba(255, 40, 77, 0.28) 0%, transparent 70%);
       pointer-events: none;
     }
 
-    .download-title {
-      font-size: clamp(2rem, 3.8vw, 3.2rem);
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      margin-bottom: 18px;
+    .closing-h2 {
+      font-size: clamp(2.4rem, 4.4vw, 3.8rem);
+      font-weight: 850;
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      margin-bottom: 20px;
       text-transform: uppercase;
-      color: var(--text-primary);
+      color: #ffffff;
     }
 
-    .download-desc {
-      font-size: 1.12rem;
+    .closing-lead {
+      font-size: 1.18rem;
       color: var(--text-secondary);
-      margin: 0 auto 36px auto;
-      max-width: 44ch;
+      margin: 0 auto 40px auto;
+      max-width: 48ch;
     }
 
-    .download-actions {
+    .closing-actions-col {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
     }
 
-    .download-platforms-row {
+    .platform-badges-cluster {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-top: 14px;
     }
 
-    .platform-chip {
-      padding: 6px 14px;
-      background: rgba(255, 255, 255, 0.03);
+    .platform-pill {
+      padding: 7px 16px;
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-pill);
       font-family: var(--font-mono);
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       color: var(--text-secondary);
     }
 
@@ -1755,85 +1488,84 @@
        MINIMALIST TECHNICAL FOOTER
        ------------------------------------------------------------- */
     .site-footer {
-      background: var(--bg-canvas);
+      background: var(--bg-base);
       border-top: 1px solid var(--border-subtle);
-      padding: 36px 0;
+      padding: 40px 0;
       font-size: 0.88rem;
     }
 
-    .footer-container {
+    .footer-flex-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 24px;
     }
 
-    .footer-brand-info {
+    .footer-brand-wrap {
       display: flex;
       align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
+      gap: 16px;
     }
 
-    .footer-status-tag {
+    .footer-status-pill {
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       color: #38ef7d;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       background: rgba(56, 239, 125, 0.08);
-      border: 1px solid rgba(56, 239, 125, 0.25);
-      padding: 3px 10px;
+      border: 1px solid rgba(56, 239, 125, 0.3);
+      padding: 4px 12px;
       border-radius: var(--radius-pill);
     }
 
-    .footer-nav-links {
+    .footer-links-list {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 28px;
       list-style: none;
     }
 
-    .footer-nav-links a {
+    .footer-links-list a {
       color: var(--text-secondary);
-      font-size: 0.88rem;
+      font-size: 0.9rem;
     }
 
-    .footer-nav-links a:hover {
+    .footer-links-list a:hover {
       color: var(--accent-red);
     }
 
-    /* Toast Notification for Placeholder Download */
-    .download-toast {
+    /* Toast Notification for Download Routing */
+    .download-toast-popup {
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: #181d27;
+      background: #151924;
       border: 1px solid var(--accent-red);
       border-radius: var(--radius-sm);
-      padding: 14px 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px var(--accent-red-glow);
-      font-size: 0.9rem;
+      padding: 16px 22px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.8), 0 0 24px var(--accent-red-glow);
+      font-size: 0.92rem;
       font-family: var(--font-mono);
       color: var(--text-primary);
       z-index: 1000;
-      transform: translateY(100px);
+      transform: translateY(120px);
       opacity: 0;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      transition: transform 0.35s var(--ease-out-expo), opacity 0.3s ease;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
-    .download-toast.show {
+    .download-toast-popup.is-visible {
       transform: translateY(0);
       opacity: 1;
     }
 
     /* -------------------------------------------------------------
-       CUSTOM DESKTOP CURSOR SYSTEM
+       SMOKY LIQUID CURSOR & CANVAS TRAIL ENGINE
        ------------------------------------------------------------- */
     @media (hover: hover) and (pointer: fine) {
       body {
@@ -1844,7 +1576,7 @@
         cursor: none !important;
       }
 
-      .custom-cursor-dot {
+      .cursor-core-dot {
         position: fixed;
         top: 0;
         left: 0;
@@ -1855,42 +1587,42 @@
         pointer-events: none;
         z-index: 9999;
         transform: translate(-50%, -50%);
-        box-shadow: 0 0 10px var(--accent-red);
-        transition: opacity 0.25s ease, transform 0.12s ease;
+        box-shadow: 0 0 12px var(--accent-red);
+        transition: opacity 0.2s ease, transform 0.1s ease;
       }
 
-      .custom-cursor-ring {
+      .cursor-smooth-ring {
         position: fixed;
         top: 0;
         left: 0;
         width: 36px;
         height: 36px;
-        border: 1.5px solid rgba(255, 42, 75, 0.55);
+        border: 1.5px solid rgba(255, 40, 77, 0.6);
         border-radius: 50%;
         pointer-events: none;
         z-index: 9998;
         transform: translate(-50%, -50%);
-        transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
-                    height 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+        transition: width 0.22s var(--ease-out-expo), 
+                    height 0.22s var(--ease-out-expo), 
                     border-color 0.22s ease, 
                     background-color 0.22s ease,
                     opacity 0.25s ease;
       }
 
-      .custom-cursor-ring.hover-active {
-        width: 54px;
-        height: 54px;
+      .cursor-smooth-ring.hover-active {
+        width: 56px;
+        height: 56px;
         border-color: var(--accent-red);
-        background: rgba(255, 42, 75, 0.12);
-        box-shadow: 0 0 16px var(--accent-red-glow);
+        background: rgba(255, 40, 77, 0.12);
+        box-shadow: 0 0 20px var(--accent-red-glow);
       }
 
-      .custom-cursor-ring.click-active {
+      .cursor-smooth-ring.click-active {
         transform: translate(-50%, -50%) scale(0.8);
-        background: rgba(255, 42, 75, 0.25);
+        background: rgba(255, 40, 77, 0.3);
       }
 
-      .custom-cursor-canvas {
+      .cursor-smoke-canvas {
         position: fixed;
         inset: 0;
         width: 100vw;
@@ -1899,15 +1631,15 @@
         z-index: 9997;
       }
 
-      .cursor-hidden {
+      .cursor-fade-out {
         opacity: 0 !important;
       }
     }
 
     @media (hover: none) or (pointer: coarse) or (max-width: 768px) {
-      .custom-cursor-dot,
-      .custom-cursor-ring,
-      .custom-cursor-canvas {
+      .cursor-core-dot,
+      .cursor-smooth-ring,
+      .cursor-smoke-canvas {
         display: none !important;
       }
       body {
@@ -1921,12 +1653,6 @@
     /* -------------------------------------------------------------
        PREFERS-REDUCED-MOTION
        ------------------------------------------------------------- */
-
-
-
-
-
-
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -1938,25 +1664,32 @@
   </style>
 </head>
 <body>
+  <!-- Ambient Atmospheric Environment Layers -->
+  <div class="ambient-background" aria-hidden="true">
+    <div class="ambient-grid"></div>
+    <div class="ambient-haze-top"></div>
+    <div class="ambient-haze-mid"></div>
+  </div>
+
   <div id="app">
-    <!-- Navigation Header -->
+    <!-- NAVIGATION HEADER -->
     <header class="site-header" id="site-header">
       <div class="container nav-container">
-        <a href="#" class="brand-link" aria-label="Easy Mouse Home">
-          <span class="brand-beacon" aria-hidden="true"></span>
+        <a href="#" class="brand-link" aria-label="Easy Mouse Homepage">
+          <div class="brand-symbol" aria-hidden="true"></div>
           <span>Easy Mouse</span>
         </a>
 
         <nav aria-label="Primary Navigation">
           <ul class="nav-links-desktop">
             <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
-            <li><a href="#features" class="nav-link">Features</a></li>
-            <li><a href="#modes" class="nav-link">Modes</a></li>
+            <li><a href="#capabilities" class="nav-link">Capabilities</a></li>
+            <li><a href="#controller-modes" class="nav-link">Controller Modes</a></li>
           </ul>
         </nav>
 
         <div class="nav-actions">
-          <a href="#download" class="btn-nav-download" id="download-app-nav">Download</a>
+          <a href="#download" class="btn-nav-action" id="download-app-nav">Download</a>
           <button class="mobile-menu-btn" id="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation menu">
             <span class="hamburger-icon">
               <span></span>
@@ -1967,311 +1700,90 @@
         </div>
       </div>
 
-      <!-- Mobile Navigation Drawer -->
+      <!-- Mobile Navigation Overlay Drawer -->
       <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
-        <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
-        <a href="#features" class="mobile-nav-link">Features</a>
-        <a href="#modes" class="mobile-nav-link">Modes</a>
-        <a href="#download" class="btn-drawer-download mobile-nav-link">Download Easy Mouse</a>
+        <a href="#how-it-works" class="mobile-link">How It Works</a>
+        <a href="#capabilities" class="mobile-link">Capabilities</a>
+        <a href="#controller-modes" class="mobile-link">Controller Modes</a>
+        <a href="#download" class="btn-nav-action mobile-link" style="text-align: center; margin-top: 8px;">Download Easy Mouse</a>
       </div>
     </header>
 
     <main id="main-content">
-      <!-- HERO SECTION -->
-      <section class="hero-section" id="hero">
-        <div class="container hero-container">
-          <!-- Left Column: Copy & Actions -->
-          <div class="hero-content">
-            <div class="hero-badge">
-              <span class="badge-dot"></span>
-              <span class="badge-text">Instant Desktop Utility</span>
-            </div>
+      <!-- ACT 01: HERO SECTION & SPATIAL PRODUCT SHOWCASE -->
+      <section class="hero-stage" id="hero">
+        <div class="container hero-grid">
+          <!-- Left: Editorial Value Proposition -->
+          <div class="hero-editorial">
+            <div class="mono-tag">Instant Desktop Utility</div>
 
-            <h1 class="hero-title">Turn your phone into a wireless mouse.</h1>
+            <h1 class="hero-h1">
+              Turn your phone into a <span class="outline-word">wireless mouse.</span>
+            </h1>
 
-            <p class="hero-description">
-              Control your laptop or PC with precision touch gestures, zero extra hardware, and instant wireless pairing.
+            <p class="hero-lead">
+              Transform the touchscreen in your pocket into an instant high-precision trackpad and remote controller for any laptop or PC.
             </p>
 
-            <div class="hero-cta-group">
-              <a href="#download" class="btn-primary" id="download-app" data-download="true">
+            <div class="hero-cta-box">
+              <a href="#download" class="btn-magnetic-cta" id="download-app" data-download="true">
                 <span>Download Easy Mouse</span>
                 <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </a>
-              <a href="#how-it-works" class="btn-secondary">
-                <span>See How It Works</span>
+              <a href="#how-it-works" class="btn-secondary-link">
+                <span>See the Workflow</span>
                 <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
               </a>
             </div>
 
-            <div class="hero-meta">
-              <span class="meta-label">Platforms:</span>
-              <span class="meta-item">Windows</span>
-              <span class="meta-sep">/</span>
-              <span class="meta-item">macOS</span>
-              <span class="meta-sep">/</span>
-              <span class="meta-item">Linux</span>
-              <span class="meta-sep">/</span>
-              <span class="meta-item">Android</span>
-              <span class="meta-sep">/</span>
-              <span class="meta-item">iOS</span>
+            <div class="hero-specs-row">
+              <span>Platforms:</span>
+              <strong>Windows</strong> / <strong>macOS</strong> / <strong>Linux</strong> / <strong>iOS</strong> / <strong>Android</strong>
             </div>
           </div>
 
-          <!-- Right Column: Interactive Hardware Link Schematic -->
-          <div class="hero-visual" id="hero-visual">
-            <div class="schematic-header">
-              <span>SYSTEM SCHEMATIC: LINK_V2</span>
-              <div class="schematic-status">
-                <span class="status-ping"></span>
-                <span id="schematic-link-text">LINK ACTIVE</span>
+          <!-- Right: Spatial Product Photographic & Live Simulation Canvas -->
+          <div class="hero-spatial-canvas" id="spatial-hero-box">
+            <div class="spatial-topbar">
+              <span>HARDWARE BRIDGE: LINK_ACTIVE</span>
+              <div class="beacon-live">
+                <span class="beacon-dot"></span>
+                <span>SUB-MS HANDSHAKE</span>
               </div>
             </div>
 
-            <div class="schematic-stage">
-              <!-- Smartphone Controller -->
-              <div class="phone-device" id="sim-phone">
-                <div class="phone-notch"></div>
-                <div class="phone-touchpad" id="hero-touchpad" tabindex="0" role="region" aria-label="Interactive Touchpad Simulator">
-                  <span class="touchpad-label">Touch / Drag Surface</span>
-                  <div class="touch-indicator" id="hero-touch-dot"></div>
+            <!-- Custom High-Resolution Studio Product Visual -->
+            <div class="product-photo-frame">
+              <img src="assets/hero-device.jpg" alt="Easy Mouse smartphone wireless trackpad connected to laptop" class="product-photo-img" loading="eager">
+              <div class="photo-overlay-tag">Hardware Link Studio Setup</div>
+            </div>
+
+            <!-- Live Interactive Dual-Surface Console -->
+            <div class="live-trackpad-console">
+              <!-- Touchpad Surface (User input) -->
+              <div class="console-phone-touchpad" id="hero-interactive-touchpad" tabindex="0" role="region" aria-label="Interactive Phone Trackpad Simulator">
+                <span class="touchpad-caption">Touch or Drag Here</span>
+                <div class="touchpad-point-dot" id="hero-live-dot"></div>
+              </div>
+
+              <!-- Laptop Display (Live response) -->
+              <div class="console-laptop-monitor">
+                <div class="monitor-header">
+                  <span class="monitor-dot"></span>
+                  <span class="monitor-dot"></span>
+                  <span class="monitor-dot"></span>
+                  <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); margin-left: 6px;">Live Remote View</span>
                 </div>
-                <div class="phone-buttons">
-                  <button class="phone-btn" id="btn-left-click" type="button" aria-label="Left Click Button">L-CLICK</button>
-                  <button class="phone-btn" id="btn-right-click" type="button" aria-label="Right Click Button">R-CLICK</button>
-                </div>
-              </div>
-
-              <!-- Animated Signal Conduit SVG -->
-              <svg class="wireless-conduit" id="wireless-stream" viewBox="0 0 80 40" fill="none" aria-hidden="true">
-                <path d="M 0 20 Q 40 5 80 20" stroke="rgba(255, 42, 75, 0.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
-                <circle id="signal-packet-1" cx="10" cy="18" r="3" fill="#ff2a4b"/>
-                <circle id="signal-packet-2" cx="40" cy="12" r="3.5" fill="#ff2a4b"/>
-                <circle id="signal-packet-3" cx="70" cy="18" r="3" fill="#ff2a4b"/>
-              </svg>
-
-              <!-- Laptop Display Screen -->
-              <div class="laptop-device">
-                <div class="laptop-screen-frame">
-                  <div class="laptop-screen-header">
-                    <span class="window-dot"></span>
-                    <span class="window-dot"></span>
-                    <span class="window-dot"></span>
-                    <span class="window-title">Desktop Display - 60Hz Remote Feed</span>
-                  </div>
-                  <div class="laptop-canvas-area" id="laptop-screen">
-                    <div class="sim-desktop-grid">
-                      <div class="sim-app-card" id="card-1">
-                        <div class="sim-card-bar"></div>
-                        <div class="sim-card-pill"></div>
-                      </div>
-                      <div class="sim-app-card" id="card-2">
-                        <div class="sim-card-bar" style="width: 75%;"></div>
-                        <div class="sim-card-pill"></div>
-                      </div>
-                      <div class="sim-app-card" id="card-3">
-                        <div class="sim-card-bar" style="width: 50%;"></div>
-                        <div class="sim-card-pill"></div>
-                      </div>
-                    </div>
-
-                    <!-- Laptop Cursor Element -->
-                    <div class="sim-pointer" id="laptop-cursor">
-                      <svg class="sim-pointer-icon" width="20" height="20" viewBox="0 0 24 24">
-                        <path d="M4 2L20 10L12 13L8 21L4 2Z"/>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <div class="laptop-base"></div>
-              </div>
-            </div>
-
-            <div class="schematic-caption" id="schematic-caption">
-              Mode: <strong>Live Interactive</strong> - Hover or drag your finger on the phone trackpad to control the laptop pointer.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- HOW IT WORKS PIPELINE SECTION -->
-      <section class="how-it-works-section section-spacing" id="how-it-works">
-        <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">How Easy Mouse works.</h2>
-            <p class="section-lead">
-              A direct, wireless link from your pocket to your screen in three straightforward steps.
-            </p>
-          </div>
-
-          <div class="pipeline-grid">
-            <!-- Step 01 -->
-            <div class="pipeline-card">
-              <div class="step-badge">01</div>
-              <div class="step-preview" aria-hidden="true">
-                <svg width="80" height="70" viewBox="0 0 80 70" fill="none">
-                  <rect x="22" y="6" width="36" height="58" rx="7" stroke="#2c3444" stroke-width="2" fill="#0d0f14"/>
-                  <rect x="28" y="14" width="24" height="42" rx="3" fill="#151922" stroke="rgba(255, 42, 75, 0.4)" stroke-dasharray="2 2"/>
-                  <circle cx="40" cy="35" r="4" fill="#ff2a4b"/>
-                </svg>
-              </div>
-              <h3 class="step-title">Connect</h3>
-              <p class="step-desc">
-                Launch Easy Mouse on your phone and target computer. Both devices identify each other over your local Wi-Fi network instantly.
-              </p>
-            </div>
-
-            <!-- Step 02 -->
-            <div class="pipeline-card">
-              <div class="step-badge">02</div>
-              <div class="step-preview" aria-hidden="true">
-                <svg width="80" height="70" viewBox="0 0 80 70" fill="none">
-                  <circle cx="40" cy="35" r="24" stroke="rgba(255, 42, 75, 0.15)" stroke-width="1.5"/>
-                  <circle cx="40" cy="35" r="16" stroke="rgba(255, 42, 75, 0.35)" stroke-width="1.5"/>
-                  <circle cx="40" cy="35" r="8" stroke="var(--accent-red)" stroke-width="2"/>
-                  <circle cx="40" cy="35" r="3" fill="#ffffff"/>
-                </svg>
-              </div>
-              <h3 class="step-title">Pair</h3>
-              <p class="step-desc">
-                Establish the secure local link. Zero accounts, zero cloud servers, and zero Bluetooth pairing hassles required.
-              </p>
-            </div>
-
-            <!-- Step 03 -->
-            <div class="pipeline-card">
-              <div class="step-badge">03</div>
-              <div class="step-preview" aria-hidden="true">
-                <svg width="80" height="70" viewBox="0 0 80 70" fill="none">
-                  <rect x="10" y="12" width="60" height="46" rx="6" stroke="#2c3444" stroke-width="2" fill="#0d0f14"/>
-                  <line x1="10" y1="44" x2="70" y2="44" stroke="#222834" stroke-width="1.5"/>
-                  <line x1="40" y1="44" x2="40" y2="58" stroke="#222834" stroke-width="1.5"/>
-                  <polygon points="35,26 47,32 41,35 45,43 41,45 37,37 32,40" fill="#ff2a4b" stroke="#ffffff" stroke-width="1"/>
-                </svg>
-              </div>
-              <h3 class="step-title">Control</h3>
-              <p class="step-desc">
-                Glide your finger across your phone screen to move the cursor, tap to click, and use multi-touch gestures to scroll and navigate.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CORE CAPABILITIES SECTION -->
-      <section class="features-section section-spacing" id="features">
-        <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">Engineered for pure control.</h2>
-            <p class="section-lead">
-              Transform your everyday phone into a responsive, zero-friction desktop controller.
-            </p>
-          </div>
-
-          <div class="features-layout-grid">
-            <!-- Feature 1: Wide Technical Panel (span-7) -->
-            <div class="feature-panel panel-span-7">
-              <div>
-                <span class="feature-tag">Freedom of Movement</span>
-                <h3 class="feature-h3">Wireless desktop control from anywhere in the room.</h3>
-                <p class="feature-text">
-                  Navigate slides during presentations, control streaming media from your couch, or drive your laptop without being tethered to a physical desk surface.
-                </p>
-              </div>
-              <div class="graphic-space-map" aria-hidden="true">
-                <div class="space-node active">
-                  <div class="space-node-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <rect x="5" y="2" width="14" height="20" rx="3"/>
-                      <line x1="12" y1="18" x2="12.01" y2="18"/>
+                <div class="monitor-canvas" id="hero-monitor-canvas">
+                  <div class="monitor-pointer" id="hero-monitor-pointer">
+                    <svg class="pointer-icon-svg" width="18" height="18" viewBox="0 0 24 24">
+                      <path d="M4 2L20 10L12 13L8 21L4 2Z"/>
                     </svg>
                   </div>
-                  <span>Phone</span>
-                </div>
-                <div style="height: 1px; flex: 1; margin: 0 16px; background: linear-gradient(90deg, #ff2a4b, rgba(255,42,75,0.2));"></div>
-                <div class="space-node">
-                  <div class="space-node-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <rect x="2" y="3" width="20" height="14" rx="2"/>
-                      <line x1="8" y1="21" x2="16" y2="21"/>
-                      <line x1="12" y1="17" x2="12" y2="21"/>
-                    </svg>
-                  </div>
-                  <span>Computer</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Feature 2: Gesture Breakdown Panel (span-5) -->
-            <div class="feature-panel panel-span-5">
-              <div>
-                <span class="feature-tag">Intuitive Gestures</span>
-                <h3 class="feature-h3">Natural multi-touch control.</h3>
-                <p class="feature-text">
-                  Your smartphone screen operates like a high-end trackpad with familiar, fluid gestures.
-                </p>
-              </div>
-              <div class="graphic-gestures">
-                <div class="gesture-row">
-                  <span>Single Tap</span>
-                  <span class="gesture-badge">Left Click</span>
-                </div>
-                <div class="gesture-row">
-                  <span>Two-Finger Tap</span>
-                  <span class="gesture-badge">Right Click</span>
-                </div>
-                <div class="gesture-row">
-                  <span>Two-Finger Slide</span>
-                  <span class="gesture-badge">Smooth Scroll</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Feature 3: Hardware Comparison Panel (span-5) -->
-            <div class="feature-panel panel-span-5">
-              <div>
-                <span class="feature-tag">Zero Bulk</span>
-                <h3 class="feature-h3">Never get stuck without a mouse.</h3>
-                <p class="feature-text">
-                  Eliminate dongles, dead batteries, and clunky peripherals when travelling or working on the go.
-                </p>
-              </div>
-              <div class="graphic-friction">
-                <div class="friction-item">
-                  <span class="friction-cross">x</span>
-                  <span>No proprietary USB receivers to misplace</span>
-                </div>
-                <div class="friction-item">
-                  <span class="friction-cross">x</span>
-                  <span>No AA or AAA batteries running empty</span>
-                </div>
-                <div class="friction-item">
-                  <span class="friction-check">&#10003;</span>
-                  <span>Always available on the phone you carry</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Feature 4: Discovery Radar Panel (span-7) -->
-            <div class="feature-panel panel-span-7">
-              <div>
-                <span class="feature-tag">Instant Connectivity</span>
-                <h3 class="feature-h3">Automatic local network discovery.</h3>
-                <p class="feature-text">
-                  No complex IP address configuration. Easy Mouse broadcasts a local heartbeat so your devices pair with a single tap.
-                </p>
-              </div>
-              <div class="graphic-discovery" aria-hidden="true">
-                <div class="radar-circle"></div>
-                <div class="radar-circle"></div>
-                <div class="radar-circle"></div>
-                <div class="radar-center-host">
-                  <span class="badge-dot"></span>
-                  <span>Host Found: My-Workstation</span>
                 </div>
               </div>
             </div>
@@ -2279,102 +1791,287 @@
         </div>
       </section>
 
-      <!-- INTERACTIVE CONTROLLER MODES SANDBOX -->
-      <section class="modes-section section-spacing" id="modes">
+      <!-- ACT 02: KINETIC TYPOGRAPHY TRANSITION RIBBON -->
+      <section class="kinetic-ribbon-section" aria-hidden="true">
+        <div class="marquee-track">
+          <div class="marquee-item">
+            <span>TOUCH SURFACE</span> <span class="accent-symbol">&#9670;</span>
+            <span>WIRELESS LINK</span> <span class="accent-symbol">&#9670;</span>
+            <span>ZERO PERIPHERALS</span> <span class="accent-symbol">&#9670;</span>
+            <span>INSTANT HANDSHAKE</span> <span class="accent-symbol">&#9670;</span>
+            <span>DESKTOP CONTROL</span> <span class="accent-symbol">&#9670;</span>
+          </div>
+          <div class="marquee-item">
+            <span>TOUCH SURFACE</span> <span class="accent-symbol">&#9670;</span>
+            <span>WIRELESS LINK</span> <span class="accent-symbol">&#9670;</span>
+            <span>ZERO PERIPHERALS</span> <span class="accent-symbol">&#9670;</span>
+            <span>INSTANT HANDSHAKE</span> <span class="accent-symbol">&#9670;</span>
+            <span>DESKTOP CONTROL</span> <span class="accent-symbol">&#9670;</span>
+          </div>
+        </div>
+        <div class="marquee-track reverse">
+          <div class="marquee-item">
+            <span>SMARTPHONE TO COMPUTER</span> <span class="accent-symbol">&#9670;</span>
+            <span>LOW LATENCY</span> <span class="accent-symbol">&#9670;</span>
+            <span>NATURAL GESTURES</span> <span class="accent-symbol">&#9670;</span>
+            <span>PRECISION NAVIGATION</span> <span class="accent-symbol">&#9670;</span>
+          </div>
+          <div class="marquee-item">
+            <span>SMARTPHONE TO COMPUTER</span> <span class="accent-symbol">&#9670;</span>
+            <span>LOW LATENCY</span> <span class="accent-symbol">&#9670;</span>
+            <span>NATURAL GESTURES</span> <span class="accent-symbol">&#9670;</span>
+            <span>PRECISION NAVIGATION</span> <span class="accent-symbol">&#9670;</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ACT 03: STICKY STORYTELLING PIPELINE (HOW IT WORKS) -->
+      <section class="narrative-section section-spacing" id="how-it-works">
         <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">Three dedicated control modes.</h2>
-            <p class="section-lead">
-              Switch seamlessly between trackpad precision, continuous document scrolling, and presentation delivery.
-            </p>
+          <div class="narrative-header">
+            <div class="mono-tag">Connection Sequence</div>
+            <h2 class="narrative-h2">From pocket to pointer in seconds.</h2>
+            <p style="max-width: 52ch;">A streamlined three-step wireless connection designed for zero friction and maximum reliability.</p>
           </div>
 
-          <!-- Mode Tablist -->
-          <div class="modes-tablist" role="tablist" aria-label="Controller Modes">
-            <button class="mode-tab active" id="tab-trackpad" role="tab" aria-selected="true" aria-controls="view-trackpad">
-              <span>Trackpad Mode</span>
-            </button>
-            <button class="mode-tab" id="tab-scroll" role="tab" aria-selected="false" aria-controls="view-scroll">
-              <span>Scroll Wheel</span>
-            </button>
-            <button class="mode-tab" id="tab-remote" role="tab" aria-selected="false" aria-controls="view-remote">
-              <span>Presentation Remote</span>
-            </button>
+          <div class="narrative-grid">
+            <!-- Left: Step Cards -->
+            <div class="story-steps-col">
+              <div class="story-step-card active" data-step="1" tabindex="0">
+                <div class="step-num-badge">PHASE 01</div>
+                <h3 class="step-heading">1. Auto-Discover</h3>
+                <p class="step-paragraph">
+                  Open Easy Mouse on your phone and target computer. Both devices broadcast a local network heartbeat and recognize each other instantly.
+                </p>
+              </div>
+
+              <div class="story-step-card" data-step="2" tabindex="0">
+                <div class="step-num-badge">PHASE 02</div>
+                <h3 class="step-heading">2. Secure Local Link</h3>
+                <p class="step-paragraph">
+                  Establish a direct high-speed data conduit across your local Wi-Fi. Zero external cloud servers, zero account sign-ups, and zero dongles.
+                </p>
+              </div>
+
+              <div class="story-step-card" data-step="3" tabindex="0">
+                <div class="step-num-badge">PHASE 03</div>
+                <h3 class="step-heading">3. Drive Your Workspace</h3>
+                <p class="step-paragraph">
+                  Glide your thumb across the screen for smooth cursor tracking. Tap for single clicks, two fingers for secondary clicks and inertial scrolling.
+                </p>
+              </div>
+            </div>
+
+            <!-- Right: Reactive Visual Stage -->
+            <div class="story-display-col">
+              <div class="story-display-header">
+                <span id="story-step-label">PHASE 01: AUTO-DISCOVERY</span>
+                <span class="beacon-live">ACTIVE PROTOCOL</span>
+              </div>
+
+              <div class="story-screen-visual">
+                <!-- Layer 1: Handshake Discovery -->
+                <div class="story-phase-layer active" id="phase-layer-1">
+                  <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+                    <circle cx="60" cy="60" r="50" stroke="rgba(255, 40, 77, 0.15)" stroke-width="2"/>
+                    <circle cx="60" cy="60" r="35" stroke="rgba(255, 40, 77, 0.35)" stroke-width="2"/>
+                    <circle cx="60" cy="60" r="20" stroke="var(--accent-red)" stroke-width="2.5"/>
+                    <circle cx="60" cy="60" r="6" fill="#ffffff"/>
+                  </svg>
+                  <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #ffffff; margin-top: 18px;">BROADCASTING LOCAL BEACON</span>
+                </div>
+
+                <!-- Layer 2: Pair Bridge -->
+                <div class="story-phase-layer" id="phase-layer-2">
+                  <svg width="160" height="80" viewBox="0 0 160 80" fill="none" aria-hidden="true">
+                    <rect x="10" y="15" width="40" height="50" rx="6" stroke="#ffffff" stroke-width="2" fill="#121622"/>
+                    <rect x="110" y="15" width="40" height="50" rx="6" stroke="#ffffff" stroke-width="2" fill="#121622"/>
+                    <path d="M50 40 L110 40" stroke="var(--accent-red)" stroke-width="3" stroke-dasharray="4 4"/>
+                    <circle cx="80" cy="40" r="7" fill="var(--accent-red)"/>
+                  </svg>
+                  <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-red); margin-top: 18px;">DIRECT PEER-TO-PEER BRIDGE</span>
+                </div>
+
+                <!-- Layer 3: Dynamic Pointer Control -->
+                <div class="story-phase-layer" id="phase-layer-3">
+                  <svg width="140" height="100" viewBox="0 0 140 100" fill="none" aria-hidden="true">
+                    <rect x="10" y="10" width="120" height="80" rx="8" stroke="#2c3446" stroke-width="2" fill="#0c0e15"/>
+                    <polygon points="65,40 85,50 75,55 80,68 74,70 69,57 60,63" fill="var(--accent-red)" stroke="#ffffff" stroke-width="1.5"/>
+                  </svg>
+                  <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #38ef7d; margin-top: 18px;">60HZ FLUID CONTROL LIVE</span>
+                </div>
+              </div>
+
+              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-align: center;">
+                Click any step above to inspect real-time connection stages
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ACT 04: CORE CAPABILITIES (ASYMMETRIC EDITORIAL LAYOUTS) -->
+      <section class="capabilities-section section-spacing" id="capabilities">
+        <div class="container">
+          <div class="capabilities-header">
+            <div class="mono-tag">Engineered Utility</div>
+            <h2 style="font-size: clamp(2.2rem, 3.8vw, 3.4rem); margin-top: 12px; margin-bottom: 16px;">Precision where you need it.</h2>
+            <p style="max-width: 54ch;">Four core advantages engineered into the Easy Mouse wireless control architecture.</p>
           </div>
 
-          <!-- Sandbox Stage -->
-          <div class="modes-sandbox-container">
-            <!-- Left: Phone Simulator -->
-            <div class="sandbox-phone">
-              <div class="sandbox-phone-top">
-                <span id="phone-mode-status">MODE: TRACKPAD</span>
+          <!-- Block 1: Full-Width Macro Editorial Split -->
+          <div class="editorial-statement-block">
+            <div>
+              <div class="mono-tag" style="margin-bottom: 12px;">Multi-Touch Surface</div>
+              <h3 style="font-size: clamp(1.8rem, 2.6vw, 2.4rem); line-height: 1.15; margin-bottom: 16px; color: #ffffff;">
+                Natural glass trackpad gestures.
+              </h3>
+              <p style="margin-bottom: 24px;">
+                Your phone screen functions with the fluid gesture fidelity of a dedicated laptop trackpad. Single-finger gliding, two-finger vertical momentum scrolling, and multi-finger context clicks work natively without configuration.
+              </p>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <span class="platform-pill" style="border-color: var(--border-accent); color: var(--accent-red);">Inertia Physics</span>
+                <span class="platform-pill">Multi-Touch Detection</span>
+                <span class="platform-pill">Sub-Pixel Glide</span>
+              </div>
+            </div>
+
+            <div class="editorial-img-wrap">
+              <img src="assets/trackpad-macro.jpg" alt="Macro view of fingertip on Easy Mouse trackpad surface" class="editorial-img" loading="lazy">
+            </div>
+          </div>
+
+          <!-- Block 2 & 3: Asymmetric Duo Grid -->
+          <div class="asymmetric-duo-grid">
+            <!-- Left: Stark Contrast Panel -->
+            <div class="capability-card-dark">
+              <div>
+                <div class="mono-tag" style="margin-bottom: 12px;">Zero Extra Baggage</div>
+                <h3 style="font-size: 1.6rem; color: #ffffff; margin-bottom: 14px;">The end of physical dongles.</h3>
+                <p>Never get stuck without a mouse during an airport layover, coffee shop sprint, or conference presentation.</p>
+
+                <div class="stark-contrast-list">
+                  <div class="stark-row">
+                    <span class="cross-glyph">&#10005;</span>
+                    <span>No proprietary USB-A or USB-C receiver to lose</span>
+                  </div>
+                  <div class="stark-row">
+                    <span class="cross-glyph">&#10005;</span>
+                    <span>No dead AA/AAA batteries in your laptop bag</span>
+                  </div>
+                  <div class="stark-row">
+                    <span class="cross-glyph">&#10005;</span>
+                    <span>No need for dedicated flat mousepad surfaces</span>
+                  </div>
+                  <div class="stark-row">
+                    <span class="check-glyph">&#10003;</span>
+                    <span style="color: #ffffff; font-weight: 600;">Always ready on the smartphone you already carry</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Auto-Discovery Radar Panel -->
+            <div class="capability-card-dark">
+              <div>
+                <div class="mono-tag" style="margin-bottom: 12px;">Zero Configuration</div>
+                <h3 style="font-size: 1.6rem; color: #ffffff; margin-bottom: 14px;">Instant local auto-discovery.</h3>
+                <p>No manual IP typing. Easy Mouse automatically pairs with your computer using lightweight local UDP broadcasting.</p>
+
+                <div class="radar-visual-box" aria-hidden="true">
+                  <div class="radar-sweep-beam"></div>
+                  <div class="radar-sweep-beam"></div>
+                  <div class="radar-sweep-beam"></div>
+                  <div class="radar-tag-badge">
+                    <span class="beacon-dot"></span>
+                    <span>HOST FOUND: LOCAL-PC</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ACT 05: INTERACTIVE CONTROLLER CONSOLE -->
+      <section class="console-section section-spacing" id="controller-modes">
+        <div class="container">
+          <div style="margin-bottom: 50px;">
+            <div class="mono-tag">Interactive Demo</div>
+            <h2 style="font-size: clamp(2.2rem, 3.6vw, 3.2rem); margin-top: 12px; margin-bottom: 16px;">Three dedicated controller modes.</h2>
+            <p style="max-width: 52ch;">Test the responsiveness of each control mode directly inside your browser below.</p>
+          </div>
+
+          <!-- Mode Tab Bar -->
+          <div class="modes-tab-bar" role="tablist" aria-label="Controller Modes Selector">
+            <button class="console-mode-tab active" id="tab-trackpad" role="tab" aria-selected="true" aria-controls="panel-trackpad">Trackpad Mode</button>
+            <button class="console-mode-tab" id="tab-scroll" role="tab" aria-selected="false" aria-controls="panel-scroll">Scroll Wheel</button>
+            <button class="console-mode-tab" id="tab-remote" role="tab" aria-selected="false" aria-controls="panel-remote">Presentation Remote</button>
+          </div>
+
+          <!-- Console Hardware Simulation Box -->
+          <div class="sandbox-console-layout">
+            <!-- Left: Smartphone UI -->
+            <div class="hardware-unit">
+              <div class="hardware-top">
+                <span id="hardware-active-mode-tag">MODE: TRACKPAD</span>
                 <span style="color: var(--accent-red); font-weight: 700;">60 FPS</span>
               </div>
-              <div class="sandbox-phone-body">
-                <!-- Mode View 1: Trackpad -->
-                <div class="phone-mode-view active" id="phone-view-trackpad">
-                  <div class="sandbox-trackpad" id="sandbox-trackpad-surface" tabindex="0">
-                    <span class="touchpad-label">Move finger to test</span>
-                    <div class="touch-indicator" id="sandbox-touch-dot"></div>
+
+              <!-- View 1: Trackpad -->
+              <div class="hardware-view-panel active" id="panel-trackpad">
+                <div class="tactile-trackpad-surface" id="console-touchpad-surface" tabindex="0">
+                  <span class="touchpad-caption">Drag to test tracking</span>
+                  <div class="touchpad-point-dot" id="console-touch-dot"></div>
+                </div>
+              </div>
+
+              <!-- View 2: Scroll Ribbon -->
+              <div class="hardware-view-panel" id="panel-scroll">
+                <div class="tactile-scroll-ribbon" id="console-scroll-surface">
+                  <div class="ribbon-track-inner">
+                    <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">UP</span>
+                    <div class="ribbon-thumb" id="console-scroll-thumb"></div>
+                    <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">DOWN</span>
                   </div>
                 </div>
+              </div>
 
-                <!-- Mode View 2: Scroll Ribbon -->
-                <div class="phone-mode-view" id="phone-view-scroll">
-                  <div class="sandbox-scroll-area" id="sandbox-scroll-surface">
-                    <div class="scroll-ribbon-track">
-                      <span style="font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-mono);">UP</span>
-                      <div class="scroll-handle" id="scroll-handle"></div>
-                      <span style="font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-mono);">DOWN</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Mode View 3: Remote Clicker -->
-                <div class="phone-mode-view" id="phone-view-remote">
-                  <div class="sandbox-remote">
-                    <button class="remote-btn-large" id="btn-next-slide" type="button">
-                      <span>Next Slide</span>
-                      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-                        <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                      </svg>
-                    </button>
-                    <div class="remote-actions-row">
-                      <button class="remote-btn-small" id="btn-prev-slide" type="button">Prev Slide</button>
-                      <button class="remote-btn-small" id="btn-black-screen" type="button">Toggle Black</button>
-                    </div>
+              <!-- View 3: Keynote Remote -->
+              <div class="hardware-view-panel" id="panel-remote">
+                <div class="remote-clicker-stack">
+                  <button class="btn-keynote-big" id="btn-next-keynote" type="button">
+                    <span>Next Slide</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                    </svg>
+                  </button>
+                  <div class="remote-sub-row">
+                    <button class="btn-keynote-small" id="btn-prev-keynote" type="button">Prev Slide</button>
+                    <button class="btn-keynote-small" id="btn-blank-screen" type="button">Black Screen</button>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Right: Computer Screen Simulator -->
-            <div class="sandbox-screen">
-              <div class="sandbox-screen-header">
-                <span id="sandbox-screen-title">DESKTOP WORKSPACE FEED</span>
-                <span class="status-ping"></span>
+            <!-- Right: Computer Screen Response -->
+            <div class="output-unit">
+              <div class="output-unit-header">
+                <span id="output-feed-title">DESKTOP WORKSPACE STREAM</span>
+                <div class="beacon-live"><span class="beacon-dot"></span><span>LIVE SYNC</span></div>
               </div>
-              <div class="sandbox-screen-content">
-                <!-- Screen 1: Desktop Workspace -->
-                <div class="screen-mode-view active" id="screen-view-trackpad">
-                  <div class="screen-workspace" id="sandbox-workspace-area">
-                    <div class="sim-desktop-grid">
-                      <div class="sim-app-card" id="sandbox-card-1">
-                        <div class="sim-card-bar"></div>
-                        <div class="sim-card-pill"></div>
-                      </div>
-                      <div class="sim-app-card" id="sandbox-card-2">
-                        <div class="sim-card-bar" style="width: 80%;"></div>
-                        <div class="sim-card-pill"></div>
-                      </div>
-                      <div class="sim-app-card" id="sandbox-card-3">
-                        <div class="sim-card-bar" style="width: 45%;"></div>
-                        <div class="sim-card-pill"></div>
-                      </div>
-                    </div>
 
-                    <div class="workspace-pointer" id="sandbox-workspace-cursor">
-                      <svg class="sim-pointer-icon" width="20" height="20" viewBox="0 0 24 24">
+              <div class="output-content-stage">
+                <!-- Screen 1: Desktop Workspace -->
+                <div class="output-mode-layer active" id="output-view-trackpad">
+                  <div class="screen-grid-workspace" id="console-workspace-area">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
+                      <div class="sim-app-card" style="height: 64px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 8px;"></div>
+                      <div class="sim-app-card" style="height: 64px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 8px;"></div>
+                      <div class="sim-app-card" style="height: 64px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 8px;"></div>
+                    </div>
+                    <div class="workspace-cursor-elem" id="console-workspace-cursor">
+                      <svg class="pointer-icon-svg" width="22" height="22" viewBox="0 0 24 24">
                         <path d="M4 2L20 10L12 13L8 21L4 2Z"/>
                       </svg>
                     </div>
@@ -2382,35 +2079,34 @@
                 </div>
 
                 <!-- Screen 2: Scroll Document -->
-                <div class="screen-mode-view" id="screen-view-scroll">
-                  <div class="screen-document">
-                    <div class="doc-inner" id="doc-scroll-content">
-                      <div class="doc-line-title"></div>
-                      <div class="doc-line" style="width: 90%;"></div>
-                      <div class="doc-line" style="width: 85%;"></div>
-                      <div class="doc-line" style="width: 70%;"></div>
-                      <div class="doc-line" style="width: 95%;"></div>
-                      <div class="doc-line-title" style="width: 40%; margin-top: 24px;"></div>
-                      <div class="doc-line" style="width: 92%;"></div>
-                      <div class="doc-line" style="width: 78%;"></div>
-                      <div class="doc-line" style="width: 88%;"></div>
-                      <div class="doc-line" style="width: 65%;"></div>
-                      <div class="doc-line-title" style="width: 60%; margin-top: 24px;"></div>
-                      <div class="doc-line" style="width: 90%;"></div>
-                      <div class="doc-line" style="width: 82%;"></div>
+                <div class="output-mode-layer" id="output-view-scroll">
+                  <div class="screen-document-scroll">
+                    <div class="doc-flow-inner" id="doc-flow-container">
+                      <div class="doc-bar-title"></div>
+                      <div class="doc-bar-line" style="width: 90%;"></div>
+                      <div class="doc-bar-line" style="width: 85%;"></div>
+                      <div class="doc-bar-line" style="width: 70%;"></div>
+                      <div class="doc-bar-line" style="width: 95%;"></div>
+                      <div class="doc-bar-title" style="width: 40%; margin-top: 24px;"></div>
+                      <div class="doc-bar-line" style="width: 92%;"></div>
+                      <div class="doc-bar-line" style="width: 80%;"></div>
+                      <div class="doc-bar-line" style="width: 88%;"></div>
+                      <div class="doc-bar-title" style="width: 60%; margin-top: 24px;"></div>
+                      <div class="doc-bar-line" style="width: 90%;"></div>
+                      <div class="doc-bar-line" style="width: 75%;"></div>
                     </div>
                   </div>
                 </div>
 
-                <!-- Screen 3: Slide Presentation -->
-                <div class="screen-mode-view" id="screen-view-remote">
-                  <div class="screen-presentation" id="screen-pres-stage">
-                    <div class="slide-card" id="pres-slide-card">
-                      <div class="slide-num" id="pres-slide-num">SLIDE 01 / 03</div>
-                      <div class="slide-title" id="pres-slide-title">Product Overview and Architecture</div>
-                      <div class="slide-footer">
-                        <span>Easy Mouse Keynote</span>
-                        <span>Press 'Next Slide' on Phone</span>
+                <!-- Screen 3: Keynote Deck -->
+                <div class="output-mode-layer" id="output-view-remote">
+                  <div class="screen-slide-stage">
+                    <div class="keynote-card-box" id="keynote-slide-card">
+                      <div class="mono-tag" id="keynote-slide-num">SLIDE 01 / 03</div>
+                      <h4 style="font-size: 1.5rem; color: #ffffff;" id="keynote-slide-title">System Architecture and Handshake</h4>
+                      <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
+                        <span>Easy Mouse Deck</span>
+                        <span>Use Phone Remote</span>
                       </div>
                     </div>
                   </div>
@@ -2421,29 +2117,30 @@
         </div>
       </section>
 
-      <!-- DOWNLOAD CTA SECTION -->
-      <section class="download-section" id="download">
+      <!-- ACT 06: HIGH-IMPACT CLOSING STAGE & DOWNLOAD -->
+      <section class="closing-download-section" id="download">
         <div class="container">
-          <div class="download-card">
-            <h2 class="download-title">YOUR PHONE. YOUR COMPUTER. ONE SIMPLE CONNECTION.</h2>
-            <p class="download-desc">
-              Get Easy Mouse today and experience effortless wireless control without carrying extra peripherals.
+          <div class="closing-card-hero">
+            <div class="mono-tag" style="margin-bottom: 16px;">Zero Extra Hardware</div>
+            <h2 class="closing-h2">Your phone. Your computer. One simple connection.</h2>
+            <p class="closing-lead">
+              Download Easy Mouse today and experience instantaneous wireless desktop control from the device already in your hand.
             </p>
 
-            <div class="download-actions">
-              <a href="#download" class="btn-primary" id="download-app-footer" data-download="true" style="font-size: 1.05rem; padding: 18px 36px;">
+            <div class="closing-actions-col">
+              <a href="#download" class="btn-magnetic-cta" id="download-app-footer" data-download="true" style="padding: 20px 42px; font-size: 1.08rem;">
                 <span>Download Easy Mouse</span>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg width="22" height="22" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </a>
 
-              <div class="download-platforms-row">
-                <span class="platform-chip">Windows 10/11</span>
-                <span class="platform-chip">macOS 12+</span>
-                <span class="platform-chip">Linux</span>
-                <span class="platform-chip">Android 9+</span>
-                <span class="platform-chip">iOS 15+</span>
+              <div class="platform-badges-cluster">
+                <span class="platform-pill">Windows 10/11</span>
+                <span class="platform-pill">macOS 12+</span>
+                <span class="platform-pill">Linux</span>
+                <span class="platform-pill">Android 9+</span>
+                <span class="platform-pill">iOS 15+</span>
               </div>
             </div>
           </div>
@@ -2453,54 +2150,55 @@
 
     <!-- MINIMALIST TECHNICAL FOOTER -->
     <footer class="site-footer">
-      <div class="container footer-container">
-        <div class="footer-brand-info">
+      <div class="container footer-flex-row">
+        <div class="footer-brand-wrap">
           <a href="#" class="brand-link" style="font-size: 0.95rem;">
-            <span class="brand-beacon" aria-hidden="true"></span>
+            <div class="brand-symbol" style="width: 20px; height: 20px;" aria-hidden="true"></div>
             <span>Easy Mouse</span>
           </a>
-          <span class="footer-status-tag">
-            <span class="status-ping"></span>
+          <span class="footer-status-pill">
+            <span class="beacon-dot"></span>
             <span>SYSTEM READY</span>
           </span>
         </div>
 
         <nav aria-label="Footer Navigation">
-          <ul class="footer-nav-links">
+          <ul class="footer-links-list">
             <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#modes">Modes</a></li>
+            <li><a href="#capabilities">Capabilities</a></li>
+            <li><a href="#controller-modes">Modes</a></li>
             <li><a href="#download">Download</a></li>
-            <li><a href="#hero">Back to Top &uarr;</a></li>
+            <li><a href="#hero">Top &uarr;</a></li>
           </ul>
         </nav>
       </div>
     </footer>
 
-    <!-- Download Placeholder Toast Notification -->
-    <div class="download-toast" id="download-toast" role="status" aria-live="polite">
-      <span class="status-ping"></span>
-      <span id="toast-message">Download destination ready for release URL attachment.</span>
+    <!-- Download Notification Toast -->
+    <div class="download-toast-popup" id="download-toast" role="status" aria-live="polite">
+      <span class="beacon-dot"></span>
+      <span id="toast-message">Easy Mouse download package ready for production URL assignment.</span>
     </div>
 
     <!-- Desktop Custom Cursor Elements -->
-    <div class="custom-cursor-dot" id="cursor-dot" aria-hidden="true"></div>
-    <div class="custom-cursor-ring" id="cursor-ring" aria-hidden="true"></div>
-    <canvas class="custom-cursor-canvas" id="cursor-canvas" aria-hidden="true"></canvas>
+    <div class="cursor-core-dot" id="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-smooth-ring" id="cursor-ring" aria-hidden="true"></div>
+    <canvas class="cursor-smoke-canvas" id="cursor-canvas" aria-hidden="true"></canvas>
   </div>
 
   <script>
-
-    /* Mobile Menu Toggle Logic */
-    (function initMobileNav() {
+    /* -------------------------------------------------------------
+       MOBILE MENU DRAWER TOGGLE
+       ------------------------------------------------------------- */
+    (function initMobileMenu() {
       const toggleBtn = document.getElementById('mobile-toggle');
       const drawer = document.getElementById('mobile-drawer');
-      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
       const header = document.getElementById('site-header');
 
       if (!toggleBtn || !drawer) return;
 
-      function toggleMenu() {
+      function toggle() {
         const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
         toggleBtn.setAttribute('aria-expanded', !isOpen);
         drawer.setAttribute('aria-hidden', isOpen);
@@ -2508,17 +2206,16 @@
         document.body.style.overflow = !isOpen ? 'hidden' : '';
       }
 
-      function closeMenu() {
+      function close() {
         toggleBtn.setAttribute('aria-expanded', 'false');
         drawer.setAttribute('aria-hidden', 'true');
         drawer.classList.remove('is-open');
         document.body.style.overflow = '';
       }
 
-      toggleBtn.addEventListener('click', toggleMenu);
-      mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+      toggleBtn.addEventListener('click', toggle);
+      mobileLinks.forEach(link => link.addEventListener('click', close));
 
-      /* Header Scroll State */
       window.addEventListener('scroll', () => {
         if (window.scrollY > 20) {
           header.classList.add('scrolled');
@@ -2529,227 +2226,191 @@
     })();
 
     /* -------------------------------------------------------------
-       HERO HARDWARE LINK SIMULATION CONTROLLER
+       HERO LIVE DUAL-SURFACE CONTROLLER SIMULATOR
        ------------------------------------------------------------- */
-    (function initHeroSimulation() {
-      const touchpad = document.getElementById('hero-touchpad');
-      const touchDot = document.getElementById('hero-touch-dot');
-      const laptopCursor = document.getElementById('laptop-cursor');
-      const laptopScreen = document.getElementById('laptop-screen');
-      const leftBtn = document.getElementById('btn-left-click');
-      const rightBtn = document.getElementById('btn-right-click');
-      const caption = document.getElementById('schematic-caption');
-      const signalPackets = [
-        document.getElementById('signal-packet-1'),
-        document.getElementById('signal-packet-2'),
-        document.getElementById('signal-packet-3')
-      ];
-      const appCards = [
-        document.getElementById('card-1'),
-        document.getElementById('card-2'),
-        document.getElementById('card-3')
-      ];
+    (function initHeroDualSurface() {
+      const touchpad = document.getElementById('hero-interactive-touchpad');
+      const touchDot = document.getElementById('hero-live-dot');
+      const monitorPointer = document.getElementById('hero-monitor-pointer');
+      const monitorCanvas = document.getElementById('hero-monitor-canvas');
 
-      if (!touchpad || !laptopCursor || !laptopScreen) return;
+      if (!touchpad || !monitorPointer || !monitorCanvas) return;
 
-      let isUserInteracting = false;
+      let isInteracting = false;
       let idleTimer = null;
-      let autoAnimId = null;
-      let autoTime = 0;
+      let animId = null;
+      let animTime = 0;
 
-      function spawnRipple(xPercent, yPercent) {
+      function spawnClickRipple(x, y) {
         const ripple = document.createElement('div');
-        ripple.className = 'sim-click-ripple';
-        ripple.style.left = xPercent + '%';
-        ripple.style.top = yPercent + '%';
-        laptopScreen.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 600);
+        ripple.className = 'click-flash-ripple';
+        ripple.style.left = x + '%';
+        ripple.style.top = y + '%';
+        monitorCanvas.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 500);
       }
 
-      function updatePointer(relX, relY, isClick = false) {
-        const clampedX = Math.max(0.05, Math.min(0.95, relX));
-        const clampedY = Math.max(0.08, Math.min(0.92, relY));
+      function setCoords(relX, relY, click = false) {
+        const cx = Math.max(0.06, Math.min(0.94, relX));
+        const cy = Math.max(0.08, Math.min(0.92, relY));
 
-        // Update phone touch dot
-        touchDot.style.left = (clampedX * 100) + '%';
-        touchDot.style.top = (clampedY * 100) + '%';
+        touchDot.style.left = (cx * 100) + '%';
+        touchDot.style.top = (cy * 100) + '%';
 
-        // Update laptop pointer
-        laptopCursor.style.left = (clampedX * 100) + '%';
-        laptopCursor.style.top = (clampedY * 100) + '%';
+        monitorPointer.style.left = (cx * 100) + '%';
+        monitorPointer.style.top = (cy * 100) + '%';
 
-        // Highlight card if hovered
-        appCards.forEach((card, index) => {
-          if (!card) return;
-          const targetIndex = Math.floor(clampedX * 3);
-          if (targetIndex === index && clampedY < 0.6) {
-            card.classList.add('card-highlight');
-          } else {
-            card.classList.remove('card-highlight');
-          }
-        });
-
-        // Trigger signal packet animation
-        signalPackets.forEach((pkt, i) => {
-          if (!pkt) return;
-          const shift = Math.sin(Date.now() * 0.01 + i) * 3;
-          pkt.setAttribute('r', (3 + Math.abs(shift) * 0.5).toString());
-        });
-
-        if (isClick) {
-          spawnRipple(clampedX * 100, clampedY * 100);
-        }
+        if (click) spawnClickRipple(cx * 100, cy * 100);
       }
 
-      function handleInteraction(e) {
-        isUserInteracting = true;
+      function handleMove(e) {
+        isInteracting = true;
         clearTimeout(idleTimer);
-
-        if (caption) {
-          caption.innerHTML = 'Mode: <strong>User Active</strong> - Laptop pointer responds to your touch gestures.';
-        }
-
         const rect = touchpad.getBoundingClientRect();
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
         const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
         const relX = (clientX - rect.left) / rect.width;
         const relY = (clientY - rect.top) / rect.height;
+        setCoords(relX, relY);
 
-        updatePointer(relX, relY);
-
-        // Reset to auto demo after 3.5 seconds of inactivity
         idleTimer = setTimeout(() => {
-          isUserInteracting = false;
-          if (caption) {
-            caption.innerHTML = 'Mode: <strong>Live Interactive</strong> - Hover or drag your finger on the phone trackpad to control the laptop pointer.';
-          }
+          isInteracting = false;
           startAutoDemo();
-        }, 3500);
+        }, 3000);
       }
 
-      // Event listeners for phone touchpad
-      touchpad.addEventListener('mousemove', handleInteraction);
+      touchpad.addEventListener('mousemove', handleMove);
       touchpad.addEventListener('touchmove', (e) => {
         e.preventDefault();
-        handleInteraction(e);
+        handleMove(e);
       }, { passive: false });
 
       touchpad.addEventListener('touchstart', (e) => {
-        touchpad.classList.add('touch-active');
-        handleInteraction(e);
+        touchpad.classList.add('is-active');
+        handleMove(e);
       }, { passive: false });
 
       touchpad.addEventListener('touchend', () => {
-        touchpad.classList.remove('touch-active');
+        touchpad.classList.remove('is-active');
       });
 
       touchpad.addEventListener('click', (e) => {
         const rect = touchpad.getBoundingClientRect();
         const relX = (e.clientX - rect.left) / rect.width;
         const relY = (e.clientY - rect.top) / rect.height;
-        updatePointer(relX, relY, true);
+        setCoords(relX, relY, true);
       });
 
-      // Buttons
-      if (leftBtn) {
-        leftBtn.addEventListener('click', () => {
-          leftBtn.classList.add('sim-active');
-          const currX = parseFloat(laptopCursor.style.left || '50') / 100;
-          const currY = parseFloat(laptopCursor.style.top || '50') / 100;
-          spawnRipple(currX * 100, currY * 100);
-          setTimeout(() => leftBtn.classList.remove('sim-active'), 200);
-        });
-      }
-
-      if (rightBtn) {
-        rightBtn.addEventListener('click', () => {
-          rightBtn.classList.add('sim-active');
-          const currX = parseFloat(laptopCursor.style.left || '50') / 100;
-          const currY = parseFloat(laptopCursor.style.top || '50') / 100;
-          spawnRipple(currX * 100, currY * 100);
-          setTimeout(() => rightBtn.classList.remove('sim-active'), 200);
-        });
-      }
-
-      // Smooth auto-demonstration loop
       function startAutoDemo() {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          updatePointer(0.5, 0.45);
+          setCoords(0.5, 0.5);
           return;
         }
 
-        function step() {
-          if (isUserInteracting) return;
-          autoTime += 0.022;
-          const x = 0.5 + 0.32 * Math.cos(autoTime * 0.85);
-          const y = 0.48 + 0.28 * Math.sin(autoTime * 1.4);
-          updatePointer(x, y);
+        function loop() {
+          if (isInteracting) return;
+          animTime += 0.024;
+          const x = 0.5 + 0.34 * Math.cos(animTime * 0.9);
+          const y = 0.5 + 0.28 * Math.sin(animTime * 1.5);
+          setCoords(x, y);
 
-          // Periodic click simulation during auto demo
-          if (Math.floor(autoTime * 10) % 95 === 0) {
-            spawnRipple(x * 100, y * 100);
-            if (leftBtn) {
-              leftBtn.classList.add('sim-active');
-              setTimeout(() => leftBtn.classList.remove('sim-active'), 200);
-            }
+          if (Math.floor(animTime * 10) % 90 === 0) {
+            spawnClickRipple(x * 100, y * 100);
           }
 
-          autoAnimId = requestAnimationFrame(step);
+          animId = requestAnimationFrame(loop);
         }
 
-        cancelAnimationFrame(autoAnimId);
-        autoAnimId = requestAnimationFrame(step);
+        cancelAnimationFrame(animId);
+        animId = requestAnimationFrame(loop);
       }
 
       startAutoDemo();
     })();
 
     /* -------------------------------------------------------------
-       CONTROLLER MODES SANDBOX CONTROLLER
+       NARRATIVE PIPELINE INTERACTION (ACT 03)
        ------------------------------------------------------------- */
-    (function initModesSandbox() {
-      // Tabs
+    (function initNarrativePipeline() {
+      const stepCards = document.querySelectorAll('.story-step-card');
+      const stepLabel = document.getElementById('story-step-label');
+      const layers = {
+        1: document.getElementById('phase-layer-1'),
+        2: document.getElementById('phase-layer-2'),
+        3: document.getElementById('phase-layer-3')
+      };
+
+      const labels = {
+        1: 'PHASE 01: AUTO-DISCOVERY BEACON',
+        2: 'PHASE 02: ENCRYPTED LOCAL LINK',
+        3: 'PHASE 03: FLUID DESKTOP CONTROL'
+      };
+
+      stepCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const step = card.getAttribute('data-step');
+          stepCards.forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+
+          Object.keys(layers).forEach(k => {
+            if (layers[k]) layers[k].classList.toggle('active', k === step);
+          });
+
+          if (stepLabel && labels[step]) stepLabel.textContent = labels[step];
+        });
+
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.click();
+          }
+        });
+      });
+    })();
+
+    /* -------------------------------------------------------------
+       CONSOLE CONTROLLER MODES SANDBOX (ACT 05)
+       ------------------------------------------------------------- */
+    (function initConsoleModes() {
       const tabTrackpad = document.getElementById('tab-trackpad');
       const tabScroll = document.getElementById('tab-scroll');
       const tabRemote = document.getElementById('tab-remote');
       const allTabs = [tabTrackpad, tabScroll, tabRemote];
 
-      // Views
-      const phoneViews = {
-        trackpad: document.getElementById('phone-view-trackpad'),
-        scroll: document.getElementById('phone-view-scroll'),
-        remote: document.getElementById('phone-view-remote')
+      const panels = {
+        trackpad: document.getElementById('panel-trackpad'),
+        scroll: document.getElementById('panel-scroll'),
+        remote: document.getElementById('panel-remote')
       };
 
-      const screenViews = {
-        trackpad: document.getElementById('screen-view-trackpad'),
-        scroll: document.getElementById('screen-view-scroll'),
-        remote: document.getElementById('screen-view-remote')
+      const outputs = {
+        trackpad: document.getElementById('output-view-trackpad'),
+        scroll: document.getElementById('output-view-scroll'),
+        remote: document.getElementById('output-view-remote')
       };
 
-      const phoneStatus = document.getElementById('phone-mode-status');
-      const screenTitle = document.getElementById('sandbox-screen-title');
+      const modeTag = document.getElementById('hardware-active-mode-tag');
+      const outputTitle = document.getElementById('output-feed-title');
 
-      function switchMode(modeKey) {
-        allTabs.forEach(tab => {
-          const isTarget = tab && tab.id === 'tab-' + modeKey;
-          if (tab) {
-            tab.classList.toggle('active', isTarget);
-            tab.setAttribute('aria-selected', isTarget);
-          }
+      function switchMode(key) {
+        allTabs.forEach(t => {
+          if (!t) return;
+          const isTarget = t.id === 'tab-' + key;
+          t.classList.toggle('active', isTarget);
+          t.setAttribute('aria-selected', isTarget);
         });
 
-        Object.keys(phoneViews).forEach(key => {
-          if (phoneViews[key]) phoneViews[key].classList.toggle('active', key === modeKey);
-          if (screenViews[key]) screenViews[key].classList.toggle('active', key === modeKey);
+        Object.keys(panels).forEach(k => {
+          if (panels[k]) panels[k].classList.toggle('active', k === key);
+          if (outputs[k]) outputs[k].classList.toggle('active', k === key);
         });
 
-        if (phoneStatus) phoneStatus.textContent = 'MODE: ' + modeKey.toUpperCase();
-        if (screenTitle) {
-          if (modeKey === 'trackpad') screenTitle.textContent = 'DESKTOP WORKSPACE FEED';
-          if (modeKey === 'scroll') screenTitle.textContent = 'DOCUMENT READER - INERTIA SCROLL';
-          if (modeKey === 'remote') screenTitle.textContent = 'PRESENTATION DISPLAY FEED';
+        if (modeTag) modeTag.textContent = 'MODE: ' + key.toUpperCase();
+        if (outputTitle) {
+          if (key === 'trackpad') outputTitle.textContent = 'DESKTOP WORKSPACE STREAM';
+          if (key === 'scroll') outputTitle.textContent = 'DOCUMENT PANNER - INERTIA SCROLL';
+          if (key === 'remote') outputTitle.textContent = 'KEYNOTE PRESENTATION FEED';
         }
       }
 
@@ -2757,183 +2418,160 @@
       if (tabScroll) tabScroll.addEventListener('click', () => switchMode('scroll'));
       if (tabRemote) tabRemote.addEventListener('click', () => switchMode('remote'));
 
-      // Keyboard arrow navigation for tabs
-      allTabs.forEach((tab, index) => {
-        if (!tab) return;
-        tab.addEventListener('keydown', (e) => {
-          let targetIndex = -1;
-          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') targetIndex = (index + 1) % allTabs.length;
-          if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') targetIndex = (index - 1 + allTabs.length) % allTabs.length;
+      // Mode 1: Console Trackpad
+      const consoleTouchpad = document.getElementById('console-touchpad-surface');
+      const consoleTouchDot = document.getElementById('console-touch-dot');
+      const consoleWorkspaceCursor = document.getElementById('console-workspace-cursor');
+      const consoleWorkspaceArea = document.getElementById('console-workspace-area');
 
-          if (targetIndex !== -1) {
-            allTabs[targetIndex].focus();
-            allTabs[targetIndex].click();
-          }
-        });
-      });
-
-      // Sandbox Trackpad Interaction
-      const trackpadSurface = document.getElementById('sandbox-trackpad-surface');
-      const touchDot = document.getElementById('sandbox-touch-dot');
-      const workspaceCursor = document.getElementById('sandbox-workspace-cursor');
-      const workspaceArea = document.getElementById('sandbox-workspace-area');
-
-      if (trackpadSurface && workspaceCursor && workspaceArea) {
-        function handleTrackpad(e) {
-          const rect = trackpadSurface.getBoundingClientRect();
+      if (consoleTouchpad && consoleWorkspaceCursor && consoleWorkspaceArea) {
+        function moveConsoleCursor(e) {
+          const rect = consoleTouchpad.getBoundingClientRect();
           const clientX = e.touches ? e.touches[0].clientX : e.clientX;
           const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-          const relX = Math.max(0.05, Math.min(0.95, (clientX - rect.left) / rect.width));
-          const relY = Math.max(0.08, Math.min(0.92, (clientY - rect.top) / rect.height));
+          const rx = Math.max(0.05, Math.min(0.95, (clientX - rect.left) / rect.width));
+          const ry = Math.max(0.08, Math.min(0.92, (clientY - rect.top) / rect.height));
 
-          if (touchDot) {
-            touchDot.style.left = (relX * 100) + '%';
-            touchDot.style.top = (relY * 100) + '%';
-            touchDot.style.opacity = '1';
+          if (consoleTouchDot) {
+            consoleTouchDot.style.left = (rx * 100) + '%';
+            consoleTouchDot.style.top = (ry * 100) + '%';
+            consoleTouchDot.style.opacity = '1';
           }
 
-          workspaceCursor.style.left = (relX * 100) + '%';
-          workspaceCursor.style.top = (relY * 100) + '%';
+          consoleWorkspaceCursor.style.left = (rx * 100) + '%';
+          consoleWorkspaceCursor.style.top = (ry * 100) + '%';
         }
 
-        trackpadSurface.addEventListener('mousemove', handleTrackpad);
-        trackpadSurface.addEventListener('touchmove', (e) => {
+        consoleTouchpad.addEventListener('mousemove', moveConsoleCursor);
+        consoleTouchpad.addEventListener('touchmove', (e) => {
           e.preventDefault();
-          handleTrackpad(e);
+          moveConsoleCursor(e);
         }, { passive: false });
 
-        trackpadSurface.addEventListener('click', (e) => {
-          const rect = workspaceArea.getBoundingClientRect();
-          const ripple = document.createElement('div');
-          ripple.className = 'sim-click-ripple';
-          ripple.style.left = workspaceCursor.style.left;
-          ripple.style.top = workspaceCursor.style.top;
-          workspaceArea.appendChild(ripple);
-          setTimeout(() => ripple.remove(), 600);
+        consoleTouchpad.addEventListener('click', () => {
+          const rip = document.createElement('div');
+          rip.className = 'click-flash-ripple';
+          rip.style.left = consoleWorkspaceCursor.style.left;
+          rip.style.top = consoleWorkspaceCursor.style.top;
+          consoleWorkspaceArea.appendChild(rip);
+          setTimeout(() => rip.remove(), 500);
         });
       }
 
-      // Sandbox Scroll Interaction
-      const scrollSurface = document.getElementById('sandbox-scroll-surface');
-      const scrollHandle = document.getElementById('scroll-handle');
-      const docScrollContent = document.getElementById('doc-scroll-content');
-      let currentScrollProgress = 0.5;
+      // Mode 2: Scroll Ribbon
+      const scrollSurface = document.getElementById('console-scroll-surface');
+      const scrollThumb = document.getElementById('console-scroll-thumb');
+      const docFlow = document.getElementById('doc-flow-container');
+      let currentProgress = 0.5;
 
-      if (scrollSurface && scrollHandle && docScrollContent) {
-        function updateScroll(relY) {
-          currentScrollProgress = Math.max(0.1, Math.min(0.9, relY));
-          scrollHandle.style.top = (currentScrollProgress * 100) + '%';
-          const maxShift = 120;
-          const shiftY = (currentScrollProgress - 0.5) * maxShift * 2;
-          docScrollContent.style.transform = `translateY(-${shiftY}px)`;
+      if (scrollSurface && scrollThumb && docFlow) {
+        function updateScrollPosition(yFraction) {
+          currentProgress = Math.max(0.1, Math.min(0.9, yFraction));
+          scrollThumb.style.top = (currentProgress * 100) + '%';
+          const shift = (currentProgress - 0.5) * 260;
+          docFlow.style.transform = `translateY(-${shift}px)`;
         }
 
         scrollSurface.addEventListener('mousemove', (e) => {
           if (e.buttons === 1) {
             const rect = scrollSurface.getBoundingClientRect();
-            updateScroll((e.clientY - rect.top) / rect.height);
+            updateScrollPosition((e.clientY - rect.top) / rect.height);
           }
         });
 
         scrollSurface.addEventListener('touchmove', (e) => {
           e.preventDefault();
           const rect = scrollSurface.getBoundingClientRect();
-          updateScroll((e.touches[0].clientY - rect.top) / rect.height);
+          updateScrollPosition((e.touches[0].clientY - rect.top) / rect.height);
         }, { passive: false });
 
         scrollSurface.addEventListener('wheel', (e) => {
           e.preventDefault();
-          const delta = e.deltaY * 0.002;
-          updateScroll(currentScrollProgress + delta);
+          updateScrollPosition(currentProgress + e.deltaY * 0.002);
         }, { passive: false });
       }
 
-      // Sandbox Remote Clicker Interaction
-      const slides = [
-        { num: 'SLIDE 01 / 03', title: 'Product Overview and Architecture' },
-        { num: 'SLIDE 02 / 03', title: 'Low-Latency Local Handshake Protocol' },
-        { num: 'SLIDE 03 / 03', title: 'Everyday Control Without Peripherals' }
+      // Mode 3: Keynote Deck
+      const keynoteDeck = [
+        { num: 'SLIDE 01 / 03', title: 'System Architecture & Wireless Bridge' },
+        { num: 'SLIDE 02 / 03', title: 'Sub-Millisecond Touch Tracking Pipeline' },
+        { num: 'SLIDE 03 / 03', title: 'Zero Physical Dongles or Cables Required' }
       ];
-      let currentSlide = 0;
-      const slideNum = document.getElementById('pres-slide-num');
-      const slideTitle = document.getElementById('pres-slide-title');
-      const slideCard = document.getElementById('pres-slide-card');
-      const btnNext = document.getElementById('btn-next-slide');
-      const btnPrev = document.getElementById('btn-prev-slide');
-      const btnBlack = document.getElementById('btn-black-screen');
+      let activeSlideIndex = 0;
+      const numElem = document.getElementById('keynote-slide-num');
+      const titleElem = document.getElementById('keynote-slide-title');
+      const cardBox = document.getElementById('keynote-slide-card');
+      const btnNextSlide = document.getElementById('btn-next-keynote');
+      const btnPrevSlide = document.getElementById('btn-prev-keynote');
+      const btnBlank = document.getElementById('btn-blank-screen');
 
-      function renderSlide() {
-        if (!slideCard || !slideNum || !slideTitle) return;
-        slideCard.style.opacity = '0';
-        slideCard.style.transform = 'scale(0.97)';
+      function updateSlide() {
+        if (!cardBox || !numElem || !titleElem) return;
+        cardBox.style.opacity = '0';
+        cardBox.style.transform = 'scale(0.97)';
         setTimeout(() => {
-          slideNum.textContent = slides[currentSlide].num;
-          slideTitle.textContent = slides[currentSlide].title;
-          slideCard.style.transition = 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)';
-          slideCard.style.opacity = '1';
-          slideCard.style.transform = 'scale(1)';
+          numElem.textContent = keynoteDeck[activeSlideIndex].num;
+          titleElem.textContent = keynoteDeck[activeSlideIndex].title;
+          cardBox.style.opacity = '1';
+          cardBox.style.transform = 'scale(1)';
         }, 120);
       }
 
-      if (btnNext) {
-        btnNext.addEventListener('click', () => {
-          currentSlide = (currentSlide + 1) % slides.length;
-          renderSlide();
+      if (btnNextSlide) {
+        btnNextSlide.addEventListener('click', () => {
+          activeSlideIndex = (activeSlideIndex + 1) % keynoteDeck.length;
+          updateSlide();
         });
       }
 
-      if (btnPrev) {
-        btnPrev.addEventListener('click', () => {
-          currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-          renderSlide();
+      if (btnPrevSlide) {
+        btnPrevSlide.addEventListener('click', () => {
+          activeSlideIndex = (activeSlideIndex - 1 + keynoteDeck.length) % keynoteDeck.length;
+          updateSlide();
         });
       }
 
-      if (btnBlack && slideCard) {
-        btnBlack.addEventListener('click', () => {
-          const isBlack = slideCard.style.visibility === 'hidden';
-          slideCard.style.visibility = isBlack ? 'visible' : 'hidden';
-          btnBlack.textContent = isBlack ? 'Toggle Black' : 'Show Screen';
+      if (btnBlank && cardBox) {
+        btnBlank.addEventListener('click', () => {
+          const isBlack = cardBox.style.visibility === 'hidden';
+          cardBox.style.visibility = isBlack ? 'visible' : 'hidden';
+          btnBlank.textContent = isBlack ? 'Blank Screen' : 'Show Screen';
         });
       }
     })();
 
     /* -------------------------------------------------------------
-       DOWNLOAD PLACEHOLDER ACTION HANDLER
+       DOWNLOAD PLACEHOLDER NOTICE HANDLER
        ------------------------------------------------------------- */
-    (function initDownloadActions() {
+    (function initDownloadRouting() {
       const downloadButtons = document.querySelectorAll('[data-download="true"], #download-app, #download-app-nav, #download-app-footer');
       const toast = document.getElementById('download-toast');
       const toastMsg = document.getElementById('toast-message');
-      let toastTimeout = null;
-
-      function triggerDownloadNotice(e) {
-        // If href is not configured or is '#', prevent default jump and show toast
-        const href = e.currentTarget.getAttribute('href');
-        if (!href || href === '#' || href === '#download') {
-          e.preventDefault();
-          if (toast) {
-            clearTimeout(toastTimeout);
-            toast.classList.add('show');
-            if (toastMsg) toastMsg.textContent = 'Easy Mouse download package ready for production URL routing.';
-            toastTimeout = setTimeout(() => {
-              toast.classList.remove('show');
-            }, 3800);
-          }
-        }
-      }
+      let timer = null;
 
       downloadButtons.forEach(btn => {
-        btn.addEventListener('click', triggerDownloadNotice);
+        btn.addEventListener('click', (e) => {
+          const href = btn.getAttribute('href');
+          if (!href || href === '#' || href === '#download') {
+            e.preventDefault();
+            if (toast) {
+              clearTimeout(timer);
+              toast.classList.add('is-visible');
+              if (toastMsg) toastMsg.textContent = 'Easy Mouse production download endpoint ready for build attachment.';
+              timer = setTimeout(() => {
+                toast.classList.remove('is-visible');
+              }, 4000);
+            }
+          }
+        });
       });
     })();
 
     /* -------------------------------------------------------------
-       CUSTOM DESKTOP CURSOR & CANVAS TRAIL ENGINE
+       FLUID SMOKY DESKTOP CURSOR & CANVAS TRAIL ENGINE
        ------------------------------------------------------------- */
-    (function initCustomCursor() {
-      // Gate: only initialize on fine pointer devices (desktop mouse)
+    (function initSmokyCursorEngine() {
       if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
       const dot = document.getElementById('cursor-dot');
@@ -2947,108 +2585,89 @@
       let ringX = mouseX;
       let ringY = mouseY;
       let isVisible = false;
-      let idleTimer = null;
+      let fadeTimer = null;
 
-      // Trail Points Array
-      const points = [];
-      const MAX_POINTS = 12;
+      const trail = [];
+      const MAX_TRAIL_LENGTH = 16;
 
-      function resizeCanvas() {
+      function resize() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       }
-      window.addEventListener('resize', resizeCanvas);
-      resizeCanvas();
+      window.addEventListener('resize', resize);
+      resize();
 
-      // Track pointer movement
       window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
 
         if (!isVisible) {
           isVisible = true;
-          dot.classList.remove('cursor-hidden');
-          ring.classList.remove('cursor-hidden');
+          dot.classList.remove('cursor-fade-out');
+          ring.classList.remove('cursor-fade-out');
         }
 
         dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
 
-        // Push new point into trail
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          points.unshift({ x: mouseX, y: mouseY, alpha: 1.0, size: 3.0 });
-          if (points.length > MAX_POINTS) points.pop();
+          trail.unshift({ x: mouseX, y: mouseY, alpha: 1.0, size: 3.5 });
+          if (trail.length > MAX_TRAIL_LENGTH) trail.pop();
         }
 
-        clearTimeout(idleTimer);
-        idleTimer = setTimeout(() => {
-          dot.classList.add('cursor-hidden');
-          ring.classList.add('cursor-hidden');
+        clearTimeout(fadeTimer);
+        fadeTimer = setTimeout(() => {
+          dot.classList.add('cursor-fade-out');
+          ring.classList.add('cursor-fade-out');
           isVisible = false;
-        }, 2800);
+        }, 2600);
       });
 
-      // Mouse Down / Up feedback
-      window.addEventListener('mousedown', () => {
-        ring.classList.add('click-active');
-      });
-      window.addEventListener('mouseup', () => {
-        ring.classList.remove('click-active');
-      });
+      window.addEventListener('mousedown', () => ring.classList.add('click-active'));
+      window.addEventListener('mouseup', () => ring.classList.remove('click-active'));
 
-      // Interactive hover morph
-      const interactiveElements = 'a, button, [role="tab"], .phone-touchpad, .btn-primary, .btn-secondary, .sandbox-trackpad';
+      const hoverTargets = 'a, button, [role="tab"], .console-phone-touchpad, .tactile-trackpad-surface, .story-step-card';
       document.addEventListener('mouseover', (e) => {
-        if (e.target.closest(interactiveElements)) {
-          ring.classList.add('hover-active');
-        }
+        if (e.target.closest(hoverTargets)) ring.classList.add('hover-active');
       });
-
       document.addEventListener('mouseout', (e) => {
-        if (e.target.closest(interactiveElements)) {
-          ring.classList.remove('hover-active');
-        }
+        if (e.target.closest(hoverTargets)) ring.classList.remove('hover-active');
       });
 
-      // Animation Loop
-      function renderLoop() {
-        // Smooth lerp for outer ring
+      function render() {
+        // Smooth physics lerp
         const lerpFactor = 0.18;
         ringX += (mouseX - ringX) * lerpFactor;
         ringY += (mouseY - ringY) * lerpFactor;
         ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
 
-        // Canvas trail rendering with alpha decay
+        // Canvas smoky spline trail
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && points.length > 1) {
-          for (let i = 0; i < points.length; i++) {
-            points[i].alpha *= 0.86;
-            points[i].size *= 0.92;
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && trail.length > 1) {
+          for (let i = 0; i < trail.length; i++) {
+            trail[i].alpha *= 0.88;
+            trail[i].size *= 0.92;
           }
 
-          for (let i = 0; i < points.length - 1; i++) {
-            const p1 = points[i];
-            const p2 = points[i + 1];
+          for (let i = 0; i < trail.length - 1; i++) {
+            const p1 = trail[i];
+            const p2 = trail[i + 1];
 
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(255, 42, 75, ${p1.alpha * 0.45})`;
-            ctx.lineWidth = Math.max(0.5, p1.size);
+            ctx.strokeStyle = `rgba(255, 40, 77, ${p1.alpha * 0.5})`;
+            ctx.lineWidth = Math.max(0.6, p1.size);
             ctx.lineCap = 'round';
             ctx.stroke();
           }
         }
 
-        requestAnimationFrame(renderLoop);
+        requestAnimationFrame(render);
       }
 
-      requestAnimationFrame(renderLoop);
+      requestAnimationFrame(render);
     })();
-
-
-
-
   </script>
 </body>
 </html>
