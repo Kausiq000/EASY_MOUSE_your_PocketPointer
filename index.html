@@ -948,8 +948,127 @@
     }
 
     /* -------------------------------------------------------------
+       HOW IT WORKS PIPELINE STYLES
+       ------------------------------------------------------------- */
+    .how-it-works-section {
+      position: relative;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .section-header {
+      margin-bottom: 56px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3.2vw, 2.7rem);
+      margin-bottom: 14px;
+    }
+
+    .section-lead {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 52ch;
+    }
+
+    .pipeline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      position: relative;
+    }
+
+    .pipeline-grid::before {
+      content: "";
+      position: absolute;
+      top: 54px;
+      left: 12%;
+      right: 12%;
+      height: 2px;
+      background: linear-gradient(90deg, 
+        rgba(255, 42, 75, 0.2) 0%, 
+        var(--accent-red) 50%, 
+        rgba(255, 42, 75, 0.2) 100%
+      );
+      z-index: 0;
+    }
+
+    .pipeline-card {
+      position: relative;
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+      transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .pipeline-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 42, 75, 0.45);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 42, 75, 0.08);
+    }
+
+    .step-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-elevated);
+      border: 2px solid var(--accent-red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 24px;
+      box-shadow: 0 0 16px var(--accent-red-glow);
+    }
+
+    .step-preview {
+      height: 120px;
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .step-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .step-desc {
+      font-size: 0.96rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 900px) {
+      .pipeline-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .pipeline-grid::before {
+        display: none;
+      }
+    }
+
+    /* -------------------------------------------------------------
        PREFERS-REDUCED-MOTION
        ------------------------------------------------------------- */
+
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -1122,7 +1241,72 @@
         </div>
       </section>
 
-      <!-- Remaining Sections will be mounted in Tasks 4-7 -->
+      <!-- HOW IT WORKS PIPELINE SECTION -->
+      <section class="how-it-works-section section-spacing" id="how-it-works">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">How Easy Mouse works.</h2>
+            <p class="section-lead">
+              A direct, wireless link from your pocket to your screen in three straightforward steps.
+            </p>
+          </div>
+
+          <div class="pipeline-grid">
+            <!-- Step 01 -->
+            <div class="pipeline-card">
+              <div class="step-badge">01</div>
+              <div class="step-preview" aria-hidden="true">
+                <svg width="80" height="70" viewBox="0 0 80 70" fill="none">
+                  <rect x="22" y="6" width="36" height="58" rx="7" stroke="#2c3444" stroke-width="2" fill="#0d0f14"/>
+                  <rect x="28" y="14" width="24" height="42" rx="3" fill="#151922" stroke="rgba(255, 42, 75, 0.4)" stroke-dasharray="2 2"/>
+                  <circle cx="40" cy="35" r="4" fill="#ff2a4b"/>
+                </svg>
+              </div>
+              <h3 class="step-title">Connect</h3>
+              <p class="step-desc">
+                Launch Easy Mouse on your phone and target computer. Both devices identify each other over your local Wi-Fi network instantly.
+              </p>
+            </div>
+
+            <!-- Step 02 -->
+            <div class="pipeline-card">
+              <div class="step-badge">02</div>
+              <div class="step-preview" aria-hidden="true">
+                <svg width="80" height="70" viewBox="0 0 80 70" fill="none">
+                  <circle cx="40" cy="35" r="24" stroke="rgba(255, 42, 75, 0.15)" stroke-width="1.5"/>
+                  <circle cx="40" cy="35" r="16" stroke="rgba(255, 42, 75, 0.35)" stroke-width="1.5"/>
+                  <circle cx="40" cy="35" r="8" stroke="var(--accent-red)" stroke-width="2"/>
+                  <circle cx="40" cy="35" r="3" fill="#ffffff"/>
+                </svg>
+              </div>
+              <h3 class="step-title">Pair</h3>
+              <p class="step-desc">
+                Establish the secure local link. Zero accounts, zero cloud servers, and zero Bluetooth pairing hassles required.
+              </p>
+            </div>
+
+            <!-- Step 03 -->
+            <div class="pipeline-card">
+              <div class="step-badge">03</div>
+              <div class="step-preview" aria-hidden="true">
+                <svg width="80" height="70" viewBox="0 0 80 70" fill="none">
+                  <rect x="10" y="12" width="60" height="46" rx="6" stroke="#2c3444" stroke-width="2" fill="#0d0f14"/>
+                  <line x1="10" y1="44" x2="70" y2="44" stroke="#222834" stroke-width="1.5"/>
+                  <line x1="40" y1="44" x2="40" y2="58" stroke="#222834" stroke-width="1.5"/>
+                  <polygon points="35,26 47,32 41,35 45,43 41,45 37,37 32,40" fill="#ff2a4b" stroke="#ffffff" stroke-width="1"/>
+                </svg>
+              </div>
+              <h3 class="step-title">Control</h3>
+              <p class="step-desc">
+                Glide your finger across your phone screen to move the cursor, tap to click, and use multi-touch gestures to scroll and navigate.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Remaining Sections will be mounted in Tasks 5-7 -->
+
     </main>
 
   </div>
