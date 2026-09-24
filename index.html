@@ -165,6 +165,236 @@
     }
 
     /* -------------------------------------------------------------
+       NAVIGATION BAR & HEADER STYLES
+       ------------------------------------------------------------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
+      background: rgba(8, 9, 11, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 100;
+      transition: border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .site-header.scrolled {
+      background: rgba(8, 9, 11, 0.96);
+      border-bottom-color: var(--border-medium);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .brand-beacon {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-red);
+      box-shadow: 0 0 10px var(--accent-red);
+      position: relative;
+    }
+
+    .brand-beacon::after {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid var(--accent-red);
+      opacity: 0.6;
+      animation: beaconPulse 2.4s infinite ease-out;
+    }
+
+    @keyframes beaconPulse {
+      0% { transform: scale(0.8); opacity: 0.8; }
+      100% { transform: scale(2.4); opacity: 0; }
+    }
+
+    .nav-links-desktop {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-red);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-nav-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 18px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 42, 75, 0.12);
+      border: 1px solid rgba(255, 42, 75, 0.4);
+      color: var(--text-white);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-nav-download:hover {
+      background: var(--accent-red);
+      box-shadow: 0 0 16px var(--accent-red-glow);
+      transform: translateY(-1px);
+    }
+
+    /* Mobile Hamburger Trigger */
+    .mobile-menu-btn {
+      display: none;
+      width: 40px;
+      height: 40px;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--text-primary);
+    }
+
+    .hamburger-icon {
+      width: 18px;
+      height: 14px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hamburger-icon span {
+      display: block;
+      height: 2px;
+      width: 100%;
+      background-color: var(--text-primary);
+      border-radius: 1px;
+      transition: all var(--transition-fast);
+    }
+
+    .mobile-menu-btn[aria-expanded="true"] .hamburger-icon span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .mobile-menu-btn[aria-expanded="true"] .hamburger-icon span:nth-child(2) {
+      opacity: 0;
+    }
+    .mobile-menu-btn[aria-expanded="true"] .hamburger-icon span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    /* Mobile Menu Drawer */
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      background: rgba(14, 16, 21, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-medium);
+      padding: 24px;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 99;
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: transform var(--transition-normal), opacity var(--transition-normal);
+      pointer-events: none;
+    }
+
+    .mobile-drawer.is-open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-drawer a {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .mobile-drawer a:hover {
+      color: var(--accent-red);
+    }
+
+    .mobile-drawer .btn-drawer-download {
+      margin-top: 8px;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-red);
+      color: var(--text-white);
+      text-align: center;
+      font-weight: 700;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links-desktop {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: flex;
+      }
+      .mobile-drawer {
+        display: flex;
+      }
+    }
+
+    /* -------------------------------------------------------------
        PREFERS-REDUCED-MOTION
        ------------------------------------------------------------- */
     @media (prefers-reduced-motion: reduce) {
@@ -179,10 +409,85 @@
 </head>
 <body>
   <div id="app">
-    <!-- Header will be mounted in Task 2 -->
+    <!-- Navigation Header -->
+    <header class="site-header" id="site-header">
+      <div class="container nav-container">
+        <a href="#" class="brand-link" aria-label="Easy Mouse Home">
+          <span class="brand-beacon" aria-hidden="true"></span>
+          <span>Easy Mouse</span>
+        </a>
+
+        <nav aria-label="Primary Navigation">
+          <ul class="nav-links-desktop">
+            <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+            <li><a href="#features" class="nav-link">Features</a></li>
+            <li><a href="#modes" class="nav-link">Modes</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="#download" class="btn-nav-download" id="download-app-nav">Download</a>
+          <button class="mobile-menu-btn" id="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation menu">
+            <span class="hamburger-icon">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+        <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+        <a href="#features" class="mobile-nav-link">Features</a>
+        <a href="#modes" class="mobile-nav-link">Modes</a>
+        <a href="#download" class="btn-drawer-download mobile-nav-link">Download Easy Mouse</a>
+      </div>
+    </header>
+
     <main id="main-content">
       <!-- Sections will be mounted in Tasks 3-7 -->
     </main>
   </div>
+
+  <script>
+    /* Mobile Menu Toggle Logic */
+    (function initMobileNav() {
+      const toggleBtn = document.getElementById('mobile-toggle');
+      const drawer = document.getElementById('mobile-drawer');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+      const header = document.getElementById('site-header');
+
+      if (!toggleBtn || !drawer) return;
+
+      function toggleMenu() {
+        const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
+        toggleBtn.setAttribute('aria-expanded', !isOpen);
+        drawer.setAttribute('aria-hidden', isOpen);
+        drawer.classList.toggle('is-open', !isOpen);
+        document.body.style.overflow = !isOpen ? 'hidden' : '';
+      }
+
+      function closeMenu() {
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        drawer.setAttribute('aria-hidden', 'true');
+        drawer.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      toggleBtn.addEventListener('click', toggleMenu);
+      mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+      /* Header Scroll State */
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      }, { passive: true });
+    })();
+  </script>
 </body>
 </html>
