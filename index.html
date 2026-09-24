@@ -4,53 +4,49 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Easy Mouse - Turn Your Phone into a Wireless Mouse</title>
-  <meta name="description" content="Easy Mouse turns your smartphone into a high-precision wireless mouse, multi-touch trackpad, and presentation controller for your computer.">
-  <meta name="theme-color" content="#0c0e14">
+  <meta name="description" content="Easy Mouse turns your smartphone into a high-precision wireless trackpad and presentation controller for your computer. Black and muted yellow physical product experience.">
+  <meta name="theme-color" content="#080808">
 
-  <!-- Editorial Typography Pairing: Outfit (Display) + Plus Jakarta Sans (Supporting) -->
+  <!-- Typography Pairing: Playlist Script Inspired (Kaushan Script) + Bold Condensed (Bebas Neue) + Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kaushan+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* -------------------------------------------------------------
-       EASY MOUSE ART-DIRECTED DESIGN SYSTEM
-       Variance: 9/10 | Motion: 9/10 | Visual Density: 3-4/10
-       Reference Inspiration: Buttermax editorial motion & visual pacing
+       EASY MOUSE BESPOKE DESIGN SYSTEM
+       Color Palette: Pure Black (#080808) + Muted Golden Yellow (#D8BE45 / #E0C653)
+       Typography: Playlist Script Style Hero + Bold Condensed Grotesk
        ------------------------------------------------------------- */
     :root {
-      /* Tonal Foundation - Rich Charcoal, Warm Graphite, Atmosphere */
-      --bg-void: #090a0f;
-      --bg-charcoal: #0e1017;
-      --bg-graphite: #151821;
-      --bg-surface: #1b1e2a;
-      --bg-surface-elevated: #232736;
-      --bg-crimson-tint: #180f14;
+      /* Pure Black Tonal Foundations */
+      --bg-void: #080808;
+      --bg-charcoal: #0c0c0b;
+      --bg-graphite: #11110f;
+      --bg-surface: #181814;
+      --bg-surface-elevated: #20201a;
 
-      /* Borders & Luminance */
-      --border-ghost: rgba(255, 255, 255, 0.05);
-      --border-subtle: rgba(255, 255, 255, 0.09);
-      --border-refined: rgba(255, 255, 255, 0.18);
-      --border-accent: rgba(255, 40, 77, 0.45);
-
-      /* Red Accent Hierarchy */
-      --accent-red: #ff2a4b;
-      --accent-red-hover: #ff4765;
-      --accent-red-muted: #b8203c;
-      --accent-red-glow: rgba(255, 42, 75, 0.28);
-      --accent-red-subtle: rgba(255, 42, 75, 0.08);
+      /* Muted Warm Yellow Hierarchy - Strictly No Red / Neon */
+      --yellow-muted: #D8BE45;
+      --yellow-gold: #E0C653;
+      --yellow-deep: #C9AD3A;
+      --yellow-glow: rgba(224, 198, 83, 0.22);
+      --yellow-subtle: rgba(224, 198, 83, 0.06);
+      --yellow-stroke: rgba(224, 198, 83, 0.28);
+      --yellow-border: rgba(224, 198, 83, 0.16);
 
       /* Typography Tones */
-      --text-hero: #faf8f5;
-      --text-primary: #f2efe9;
-      --text-secondary: #9ea5b4;
-      --text-muted: #646b7a;
+      --text-hero: #FAF8F2;
+      --text-primary: #EDE9DF;
+      --text-secondary: #9E9C91;
+      --text-muted: #5F5E56;
 
-      /* Font Families */
-      --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      /* Fonts */
+      --font-script: 'Playlist Script', 'Kaushan Script', cursive;
+      --font-condensed: 'Bebas Neue', 'Impact', sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-      /* Motion Physics */
+      /* Motion */
       --ease-cinema: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-fluid: cubic-bezier(0.25, 0.46, 0.45, 0.94);
       --nav-height: 72px;
@@ -66,9 +62,9 @@
 
     html {
       scroll-behavior: smooth;
-      background-color: var(--bg-charcoal);
+      background-color: var(--bg-void);
       color: var(--text-primary);
-      font-family: var(--font-sans);
+      font-family: var(--font-body);
       font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
@@ -78,14 +74,14 @@
 
     body {
       min-height: 100vh;
-      background-color: var(--bg-charcoal);
+      background-color: var(--bg-void);
       color: var(--text-primary);
       position: relative;
       overflow-x: hidden;
     }
 
-    /* Atmospheric Smoky Haze & Fine Noise Overlay */
-    .atmosphere-layer {
+    /* Tactile Atmospheric Layers: Fine Grain & Warm Radial Illumination */
+    .atmosphere-ambient {
       position: fixed;
       inset: 0;
       pointer-events: none;
@@ -93,65 +89,70 @@
       overflow: hidden;
     }
 
-    .atmosphere-grain {
+    .atmosphere-noise {
       position: absolute;
       inset: 0;
-      opacity: 0.025;
+      opacity: 0.024;
       background-image: radial-gradient(rgba(255, 255, 255, 0.8) 1px, transparent 0);
-      background-size: 24px 24px;
+      background-size: 28px 28px;
     }
 
-    .haze-orb-1 {
+    .ambient-warm-glow {
       position: absolute;
-      top: -200px;
+      top: -240px;
       left: 50%;
       transform: translateX(-50%);
-      width: 900px;
-      height: 600px;
-      background: radial-gradient(ellipse at center, rgba(255, 42, 75, 0.12) 0%, rgba(255, 42, 75, 0.02) 50%, transparent 70%);
-      filter: blur(60px);
+      width: 1000px;
+      height: 650px;
+      background: radial-gradient(ellipse at center, rgba(224, 198, 83, 0.09) 0%, rgba(224, 198, 83, 0.02) 55%, transparent 70%);
+      filter: blur(70px);
       transition: opacity 1s ease;
     }
 
-    .haze-orb-2 {
+    .ambient-side-glow {
       position: absolute;
-      top: 50%;
+      top: 48%;
       right: -250px;
       width: 700px;
       height: 700px;
-      background: radial-gradient(circle, rgba(255, 42, 75, 0.07) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(224, 198, 83, 0.05) 0%, transparent 65%);
       filter: blur(80px);
     }
 
     /* Typography & Hierarchy */
     h1, h2, h3, h4 {
-      font-family: var(--font-display);
       color: var(--text-hero);
       font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.035em;
+      line-height: 1.02;
+    }
+
+    .condensed-title {
+      font-family: var(--font-condensed);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-weight: 400;
+      line-height: 0.95;
     }
 
     .editorial-label {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-family: var(--font-sans);
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-family: var(--font-condensed);
+      font-size: 1.05rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--accent-red);
-      margin-bottom: 20px;
+      color: var(--yellow-gold);
+      margin-bottom: 16px;
     }
 
     .editorial-label::before {
       content: "";
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: var(--accent-red);
-      box-shadow: 0 0 10px var(--accent-red);
+      background: var(--yellow-gold);
+      box-shadow: 0 0 10px var(--yellow-gold);
     }
 
     p {
@@ -175,7 +176,7 @@
     }
 
     :focus-visible {
-      outline: 2px solid var(--accent-red);
+      outline: 2px solid var(--yellow-gold);
       outline-offset: 4px;
     }
 
@@ -209,7 +210,7 @@
     }
 
     /* -------------------------------------------------------------
-       MINIMAL EDITORIAL NAVIGATION
+       MINIMAL PRODUCT NAVIGATION
        ------------------------------------------------------------- */
     .site-nav {
       position: sticky;
@@ -217,18 +218,18 @@
       left: 0;
       width: 100%;
       height: var(--nav-height);
-      background: rgba(14, 16, 23, 0.75);
+      background: rgba(8, 8, 8, 0.82);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-ghost);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       z-index: 100;
       transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
     }
 
     .site-nav.scrolled {
-      background: rgba(14, 16, 23, 0.94);
-      border-bottom-color: var(--border-subtle);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      background: rgba(8, 8, 8, 0.96);
+      border-bottom-color: var(--yellow-border);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     }
 
     .nav-inner {
@@ -242,28 +243,24 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
       color: var(--text-hero);
     }
 
-    .brand-icon-gem {
-      width: 26px;
-      height: 26px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #ff2a4b, #b8203c);
+    .brand-logo-svg {
+      width: 28px;
+      height: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 14px var(--accent-red-glow);
+      filter: drop-shadow(0 0 6px rgba(224, 198, 83, 0.35));
     }
 
-    .brand-icon-gem svg {
-      width: 15px;
-      height: 15px;
-      fill: #ffffff;
+    .brand-title-nav {
+      font-family: var(--font-condensed);
+      font-size: 1.45rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-hero);
     }
 
     .nav-links {
@@ -274,7 +271,7 @@
     }
 
     .nav-link-item a {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 500;
       color: var(--text-secondary);
       position: relative;
@@ -289,7 +286,7 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--accent-red);
+      background: var(--yellow-gold);
       transition: width 0.25s var(--ease-cinema);
     }
 
@@ -305,20 +302,20 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 22px;
+      padding: 9px 22px;
       border-radius: 9999px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border-refined);
-      color: var(--text-hero);
-      font-size: 0.9rem;
+      background: rgba(224, 198, 83, 0.08);
+      border: 1px solid var(--yellow-border);
+      color: var(--yellow-gold);
+      font-size: 0.88rem;
       font-weight: 600;
       transition: all 0.3s var(--ease-cinema);
     }
 
     .nav-cta-btn:hover {
-      background: var(--accent-red);
-      border-color: var(--accent-red);
-      box-shadow: 0 0 24px var(--accent-red-glow);
+      background: var(--yellow-gold);
+      color: #080808;
+      box-shadow: 0 0 24px var(--yellow-glow);
       transform: translateY(-1px);
     }
 
@@ -345,15 +342,14 @@
       }
     }
 
-    /* Mobile Drawer */
     .mobile-nav-drawer {
       display: none;
       position: fixed;
       top: var(--nav-height);
       left: 0;
       width: 100%;
-      background: rgba(14, 16, 23, 0.98);
-      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(12, 12, 11, 0.98);
+      border-bottom: 1px solid var(--yellow-border);
       padding: 24px;
       flex-direction: column;
       gap: 18px;
@@ -370,14 +366,16 @@
     }
 
     .mobile-nav-drawer a {
-      font-size: 1.15rem;
-      font-weight: 600;
+      font-size: 1.25rem;
+      font-family: var(--font-condensed);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       color: var(--text-hero);
-      padding: 8px 0;
+      padding: 6px 0;
     }
 
     /* -------------------------------------------------------------
-       HERO: DRAMATIC PROGRESSIVE REVEAL & 3D SMARTPHONE
+       HERO: PLAYLIST SCRIPT BRANDING + REALISTIC 3D SMARTPHONE
        ------------------------------------------------------------- */
     .hero-stage {
       min-height: 94vh;
@@ -391,73 +389,85 @@
 
     .hero-split-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.15fr 0.85fr;
       align-items: center;
-      gap: 60px;
+      gap: 50px;
     }
 
-    /* Progressive Line-by-Line Entrance */
-    .hero-title-stage {
-      margin-bottom: 28px;
+    /* Dramatic Hero Brand Statement */
+    .hero-editorial-col {
+      position: relative;
+      z-index: 5;
     }
 
-    .title-line-mask {
+    /* Opening Line Reveal Sweep */
+    .hero-sweep-line {
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--yellow-gold), transparent);
+      margin-bottom: 24px;
+      transition: width 1.2s var(--ease-cinema) 0.1s;
+    }
+
+    .hero-entered .hero-sweep-line {
+      width: 180px;
+    }
+
+    /* Major Playlist Script Brand Headline */
+    .brand-script-wrapper {
+      margin-bottom: 8px;
       overflow: hidden;
-      display: block;
-      margin-bottom: -4px;
     }
 
-    .title-line-inner {
+    .brand-script-title {
+      display: inline-block;
+      font-family: var(--font-script);
+      font-size: clamp(4.5rem, 8.8vw, 7.8rem);
+      line-height: 0.96;
+      color: var(--yellow-gold);
+      text-shadow: 0 4px 30px rgba(224, 198, 83, 0.28);
+      transform: translateY(115%) rotate(-2deg);
+      opacity: 0;
+      transition: transform 1s var(--ease-cinema) 0.3s, opacity 0.8s ease 0.3s;
+    }
+
+    .hero-entered .brand-script-title {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+
+    /* Supporting Condensed Tagline */
+    .hero-condensed-tagline {
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .hero-condensed-inner {
       display: block;
-      font-size: clamp(3.2rem, 6.2vw, 5.8rem);
-      font-weight: 900;
-      line-height: 0.98;
-      letter-spacing: -0.04em;
+      font-family: var(--font-condensed);
+      font-size: clamp(2rem, 3.8vw, 3.4rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
       color: var(--text-hero);
       transform: translateY(110%);
       opacity: 0;
-      filter: blur(10px);
-      transition: transform 0.95s var(--ease-cinema), opacity 0.8s ease, filter 0.8s ease;
+      transition: transform 0.85s var(--ease-cinema) 0.5s, opacity 0.8s ease 0.5s;
     }
 
-    .title-line-inner.accent-word {
-      color: var(--accent-red);
-      text-shadow: 0 0 35px var(--accent-red-glow);
-    }
-
-    /* Staggered triggers */
-    .hero-entered .title-line-inner:nth-child(1) {
+    .hero-entered .hero-condensed-inner {
       transform: translateY(0);
       opacity: 1;
-      filter: blur(0);
-      transition-delay: 0.1s;
-    }
-    .hero-entered .line-2 .title-line-inner {
-      transform: translateY(0);
-      opacity: 1;
-      filter: blur(0);
-      transition-delay: 0.25s;
-    }
-    .hero-entered .line-3 .title-line-inner {
-      transform: translateY(0);
-      opacity: 1;
-      filter: blur(0);
-      transition-delay: 0.4s;
-    }
-    .hero-entered .line-4 .title-line-inner {
-      transform: translateY(0);
-      opacity: 1;
-      filter: blur(0);
-      transition-delay: 0.55s;
     }
 
     .hero-summary-copy {
       max-width: 48ch;
-      font-size: 1.22rem;
+      font-size: 1.18rem;
+      line-height: 1.68;
       margin-bottom: 38px;
+      color: var(--text-secondary);
       transform: translateY(20px);
       opacity: 0;
-      transition: transform 0.8s var(--ease-cinema) 0.65s, opacity 0.8s ease 0.65s;
+      transition: transform 0.8s var(--ease-cinema) 0.7s, opacity 0.8s ease 0.7s;
     }
 
     .hero-entered .hero-summary-copy {
@@ -472,7 +482,7 @@
       flex-wrap: wrap;
       transform: translateY(20px);
       opacity: 0;
-      transition: transform 0.8s var(--ease-cinema) 0.8s, opacity 0.8s ease 0.8s;
+      transition: transform 0.8s var(--ease-cinema) 0.85s, opacity 0.8s ease 0.85s;
     }
 
     .hero-entered .hero-actions-row {
@@ -484,44 +494,48 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      padding: 18px 38px;
-      background: var(--accent-red);
-      color: #ffffff;
-      font-size: 1.05rem;
-      font-weight: 700;
+      padding: 18px 36px;
+      background: var(--yellow-gold);
+      color: #080808;
+      font-family: var(--font-condensed);
+      font-size: 1.35rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       border-radius: 9999px;
-      box-shadow: 0 12px 36px var(--accent-red-glow);
+      box-shadow: 0 10px 32px var(--yellow-glow);
       transition: all 0.3s var(--ease-cinema);
     }
 
     .btn-hero-primary:hover {
-      background: var(--accent-red-hover);
+      background: #ebd264;
       transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 16px 44px rgba(255, 42, 75, 0.45);
+      box-shadow: 0 14px 40px rgba(224, 198, 83, 0.4);
     }
 
     .btn-hero-secondary {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 18px 30px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-refined);
+      padding: 17px 28px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--yellow-border);
       border-radius: 9999px;
       color: var(--text-hero);
-      font-size: 1.05rem;
-      font-weight: 600;
+      font-family: var(--font-condensed);
+      font-size: 1.25rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       transition: all 0.3s var(--ease-cinema);
     }
 
     .btn-hero-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(224, 198, 83, 0.08);
+      border-color: var(--yellow-gold);
       transform: translateY(-2px);
     }
 
     /* -------------------------------------------------------------
-       HERO: 3D REALISTIC SMARTPHONE & LAPTOP INTERACTION
+       HERO: REALISTIC 3D SMARTPHONE CHASSIS & COMPANION MONITOR
        ------------------------------------------------------------- */
     .hero-3d-scene {
       perspective: 1200px;
@@ -529,68 +543,76 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      min-height: 520px;
+      min-height: 540px;
     }
 
     .spatial-phone-rig {
       position: relative;
       width: 320px;
-      height: 520px;
+      height: 530px;
       transform-style: preserve-3d;
       transform: rotateY(-14deg) rotateX(12deg) rotateZ(-3deg);
       transition: transform 0.4s var(--ease-fluid);
+      opacity: 0;
+      transform-origin: center center;
     }
 
-    /* Smartphone Physical Chassis */
+    .hero-entered .spatial-phone-rig {
+      opacity: 1;
+      transition: transform 0.4s var(--ease-fluid), opacity 0.8s ease 0.4s;
+    }
+
+    /* Physical Machined Smartphone Chassis */
     .phone-chassis {
       position: absolute;
       inset: 0;
-      background: linear-gradient(145deg, #222634, #10121a);
+      background: linear-gradient(145deg, #24241f 0%, #151512 50%, #1a1a15 100%);
       border-radius: 46px;
       padding: 12px;
       box-shadow: 
-        -25px 35px 70px rgba(0, 0, 0, 0.75),
-        inset 0 0 0 2px rgba(255, 255, 255, 0.12),
-        inset 0 2px 4px rgba(255, 255, 255, 0.3),
-        0 0 60px var(--accent-red-subtle);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+        -25px 35px 75px rgba(0, 0, 0, 0.9),
+        inset 0 0 0 1.5px rgba(224, 198, 83, 0.28),
+        inset 0 2px 4px rgba(255, 255, 255, 0.25),
+        0 0 50px var(--yellow-subtle);
+      border: 1px solid rgba(224, 198, 83, 0.14);
       display: flex;
       flex-direction: column;
     }
 
-    /* Screen Glass Surface */
+    /* Smartphone Glass Screen */
     .phone-glass-screen {
       flex: 1;
-      background: radial-gradient(circle at 50% 20%, #1e2230 0%, #0e1017 85%);
+      background: radial-gradient(circle at 50% 15%, #181814 0%, #0c0c0a 85%);
       border-radius: 36px;
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       user-select: none;
     }
 
-    /* Subtle Glass Glare Diagonal */
+    /* Diagonal Glass Highlight Specular */
     .phone-glass-screen::before {
       content: "";
       position: absolute;
       top: -100px;
       left: -100px;
-      width: 300px;
+      width: 320px;
       height: 600px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+      background: linear-gradient(135deg, rgba(224, 198, 83, 0.06) 0%, transparent 60%);
       transform: rotate(25deg);
       pointer-events: none;
     }
 
-    /* Speaker Pill & Front Camera */
+    /* Dynamic Island & Speaker */
     .phone-dynamic-island {
-      width: 80px;
+      width: 82px;
       height: 18px;
       background: #000000;
       border-radius: 9999px;
       margin: 12px auto 0;
       position: relative;
       z-index: 5;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     /* Interactive Trackpad Field */
@@ -598,8 +620,8 @@
       position: absolute;
       inset: 48px 16px 20px;
       border-radius: 24px;
-      border: 1px dashed rgba(255, 42, 75, 0.25);
-      background: rgba(255, 42, 75, 0.02);
+      border: 1px dashed var(--yellow-border);
+      background: rgba(224, 198, 83, 0.02);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -618,29 +640,29 @@
 
     .phone-touch-ripple {
       position: absolute;
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 42, 75, 0.6) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(224, 198, 83, 0.7) 0%, transparent 70%);
       transform: translate(-50%, -50%);
       pointer-events: none;
       top: 50%;
       left: 50%;
-      box-shadow: 0 0 20px var(--accent-red);
+      box-shadow: 0 0 20px var(--yellow-gold);
       transition: width 0.2s ease, height 0.2s ease;
     }
 
-    /* Miniature Laptop Screen Responding In Perspective Behind */
+    /* Companion Laptop Screen Behind in Perspective */
     .laptop-companion-card {
       position: absolute;
       top: -30px;
       right: -80px;
-      width: 270px;
-      height: 175px;
-      background: #11141e;
-      border: 1px solid var(--border-refined);
+      width: 275px;
+      height: 180px;
+      background: #11110f;
+      border: 1px solid var(--yellow-border);
       border-radius: 14px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
       transform: translateZ(-80px) rotateY(-8deg);
       padding: 12px;
       display: flex;
@@ -659,17 +681,17 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.18);
     }
-    .dot-mini.red { background: var(--accent-red); }
+    .dot-mini.gold { background: var(--yellow-gold); }
 
     .laptop-canvas-preview {
       flex: 1;
-      background: #090a0f;
+      background: #080808;
       border-radius: 8px;
       position: relative;
       overflow: hidden;
-      border: 1px solid var(--border-ghost);
+      border: 1px solid rgba(255, 255, 255, 0.04);
     }
 
     .laptop-pointer-icon {
@@ -680,11 +702,11 @@
       left: 50%;
       transform: translate(-50%, -50%);
       transition: top 0.08s ease-out, left 0.08s ease-out;
-      fill: var(--accent-red);
-      filter: drop-shadow(0 0 8px var(--accent-red));
+      fill: var(--yellow-gold);
+      filter: drop-shadow(0 0 8px var(--yellow-gold));
     }
 
-    /* Red Laser / Flowing Beam Connecting Phone to Laptop */
+    /* Flowing Physical Yellow Signal Path */
     .spatial-beam-svg {
       position: absolute;
       top: 50%;
@@ -721,14 +743,13 @@
     }
 
     /* -------------------------------------------------------------
-       KINETIC TYPOGRAPHY ROLLING BANDS
-       Motion responds to scroll velocity; dual opposite directions
+       KINETIC TYPOGRAPHY ROLLING BANDS (DUAL VELOCITY)
        ------------------------------------------------------------- */
     .kinetic-bands-wrap {
-      padding: 40px 0;
-      background: var(--bg-void);
-      border-top: 1px solid var(--border-ghost);
-      border-bottom: 1px solid var(--border-ghost);
+      padding: 36px 0;
+      background: #060605;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       overflow: hidden;
       user-select: none;
     }
@@ -747,41 +768,39 @@
     }
 
     .kinetic-word {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 3.8vw, 3.4rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
+      font-family: var(--font-condensed);
+      font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.22);
+      color: rgba(255, 255, 255, 0.18);
       transition: color 0.3s ease;
     }
 
     .kinetic-word.highlight {
-      color: var(--text-hero);
+      color: var(--yellow-gold);
     }
 
     .kinetic-dot {
-      color: var(--accent-red);
-      font-size: 1.4rem;
+      color: var(--yellow-muted);
+      font-size: 1.2rem;
     }
 
     .track-reverse {
-      margin-top: 16px;
+      margin-top: 14px;
     }
 
     .track-reverse .kinetic-word {
-      color: rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.1);
       font-style: italic;
     }
 
     /* -------------------------------------------------------------
-       SECTION 01: THE PHONE (YOUR PHONE IS ALREADY THE CONTROLLER)
-       Tonal: Warm Graphite
+       SECTION 01: THE PHONE (PHYSICAL PRODUCT STORY)
        ------------------------------------------------------------- */
     .section-phone {
-      background: var(--bg-graphite);
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
+      background: var(--bg-charcoal);
+      border-top: 1px solid var(--yellow-border);
+      border-bottom: 1px solid var(--yellow-border);
     }
 
     .narrative-editorial-row {
@@ -792,10 +811,12 @@
     }
 
     .editorial-statement-huge {
-      font-size: clamp(2.6rem, 4.4vw, 4.2rem);
-      font-weight: 900;
-      line-height: 1.05;
+      font-family: var(--font-condensed);
+      font-size: clamp(3rem, 5vw, 4.6rem);
+      letter-spacing: 0.02em;
+      line-height: 0.95;
       margin-bottom: 24px;
+      color: var(--text-hero);
     }
 
     .statement-lead-paragraph {
@@ -809,47 +830,45 @@
       position: relative;
       border-radius: 28px;
       overflow: hidden;
-      border: 1px solid var(--border-refined);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
-      background: #0f121a;
+      border: 1px solid var(--yellow-border);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+      background: #11110f;
       aspect-ratio: 4 / 3;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 30px;
     }
 
-    .macro-photo-art {
+    /* Bespoke SVG Macro Touch Visualization */
+    .macro-touch-svg {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s var(--ease-cinema);
-    }
-
-    .narrative-visual-chassis:hover .macro-photo-art {
-      transform: scale(1.04);
+      filter: drop-shadow(0 0 20px rgba(224, 198, 83, 0.15));
     }
 
     .visual-art-caption {
       position: absolute;
       bottom: 20px;
       left: 20px;
-      background: rgba(14, 16, 23, 0.85);
+      background: rgba(8, 8, 8, 0.9);
       backdrop-filter: blur(12px);
-      padding: 10px 18px;
+      padding: 10px 20px;
       border-radius: 9999px;
-      border: 1px solid var(--border-subtle);
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-hero);
+      border: 1px solid var(--yellow-border);
+      font-family: var(--font-condensed);
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--yellow-gold);
     }
 
     /* -------------------------------------------------------------
-       SECTION 02: THE FLOWING CONNECTION
-       Tonal: Soft Red Atmosphere
+       SECTION 02: THE PHYSICAL CONNECTION
        ------------------------------------------------------------- */
     .section-connection {
-      background: radial-gradient(circle at 50% 50%, var(--bg-crimson-tint) 0%, var(--bg-void) 90%);
-      border-bottom: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at 50% 50%, #141410 0%, var(--bg-void) 90%);
+      border-bottom: 1px solid var(--yellow-border);
     }
 
     .connection-story-grid {
@@ -867,41 +886,43 @@
 
     .flow-card {
       padding: 28px 32px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border-subtle);
+      background: rgba(224, 198, 83, 0.02);
+      border: 1px solid var(--yellow-border);
       border-radius: 20px;
       transition: all 0.3s var(--ease-cinema);
     }
 
     .flow-card.active, .flow-card:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: var(--accent-red);
+      background: rgba(224, 198, 83, 0.06);
+      border-color: var(--yellow-gold);
       transform: translateX(8px);
     }
 
     .flow-card-num {
-      font-family: var(--font-display);
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--accent-red);
+      font-family: var(--font-condensed);
+      font-size: 1.15rem;
+      letter-spacing: 0.1em;
+      color: var(--yellow-gold);
       margin-bottom: 8px;
     }
 
     .flow-card-title {
-      font-size: 1.45rem;
-      font-weight: 700;
+      font-family: var(--font-condensed);
+      font-size: 1.8rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       color: var(--text-hero);
       margin-bottom: 8px;
     }
 
     .flow-canvas-box {
       height: 480px;
-      background: #0d0f17;
-      border: 1px solid var(--border-refined);
+      background: #0d0d0b;
+      border: 1px solid var(--yellow-border);
       border-radius: 24px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -914,11 +935,10 @@
 
     /* -------------------------------------------------------------
        SECTION 03: THE CONTROL (MOVE. CLICK. SCROLL.)
-       Tonal: Off-Black Deep Charcoal
        ------------------------------------------------------------- */
     .section-control {
       background: var(--bg-charcoal);
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--yellow-border);
     }
 
     .control-big-words {
@@ -930,31 +950,30 @@
     }
 
     .action-reveal-word {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 6.5vw, 6rem);
-      font-weight: 900;
-      letter-spacing: -0.04em;
+      font-family: var(--font-condensed);
+      font-size: clamp(3.4rem, 7vw, 6.5rem);
+      letter-spacing: 0.02em;
       line-height: 1;
       color: var(--text-secondary);
       transition: color 0.4s ease, transform 0.4s var(--ease-cinema);
     }
 
     .action-reveal-word.active-word {
-      color: var(--text-hero);
-      transform: scale(1.05);
+      color: var(--yellow-gold);
+      transform: scale(1.04);
     }
 
     .action-reveal-word.active-word::after {
       content: ".";
-      color: var(--accent-red);
+      color: var(--text-hero);
     }
 
     .workspace-interactive-stage {
-      background: #11141e;
-      border: 1px solid var(--border-refined);
+      background: #11110f;
+      border: 1px solid var(--yellow-border);
       border-radius: 24px;
       padding: 32px;
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8);
       position: relative;
       overflow: hidden;
     }
@@ -963,34 +982,37 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--border-ghost);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       padding-bottom: 18px;
       margin-bottom: 24px;
     }
 
     .stage-title {
-      font-size: 1.1rem;
-      font-weight: 700;
+      font-family: var(--font-condensed);
+      font-size: 1.5rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       color: var(--text-hero);
     }
 
     .simulated-screen-grid {
       height: 380px;
-      background: #090a0f;
+      background: #080808;
       border-radius: 16px;
-      border: 1px solid var(--border-ghost);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       position: relative;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: crosshair;
     }
 
     .mock-desktop-window {
       width: 70%;
       height: 60%;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(224, 198, 83, 0.02);
+      border: 1px solid var(--yellow-border);
       border-radius: 12px;
       padding: 16px;
       display: flex;
@@ -1009,20 +1031,19 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       pointer-events: none;
       transition: top 0.06s ease-out, left 0.06s ease-out;
-      filter: drop-shadow(0 0 10px var(--accent-red));
+      filter: drop-shadow(0 0 10px var(--yellow-gold));
     }
 
     /* -------------------------------------------------------------
-       SECTION 04: EDITORIAL CAPABILITIES (NO REPETITIVE CARDS)
-       Tonal: Layered Graphite
+       SECTION 04: EDITORIAL CAPABILITIES
        ------------------------------------------------------------- */
     .section-capabilities {
-      background: var(--bg-graphite);
-      border-bottom: 1px solid var(--border-subtle);
+      background: var(--bg-void);
+      border-bottom: 1px solid var(--yellow-border);
     }
 
     .capabilities-asymmetric-layout {
@@ -1033,8 +1054,8 @@
     }
 
     .capability-hero-feature {
-      background: #0f121a;
-      border: 1px solid var(--border-subtle);
+      background: #10100d;
+      border: 1px solid var(--yellow-border);
       border-radius: 28px;
       padding: 44px;
       display: flex;
@@ -1049,19 +1070,22 @@
     }
 
     .capability-feature-panel {
-      background: #0f121a;
-      border: 1px solid var(--border-subtle);
+      background: #10100d;
+      border: 1px solid var(--yellow-border);
       border-radius: 24px;
       padding: 36px;
       transition: border-color 0.3s ease;
     }
 
     .capability-feature-panel:hover {
-      border-color: var(--border-accent);
+      border-color: var(--yellow-gold);
     }
 
     .capability-h3 {
-      font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+      font-family: var(--font-condensed);
+      font-size: clamp(2.2rem, 3.2vw, 2.8rem);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
       margin-bottom: 14px;
       color: var(--text-hero);
     }
@@ -1079,9 +1103,9 @@
       width: 22px;
       height: 22px;
       border-radius: 50%;
-      background: rgba(255, 60, 60, 0.1);
-      border: 1px solid rgba(255, 60, 60, 0.4);
-      color: #ff5555;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text-muted);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1094,9 +1118,9 @@
       width: 22px;
       height: 22px;
       border-radius: 50%;
-      background: rgba(56, 239, 125, 0.1);
-      border: 1px solid rgba(56, 239, 125, 0.4);
-      color: #38ef7d;
+      background: rgba(224, 198, 83, 0.12);
+      border: 1px solid var(--yellow-gold);
+      color: var(--yellow-gold);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1110,15 +1134,15 @@
        ------------------------------------------------------------- */
     .section-modes {
       background: var(--bg-charcoal);
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--yellow-border);
     }
 
     .modes-selector-nav {
       display: inline-flex;
       gap: 12px;
       padding: 6px;
-      background: var(--bg-void);
-      border: 1px solid var(--border-subtle);
+      background: #080808;
+      border: 1px solid var(--yellow-border);
       border-radius: 9999px;
       margin-bottom: 40px;
     }
@@ -1126,33 +1150,35 @@
     .mode-tab-button {
       padding: 12px 28px;
       border-radius: 9999px;
-      font-size: 0.95rem;
-      font-weight: 600;
+      font-family: var(--font-condensed);
+      font-size: 1.25rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       color: var(--text-secondary);
       transition: all 0.25s var(--ease-cinema);
     }
 
     .mode-tab-button.active {
-      background: var(--accent-red);
-      color: #ffffff;
-      box-shadow: 0 4px 20px var(--accent-red-glow);
+      background: var(--yellow-gold);
+      color: #080808;
+      box-shadow: 0 4px 20px var(--yellow-glow);
     }
 
     .modes-interactive-stage {
       display: grid;
       grid-template-columns: 340px 1fr;
       gap: 40px;
-      background: #11141d;
-      border: 1px solid var(--border-refined);
+      background: #11110f;
+      border: 1px solid var(--yellow-border);
       border-radius: 24px;
       padding: 36px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
     }
 
     /* Phone Controller Unit */
     .phone-controller-simulator {
-      background: #090b10;
-      border: 2px solid #232736;
+      background: #080808;
+      border: 2px solid #24241e;
       border-radius: 26px;
       padding: 18px;
       height: 420px;
@@ -1162,13 +1188,13 @@
     }
 
     .controller-unit-header {
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      font-family: var(--font-condensed);
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--accent-red);
+      color: var(--yellow-gold);
       padding-bottom: 12px;
-      border-bottom: 1px solid var(--border-ghost);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       margin-bottom: 16px;
     }
 
@@ -1185,8 +1211,8 @@
 
     .simulator-touch-pad {
       flex: 1;
-      background: radial-gradient(circle at center, rgba(255, 42, 75, 0.06) 0%, #10131d 80%);
-      border: 1px dashed rgba(255, 42, 75, 0.35);
+      background: radial-gradient(circle at center, rgba(224, 198, 83, 0.05) 0%, #10100d 80%);
+      border: 1px dashed var(--yellow-border);
       border-radius: 16px;
       display: flex;
       align-items: center;
@@ -1202,9 +1228,9 @@
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background: var(--accent-red);
+      background: var(--yellow-gold);
       transform: translate(-50%, -50%);
-      box-shadow: 0 0 16px var(--accent-red);
+      box-shadow: 0 0 16px var(--yellow-gold);
       pointer-events: none;
       top: 50%;
       left: 50%;
@@ -1215,8 +1241,8 @@
     /* Scroll Wheel Simulator Ribbon */
     .scroll-wheel-ribbon {
       flex: 1;
-      background: #0f121a;
-      border: 1px solid var(--border-subtle);
+      background: #0f0f0c;
+      border: 1px solid var(--yellow-border);
       border-radius: 16px;
       display: flex;
       flex-direction: column;
@@ -1231,9 +1257,9 @@
     .scroll-thumb-handle {
       width: 44px;
       height: 60px;
-      background: var(--accent-red);
+      background: var(--yellow-gold);
       border-radius: 12px;
-      box-shadow: 0 0 20px var(--accent-red-glow);
+      box-shadow: 0 0 20px var(--yellow-glow);
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -1250,13 +1276,15 @@
     }
 
     .btn-keynote-action {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-refined);
+      background: rgba(224, 198, 83, 0.04);
+      border: 1px solid var(--yellow-border);
       border-radius: 16px;
-      padding: 24px;
+      padding: 22px;
       color: var(--text-hero);
-      font-size: 1.1rem;
-      font-weight: 700;
+      font-family: var(--font-condensed);
+      font-size: 1.4rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1265,15 +1293,15 @@
     }
 
     .btn-keynote-action:hover {
-      background: var(--accent-red);
-      border-color: var(--accent-red);
-      box-shadow: 0 0 24px var(--accent-red-glow);
+      background: var(--yellow-gold);
+      color: #080808;
+      box-shadow: 0 0 24px var(--yellow-glow);
     }
 
     /* Computer Screen Display Response */
     .computer-response-display {
-      background: #090a0f;
-      border: 1px solid var(--border-ghost);
+      background: #080808;
+      border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 20px;
       padding: 24px;
       display: flex;
@@ -1283,8 +1311,10 @@
     }
 
     .computer-display-title {
-      font-size: 0.85rem;
-      font-weight: 600;
+      font-family: var(--font-condensed);
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--text-muted);
       margin-bottom: 18px;
     }
@@ -1305,9 +1335,9 @@
     .workspace-canvas-field {
       flex: 1;
       position: relative;
-      background: #0d0f17;
+      background: #0c0c0a;
       border-radius: 12px;
-      border: 1px solid var(--border-ghost);
+      border: 1px solid var(--yellow-border);
       overflow: hidden;
     }
 
@@ -1320,16 +1350,16 @@
       height: 22px;
       pointer-events: none;
       transition: top 0.06s ease-out, left 0.06s ease-out;
-      fill: var(--accent-red);
-      filter: drop-shadow(0 0 8px var(--accent-red));
+      fill: var(--yellow-gold);
+      filter: drop-shadow(0 0 8px var(--yellow-gold));
     }
 
     /* Screen 2: Scroll Document Stream */
     .document-stream-sheet {
       flex: 1;
-      background: #0d0f17;
+      background: #0c0c0a;
       border-radius: 12px;
-      border: 1px solid var(--border-ghost);
+      border: 1px solid var(--yellow-border);
       padding: 24px;
       overflow: hidden;
       position: relative;
@@ -1348,7 +1378,7 @@
       background: rgba(255, 255, 255, 0.06);
     }
     .doc-bar.accent {
-      background: var(--accent-red);
+      background: var(--yellow-gold);
       width: 45%;
       height: 16px;
     }
@@ -1356,9 +1386,9 @@
     /* Screen 3: Keynote Slide Card */
     .keynote-slide-display {
       flex: 1;
-      background: linear-gradient(135deg, #141722, #0d0f17);
+      background: linear-gradient(135deg, #151512, #0d0d0a);
       border-radius: 16px;
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--yellow-border);
       padding: 32px;
       display: flex;
       flex-direction: column;
@@ -1377,10 +1407,9 @@
 
     /* -------------------------------------------------------------
        SECTION 06: CINEMATIC DOWNLOAD CTA
-       Tonal: Near-Black with Atmospheric Glow
        ------------------------------------------------------------- */
     .section-download {
-      background: radial-gradient(circle at 50% 40%, rgba(255, 42, 75, 0.12) 0%, var(--bg-void) 75%);
+      background: radial-gradient(circle at 50% 40%, rgba(224, 198, 83, 0.12) 0%, var(--bg-void) 75%);
       padding-top: 160px;
       padding-bottom: 160px;
       text-align: center;
@@ -1389,20 +1418,38 @@
     }
 
     .download-central-box {
-      max-width: 820px;
+      max-width: 860px;
       margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .download-giant-brand-backdrop {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-script);
+      font-size: clamp(6rem, 16vw, 15rem);
+      color: rgba(224, 198, 83, 0.035);
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 1;
     }
 
     .download-giant-h2 {
-      font-size: clamp(3rem, 6vw, 5.2rem);
-      font-weight: 900;
-      line-height: 1.04;
+      font-family: var(--font-condensed);
+      font-size: clamp(3.2rem, 6.5vw, 5.8rem);
+      letter-spacing: 0.02em;
+      line-height: 0.96;
       margin-bottom: 24px;
-      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: var(--text-hero);
     }
 
     .download-supporting-p {
-      font-size: 1.25rem;
+      font-size: 1.22rem;
       max-width: 50ch;
       margin: 0 auto 44px;
       color: var(--text-secondary);
@@ -1412,20 +1459,22 @@
       display: inline-flex;
       align-items: center;
       gap: 14px;
-      padding: 22px 52px;
-      font-size: 1.15rem;
-      font-weight: 800;
+      padding: 22px 54px;
+      font-family: var(--font-condensed);
+      font-size: 1.55rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       border-radius: 9999px;
-      background: var(--accent-red);
-      color: #ffffff;
-      box-shadow: 0 16px 50px var(--accent-red-glow);
+      background: var(--yellow-gold);
+      color: #080808;
+      box-shadow: 0 16px 50px var(--yellow-glow);
       transition: all 0.35s var(--ease-cinema);
     }
 
     .download-btn-prominent:hover {
-      background: var(--accent-red-hover);
+      background: #ebd264;
       transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 20px 60px rgba(255, 42, 75, 0.5);
+      box-shadow: 0 20px 60px rgba(224, 198, 83, 0.45);
     }
 
     .platform-specs-cluster {
@@ -1438,12 +1487,14 @@
     }
 
     .platform-pill {
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 8px 18px;
+      font-family: var(--font-condensed);
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 20px;
       border-radius: 9999px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-subtle);
+      background: rgba(224, 198, 83, 0.03);
+      border: 1px solid var(--yellow-border);
       color: var(--text-secondary);
     }
 
@@ -1451,8 +1502,8 @@
        MINIMAL PRODUCT FOOTER
        ------------------------------------------------------------- */
     .site-footer {
-      background: var(--bg-void);
-      border-top: 1px solid var(--border-ghost);
+      background: #050505;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
       padding: 44px 0;
     }
 
@@ -1472,24 +1523,27 @@
     }
 
     .footer-links-cluster a {
-      font-size: 0.95rem;
+      font-family: var(--font-condensed);
+      font-size: 1.15rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       color: var(--text-secondary);
     }
 
     .footer-links-cluster a:hover {
-      color: var(--accent-red);
+      color: var(--yellow-gold);
     }
 
-    /* Toast Notification for Download CTA */
+    /* Toast Notification Popup */
     .download-toast {
       position: fixed;
       bottom: 28px;
       right: 28px;
-      background: #141722;
-      border: 1px solid var(--accent-red);
+      background: #141410;
+      border: 1px solid var(--yellow-gold);
       border-radius: 12px;
       padding: 16px 24px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 30px var(--accent-red-glow);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9), 0 0 30px var(--yellow-glow);
       font-size: 0.95rem;
       color: var(--text-hero);
       z-index: 1000;
@@ -1507,19 +1561,18 @@
     }
 
     /* -------------------------------------------------------------
-       CUSTOM SHARP RED POINTER CURSOR & FLUID RED LIGHT TRAIL
-       Disabled strictly on mobile / touch
+       CUSTOM SHARP MUTED YELLOW POINTER & FLUID LIGHT TRAIL
        ------------------------------------------------------------- */
     @media (hover: hover) and (pointer: fine) {
       body {
         cursor: none;
       }
 
-      a, button, input, [role="tab"], .simulator-touch-pad, .scroll-wheel-ribbon, .phone-trackpad-area {
+      a, button, input, [role="tab"], .simulator-touch-pad, .scroll-wheel-ribbon, .phone-trackpad-area, .simulated-screen-grid {
         cursor: none !important;
       }
 
-      /* Sharp Red Pointer Shape */
+      /* Sharp Realistic Yellow Pointer */
       .custom-pointer-arrow {
         position: fixed;
         top: 0;
@@ -1530,12 +1583,12 @@
         z-index: 9999;
         transform: translate(-1px, -1px);
         transition: transform 0.12s var(--ease-cinema);
-        filter: drop-shadow(0 0 8px rgba(255, 42, 75, 0.6));
+        filter: drop-shadow(0 0 8px rgba(224, 198, 83, 0.6));
       }
 
       .custom-pointer-arrow.hover-scale {
         transform: scale(1.25) translate(-1px, -1px);
-        filter: drop-shadow(0 0 14px rgba(255, 42, 75, 0.9));
+        filter: drop-shadow(0 0 14px rgba(224, 198, 83, 0.85));
       }
 
       .custom-pointer-canvas {
@@ -1572,12 +1625,11 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
-      .title-line-inner {
+      .brand-script-title, .hero-condensed-inner {
         transform: none !important;
         opacity: 1 !important;
-        filter: none !important;
       }
-      .hero-summary-copy, .hero-actions-row {
+      .hero-summary-copy, .hero-actions-row, .spatial-phone-rig {
         transform: none !important;
         opacity: 1 !important;
       }
@@ -1586,30 +1638,33 @@
 </head>
 
 <body>
-  <!-- Atmospheric Smoky Layer & Ambient Illumination -->
-  <div class="atmosphere-layer" aria-hidden="true">
-    <div class="atmosphere-grain"></div>
-    <div class="haze-orb-1" id="ambient-haze-top"></div>
-    <div class="haze-orb-2"></div>
+  <!-- Atmospheric Layers: Noise & Warm Muted Yellow Ambient Glow -->
+  <div class="atmosphere-ambient" aria-hidden="true">
+    <div class="atmosphere-noise"></div>
+    <div class="ambient-warm-glow"></div>
+    <div class="ambient-side-glow"></div>
   </div>
 
   <!-- Editorial Sticky Navigation -->
   <header class="site-nav" id="site-header">
     <div class="container nav-inner">
       <a href="#" class="brand-mark" aria-label="Easy Mouse Home">
-        <div class="brand-icon-gem" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 2C7.58 2 4 5.58 4 10v4c0 4.42 3.58 8 8 8s8-3.58 8-8v-4c0-4.42-3.58-8-8-8zm6 12c0 3.31-2.69 6-6 6s-6-2.69-6-6v-4h12v4zm-7-9.93C8.04 4.47 6 6.99 6 10h5V4.07zm2 0V10h5c0-3.01-2.04-5.53-5-5.93z"/>
+        <div class="brand-logo-svg" aria-hidden="true">
+          <!-- Geometric Phone-to-Mouse Minimal Mark in Golden Yellow -->
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+            <rect x="7" y="3" width="18" height="26" rx="6" stroke="#E0C653" stroke-width="2.2" fill="#11110F"/>
+            <line x1="16" y1="7" x2="16" y2="12" stroke="#E0C653" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="16" cy="22" r="2.2" fill="#E0C653"/>
           </svg>
         </div>
-        <span>Easy Mouse</span>
+        <span class="brand-title-nav">Easy Mouse</span>
       </a>
 
       <nav aria-label="Primary Navigation">
         <ul class="nav-links">
           <li class="nav-link-item"><a href="#narrative-phone">The Phone</a></li>
           <li class="nav-link-item"><a href="#narrative-connection">Connection</a></li>
-          <li class="nav-link-item"><a href="#narrative-control">Control</a></li>
+          <li class="nav-link-item"><a href="#narrative-control">Controls</a></li>
           <li class="nav-link-item"><a href="#capabilities">Features</a></li>
           <li class="nav-link-item"><a href="#modes">Modes</a></li>
         </ul>
@@ -1628,11 +1683,11 @@
       </button>
     </div>
 
-    <!-- Mobile Drawer -->
+    <!-- Mobile Navigation Drawer -->
     <div class="mobile-nav-drawer" id="mobile-drawer" aria-hidden="true">
       <a href="#narrative-phone" class="mobile-link">The Phone</a>
       <a href="#narrative-connection" class="mobile-link">Connection</a>
-      <a href="#narrative-control" class="mobile-link">Control</a>
+      <a href="#narrative-control" class="mobile-link">Controls</a>
       <a href="#capabilities" class="mobile-link">Features</a>
       <a href="#modes" class="mobile-link">Modes</a>
       <a href="#download" class="btn-hero-primary mobile-link" style="justify-content: center; margin-top: 10px;">Download Easy Mouse</a>
@@ -1640,30 +1695,26 @@
   </header>
 
   <main id="main-content">
-    <!-- HERO: DRAMATIC PROGRESSIVE TYPOGRAPHY & 3D SPATIAL VISUAL -->
+    <!-- HERO: DOMINANT PLAYLIST SCRIPT BRANDING & REALISTIC 3D SMARTPHONE -->
     <section class="hero-stage" id="hero">
       <div class="container hero-split-grid">
-        <!-- Progressive Line-by-Line Entrance -->
+        <!-- Hero Editorial Left Column: EASY MOUSE Dominant -->
         <div class="hero-editorial-col">
-          <div class="editorial-label">Wireless Desktop Control</div>
+          <div class="editorial-label">Physical Desktop Controller</div>
+          <div class="hero-sweep-line"></div>
 
-          <div class="hero-title-stage">
-            <span class="title-line-mask line-1">
-              <span class="title-line-inner">TURN</span>
-            </span>
-            <span class="title-line-mask line-2">
-              <span class="title-line-inner">YOUR PHONE</span>
-            </span>
-            <span class="title-line-mask line-3">
-              <span class="title-line-inner">INTO A</span>
-            </span>
-            <span class="title-line-mask line-4">
-              <span class="title-line-inner accent-word">WIRELESS MOUSE.</span>
-            </span>
+          <!-- Major Brand Hero Presentation: Playlist Script Style -->
+          <div class="brand-script-wrapper">
+            <h1 class="brand-script-title">Easy Mouse</h1>
+          </div>
+
+          <!-- Supporting Condensed Statement -->
+          <div class="hero-condensed-tagline">
+            <span class="hero-condensed-inner">YOUR PHONE IS YOUR POINTER.</span>
           </div>
 
           <p class="hero-summary-copy">
-            Transform the touchscreen in your hand into an instant, high-precision trackpad and remote navigator for your computer. No extra hardware. Zero friction.
+            Transform the glass touchscreen in your hand into an instant, high-precision trackpad and remote navigator for your computer. No extra hardware. Zero friction.
           </p>
 
           <div class="hero-actions-row">
@@ -1682,7 +1733,7 @@
           </div>
         </div>
 
-        <!-- 3D Smartphone & Interactive Companion Monitor -->
+        <!-- Hero 3D Spatial Smartphone & Interactive Companion Monitor -->
         <div class="hero-3d-scene" id="hero-3d-scene">
           <div class="spatial-phone-rig" id="spatial-phone-rig">
             <div class="phone-chassis">
@@ -1698,26 +1749,26 @@
             <!-- Laptop View Responding in Spatial Depth Behind -->
             <div class="laptop-companion-card" id="laptop-companion">
               <div class="laptop-card-header">
-                <div class="dot-mini red"></div>
+                <div class="dot-mini gold"></div>
                 <div class="dot-mini"></div>
                 <div class="dot-mini"></div>
-                <span style="font-size: 0.7rem; color: var(--text-muted); margin-left: 6px; font-weight: 600;">Computer Screen</span>
+                <span style="font-family: var(--font-condensed); font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-left: 6px;">Computer Screen</span>
               </div>
               <div class="laptop-canvas-preview" id="laptop-screen-preview">
                 <svg class="laptop-pointer-icon" id="hero-laptop-pointer" viewBox="0 0 24 24">
-                  <path d="M4 2L20 10L12 13L8 21L4 2Z"/>
+                  <polygon points="2,2 22,10 13,13 10,22" fill="#E0C653" stroke="#080808" stroke-width="1.5" stroke-linejoin="round"/>
                 </svg>
               </div>
             </div>
           </div>
 
-          <!-- Flowing Energy Connection Beam SVG -->
+          <!-- Flowing Physical Signal Connection Beam SVG in Warm Yellow -->
           <svg class="spatial-beam-svg" viewBox="0 0 360 220" fill="none" aria-hidden="true">
-            <path id="hero-energy-beam" d="M120 150 C 200 120, 240 70, 290 50" stroke="url(#hero-beam-gradient)" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 6"/>
+            <path id="hero-energy-beam" d="M120 150 C 200 120, 240 70, 290 50" stroke="url(#hero-beam-gradient)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 6"/>
             <defs>
               <linearGradient id="hero-beam-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#ff2a4b" stop-opacity="0.9"/>
-                <stop offset="100%" stop-color="#ff2a4b" stop-opacity="0.2"/>
+                <stop offset="0%" stop-color="#E0C653" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#E0C653" stop-opacity="0.2"/>
               </linearGradient>
             </defs>
           </svg>
@@ -1725,7 +1776,7 @@
       </div>
     </section>
 
-    <!-- KINETIC ROLLING TYPOGRAPHY BANDS (DUAL OPPOSITE VELOCITY) -->
+    <!-- KINETIC ROLLING TYPOGRAPHY BANDS (DUAL VELOCITY) -->
     <section class="kinetic-bands-wrap" aria-hidden="true">
       <div class="kinetic-track" id="kinetic-track-forward">
         <div class="kinetic-group">
@@ -1764,20 +1815,39 @@
           <div>
             <div class="editorial-label">Act 01: The Device</div>
             <h2 class="editorial-statement-huge">
-              Your phone is already the controller.
+              The glass in your palm is already a trackpad.
             </h2>
             <p class="statement-lead-paragraph">
               You do not need to carry another peripheral. The glass screen already resting in your pocket has capacitive sensitivity and multi-touch fidelity ready to drive your workspace with surgical accuracy.
             </p>
             <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-              <span class="platform-pill" style="border-color: var(--accent-red); color: var(--accent-red);">Capacitive Glass</span>
+              <span class="platform-pill" style="border-color: var(--yellow-gold); color: var(--yellow-gold);">Capacitive Glass</span>
               <span class="platform-pill">Multi-Touch Detection</span>
               <span class="platform-pill">Haptic Confirmation</span>
             </div>
           </div>
 
+          <!-- Bespoke Art-Directed Touch Surface Visual -->
           <div class="narrative-visual-chassis">
-            <img src="assets/trackpad-macro.jpg" alt="Macro view of fingertip glide across glass trackpad surface" class="macro-photo-art" loading="lazy">
+            <svg class="macro-touch-svg" viewBox="0 0 400 300" fill="none">
+              <!-- Touch Screen Plane with Gold Ripple Geometry -->
+              <rect x="40" y="30" width="320" height="240" rx="16" fill="#141410" stroke="#E0C653" stroke-width="1.5"/>
+              <circle cx="200" cy="150" r="80" stroke="rgba(224, 198, 83, 0.15)" stroke-width="1.5"/>
+              <circle cx="200" cy="150" r="55" stroke="rgba(224, 198, 83, 0.3)" stroke-width="2"/>
+              <circle cx="200" cy="150" r="30" stroke="rgba(224, 198, 83, 0.6)" stroke-width="2.5"/>
+              <circle cx="200" cy="150" r="8" fill="#E0C653"/>
+              
+              <!-- Subtle Grid Dots -->
+              <g fill="rgba(224, 198, 83, 0.2)">
+                <circle cx="80" cy="70" r="1.5"/><circle cx="120" cy="70" r="1.5"/><circle cx="160" cy="70" r="1.5"/>
+                <circle cx="240" cy="70" r="1.5"/><circle cx="280" cy="70" r="1.5"/><circle cx="320" cy="70" r="1.5"/>
+                <circle cx="80" cy="110" r="1.5"/><circle cx="120" cy="110" r="1.5"/><circle cx="280" cy="110" r="1.5"/>
+                <circle cx="320" cy="110" r="1.5"/><circle cx="80" cy="190" r="1.5"/><circle cx="120" cy="190" r="1.5"/>
+                <circle cx="280" cy="190" r="1.5"/><circle cx="320" cy="190" r="1.5"/><circle cx="80" cy="230" r="1.5"/>
+                <circle cx="120" cy="230" r="1.5"/><circle cx="160" cy="230" r="1.5"/><circle cx="240" cy="230" r="1.5"/>
+                <circle cx="280" cy="230" r="1.5"/><circle cx="320" cy="230" r="1.5"/>
+              </g>
+            </svg>
             <div class="visual-art-caption">Smooth Sub-Pixel Tracking</div>
           </div>
         </div>
@@ -1798,57 +1868,56 @@
             </p>
 
             <div class="flow-card-stack">
-              <div class="flow-card active" data-flow="1">
+              <div class="flow-card active">
                 <div class="flow-card-num">01 / DISCOVERY</div>
                 <div class="flow-card-title">Instant Network Presence</div>
                 <p>Both devices detect each other automatically within milliseconds on your private local network.</p>
               </div>
-              <div class="flow-card" data-flow="2">
+              <div class="flow-card">
                 <div class="flow-card-num">02 / SECURE LINK</div>
                 <div class="flow-card-title">Direct Device Conduit</div>
-                <p>Telemetry flows directly between phone and laptop with ultra-low latency and zero accounts.</p>
+                <p>Coordinates flow directly between phone and laptop with ultra-low latency and zero cloud accounts.</p>
               </div>
             </div>
           </div>
 
           <div class="flow-canvas-box">
-            <!-- Fluid Flowing Red Light & Smoke Canvas Graphic -->
+            <!-- Fluid Flowing Muted Yellow Connection SVG -->
             <svg class="connection-smoke-svg" viewBox="0 0 500 400" fill="none" aria-hidden="true">
-              <!-- Background Ambient Haze -->
-              <circle cx="250" cy="200" r="160" fill="url(#haze-radial)" opacity="0.4"/>
+              <circle cx="250" cy="200" r="160" fill="url(#haze-radial-gold)" opacity="0.3"/>
               
-              <!-- Flowing Wave Paths -->
-              <path id="flowing-path-1" d="M 60 200 C 180 80, 320 320, 440 200" stroke="url(#flow-gradient-1)" stroke-width="4" stroke-linecap="round" fill="none"/>
-              <path id="flowing-path-2" d="M 60 200 C 180 300, 320 100, 440 200" stroke="url(#flow-gradient-2)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <!-- Flowing Wave Paths in Golden Yellow -->
+              <path d="M 60 200 C 180 80, 320 320, 440 200" stroke="url(#flow-gradient-1)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+              <path d="M 60 200 C 180 300, 320 100, 440 200" stroke="url(#flow-gradient-2)" stroke-width="2" stroke-linecap="round" fill="none"/>
               
               <!-- Phone Node -->
               <g transform="translate(60, 200)">
-                <circle r="28" fill="#151822" stroke="var(--border-refined)" stroke-width="2"/>
-                <circle r="10" fill="var(--accent-red)"/>
-                <circle r="18" stroke="var(--accent-red)" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <circle r="28" fill="#141410" stroke="var(--yellow-border)" stroke-width="2"/>
+                <circle r="10" fill="var(--yellow-gold)"/>
+                <circle r="18" stroke="var(--yellow-gold)" stroke-width="1.5" stroke-dasharray="3 3"/>
               </g>
 
               <!-- Computer Node -->
               <g transform="translate(440, 200)">
-                <circle r="34" fill="#151822" stroke="var(--border-refined)" stroke-width="2"/>
-                <circle r="14" fill="#ffffff"/>
-                <circle r="24" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.5"/>
+                <circle r="34" fill="#141410" stroke="var(--yellow-border)" stroke-width="2"/>
+                <circle r="12" fill="#FAF8F2"/>
+                <circle r="22" stroke="var(--yellow-gold)" stroke-width="1.5"/>
               </g>
 
               <defs>
-                <radialGradient id="haze-radial" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#ff2a4b" stop-opacity="0.35"/>
-                  <stop offset="100%" stop-color="#ff2a4b" stop-opacity="0"/>
+                <radialGradient id="haze-radial-gold" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#E0C653" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="#E0C653" stop-opacity="0"/>
                 </radialGradient>
                 <linearGradient id="flow-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#ff2a4b" stop-opacity="0.9"/>
-                  <stop offset="50%" stop-color="#ffffff" stop-opacity="0.8"/>
-                  <stop offset="100%" stop-color="#ff2a4b" stop-opacity="0.9"/>
+                  <stop offset="0%" stop-color="#E0C653" stop-opacity="0.9"/>
+                  <stop offset="50%" stop-color="#FAF8F2" stop-opacity="0.8"/>
+                  <stop offset="100%" stop-color="#E0C653" stop-opacity="0.9"/>
                 </linearGradient>
                 <linearGradient id="flow-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#ff2a4b" stop-opacity="0.3"/>
-                  <stop offset="50%" stop-color="#ff4765" stop-opacity="0.7"/>
-                  <stop offset="100%" stop-color="#ff2a4b" stop-opacity="0.3"/>
+                  <stop offset="0%" stop-color="#D8BE45" stop-opacity="0.2"/>
+                  <stop offset="50%" stop-color="#E0C653" stop-opacity="0.6"/>
+                  <stop offset="100%" stop-color="#D8BE45" stop-opacity="0.2"/>
                 </linearGradient>
               </defs>
             </svg>
@@ -1871,12 +1940,12 @@
         <div class="workspace-interactive-stage">
           <div class="stage-sub-header">
             <div class="stage-title">Desktop Workspace Preview</div>
-            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500;">Glide your mouse or touch below</span>
+            <span style="font-size: 0.88rem; color: var(--text-muted); font-weight: 500;">Glide your mouse or touch below</span>
           </div>
 
           <div class="simulated-screen-grid" id="control-workspace-canvas">
             <div class="mock-desktop-window">
-              <div class="mock-doc-bar" style="width: 40%; background: var(--accent-red);"></div>
+              <div class="mock-doc-bar" style="width: 40%; background: var(--yellow-gold);"></div>
               <div class="mock-doc-bar" style="width: 85%;"></div>
               <div class="mock-doc-bar" style="width: 70%;"></div>
               <div class="mock-doc-bar" style="width: 90%;"></div>
@@ -1886,7 +1955,7 @@
 
             <!-- Controlled Pointer Element -->
             <svg class="interactive-stage-pointer" id="control-stage-pointer" viewBox="0 0 24 24">
-              <path d="M4 2L20 10L12 13L8 21L4 2Z" fill="var(--accent-red)"/>
+              <polygon points="2,2 22,10 13,13 10,22" fill="#E0C653" stroke="#080808" stroke-width="1.5" stroke-linejoin="round"/>
             </svg>
           </div>
         </div>
@@ -1897,7 +1966,7 @@
     <section class="section-capabilities section-spacing" id="capabilities">
       <div class="container">
         <div class="editorial-label">Engineered Utility</div>
-        <h2 style="font-size: clamp(2.4rem, 4vw, 3.8rem); margin-bottom: 16px;">
+        <h2 class="condensed-title" style="font-size: clamp(2.8rem, 5vw, 4.4rem); margin-bottom: 16px;">
           Designed for pure convenience.
         </h2>
         <p style="max-width: 52ch; font-size: 1.15rem; margin-bottom: 40px;">
@@ -1939,7 +2008,7 @@
           <div class="capability-side-stack">
             <div class="capability-feature-panel">
               <div class="editorial-label" style="margin-bottom: 10px;">Zero Setup Friction</div>
-              <h3 style="font-size: 1.6rem; color: var(--text-hero); margin-bottom: 10px;">Instant Auto-Discovery</h3>
+              <h3 style="font-family: var(--font-condensed); font-size: 1.9rem; text-transform: uppercase; color: var(--text-hero); margin-bottom: 10px;">Instant Auto-Discovery</h3>
               <p style="font-size: 1.02rem;">
                 No manual IP address typing or complicated configuration. Easy Mouse links phone and laptop smoothly on local Wi-Fi.
               </p>
@@ -1947,7 +2016,7 @@
 
             <div class="capability-feature-panel">
               <div class="editorial-label" style="margin-bottom: 10px;">Universal Support</div>
-              <h3 style="font-size: 1.6rem; color: var(--text-hero); margin-bottom: 10px;">Cross-Platform Freedom</h3>
+              <h3 style="font-family: var(--font-condensed); font-size: 1.9rem; text-transform: uppercase; color: var(--text-hero); margin-bottom: 10px;">Cross-Platform Freedom</h3>
               <p style="font-size: 1.02rem;">
                 Compatible with Windows, macOS, and Linux desktop environments, controlled from both iOS and Android handsets.
               </p>
@@ -1962,7 +2031,7 @@
       <div class="container">
         <div style="margin-bottom: 40px;">
           <div class="editorial-label">Interactive Experience</div>
-          <h2 style="font-size: clamp(2.4rem, 4vw, 3.8rem); margin-bottom: 14px;">
+          <h2 class="condensed-title" style="font-size: clamp(2.8rem, 5vw, 4.4rem); margin-bottom: 14px;">
             Three ways to steer your workflow.
           </h2>
           <p style="max-width: 52ch; font-size: 1.15rem;">
@@ -1994,9 +2063,9 @@
             <!-- Panel 2: Scroll Ribbon -->
             <div class="controller-panel" id="view-scroll">
               <div class="scroll-wheel-ribbon" id="sim-scroll-surface">
-                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">UP</span>
+                <span style="font-family: var(--font-condensed); font-size: 0.9rem; color: var(--text-muted); font-weight: 600;">UP</span>
                 <div class="scroll-thumb-handle" id="sim-scroll-thumb"></div>
-                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">DOWN</span>
+                <span style="font-family: var(--font-condensed); font-size: 0.9rem; color: var(--text-muted); font-weight: 600;">DOWN</span>
               </div>
             </div>
 
@@ -2009,7 +2078,7 @@
                     <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
                   </svg>
                 </button>
-                <button class="btn-keynote-action" id="btn-prev-slide" type="button" style="padding: 16px; font-size: 0.95rem;">
+                <button class="btn-keynote-action" id="btn-prev-slide" type="button" style="padding: 16px; font-size: 1.15rem;">
                   <span>Previous Slide</span>
                 </button>
               </div>
@@ -2024,7 +2093,7 @@
             <div class="output-panel-layer active" id="output-trackpad">
               <div class="workspace-canvas-field" id="output-canvas-field">
                 <svg class="screen-pointer-arrow" id="output-screen-pointer" viewBox="0 0 24 24">
-                  <path d="M4 2L20 10L12 13L8 21L4 2Z"/>
+                  <polygon points="2,2 22,10 13,13 10,22" fill="#E0C653" stroke="#080808" stroke-width="1.5" stroke-linejoin="round"/>
                 </svg>
               </div>
             </div>
@@ -2052,7 +2121,7 @@
               <div class="keynote-slide-display" id="slide-stage-card">
                 <div>
                   <div class="editorial-label" id="slide-index-tag" style="margin-bottom: 8px;">Slide 01 / 03</div>
-                  <h3 id="slide-heading-text" style="font-size: 1.8rem; color: var(--text-hero);">Effortless Slide Transitions</h3>
+                  <h3 id="slide-heading-text" style="font-family: var(--font-condensed); font-size: 2.2rem; text-transform: uppercase; color: var(--text-hero);">Effortless Slide Transitions</h3>
                 </div>
                 <p id="slide-body-text" style="color: var(--text-secondary); font-size: 1.05rem;">
                   Step away from your laptop. Advance decks fluidly during pitches and keynote lectures.
@@ -2066,6 +2135,8 @@
 
     <!-- SECTION 06: CINEMATIC DOWNLOAD CTA -->
     <section class="section-download" id="download">
+      <div class="download-giant-brand-backdrop">Easy Mouse</div>
+
       <div class="container">
         <div class="download-central-box">
           <div class="editorial-label" style="justify-content: center;">Instant Wireless Control</div>
@@ -2095,23 +2166,25 @@
     </section>
   </main>
 
-  <!-- EDITORIAL FOOTER -->
+  <!-- MINIMAL PRODUCT FOOTER -->
   <footer class="site-footer">
     <div class="container footer-content-row">
-      <a href="#" class="brand-mark" style="font-size: 1.05rem;">
-        <div class="brand-icon-gem" style="width: 22px; height: 22px;" aria-hidden="true">
-          <svg viewBox="0 0 24 24" style="width: 12px; height: 12px;">
-            <path d="M12 2C7.58 2 4 5.58 4 10v4c0 4.42 3.58 8 8 8s8-3.58 8-8v-4c0-4.42-3.58-8-8-8zm6 12c0 3.31-2.69 6-6 6s-6-2.69-6-6v-4h12v4zm-7-9.93C8.04 4.47 6 6.99 6 10h5V4.07zm2 0V10h5c0-3.01-2.04-5.53-5-5.93z"/>
+      <a href="#" class="brand-mark">
+        <div class="brand-logo-svg" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+            <rect x="7" y="3" width="18" height="26" rx="6" stroke="#E0C653" stroke-width="2.2" fill="#11110F"/>
+            <line x1="16" y1="7" x2="16" y2="12" stroke="#E0C653" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="16" cy="22" r="2.2" fill="#E0C653"/>
           </svg>
         </div>
-        <span>Easy Mouse</span>
+        <span class="brand-title-nav" style="font-size: 1.25rem;">Easy Mouse</span>
       </a>
 
       <nav aria-label="Footer Navigation">
         <ul class="footer-links-cluster">
           <li><a href="#narrative-phone">The Phone</a></li>
           <li><a href="#narrative-connection">Connection</a></li>
-          <li><a href="#narrative-control">Control</a></li>
+          <li><a href="#narrative-control">Controls</a></li>
           <li><a href="#capabilities">Features</a></li>
           <li><a href="#modes">Modes</a></li>
           <li><a href="#download">Download</a></li>
@@ -2122,23 +2195,24 @@
 
   <!-- Toast Notification Popup -->
   <div class="download-toast" id="download-toast-box" role="status" aria-live="polite">
-    <div class="brand-icon-gem" style="width: 20px; height: 20px;" aria-hidden="true">
-      <svg viewBox="0 0 24 24" style="width: 11px; height: 11px; fill: #fff;">
-        <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    <div class="brand-logo-svg" style="width: 20px; height: 20px;" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
+        <rect x="7" y="3" width="18" height="26" rx="6" stroke="#E0C653" stroke-width="2.5" fill="#11110F"/>
+        <line x1="16" y1="7" x2="16" y2="12" stroke="#E0C653" stroke-width="2.5" stroke-linecap="round"/>
       </svg>
     </div>
     <span id="toast-text-msg">Easy Mouse package ready for deployment.</span>
   </div>
 
-  <!-- Custom Sharp Red Pointer & Fluid Light Trail Canvas -->
+  <!-- Custom Sharp Muted Yellow Pointer & Fluid Yellow Light Trail Canvas -->
   <svg class="custom-pointer-arrow" id="custom-cursor-pointer" viewBox="0 0 24 24" aria-hidden="true">
-    <polygon points="2,2 22,10 13,13 10,22" fill="#ff2a4b" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
+    <polygon points="2,2 22,10 13,13 10,22" fill="#E0C653" stroke="#080808" stroke-width="1.5" stroke-linejoin="round"/>
   </svg>
   <canvas class="custom-pointer-canvas" id="custom-cursor-canvas" aria-hidden="true"></canvas>
 
   <script>
     /* -------------------------------------------------------------
-       HERO PROGRESSIVE ENTRANCE TRIGGER
+       HERO PROGRESSIVE ENTRANCE SEQUENCE
        ------------------------------------------------------------- */
     window.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('hero-entered');
@@ -2515,7 +2589,7 @@
     })();
 
     /* -------------------------------------------------------------
-       CUSTOM SHARP RED POINTER & SHORT FLUID RED LIGHT TRAIL
+       CUSTOM SHARP MUTED YELLOW POINTER & FLUID LIGHT TRAIL
        ------------------------------------------------------------- */
     (function initCustomPointer() {
       if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
@@ -2552,7 +2626,7 @@
         pointer.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
 
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          trail.unshift({ x: mouseX + 4, y: mouseY + 4, alpha: 0.9, size: 2.8 });
+          trail.unshift({ x: mouseX + 3, y: mouseY + 3, alpha: 0.85, size: 2.5 });
           if (trail.length > MAX_TRAIL) trail.pop();
         }
 
@@ -2563,7 +2637,7 @@
         }, 2500);
       });
 
-      const hoverElements = 'a, button, [role="tab"], .simulator-touch-pad, .scroll-wheel-ribbon, .phone-trackpad-area';
+      const hoverElements = 'a, button, [role="tab"], .simulator-touch-pad, .scroll-wheel-ribbon, .phone-trackpad-area, .simulated-screen-grid';
       document.addEventListener('mouseover', (e) => {
         if (e.target.closest(hoverElements)) pointer.classList.add('hover-scale');
       });
@@ -2576,7 +2650,7 @@
 
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && trail.length > 1) {
           for (let i = 0; i < trail.length; i++) {
-            trail[i].alpha *= 0.86;
+            trail[i].alpha *= 0.85;
             trail[i].size *= 0.90;
           }
 
@@ -2587,7 +2661,7 @@
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(255, 42, 75, ${p1.alpha * 0.45})`;
+            ctx.strokeStyle = `rgba(224, 198, 83, ${p1.alpha * 0.45})`;
             ctx.lineWidth = Math.max(0.6, p1.size);
             ctx.lineCap = 'round';
             ctx.stroke();
