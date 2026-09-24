@@ -4,54 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Easy Mouse - Turn Your Phone into a Wireless Mouse</title>
-  <meta name="description" content="Easy Mouse turns your smartphone into a high-precision wireless mouse, multi-touch trackpad, and presentation controller for your laptop or PC.">
-  <meta name="theme-color" content="#060709">
+  <meta name="description" content="Easy Mouse turns your smartphone into a high-precision wireless mouse, multi-touch trackpad, and presentation controller for your computer.">
+  <meta name="theme-color" content="#0c0e14">
+
+  <!-- Editorial Typography Pairing: Outfit (Display) + Plus Jakarta Sans (Supporting) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* -------------------------------------------------------------
-       EASY MOUSE BESPOKE DESIGN SYSTEM
-       High Design Variance (9/10) | Motion Intensity (8/10) | Density (4/10)
+       EASY MOUSE ART-DIRECTED DESIGN SYSTEM
+       Variance: 9/10 | Motion: 9/10 | Visual Density: 3-4/10
+       Reference Inspiration: Buttermax editorial motion & visual pacing
        ------------------------------------------------------------- */
     :root {
-      --bg-base: #060709;
-      --bg-surface: #0c0e13;
-      --bg-elevated: #12151e;
-      --bg-card: #181d29;
-      --bg-card-hover: #1f2535;
+      /* Tonal Foundation - Rich Charcoal, Warm Graphite, Atmosphere */
+      --bg-void: #090a0f;
+      --bg-charcoal: #0e1017;
+      --bg-graphite: #151821;
+      --bg-surface: #1b1e2a;
+      --bg-surface-elevated: #232736;
+      --bg-crimson-tint: #180f14;
 
-      --border-subtle: rgba(255, 255, 255, 0.06);
-      --border-medium: rgba(255, 255, 255, 0.12);
-      --border-strong: rgba(255, 255, 255, 0.22);
-      --border-accent: rgba(255, 40, 77, 0.4);
+      /* Borders & Luminance */
+      --border-ghost: rgba(255, 255, 255, 0.05);
+      --border-subtle: rgba(255, 255, 255, 0.09);
+      --border-refined: rgba(255, 255, 255, 0.18);
+      --border-accent: rgba(255, 40, 77, 0.45);
 
-      --accent-red: #ff284d;
-      --accent-red-hover: #ff4767;
-      --accent-red-dim: rgba(255, 40, 77, 0.12);
-      --accent-red-glow: rgba(255, 40, 77, 0.25);
-      --accent-red-beam: rgba(255, 40, 77, 0.7);
+      /* Red Accent Hierarchy */
+      --accent-red: #ff2a4b;
+      --accent-red-hover: #ff4765;
+      --accent-red-muted: #b8203c;
+      --accent-red-glow: rgba(255, 42, 75, 0.28);
+      --accent-red-subtle: rgba(255, 42, 75, 0.08);
 
-      --text-primary: #f5f6f8;
-      --text-secondary: #9aa2b2;
-      --text-muted: #5a6375;
-      --text-white: #ffffff;
+      /* Typography Tones */
+      --text-hero: #faf8f5;
+      --text-primary: #f2efe9;
+      --text-secondary: #9ea5b4;
+      --text-muted: #646b7a;
 
-      --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      --font-mono: "SF Mono", "Segoe UI Mono", "Roboto Mono", "Cascadia Code", "Courier New", monospace;
+      /* Font Families */
+      --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-      --radius-sm: 4px;
-      --radius-md: 8px;
-      --radius-lg: 16px;
-      --radius-pill: 9999px;
-
-      --max-width: 1280px;
-      --nav-height: 68px;
-      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      /* Motion Physics */
+      --ease-cinema: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-fluid: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --nav-height: 72px;
+      --max-width: 1320px;
     }
 
-    /* -------------------------------------------------------------
-       BASE RESET & ATMOSPHERIC ENVIRONMENT
-       ------------------------------------------------------------- */
+    /* Reset & Viewport Foundation */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -60,9 +66,9 @@
 
     html {
       scroll-behavior: smooth;
-      background-color: var(--bg-base);
+      background-color: var(--bg-charcoal);
       color: var(--text-primary);
-      font-family: var(--font-display);
+      font-family: var(--font-sans);
       font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
@@ -72,14 +78,14 @@
 
     body {
       min-height: 100vh;
-      background-color: var(--bg-base);
+      background-color: var(--bg-charcoal);
       color: var(--text-primary);
       position: relative;
       overflow-x: hidden;
     }
 
-    /* Atmospheric Background Layer: Fine Technical Grid + Ambient Laser Beam */
-    .ambient-background {
+    /* Atmospheric Smoky Haze & Fine Noise Overlay */
+    .atmosphere-layer {
       position: fixed;
       inset: 0;
       pointer-events: none;
@@ -87,78 +93,78 @@
       overflow: hidden;
     }
 
-    .ambient-grid {
+    .atmosphere-grain {
       position: absolute;
       inset: 0;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-      background-size: 64px 64px;
+      opacity: 0.025;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.8) 1px, transparent 0);
+      background-size: 24px 24px;
     }
 
-    .ambient-haze-top {
+    .haze-orb-1 {
       position: absolute;
-      top: -240px;
+      top: -200px;
       left: 50%;
       transform: translateX(-50%);
-      width: 1000px;
-      height: 550px;
-      background: radial-gradient(ellipse at center, rgba(255, 40, 77, 0.12) 0%, rgba(255, 40, 77, 0.03) 45%, transparent 70%);
-      filter: blur(40px);
-    }
-
-    .ambient-haze-mid {
-      position: absolute;
-      top: 45%;
-      right: -200px;
-      width: 600px;
+      width: 900px;
       height: 600px;
-      background: radial-gradient(circle, rgba(255, 40, 77, 0.06) 0%, transparent 65%);
+      background: radial-gradient(ellipse at center, rgba(255, 42, 75, 0.12) 0%, rgba(255, 42, 75, 0.02) 50%, transparent 70%);
       filter: blur(60px);
+      transition: opacity 1s ease;
     }
 
-    /* -------------------------------------------------------------
-       TYPOGRAPHY ARCHITECTURE
-       ------------------------------------------------------------- */
+    .haze-orb-2 {
+      position: absolute;
+      top: 50%;
+      right: -250px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(255, 42, 75, 0.07) 0%, transparent 65%);
+      filter: blur(80px);
+    }
+
+    /* Typography & Hierarchy */
     h1, h2, h3, h4 {
-      color: var(--text-primary);
+      font-family: var(--font-display);
+      color: var(--text-hero);
       font-weight: 800;
-      line-height: 1.08;
-      letter-spacing: -0.038em;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
     }
 
-    .mono-tag {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent-red);
+    .editorial-label {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-red);
+      margin-bottom: 20px;
     }
 
-    .mono-tag::before {
+    .editorial-label::before {
       content: "";
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: var(--accent-red);
-      box-shadow: 0 0 8px var(--accent-red);
+      box-shadow: 0 0 10px var(--accent-red);
     }
 
     p {
       color: var(--text-secondary);
-      font-size: 1.08rem;
-      line-height: 1.65;
+      font-size: 1.1rem;
+      line-height: 1.68;
       font-weight: 400;
     }
 
     a {
       color: inherit;
       text-decoration: none;
-      transition: color 0.2s ease;
+      transition: color 0.25s ease;
     }
 
     button {
@@ -170,7 +176,7 @@
 
     :focus-visible {
       outline: 2px solid var(--accent-red);
-      outline-offset: 3px;
+      outline-offset: 4px;
     }
 
     .container {
@@ -178,1295 +184,1252 @@
       max-width: var(--max-width);
       margin-left: auto;
       margin-right: auto;
-      padding-left: 28px;
-      padding-right: 28px;
+      padding-left: 36px;
+      padding-right: 36px;
       position: relative;
       z-index: 1;
     }
 
     .section-spacing {
-      padding-top: 130px;
-      padding-bottom: 130px;
+      padding-top: 140px;
+      padding-bottom: 140px;
+      position: relative;
+      z-index: 1;
     }
 
     @media (max-width: 768px) {
-      .section-spacing {
-        padding-top: 70px;
-        padding-bottom: 70px;
-      }
       .container {
         padding-left: 20px;
         padding-right: 20px;
       }
+      .section-spacing {
+        padding-top: 80px;
+        padding-bottom: 80px;
+      }
     }
 
     /* -------------------------------------------------------------
-       STICKY NAVIGATION BAR
+       MINIMAL EDITORIAL NAVIGATION
        ------------------------------------------------------------- */
-    .site-header {
+    .site-nav {
       position: sticky;
       top: 0;
       left: 0;
       width: 100%;
       height: var(--nav-height);
-      background: rgba(6, 7, 9, 0.82);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(14, 16, 23, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-ghost);
       z-index: 100;
-      transition: background 0.3s ease, border-color 0.3s ease;
+      transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
     }
 
-    .site-header.scrolled {
-      background: rgba(6, 7, 9, 0.96);
-      border-bottom-color: var(--border-medium);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+    .site-nav.scrolled {
+      background: rgba(14, 16, 23, 0.94);
+      border-bottom-color: var(--border-subtle);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
 
-    .nav-container {
+    .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 100%;
     }
 
-    .brand-link {
+    .brand-mark {
       display: inline-flex;
       align-items: center;
       gap: 12px;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
       font-weight: 800;
-      font-size: 1.05rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      color: var(--text-hero);
     }
 
-    .brand-symbol {
-      width: 24px;
-      height: 24px;
-      border: 2px solid var(--accent-red);
-      border-radius: 6px;
+    .brand-icon-gem {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #ff2a4b, #b8203c);
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-      box-shadow: 0 0 10px var(--accent-red-glow);
+      box-shadow: 0 0 14px var(--accent-red-glow);
     }
 
-    .brand-symbol::after {
-      content: "";
-      width: 4px;
-      height: 4px;
-      background: #ffffff;
-      border-radius: 50%;
+    .brand-icon-gem svg {
+      width: 15px;
+      height: 15px;
+      fill: #ffffff;
     }
 
-    .nav-links-desktop {
+    .nav-links {
       display: flex;
       align-items: center;
       gap: 36px;
       list-style: none;
     }
 
-    .nav-link {
-      font-size: 0.92rem;
+    .nav-link-item a {
+      font-size: 0.95rem;
       font-weight: 500;
       color: var(--text-secondary);
       position: relative;
-      padding: 8px 0;
+      padding: 6px 0;
+      transition: color 0.25s ease;
     }
 
-    .nav-link:hover {
-      color: var(--text-primary);
-    }
-
-    .nav-link::after {
+    .nav-link-item a::after {
       content: "";
       position: absolute;
-      bottom: 2px;
+      bottom: 0;
       left: 0;
       width: 0;
       height: 2px;
       background: var(--accent-red);
-      transition: width 0.25s var(--ease-out-expo);
+      transition: width 0.25s var(--ease-cinema);
     }
 
-    .nav-link:hover::after {
+    .nav-link-item a:hover {
+      color: var(--text-hero);
+    }
+
+    .nav-link-item a:hover::after {
       width: 100%;
     }
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    /* Tactile Physical Button */
-    .btn-nav-action {
+    .nav-cta-btn {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 9px 20px;
-      border-radius: var(--radius-sm);
-      background: rgba(255, 40, 77, 0.12);
-      border: 1px solid var(--border-accent);
-      color: #ffffff;
-      font-size: 0.88rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      transition: all 0.25s var(--ease-out-expo);
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-refined);
+      color: var(--text-hero);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.3s var(--ease-cinema);
     }
 
-    .btn-nav-action:hover {
+    .nav-cta-btn:hover {
       background: var(--accent-red);
-      box-shadow: 0 0 20px var(--accent-red-glow);
+      border-color: var(--accent-red);
+      box-shadow: 0 0 24px var(--accent-red-glow);
       transform: translateY(-1px);
     }
 
-    .mobile-menu-btn {
+    .mobile-menu-trigger {
       display: none;
-      width: 40px;
-      height: 40px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-surface);
-      color: var(--text-primary);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hamburger-icon {
-      width: 18px;
-      height: 14px;
-      display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 6px;
+      padding: 8px;
     }
 
-    .hamburger-icon span {
-      display: block;
+    .menu-bar {
+      width: 22px;
       height: 2px;
-      width: 100%;
-      background-color: var(--text-primary);
-      border-radius: 1px;
-      transition: transform 0.25s ease, opacity 0.25s ease;
+      background: var(--text-hero);
+      transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    .mobile-menu-btn[aria-expanded="true"] .hamburger-icon span:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-    .mobile-menu-btn[aria-expanded="true"] .hamburger-icon span:nth-child(2) {
-      opacity: 0;
-    }
-    .mobile-menu-btn[aria-expanded="true"] .hamburger-icon span:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
+    @media (max-width: 860px) {
+      .nav-links, .nav-cta-btn {
+        display: none;
+      }
+      .mobile-menu-trigger {
+        display: flex;
+      }
     }
 
     /* Mobile Drawer */
-    .mobile-drawer {
+    .mobile-nav-drawer {
       display: none;
       position: fixed;
       top: var(--nav-height);
       left: 0;
-      right: 0;
-      background: rgba(12, 14, 19, 0.98);
-      backdrop-filter: blur(24px);
-      border-bottom: 1px solid var(--border-medium);
+      width: 100%;
+      background: rgba(14, 16, 23, 0.98);
+      border-bottom: 1px solid var(--border-subtle);
       padding: 24px;
       flex-direction: column;
       gap: 18px;
       z-index: 99;
       transform: translateY(-100%);
       opacity: 0;
-      transition: transform 0.3s var(--ease-out-expo), opacity 0.3s ease;
-      pointer-events: none;
+      transition: transform 0.35s var(--ease-cinema), opacity 0.3s ease;
     }
 
-    .mobile-drawer.is-open {
+    .mobile-nav-drawer.active {
+      display: flex;
       transform: translateY(0);
       opacity: 1;
-      pointer-events: auto;
     }
 
-    .mobile-drawer a {
-      font-size: 1.1rem;
+    .mobile-nav-drawer a {
+      font-size: 1.15rem;
       font-weight: 600;
-      color: var(--text-secondary);
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    @media (max-width: 768px) {
-      .nav-links-desktop { display: none; }
-      .mobile-menu-btn { display: flex; }
-      .mobile-drawer { display: flex; }
+      color: var(--text-hero);
+      padding: 8px 0;
     }
 
     /* -------------------------------------------------------------
-       HERO SECTION (ACT 01: THE SPATIAL HANDSHAKE)
+       HERO: DRAMATIC PROGRESSIVE REVEAL & 3D SMARTPHONE
        ------------------------------------------------------------- */
     .hero-stage {
+      min-height: 94vh;
+      display: flex;
+      align-items: center;
       position: relative;
-      padding-top: clamp(48px, 9vh, 90px);
-      padding-bottom: clamp(60px, 12vh, 120px);
+      padding-top: 40px;
+      padding-bottom: 80px;
       overflow: hidden;
     }
 
-    .hero-grid {
+    .hero-split-grid {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 56px;
+      grid-template-columns: 1.1fr 0.9fr;
       align-items: center;
+      gap: 60px;
     }
 
-    .hero-editorial {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      z-index: 2;
+    /* Progressive Line-by-Line Entrance */
+    .hero-title-stage {
+      margin-bottom: 28px;
     }
 
-    .hero-h1 {
-      font-size: clamp(2.6rem, 4.6vw, 4.4rem);
-      font-weight: 850;
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      margin-top: 20px;
-      margin-bottom: 24px;
-      color: #ffffff;
-      text-transform: uppercase;
-    }
-
-    .hero-h1 span.outline-word {
-      color: transparent;
-      -webkit-text-stroke: 1.5px var(--accent-red);
-    }
-
-    .hero-lead {
-      font-size: clamp(1.08rem, 1.35vw, 1.25rem);
-      line-height: 1.6;
-      color: var(--text-secondary);
-      margin-bottom: 36px;
-      max-width: 48ch;
-    }
-
-    .hero-cta-box {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 32px;
-    }
-
-    /* Magnetic Primary CTA Button */
-    .btn-magnetic-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      padding: 18px 34px;
-      border-radius: var(--radius-sm);
-      background: var(--accent-red);
-      color: #ffffff;
-      font-size: 1rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      box-shadow: 0 4px 30px rgba(255, 40, 77, 0.45);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      transition: transform 0.25s var(--ease-spring), box-shadow 0.25s ease, background 0.2s ease;
-      position: relative;
+    .title-line-mask {
       overflow: hidden;
-      white-space: nowrap;
-    }
-
-    .btn-magnetic-cta:hover {
-      background: var(--accent-red-hover);
-      box-shadow: 0 8px 36px rgba(255, 40, 77, 0.65);
-      transform: translateY(-2px);
-    }
-
-    .btn-magnetic-cta:active {
-      transform: translateY(0) scale(0.98);
-    }
-
-    .btn-secondary-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 18px 26px;
-      border-radius: var(--radius-sm);
-      background: var(--bg-surface);
-      color: var(--text-primary);
-      font-size: 0.95rem;
-      font-weight: 600;
-      border: 1px solid var(--border-medium);
-      transition: all 0.25s ease;
-      white-space: nowrap;
-    }
-
-    .btn-secondary-link:hover {
-      background: var(--bg-elevated);
-      border-color: var(--border-strong);
-      color: #ffffff;
-      transform: translateY(-2px);
-    }
-
-    .hero-specs-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    .hero-specs-row strong {
-      color: var(--text-secondary);
-    }
-
-    /* -------------------------------------------------------------
-       HERO SPATIAL PRODUCT SHOWCASE (3D + REAL VISUAL + LIVE LINK)
-       ------------------------------------------------------------- */
-    .hero-spatial-canvas {
-      position: relative;
-      width: 100%;
-      border-radius: var(--radius-lg);
-      background: #090b10;
-      border: 1px solid var(--border-medium);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7);
-      overflow: hidden;
-    }
-
-    .hero-spatial-canvas::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
-    }
-
-    .spatial-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--border-subtle);
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-
-    .beacon-live {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #38ef7d;
-      font-weight: 700;
-    }
-
-    .beacon-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #38ef7d;
-      box-shadow: 0 0 8px #38ef7d;
-      animation: beaconFlash 2s infinite ease-in-out;
-    }
-
-    @keyframes beaconFlash {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
-    }
-
-    /* Product Photographic Frame */
-    .product-photo-frame {
-      width: 100%;
-      height: 220px;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      position: relative;
-      border: 1px solid var(--border-subtle);
-      margin-bottom: 16px;
-    }
-
-    .product-photo-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
       display: block;
-      filter: contrast(1.05) brightness(0.95);
-      transition: transform 0.6s var(--ease-out-expo);
+      margin-bottom: -4px;
     }
 
-    .product-photo-frame:hover .product-photo-img {
-      transform: scale(1.03);
-    }
-
-    .photo-overlay-tag {
-      position: absolute;
-      bottom: 10px;
-      left: 12px;
-      background: rgba(6, 7, 9, 0.85);
-      border: 1px solid var(--border-medium);
-      padding: 4px 10px;
-      border-radius: var(--radius-sm);
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      color: #ffffff;
-      backdrop-filter: blur(8px);
-    }
-
-    /* Live Interactive Controller Surface */
-    .live-trackpad-console {
-      background: #0e1118;
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-md);
-      padding: 14px;
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 16px;
-      align-items: center;
-    }
-
-    .console-phone-touchpad {
-      height: 120px;
-      background: radial-gradient(circle at center, rgba(255, 40, 77, 0.1) 0%, #131722 80%);
-      border: 1px dashed rgba(255, 40, 77, 0.45);
-      border-radius: var(--radius-sm);
-      position: relative;
-      cursor: crosshair;
-      user-select: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .console-phone-touchpad:hover, .console-phone-touchpad.is-active {
-      border-color: var(--accent-red);
-      box-shadow: inset 0 0 16px rgba(255, 40, 77, 0.2);
-    }
-
-    .touchpad-point-dot {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 40, 77, 0.8) 0%, transparent 70%);
-      border: 1px solid var(--accent-red);
-      transform: translate(-50%, -50%);
-      pointer-events: none;
+    .title-line-inner {
+      display: block;
+      font-size: clamp(3.2rem, 6.2vw, 5.8rem);
+      font-weight: 900;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      color: var(--text-hero);
+      transform: translateY(110%);
       opacity: 0;
-      transition: opacity 0.15s ease;
+      filter: blur(10px);
+      transition: transform 0.95s var(--ease-cinema), opacity 0.8s ease, filter 0.8s ease;
     }
 
-    .console-phone-touchpad:hover .touchpad-point-dot, 
-    .console-phone-touchpad.is-active .touchpad-point-dot {
+    .title-line-inner.accent-word {
+      color: var(--accent-red);
+      text-shadow: 0 0 35px var(--accent-red-glow);
+    }
+
+    /* Staggered triggers */
+    .hero-entered .title-line-inner:nth-child(1) {
+      transform: translateY(0);
+      opacity: 1;
+      filter: blur(0);
+      transition-delay: 0.1s;
+    }
+    .hero-entered .line-2 .title-line-inner {
+      transform: translateY(0);
+      opacity: 1;
+      filter: blur(0);
+      transition-delay: 0.25s;
+    }
+    .hero-entered .line-3 .title-line-inner {
+      transform: translateY(0);
+      opacity: 1;
+      filter: blur(0);
+      transition-delay: 0.4s;
+    }
+    .hero-entered .line-4 .title-line-inner {
+      transform: translateY(0);
+      opacity: 1;
+      filter: blur(0);
+      transition-delay: 0.55s;
+    }
+
+    .hero-summary-copy {
+      max-width: 48ch;
+      font-size: 1.22rem;
+      margin-bottom: 38px;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.8s var(--ease-cinema) 0.65s, opacity 0.8s ease 0.65s;
+    }
+
+    .hero-entered .hero-summary-copy {
+      transform: translateY(0);
       opacity: 1;
     }
 
-    .touchpad-caption {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      pointer-events: none;
+    .hero-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.8s var(--ease-cinema) 0.8s, opacity 0.8s ease 0.8s;
     }
 
-    /* Simulated Laptop Viewport */
-    .console-laptop-monitor {
-      height: 120px;
-      background: #08090d;
-      border: 1px solid #252b3a;
-      border-radius: var(--radius-sm);
+    .hero-entered .hero-actions-row {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 38px;
+      background: var(--accent-red);
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: 9999px;
+      box-shadow: 0 12px 36px var(--accent-red-glow);
+      transition: all 0.3s var(--ease-cinema);
+    }
+
+    .btn-hero-primary:hover {
+      background: var(--accent-red-hover);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 16px 44px rgba(255, 42, 75, 0.45);
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 30px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-refined);
+      border-radius: 9999px;
+      color: var(--text-hero);
+      font-size: 1.05rem;
+      font-weight: 600;
+      transition: all 0.3s var(--ease-cinema);
+    }
+
+    .btn-hero-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* -------------------------------------------------------------
+       HERO: 3D REALISTIC SMARTPHONE & LAPTOP INTERACTION
+       ------------------------------------------------------------- */
+    .hero-3d-scene {
+      perspective: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
-      overflow: hidden;
+      min-height: 520px;
+    }
+
+    .spatial-phone-rig {
+      position: relative;
+      width: 320px;
+      height: 520px;
+      transform-style: preserve-3d;
+      transform: rotateY(-14deg) rotateX(12deg) rotateZ(-3deg);
+      transition: transform 0.4s var(--ease-fluid);
+    }
+
+    /* Smartphone Physical Chassis */
+    .phone-chassis {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, #222634, #10121a);
+      border-radius: 46px;
+      padding: 12px;
+      box-shadow: 
+        -25px 35px 70px rgba(0, 0, 0, 0.75),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.12),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        0 0 60px var(--accent-red-subtle);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       flex-direction: column;
     }
 
-    .monitor-header {
-      height: 20px;
+    /* Screen Glass Surface */
+    .phone-glass-screen {
+      flex: 1;
+      background: radial-gradient(circle at 50% 20%, #1e2230 0%, #0e1017 85%);
+      border-radius: 36px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      user-select: none;
+    }
+
+    /* Subtle Glass Glare Diagonal */
+    .phone-glass-screen::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 300px;
+      height: 600px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+      transform: rotate(25deg);
+      pointer-events: none;
+    }
+
+    /* Speaker Pill & Front Camera */
+    .phone-dynamic-island {
+      width: 80px;
+      height: 18px;
+      background: #000000;
+      border-radius: 9999px;
+      margin: 12px auto 0;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Interactive Trackpad Field */
+    .phone-trackpad-area {
+      position: absolute;
+      inset: 48px 16px 20px;
+      border-radius: 24px;
+      border: 1px dashed rgba(255, 42, 75, 0.25);
+      background: rgba(255, 42, 75, 0.02);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: crosshair;
+    }
+
+    .trackpad-instruction {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .phone-touch-ripple {
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 42, 75, 0.6) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      top: 50%;
+      left: 50%;
+      box-shadow: 0 0 20px var(--accent-red);
+      transition: width 0.2s ease, height 0.2s ease;
+    }
+
+    /* Miniature Laptop Screen Responding In Perspective Behind */
+    .laptop-companion-card {
+      position: absolute;
+      top: -30px;
+      right: -80px;
+      width: 270px;
+      height: 175px;
       background: #11141e;
-      border-bottom: 1px solid #1f2535;
+      border: 1px solid var(--border-refined);
+      border-radius: 14px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      transform: translateZ(-80px) rotateY(-8deg);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      pointer-events: none;
+    }
+
+    .laptop-card-header {
       display: flex;
       align-items: center;
-      padding: 0 8px;
-      gap: 5px;
+      gap: 6px;
+      margin-bottom: 10px;
     }
 
-    .monitor-dot {
-      width: 6px;
-      height: 6px;
+    .dot-mini {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: #2a3142;
+      background: rgba(255, 255, 255, 0.2);
     }
+    .dot-mini.red { background: var(--accent-red); }
 
-    .monitor-canvas {
+    .laptop-canvas-preview {
       flex: 1;
+      background: #090a0f;
+      border-radius: 8px;
       position: relative;
-      background: radial-gradient(circle at 60% 40%, #151a26 0%, #08090d 100%);
+      overflow: hidden;
+      border: 1px solid var(--border-ghost);
     }
 
-    .monitor-pointer {
+    .laptop-pointer-icon {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: top 0.08s ease-out, left 0.08s ease-out;
+      fill: var(--accent-red);
+      filter: drop-shadow(0 0 8px var(--accent-red));
+    }
+
+    /* Red Laser / Flowing Beam Connecting Phone to Laptop */
+    .spatial-beam-svg {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 16px;
-      height: 16px;
+      width: 360px;
+      height: 220px;
+      transform: translate(-45%, -50%) translateZ(-40px);
       pointer-events: none;
-      transform: translate(-2px, -2px);
-      z-index: 10;
-      transition: transform 0.04s linear;
+      z-index: -1;
     }
 
-    .pointer-icon-svg {
-      fill: #ffffff;
-      stroke: var(--accent-red);
-      stroke-width: 1.5;
+    @media (max-width: 1080px) {
+      .hero-split-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+      .hero-3d-scene {
+        min-height: 440px;
+      }
+      .laptop-companion-card {
+        right: 0;
+      }
     }
 
-    .click-flash-ripple {
-      position: absolute;
-      border: 2px solid var(--accent-red);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      animation: rippleExpand 0.5s ease-out forwards;
-    }
-
-    @keyframes rippleExpand {
-      0% { width: 4px; height: 4px; opacity: 1; }
-      100% { width: 40px; height: 40px; opacity: 0; }
-    }
-
-    @media (max-width: 1024px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-      .hero-spatial-canvas { max-width: 640px; }
-    }
-
-    @media (max-width: 768px) {
-      .hero-h1 { font-size: 2.4rem; }
-      .hero-cta-box { flex-direction: column; align-items: stretch; width: 100%; }
-      .btn-magnetic-cta, .btn-secondary-link { width: 100%; text-align: center; }
-      .live-trackpad-console { grid-template-columns: 1fr; }
-      .product-photo-frame { height: 180px; }
+    @media (max-width: 600px) {
+      .spatial-phone-rig {
+        width: 270px;
+        height: 450px;
+        transform: rotateY(0deg) rotateX(0deg);
+      }
+      .laptop-companion-card {
+        display: none;
+      }
     }
 
     /* -------------------------------------------------------------
-       KINETIC TYPOGRAPHY TRANSITION RIBBON (ACT 02)
+       KINETIC TYPOGRAPHY ROLLING BANDS
+       Motion responds to scroll velocity; dual opposite directions
        ------------------------------------------------------------- */
-    .kinetic-ribbon-section {
-      width: 100%;
-      padding: 30px 0;
-      background: #090b10;
+    .kinetic-bands-wrap {
+      padding: 40px 0;
+      background: var(--bg-void);
+      border-top: 1px solid var(--border-ghost);
+      border-bottom: 1px solid var(--border-ghost);
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .kinetic-track {
+      display: flex;
+      white-space: nowrap;
+      will-change: transform;
+    }
+
+    .kinetic-group {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      padding-right: 36px;
+    }
+
+    .kinetic-word {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.8vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.22);
+      transition: color 0.3s ease;
+    }
+
+    .kinetic-word.highlight {
+      color: var(--text-hero);
+    }
+
+    .kinetic-dot {
+      color: var(--accent-red);
+      font-size: 1.4rem;
+    }
+
+    .track-reverse {
+      margin-top: 16px;
+    }
+
+    .track-reverse .kinetic-word {
+      color: rgba(255, 255, 255, 0.12);
+      font-style: italic;
+    }
+
+    /* -------------------------------------------------------------
+       SECTION 01: THE PHONE (YOUR PHONE IS ALREADY THE CONTROLLER)
+       Tonal: Warm Graphite
+       ------------------------------------------------------------- */
+    .section-phone {
+      background: var(--bg-graphite);
       border-top: 1px solid var(--border-subtle);
       border-bottom: 1px solid var(--border-subtle);
-      overflow: hidden;
+    }
+
+    .narrative-editorial-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .editorial-statement-huge {
+      font-size: clamp(2.6rem, 4.4vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+
+    .statement-lead-paragraph {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin-bottom: 32px;
+      color: var(--text-secondary);
+    }
+
+    .narrative-visual-chassis {
       position: relative;
-    }
-
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      gap: 32px;
-      animation: marqueeScroll 28s linear infinite;
-    }
-
-    .marquee-track.reverse {
-      animation-direction: reverse;
-      animation-duration: 32s;
-      margin-top: 12px;
-      opacity: 0.65;
-    }
-
-    .marquee-item {
-      font-size: clamp(1.4rem, 2.8vw, 2.2rem);
-      font-weight: 850;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--text-primary);
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--border-refined);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      background: #0f121a;
+      aspect-ratio: 4 / 3;
       display: flex;
       align-items: center;
-      gap: 32px;
-      white-space: nowrap;
+      justify-content: center;
     }
 
-    .marquee-item span.accent-symbol {
-      color: var(--accent-red);
+    .macro-photo-art {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s var(--ease-cinema);
     }
 
-    @keyframes marqueeScroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    .narrative-visual-chassis:hover .macro-photo-art {
+      transform: scale(1.04);
+    }
+
+    .visual-art-caption {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(14, 16, 23, 0.85);
+      backdrop-filter: blur(12px);
+      padding: 10px 18px;
+      border-radius: 9999px;
+      border: 1px solid var(--border-subtle);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-hero);
     }
 
     /* -------------------------------------------------------------
-       STICKY STORYTELLING PIPELINE (ACT 03: HOW IT WORKS)
+       SECTION 02: THE FLOWING CONNECTION
+       Tonal: Soft Red Atmosphere
        ------------------------------------------------------------- */
-    .narrative-section {
-      position: relative;
-      background: var(--bg-surface);
+    .section-connection {
+      background: radial-gradient(circle at 50% 50%, var(--bg-crimson-tint) 0%, var(--bg-void) 90%);
       border-bottom: 1px solid var(--border-subtle);
     }
 
-    .narrative-header {
-      margin-bottom: 60px;
-    }
-
-    .narrative-h2 {
-      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
-      margin-top: 12px;
-      margin-bottom: 16px;
-    }
-
-    .narrative-grid {
+    .connection-story-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 60px;
       align-items: center;
     }
 
-    .story-steps-col {
+    .flow-card-stack {
       display: flex;
       flex-direction: column;
       gap: 24px;
     }
 
-    .story-step-card {
-      background: var(--bg-base);
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-md);
-      padding: 28px;
-      cursor: pointer;
-      transition: all 0.3s var(--ease-out-expo);
-      position: relative;
+    .flow-card {
+      padding: 28px 32px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      transition: all 0.3s var(--ease-cinema);
     }
 
-    .story-step-card.active {
+    .flow-card.active, .flow-card:hover {
+      background: rgba(255, 255, 255, 0.05);
       border-color: var(--accent-red);
-      background: rgba(255, 40, 77, 0.04);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 40, 77, 0.1);
+      transform: translateX(8px);
     }
 
-    .step-num-badge {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
+    .flow-card-num {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
       font-weight: 700;
       color: var(--accent-red);
       margin-bottom: 8px;
     }
 
-    .step-heading {
-      font-size: 1.3rem;
+    .flow-card-title {
+      font-size: 1.45rem;
       font-weight: 700;
-      color: #ffffff;
+      color: var(--text-hero);
       margin-bottom: 8px;
     }
 
-    .step-paragraph {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* Reactive Narrative Display Window */
-    .story-display-col {
-      position: sticky;
-      top: 120px;
-      height: 420px;
-      background: #090b10;
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
-      overflow: hidden;
-    }
-
-    .story-display-col::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
-    }
-
-    .story-display-header {
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .story-screen-visual {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .flow-canvas-box {
+      height: 480px;
+      background: #0d0f17;
+      border: 1px solid var(--border-refined);
+      border-radius: 24px;
       position: relative;
-    }
-
-    .story-phase-layer {
-      position: absolute;
-      inset: 0;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      opacity: 0;
-      transform: scale(0.96);
-      transition: all 0.35s var(--ease-out-expo);
-      pointer-events: none;
     }
 
-    .story-phase-layer.active {
-      opacity: 1;
-      transform: scale(1);
-      pointer-events: auto;
-    }
-
-    @media (max-width: 900px) {
-      .narrative-grid { grid-template-columns: 1fr; }
-      .story-display-col { position: relative; top: 0; height: 320px; }
+    .connection-smoke-svg {
+      width: 100%;
+      height: 100%;
     }
 
     /* -------------------------------------------------------------
-       CORE CAPABILITIES: ASYMMETRIC EDITORIAL LAYOUTS (ACT 04)
+       SECTION 03: THE CONTROL (MOVE. CLICK. SCROLL.)
+       Tonal: Off-Black Deep Charcoal
        ------------------------------------------------------------- */
-    .capabilities-section {
+    .section-control {
+      background: var(--bg-charcoal);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .control-big-words {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .action-reveal-word {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6.5vw, 6rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--text-secondary);
+      transition: color 0.4s ease, transform 0.4s var(--ease-cinema);
+    }
+
+    .action-reveal-word.active-word {
+      color: var(--text-hero);
+      transform: scale(1.05);
+    }
+
+    .action-reveal-word.active-word::after {
+      content: ".";
+      color: var(--accent-red);
+    }
+
+    .workspace-interactive-stage {
+      background: #11141e;
+      border: 1px solid var(--border-refined);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.7);
       position: relative;
+      overflow: hidden;
     }
 
-    .capabilities-header {
-      margin-bottom: 60px;
-    }
-
-    .editorial-statement-block {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-lg);
-      padding: clamp(36px, 6vw, 64px);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
+    .stage-sub-header {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border-ghost);
+      padding-bottom: 18px;
+      margin-bottom: 24px;
+    }
+
+    .stage-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-hero);
+    }
+
+    .simulated-screen-grid {
+      height: 380px;
+      background: #090a0f;
+      border-radius: 16px;
+      border: 1px solid var(--border-ghost);
       position: relative;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .editorial-img-wrap {
-      width: 100%;
-      height: 280px;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      border: 1px solid var(--border-medium);
+    .mock-desktop-window {
+      width: 70%;
+      height: 60%;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .editorial-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    .mock-doc-bar {
+      height: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 6px;
     }
 
-    .asymmetric-duo-grid {
+    .interactive-stage-pointer {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 28px;
+      height: 28px;
+      pointer-events: none;
+      transition: top 0.06s ease-out, left 0.06s ease-out;
+      filter: drop-shadow(0 0 10px var(--accent-red));
+    }
+
+    /* -------------------------------------------------------------
+       SECTION 04: EDITORIAL CAPABILITIES (NO REPETITIVE CARDS)
+       Tonal: Layered Graphite
+       ------------------------------------------------------------- */
+    .section-capabilities {
+      background: var(--bg-graphite);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .capabilities-asymmetric-layout {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 32px;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      margin-top: 50px;
     }
 
-    .capability-card-dark {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-lg);
-      padding: 40px;
+    .capability-hero-feature {
+      background: #0f121a;
+      border: 1px solid var(--border-subtle);
+      border-radius: 28px;
+      padding: 44px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      position: relative;
-      transition: transform 0.25s var(--ease-out-expo), border-color 0.25s ease;
     }
 
-    .capability-card-dark:hover {
-      transform: translateY(-3px);
+    .capability-side-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .capability-feature-panel {
+      background: #0f121a;
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: 36px;
+      transition: border-color 0.3s ease;
+    }
+
+    .capability-feature-panel:hover {
       border-color: var(--border-accent);
     }
 
-    .stark-contrast-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-top: 24px;
+    .capability-h3 {
+      font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+      margin-bottom: 14px;
+      color: var(--text-hero);
     }
 
-    .stark-row {
+    .comparison-item-row {
       display: flex;
       align-items: center;
-      gap: 14px;
-      font-size: 0.95rem;
+      gap: 16px;
+      font-size: 1.05rem;
       color: var(--text-secondary);
+      margin-bottom: 14px;
     }
 
-    .cross-glyph {
+    .glyph-mark-bad {
       width: 22px;
       height: 22px;
       border-radius: 50%;
-      background: rgba(255, 60, 60, 0.12);
-      border: 1px solid rgba(255, 60, 60, 0.35);
+      background: rgba(255, 60, 60, 0.1);
+      border: 1px solid rgba(255, 60, 60, 0.4);
       color: #ff5555;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
       font-size: 0.8rem;
+      font-weight: bold;
       flex-shrink: 0;
     }
 
-    .check-glyph {
+    .glyph-mark-good {
       width: 22px;
       height: 22px;
       border-radius: 50%;
-      background: rgba(56, 239, 125, 0.12);
-      border: 1px solid rgba(56, 239, 125, 0.35);
+      background: rgba(56, 239, 125, 0.1);
+      border: 1px solid rgba(56, 239, 125, 0.4);
       color: #38ef7d;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
       font-size: 0.85rem;
+      font-weight: bold;
       flex-shrink: 0;
     }
 
-    .radar-visual-box {
-      height: 180px;
-      background: #090b10;
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      margin-top: 24px;
-    }
-
-    .radar-sweep-beam {
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 40, 77, 0.25);
-    }
-
-    .radar-sweep-beam:nth-child(1) { width: 60px; height: 60px; }
-    .radar-sweep-beam:nth-child(2) { width: 120px; height: 120px; }
-    .radar-sweep-beam:nth-child(3) { width: 180px; height: 180px; }
-
-    .radar-tag-badge {
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 18px;
-      background: var(--bg-surface);
-      border: 1px solid var(--accent-red);
-      border-radius: var(--radius-pill);
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: #ffffff;
-      box-shadow: 0 0 20px var(--accent-red-glow);
-    }
-
-    @media (max-width: 900px) {
-      .editorial-statement-block { grid-template-columns: 1fr; }
-      .asymmetric-duo-grid { grid-template-columns: 1fr; }
-    }
-
     /* -------------------------------------------------------------
-       INTERACTIVE CONTROLLER CONSOLE (ACT 05: THE EXPERIENCE)
+       SECTION 05: CLEAN CONSUMER CONTROLLER MODES
        ------------------------------------------------------------- */
-    .console-section {
-      position: relative;
-      background: var(--bg-surface);
-      border-top: 1px solid var(--border-subtle);
+    .section-modes {
+      background: var(--bg-charcoal);
       border-bottom: 1px solid var(--border-subtle);
     }
 
-    .modes-tab-bar {
+    .modes-selector-nav {
       display: inline-flex;
-      gap: 8px;
+      gap: 12px;
       padding: 6px;
-      background: var(--bg-base);
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-pill);
+      background: var(--bg-void);
+      border: 1px solid var(--border-subtle);
+      border-radius: 9999px;
       margin-bottom: 40px;
-      flex-wrap: wrap;
     }
 
-    .console-mode-tab {
-      padding: 10px 22px;
-      border-radius: var(--radius-pill);
-      font-size: 0.9rem;
+    .mode-tab-button {
+      padding: 12px 28px;
+      border-radius: 9999px;
+      font-size: 0.95rem;
       font-weight: 600;
       color: var(--text-secondary);
-      transition: all 0.25s var(--ease-out-expo);
+      transition: all 0.25s var(--ease-cinema);
     }
 
-    .console-mode-tab.active {
+    .mode-tab-button.active {
       background: var(--accent-red);
       color: #ffffff;
-      box-shadow: 0 0 20px var(--accent-red-glow);
+      box-shadow: 0 4px 20px var(--accent-red-glow);
     }
 
-    .sandbox-console-layout {
+    .modes-interactive-stage {
       display: grid;
-      grid-template-columns: 320px 1fr;
+      grid-template-columns: 340px 1fr;
       gap: 40px;
-      background: var(--bg-base);
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-lg);
+      background: #11141d;
+      border: 1px solid var(--border-refined);
+      border-radius: 24px;
       padding: 36px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
     }
 
-    /* Left Controller Hardware */
-    .hardware-unit {
-      background: #0a0c12;
-      border: 2px solid #282f40;
-      border-radius: 22px;
-      padding: 16px;
-      height: 400px;
+    /* Phone Controller Unit */
+    .phone-controller-simulator {
+      background: #090b10;
+      border: 2px solid #232736;
+      border-radius: 26px;
+      padding: 18px;
+      height: 420px;
       display: flex;
       flex-direction: column;
       position: relative;
     }
 
-    .hardware-top {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .controller-unit-header {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-red);
       padding-bottom: 12px;
-      border-bottom: 1px solid var(--border-subtle);
-      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border-ghost);
+      margin-bottom: 16px;
     }
 
-    .hardware-view-panel {
+    .controller-panel {
       display: none;
       flex: 1;
       flex-direction: column;
       height: 100%;
     }
 
-    .hardware-view-panel.active {
+    .controller-panel.active {
       display: flex;
     }
 
-    .tactile-trackpad-surface {
+    .simulator-touch-pad {
       flex: 1;
-      background: radial-gradient(circle at center, rgba(255, 40, 77, 0.08) 0%, #111520 80%);
-      border: 1px dashed rgba(255, 40, 77, 0.4);
-      border-radius: 12px;
+      background: radial-gradient(circle at center, rgba(255, 42, 75, 0.06) 0%, #10131d 80%);
+      border: 1px dashed rgba(255, 42, 75, 0.35);
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
       cursor: crosshair;
       user-select: none;
-      position: relative;
       overflow: hidden;
     }
 
-    .tactile-scroll-ribbon {
-      flex: 1;
-      background: #10131b;
-      border: 1px solid #252b3b;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: ns-resize;
-      user-select: none;
-      position: relative;
+    .simulator-touch-indicator {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent-red);
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 16px var(--accent-red);
+      pointer-events: none;
+      top: 50%;
+      left: 50%;
+      opacity: 0;
+      transition: opacity 0.2s ease;
     }
 
-    .ribbon-track-inner {
-      width: 52px;
-      height: 80%;
-      background: #171b26;
-      border: 1px solid rgba(255, 40, 77, 0.35);
-      border-radius: var(--radius-pill);
+    /* Scroll Wheel Simulator Ribbon */
+    .scroll-wheel-ribbon {
+      flex: 1;
+      background: #0f121a;
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 0;
+      padding: 20px 0;
       position: relative;
+      cursor: ns-resize;
+      user-select: none;
     }
 
-    .ribbon-thumb {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
+    .scroll-thumb-handle {
+      width: 44px;
+      height: 60px;
       background: var(--accent-red);
-      box-shadow: 0 0 16px var(--accent-red-glow);
+      border-radius: 12px;
+      box-shadow: 0 0 20px var(--accent-red-glow);
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      transition: top 0.05s ease-out;
+      transition: top 0.08s ease-out;
     }
 
-    .remote-clicker-stack {
+    /* Keynote Remote Buttons */
+    .keynote-remote-layout {
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
-      gap: 12px;
+      gap: 16px;
+      justify-content: center;
     }
 
-    .btn-keynote-big {
-      padding: 20px;
-      background: #141824;
-      border: 1px solid #2d364a;
-      border-radius: var(--radius-md);
-      color: #ffffff;
-      font-weight: 800;
-      font-size: 1rem;
+    .btn-keynote-action {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-refined);
+      border-radius: 16px;
+      padding: 24px;
+      color: var(--text-hero);
+      font-size: 1.1rem;
+      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      transition: all 0.2s ease;
+      gap: 12px;
+      transition: all 0.25s var(--ease-cinema);
     }
 
-    .btn-keynote-big:hover, .btn-keynote-big:active {
+    .btn-keynote-action:hover {
       background: var(--accent-red);
-      box-shadow: 0 0 20px var(--accent-red-glow);
       border-color: var(--accent-red);
+      box-shadow: 0 0 24px var(--accent-red-glow);
     }
 
-    .remote-sub-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .btn-keynote-small {
-      padding: 12px;
-      background: #11141e;
-      border: 1px solid #232a3a;
-      border-radius: var(--radius-sm);
-      color: var(--text-secondary);
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-
-    .btn-keynote-small:hover {
-      background: var(--bg-elevated);
-      color: #ffffff;
-      border-color: var(--border-accent);
-    }
-
-    /* Right Output Display */
-    .output-unit {
-      background: #080a0f;
-      border: 2px solid #242a38;
-      border-radius: var(--radius-md);
-      height: 400px;
+    /* Computer Screen Display Response */
+    .computer-response-display {
+      background: #090a0f;
+      border: 1px solid var(--border-ghost);
+      border-radius: 20px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
       position: relative;
+      overflow: hidden;
     }
 
-    .output-unit-header {
-      height: 30px;
-      background: #121622;
-      border-bottom: 1px solid #1f2535;
-      display: flex;
-      align-items: center;
-      padding: 0 14px;
-      justify-content: space-between;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
+    .computer-display-title {
+      font-size: 0.85rem;
+      font-weight: 600;
       color: var(--text-muted);
+      margin-bottom: 18px;
     }
 
-    .output-content-stage {
+    .output-panel-layer {
+      display: none;
       flex: 1;
       position: relative;
+      height: 100%;
+    }
+
+    .output-panel-layer.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Screen 1: Desktop Workspace */
+    .workspace-canvas-field {
+      flex: 1;
+      position: relative;
+      background: #0d0f17;
+      border-radius: 12px;
+      border: 1px solid var(--border-ghost);
       overflow: hidden;
     }
 
-    .output-mode-layer {
-      display: none;
-      width: 100%;
-      height: 100%;
-      position: relative;
-    }
-
-    .output-mode-layer.active {
-      display: block;
-    }
-
-    /* View 1 Workspace */
-    .screen-grid-workspace {
-      padding: 28px;
-      height: 100%;
-      background: radial-gradient(circle at 60% 40%, #151a28 0%, #080a0f 100%);
-      position: relative;
-    }
-
-    .workspace-cursor-elem {
+    .screen-pointer-arrow {
       position: absolute;
       top: 50%;
       left: 50%;
+      transform: translate(-50%, -50%);
       width: 22px;
       height: 22px;
       pointer-events: none;
-      transform: translate(-2px, -2px);
-      z-index: 10;
-      transition: transform 0.04s linear;
+      transition: top 0.06s ease-out, left 0.06s ease-out;
+      fill: var(--accent-red);
+      filter: drop-shadow(0 0 8px var(--accent-red));
     }
 
-    /* View 2 Document */
-    .screen-document-scroll {
-      height: 100%;
-      overflow-y: hidden;
-      padding: 28px;
-      background: #0d1017;
+    /* Screen 2: Scroll Document Stream */
+    .document-stream-sheet {
+      flex: 1;
+      background: #0d0f17;
+      border-radius: 12px;
+      border: 1px solid var(--border-ghost);
+      padding: 24px;
+      overflow: hidden;
       position: relative;
     }
 
-    .doc-flow-inner {
-      transition: transform 0.1s ease-out;
-    }
-
-    .doc-bar-title {
-      height: 16px;
-      width: 50%;
-      background: var(--accent-red);
-      opacity: 0.75;
-      border-radius: 4px;
-      margin-bottom: 20px;
-    }
-
-    .doc-bar-line {
-      height: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 3px;
-      margin-bottom: 12px;
-    }
-
-    /* View 3 Slide */
-    .screen-slide-stage {
-      height: 100%;
+    .document-flow-inner {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #0a0c12;
-      padding: 24px;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform 0.15s ease-out;
     }
 
-    .keynote-card-box {
-      width: 100%;
-      max-width: 480px;
-      height: 260px;
-      background: #141722;
-      border: 1px solid #282f42;
-      border-radius: var(--radius-md);
+    .doc-bar {
+      height: 12px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .doc-bar.accent {
+      background: var(--accent-red);
+      width: 45%;
+      height: 16px;
+    }
+
+    /* Screen 3: Keynote Slide Card */
+    .keynote-slide-display {
+      flex: 1;
+      background: linear-gradient(135deg, #141722, #0d0f17);
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
       padding: 32px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
-      transition: all 0.25s var(--ease-out-expo);
+      transition: opacity 0.25s ease, transform 0.25s ease;
     }
 
     @media (max-width: 900px) {
-      .sandbox-console-layout { grid-template-columns: 1fr; padding: 20px; }
-      .hardware-unit { height: 280px; }
-      .output-unit { height: 300px; }
+      .narrative-editorial-row,
+      .connection-story-grid,
+      .capabilities-asymmetric-layout,
+      .modes-interactive-stage {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* -------------------------------------------------------------
-       HIGH-IMPACT CLOSING STAGE & DOWNLOAD (ACT 06)
+       SECTION 06: CINEMATIC DOWNLOAD CTA
+       Tonal: Near-Black with Atmospheric Glow
        ------------------------------------------------------------- */
-    .closing-download-section {
-      position: relative;
-      padding-top: 100px;
-      padding-bottom: 120px;
-      overflow: hidden;
-    }
-
-    .closing-card-hero {
-      background: linear-gradient(180deg, #131722 0%, #08090d 100%);
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-lg);
-      padding: clamp(56px, 9vw, 96px) 24px;
+    .section-download {
+      background: radial-gradient(circle at 50% 40%, rgba(255, 42, 75, 0.12) 0%, var(--bg-void) 75%);
+      padding-top: 160px;
+      padding-bottom: 160px;
       text-align: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
     }
 
-    .closing-card-hero::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 500px;
-      height: 260px;
-      background: radial-gradient(ellipse at top, rgba(255, 40, 77, 0.28) 0%, transparent 70%);
-      pointer-events: none;
+    .download-central-box {
+      max-width: 820px;
+      margin: 0 auto;
     }
 
-    .closing-h2 {
-      font-size: clamp(2.4rem, 4.4vw, 3.8rem);
-      font-weight: 850;
-      line-height: 1.1;
-      letter-spacing: -0.035em;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      color: #ffffff;
+    .download-giant-h2 {
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      font-weight: 900;
+      line-height: 1.04;
+      margin-bottom: 24px;
+      letter-spacing: -0.04em;
     }
 
-    .closing-lead {
-      font-size: 1.18rem;
+    .download-supporting-p {
+      font-size: 1.25rem;
+      max-width: 50ch;
+      margin: 0 auto 44px;
       color: var(--text-secondary);
-      margin: 0 auto 40px auto;
-      max-width: 48ch;
     }
 
-    .closing-actions-col {
-      display: flex;
-      flex-direction: column;
+    .download-btn-prominent {
+      display: inline-flex;
       align-items: center;
-      gap: 24px;
+      gap: 14px;
+      padding: 22px 52px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      border-radius: 9999px;
+      background: var(--accent-red);
+      color: #ffffff;
+      box-shadow: 0 16px 50px var(--accent-red-glow);
+      transition: all 0.35s var(--ease-cinema);
     }
 
-    .platform-badges-cluster {
+    .download-btn-prominent:hover {
+      background: var(--accent-red-hover);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 20px 60px rgba(255, 42, 75, 0.5);
+    }
+
+    .platform-specs-cluster {
+      margin-top: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1475,26 +1438,25 @@
     }
 
     .platform-pill {
-      padding: 7px 16px;
-      background: rgba(255, 255, 255, 0.04);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-pill);
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
       color: var(--text-secondary);
     }
 
     /* -------------------------------------------------------------
-       MINIMALIST TECHNICAL FOOTER
+       MINIMAL PRODUCT FOOTER
        ------------------------------------------------------------- */
     .site-footer {
-      background: var(--bg-base);
-      border-top: 1px solid var(--border-subtle);
-      padding: 40px 0;
-      font-size: 0.88rem;
+      background: var(--bg-void);
+      border-top: 1px solid var(--border-ghost);
+      padding: 44px 0;
     }
 
-    .footer-flex-row {
+    .footer-content-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1502,823 +1464,791 @@
       gap: 24px;
     }
 
-    .footer-brand-wrap {
+    .footer-links-cluster {
       display: flex;
       align-items: center;
-      gap: 16px;
-    }
-
-    .footer-status-pill {
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      color: #38ef7d;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(56, 239, 125, 0.08);
-      border: 1px solid rgba(56, 239, 125, 0.3);
-      padding: 4px 12px;
-      border-radius: var(--radius-pill);
-    }
-
-    .footer-links-list {
-      display: flex;
-      align-items: center;
-      gap: 28px;
+      gap: 32px;
       list-style: none;
     }
 
-    .footer-links-list a {
+    .footer-links-cluster a {
+      font-size: 0.95rem;
       color: var(--text-secondary);
-      font-size: 0.9rem;
     }
 
-    .footer-links-list a:hover {
+    .footer-links-cluster a:hover {
       color: var(--accent-red);
     }
 
-    /* Toast Notification for Download Routing */
-    .download-toast-popup {
+    /* Toast Notification for Download CTA */
+    .download-toast {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #151924;
+      bottom: 28px;
+      right: 28px;
+      background: #141722;
       border: 1px solid var(--accent-red);
-      border-radius: var(--radius-sm);
-      padding: 16px 22px;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.8), 0 0 24px var(--accent-red-glow);
-      font-size: 0.92rem;
-      font-family: var(--font-mono);
-      color: var(--text-primary);
+      border-radius: 12px;
+      padding: 16px 24px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 30px var(--accent-red-glow);
+      font-size: 0.95rem;
+      color: var(--text-hero);
       z-index: 1000;
-      transform: translateY(120px);
+      transform: translateY(140px);
       opacity: 0;
-      transition: transform 0.35s var(--ease-out-expo), opacity 0.3s ease;
+      transition: transform 0.4s var(--ease-cinema), opacity 0.3s ease;
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .download-toast-popup.is-visible {
+    .download-toast.active {
       transform: translateY(0);
       opacity: 1;
     }
 
     /* -------------------------------------------------------------
-       SMOKY LIQUID CURSOR & CANVAS TRAIL ENGINE
+       CUSTOM SHARP RED POINTER CURSOR & FLUID RED LIGHT TRAIL
+       Disabled strictly on mobile / touch
        ------------------------------------------------------------- */
     @media (hover: hover) and (pointer: fine) {
       body {
         cursor: none;
       }
 
-      a, button, input, [role="tab"], [tabindex="0"] {
+      a, button, input, [role="tab"], .simulator-touch-pad, .scroll-wheel-ribbon, .phone-trackpad-area {
         cursor: none !important;
       }
 
-      .cursor-core-dot {
+      /* Sharp Red Pointer Shape */
+      .custom-pointer-arrow {
         position: fixed;
         top: 0;
         left: 0;
-        width: 8px;
-        height: 8px;
-        background: var(--accent-red);
-        border-radius: 50%;
+        width: 20px;
+        height: 20px;
         pointer-events: none;
         z-index: 9999;
-        transform: translate(-50%, -50%);
-        box-shadow: 0 0 12px var(--accent-red);
-        transition: opacity 0.2s ease, transform 0.1s ease;
+        transform: translate(-1px, -1px);
+        transition: transform 0.12s var(--ease-cinema);
+        filter: drop-shadow(0 0 8px rgba(255, 42, 75, 0.6));
       }
 
-      .cursor-smooth-ring {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 36px;
-        height: 36px;
-        border: 1.5px solid rgba(255, 40, 77, 0.6);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9998;
-        transform: translate(-50%, -50%);
-        transition: width 0.22s var(--ease-out-expo), 
-                    height 0.22s var(--ease-out-expo), 
-                    border-color 0.22s ease, 
-                    background-color 0.22s ease,
-                    opacity 0.25s ease;
+      .custom-pointer-arrow.hover-scale {
+        transform: scale(1.25) translate(-1px, -1px);
+        filter: drop-shadow(0 0 14px rgba(255, 42, 75, 0.9));
       }
 
-      .cursor-smooth-ring.hover-active {
-        width: 56px;
-        height: 56px;
-        border-color: var(--accent-red);
-        background: rgba(255, 40, 77, 0.12);
-        box-shadow: 0 0 20px var(--accent-red-glow);
-      }
-
-      .cursor-smooth-ring.click-active {
-        transform: translate(-50%, -50%) scale(0.8);
-        background: rgba(255, 40, 77, 0.3);
-      }
-
-      .cursor-smoke-canvas {
+      .custom-pointer-canvas {
         position: fixed;
         inset: 0;
         width: 100vw;
         height: 100vh;
         pointer-events: none;
-        z-index: 9997;
+        z-index: 9998;
       }
 
-      .cursor-fade-out {
+      .cursor-hidden {
         opacity: 0 !important;
       }
     }
 
     @media (hover: none) or (pointer: coarse) or (max-width: 768px) {
-      .cursor-core-dot,
-      .cursor-smooth-ring,
-      .cursor-smoke-canvas {
+      .custom-pointer-arrow,
+      .custom-pointer-canvas {
         display: none !important;
       }
       body {
         cursor: auto !important;
       }
-      a, button, input, [role="tab"], [tabindex="0"] {
+      a, button, input, [role="tab"] {
         cursor: pointer !important;
       }
     }
 
-    /* -------------------------------------------------------------
-       PREFERS-REDUCED-MOTION
-       ------------------------------------------------------------- */
+    /* Accessibility: Reduced Motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+      }
+      .title-line-inner {
+        transform: none !important;
+        opacity: 1 !important;
+        filter: none !important;
+      }
+      .hero-summary-copy, .hero-actions-row {
+        transform: none !important;
+        opacity: 1 !important;
       }
     }
   </style>
 </head>
+
 <body>
-  <!-- Ambient Atmospheric Environment Layers -->
-  <div class="ambient-background" aria-hidden="true">
-    <div class="ambient-grid"></div>
-    <div class="ambient-haze-top"></div>
-    <div class="ambient-haze-mid"></div>
+  <!-- Atmospheric Smoky Layer & Ambient Illumination -->
+  <div class="atmosphere-layer" aria-hidden="true">
+    <div class="atmosphere-grain"></div>
+    <div class="haze-orb-1" id="ambient-haze-top"></div>
+    <div class="haze-orb-2"></div>
   </div>
 
-  <div id="app">
-    <!-- NAVIGATION HEADER -->
-    <header class="site-header" id="site-header">
-      <div class="container nav-container">
-        <a href="#" class="brand-link" aria-label="Easy Mouse Homepage">
-          <div class="brand-symbol" aria-hidden="true"></div>
-          <span>Easy Mouse</span>
-        </a>
-
-        <nav aria-label="Primary Navigation">
-          <ul class="nav-links-desktop">
-            <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
-            <li><a href="#capabilities" class="nav-link">Capabilities</a></li>
-            <li><a href="#controller-modes" class="nav-link">Controller Modes</a></li>
-          </ul>
-        </nav>
-
-        <div class="nav-actions">
-          <a href="#download" class="btn-nav-action" id="download-app-nav">Download</a>
-          <button class="mobile-menu-btn" id="mobile-toggle" aria-expanded="false" aria-label="Toggle navigation menu">
-            <span class="hamburger-icon">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </button>
+  <!-- Editorial Sticky Navigation -->
+  <header class="site-nav" id="site-header">
+    <div class="container nav-inner">
+      <a href="#" class="brand-mark" aria-label="Easy Mouse Home">
+        <div class="brand-icon-gem" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C7.58 2 4 5.58 4 10v4c0 4.42 3.58 8 8 8s8-3.58 8-8v-4c0-4.42-3.58-8-8-8zm6 12c0 3.31-2.69 6-6 6s-6-2.69-6-6v-4h12v4zm-7-9.93C8.04 4.47 6 6.99 6 10h5V4.07zm2 0V10h5c0-3.01-2.04-5.53-5-5.93z"/>
+          </svg>
         </div>
-      </div>
+        <span>Easy Mouse</span>
+      </a>
 
-      <!-- Mobile Navigation Overlay Drawer -->
-      <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
-        <a href="#how-it-works" class="mobile-link">How It Works</a>
-        <a href="#capabilities" class="mobile-link">Capabilities</a>
-        <a href="#controller-modes" class="mobile-link">Controller Modes</a>
-        <a href="#download" class="btn-nav-action mobile-link" style="text-align: center; margin-top: 8px;">Download Easy Mouse</a>
-      </div>
-    </header>
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li class="nav-link-item"><a href="#narrative-phone">The Phone</a></li>
+          <li class="nav-link-item"><a href="#narrative-connection">Connection</a></li>
+          <li class="nav-link-item"><a href="#narrative-control">Control</a></li>
+          <li class="nav-link-item"><a href="#capabilities">Features</a></li>
+          <li class="nav-link-item"><a href="#modes">Modes</a></li>
+        </ul>
+      </nav>
 
-    <main id="main-content">
-      <!-- ACT 01: HERO SECTION & SPATIAL PRODUCT SHOWCASE -->
-      <section class="hero-stage" id="hero">
-        <div class="container hero-grid">
-          <!-- Left: Editorial Value Proposition -->
-          <div class="hero-editorial">
-            <div class="mono-tag">Instant Desktop Utility</div>
+      <a href="#download" class="nav-cta-btn" id="download-app-nav" data-download="true">
+        <span>Download</span>
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
 
-            <h1 class="hero-h1">
-              Turn your phone into a <span class="outline-word">wireless mouse.</span>
-            </h1>
-
-            <p class="hero-lead">
-              Transform the touchscreen in your pocket into an instant high-precision trackpad and remote controller for any laptop or PC.
-            </p>
-
-            <div class="hero-cta-box">
-              <a href="#download" class="btn-magnetic-cta" id="download-app" data-download="true">
-                <span>Download Easy Mouse</span>
-                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-              <a href="#how-it-works" class="btn-secondary-link">
-                <span>See the Workflow</span>
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-              </a>
-            </div>
-
-            <div class="hero-specs-row">
-              <span>Platforms:</span>
-              <strong>Windows</strong> / <strong>macOS</strong> / <strong>Linux</strong> / <strong>iOS</strong> / <strong>Android</strong>
-            </div>
-          </div>
-
-          <!-- Right: Spatial Product Photographic & Live Simulation Canvas -->
-          <div class="hero-spatial-canvas" id="spatial-hero-box">
-            <div class="spatial-topbar">
-              <span>HARDWARE BRIDGE: LINK_ACTIVE</span>
-              <div class="beacon-live">
-                <span class="beacon-dot"></span>
-                <span>SUB-MS HANDSHAKE</span>
-              </div>
-            </div>
-
-            <!-- Custom High-Resolution Studio Product Visual -->
-            <div class="product-photo-frame">
-              <img src="assets/hero-device.jpg" alt="Easy Mouse smartphone wireless trackpad connected to laptop" class="product-photo-img" loading="eager">
-              <div class="photo-overlay-tag">Hardware Link Studio Setup</div>
-            </div>
-
-            <!-- Live Interactive Dual-Surface Console -->
-            <div class="live-trackpad-console">
-              <!-- Touchpad Surface (User input) -->
-              <div class="console-phone-touchpad" id="hero-interactive-touchpad" tabindex="0" role="region" aria-label="Interactive Phone Trackpad Simulator">
-                <span class="touchpad-caption">Touch or Drag Here</span>
-                <div class="touchpad-point-dot" id="hero-live-dot"></div>
-              </div>
-
-              <!-- Laptop Display (Live response) -->
-              <div class="console-laptop-monitor">
-                <div class="monitor-header">
-                  <span class="monitor-dot"></span>
-                  <span class="monitor-dot"></span>
-                  <span class="monitor-dot"></span>
-                  <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); margin-left: 6px;">Live Remote View</span>
-                </div>
-                <div class="monitor-canvas" id="hero-monitor-canvas">
-                  <div class="monitor-pointer" id="hero-monitor-pointer">
-                    <svg class="pointer-icon-svg" width="18" height="18" viewBox="0 0 24 24">
-                      <path d="M4 2L20 10L12 13L8 21L4 2Z"/>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ACT 02: KINETIC TYPOGRAPHY TRANSITION RIBBON -->
-      <section class="kinetic-ribbon-section" aria-hidden="true">
-        <div class="marquee-track">
-          <div class="marquee-item">
-            <span>TOUCH SURFACE</span> <span class="accent-symbol">&#9670;</span>
-            <span>WIRELESS LINK</span> <span class="accent-symbol">&#9670;</span>
-            <span>ZERO PERIPHERALS</span> <span class="accent-symbol">&#9670;</span>
-            <span>INSTANT HANDSHAKE</span> <span class="accent-symbol">&#9670;</span>
-            <span>DESKTOP CONTROL</span> <span class="accent-symbol">&#9670;</span>
-          </div>
-          <div class="marquee-item">
-            <span>TOUCH SURFACE</span> <span class="accent-symbol">&#9670;</span>
-            <span>WIRELESS LINK</span> <span class="accent-symbol">&#9670;</span>
-            <span>ZERO PERIPHERALS</span> <span class="accent-symbol">&#9670;</span>
-            <span>INSTANT HANDSHAKE</span> <span class="accent-symbol">&#9670;</span>
-            <span>DESKTOP CONTROL</span> <span class="accent-symbol">&#9670;</span>
-          </div>
-        </div>
-        <div class="marquee-track reverse">
-          <div class="marquee-item">
-            <span>SMARTPHONE TO COMPUTER</span> <span class="accent-symbol">&#9670;</span>
-            <span>LOW LATENCY</span> <span class="accent-symbol">&#9670;</span>
-            <span>NATURAL GESTURES</span> <span class="accent-symbol">&#9670;</span>
-            <span>PRECISION NAVIGATION</span> <span class="accent-symbol">&#9670;</span>
-          </div>
-          <div class="marquee-item">
-            <span>SMARTPHONE TO COMPUTER</span> <span class="accent-symbol">&#9670;</span>
-            <span>LOW LATENCY</span> <span class="accent-symbol">&#9670;</span>
-            <span>NATURAL GESTURES</span> <span class="accent-symbol">&#9670;</span>
-            <span>PRECISION NAVIGATION</span> <span class="accent-symbol">&#9670;</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- ACT 03: STICKY STORYTELLING PIPELINE (HOW IT WORKS) -->
-      <section class="narrative-section section-spacing" id="how-it-works">
-        <div class="container">
-          <div class="narrative-header">
-            <div class="mono-tag">Connection Sequence</div>
-            <h2 class="narrative-h2">From pocket to pointer in seconds.</h2>
-            <p style="max-width: 52ch;">A streamlined three-step wireless connection designed for zero friction and maximum reliability.</p>
-          </div>
-
-          <div class="narrative-grid">
-            <!-- Left: Step Cards -->
-            <div class="story-steps-col">
-              <div class="story-step-card active" data-step="1" tabindex="0">
-                <div class="step-num-badge">PHASE 01</div>
-                <h3 class="step-heading">1. Auto-Discover</h3>
-                <p class="step-paragraph">
-                  Open Easy Mouse on your phone and target computer. Both devices broadcast a local network heartbeat and recognize each other instantly.
-                </p>
-              </div>
-
-              <div class="story-step-card" data-step="2" tabindex="0">
-                <div class="step-num-badge">PHASE 02</div>
-                <h3 class="step-heading">2. Secure Local Link</h3>
-                <p class="step-paragraph">
-                  Establish a direct high-speed data conduit across your local Wi-Fi. Zero external cloud servers, zero account sign-ups, and zero dongles.
-                </p>
-              </div>
-
-              <div class="story-step-card" data-step="3" tabindex="0">
-                <div class="step-num-badge">PHASE 03</div>
-                <h3 class="step-heading">3. Drive Your Workspace</h3>
-                <p class="step-paragraph">
-                  Glide your thumb across the screen for smooth cursor tracking. Tap for single clicks, two fingers for secondary clicks and inertial scrolling.
-                </p>
-              </div>
-            </div>
-
-            <!-- Right: Reactive Visual Stage -->
-            <div class="story-display-col">
-              <div class="story-display-header">
-                <span id="story-step-label">PHASE 01: AUTO-DISCOVERY</span>
-                <span class="beacon-live">ACTIVE PROTOCOL</span>
-              </div>
-
-              <div class="story-screen-visual">
-                <!-- Layer 1: Handshake Discovery -->
-                <div class="story-phase-layer active" id="phase-layer-1">
-                  <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-                    <circle cx="60" cy="60" r="50" stroke="rgba(255, 40, 77, 0.15)" stroke-width="2"/>
-                    <circle cx="60" cy="60" r="35" stroke="rgba(255, 40, 77, 0.35)" stroke-width="2"/>
-                    <circle cx="60" cy="60" r="20" stroke="var(--accent-red)" stroke-width="2.5"/>
-                    <circle cx="60" cy="60" r="6" fill="#ffffff"/>
-                  </svg>
-                  <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #ffffff; margin-top: 18px;">BROADCASTING LOCAL BEACON</span>
-                </div>
-
-                <!-- Layer 2: Pair Bridge -->
-                <div class="story-phase-layer" id="phase-layer-2">
-                  <svg width="160" height="80" viewBox="0 0 160 80" fill="none" aria-hidden="true">
-                    <rect x="10" y="15" width="40" height="50" rx="6" stroke="#ffffff" stroke-width="2" fill="#121622"/>
-                    <rect x="110" y="15" width="40" height="50" rx="6" stroke="#ffffff" stroke-width="2" fill="#121622"/>
-                    <path d="M50 40 L110 40" stroke="var(--accent-red)" stroke-width="3" stroke-dasharray="4 4"/>
-                    <circle cx="80" cy="40" r="7" fill="var(--accent-red)"/>
-                  </svg>
-                  <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-red); margin-top: 18px;">DIRECT PEER-TO-PEER BRIDGE</span>
-                </div>
-
-                <!-- Layer 3: Dynamic Pointer Control -->
-                <div class="story-phase-layer" id="phase-layer-3">
-                  <svg width="140" height="100" viewBox="0 0 140 100" fill="none" aria-hidden="true">
-                    <rect x="10" y="10" width="120" height="80" rx="8" stroke="#2c3446" stroke-width="2" fill="#0c0e15"/>
-                    <polygon points="65,40 85,50 75,55 80,68 74,70 69,57 60,63" fill="var(--accent-red)" stroke="#ffffff" stroke-width="1.5"/>
-                  </svg>
-                  <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #38ef7d; margin-top: 18px;">60HZ FLUID CONTROL LIVE</span>
-                </div>
-              </div>
-
-              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-align: center;">
-                Click any step above to inspect real-time connection stages
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ACT 04: CORE CAPABILITIES (ASYMMETRIC EDITORIAL LAYOUTS) -->
-      <section class="capabilities-section section-spacing" id="capabilities">
-        <div class="container">
-          <div class="capabilities-header">
-            <div class="mono-tag">Engineered Utility</div>
-            <h2 style="font-size: clamp(2.2rem, 3.8vw, 3.4rem); margin-top: 12px; margin-bottom: 16px;">Precision where you need it.</h2>
-            <p style="max-width: 54ch;">Four core advantages engineered into the Easy Mouse wireless control architecture.</p>
-          </div>
-
-          <!-- Block 1: Full-Width Macro Editorial Split -->
-          <div class="editorial-statement-block">
-            <div>
-              <div class="mono-tag" style="margin-bottom: 12px;">Multi-Touch Surface</div>
-              <h3 style="font-size: clamp(1.8rem, 2.6vw, 2.4rem); line-height: 1.15; margin-bottom: 16px; color: #ffffff;">
-                Natural glass trackpad gestures.
-              </h3>
-              <p style="margin-bottom: 24px;">
-                Your phone screen functions with the fluid gesture fidelity of a dedicated laptop trackpad. Single-finger gliding, two-finger vertical momentum scrolling, and multi-finger context clicks work natively without configuration.
-              </p>
-              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <span class="platform-pill" style="border-color: var(--border-accent); color: var(--accent-red);">Inertia Physics</span>
-                <span class="platform-pill">Multi-Touch Detection</span>
-                <span class="platform-pill">Sub-Pixel Glide</span>
-              </div>
-            </div>
-
-            <div class="editorial-img-wrap">
-              <img src="assets/trackpad-macro.jpg" alt="Macro view of fingertip on Easy Mouse trackpad surface" class="editorial-img" loading="lazy">
-            </div>
-          </div>
-
-          <!-- Block 2 & 3: Asymmetric Duo Grid -->
-          <div class="asymmetric-duo-grid">
-            <!-- Left: Stark Contrast Panel -->
-            <div class="capability-card-dark">
-              <div>
-                <div class="mono-tag" style="margin-bottom: 12px;">Zero Extra Baggage</div>
-                <h3 style="font-size: 1.6rem; color: #ffffff; margin-bottom: 14px;">The end of physical dongles.</h3>
-                <p>Never get stuck without a mouse during an airport layover, coffee shop sprint, or conference presentation.</p>
-
-                <div class="stark-contrast-list">
-                  <div class="stark-row">
-                    <span class="cross-glyph">&#10005;</span>
-                    <span>No proprietary USB-A or USB-C receiver to lose</span>
-                  </div>
-                  <div class="stark-row">
-                    <span class="cross-glyph">&#10005;</span>
-                    <span>No dead AA/AAA batteries in your laptop bag</span>
-                  </div>
-                  <div class="stark-row">
-                    <span class="cross-glyph">&#10005;</span>
-                    <span>No need for dedicated flat mousepad surfaces</span>
-                  </div>
-                  <div class="stark-row">
-                    <span class="check-glyph">&#10003;</span>
-                    <span style="color: #ffffff; font-weight: 600;">Always ready on the smartphone you already carry</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right: Auto-Discovery Radar Panel -->
-            <div class="capability-card-dark">
-              <div>
-                <div class="mono-tag" style="margin-bottom: 12px;">Zero Configuration</div>
-                <h3 style="font-size: 1.6rem; color: #ffffff; margin-bottom: 14px;">Instant local auto-discovery.</h3>
-                <p>No manual IP typing. Easy Mouse automatically pairs with your computer using lightweight local UDP broadcasting.</p>
-
-                <div class="radar-visual-box" aria-hidden="true">
-                  <div class="radar-sweep-beam"></div>
-                  <div class="radar-sweep-beam"></div>
-                  <div class="radar-sweep-beam"></div>
-                  <div class="radar-tag-badge">
-                    <span class="beacon-dot"></span>
-                    <span>HOST FOUND: LOCAL-PC</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ACT 05: INTERACTIVE CONTROLLER CONSOLE -->
-      <section class="console-section section-spacing" id="controller-modes">
-        <div class="container">
-          <div style="margin-bottom: 50px;">
-            <div class="mono-tag">Interactive Demo</div>
-            <h2 style="font-size: clamp(2.2rem, 3.6vw, 3.2rem); margin-top: 12px; margin-bottom: 16px;">Three dedicated controller modes.</h2>
-            <p style="max-width: 52ch;">Test the responsiveness of each control mode directly inside your browser below.</p>
-          </div>
-
-          <!-- Mode Tab Bar -->
-          <div class="modes-tab-bar" role="tablist" aria-label="Controller Modes Selector">
-            <button class="console-mode-tab active" id="tab-trackpad" role="tab" aria-selected="true" aria-controls="panel-trackpad">Trackpad Mode</button>
-            <button class="console-mode-tab" id="tab-scroll" role="tab" aria-selected="false" aria-controls="panel-scroll">Scroll Wheel</button>
-            <button class="console-mode-tab" id="tab-remote" role="tab" aria-selected="false" aria-controls="panel-remote">Presentation Remote</button>
-          </div>
-
-          <!-- Console Hardware Simulation Box -->
-          <div class="sandbox-console-layout">
-            <!-- Left: Smartphone UI -->
-            <div class="hardware-unit">
-              <div class="hardware-top">
-                <span id="hardware-active-mode-tag">MODE: TRACKPAD</span>
-                <span style="color: var(--accent-red); font-weight: 700;">60 FPS</span>
-              </div>
-
-              <!-- View 1: Trackpad -->
-              <div class="hardware-view-panel active" id="panel-trackpad">
-                <div class="tactile-trackpad-surface" id="console-touchpad-surface" tabindex="0">
-                  <span class="touchpad-caption">Drag to test tracking</span>
-                  <div class="touchpad-point-dot" id="console-touch-dot"></div>
-                </div>
-              </div>
-
-              <!-- View 2: Scroll Ribbon -->
-              <div class="hardware-view-panel" id="panel-scroll">
-                <div class="tactile-scroll-ribbon" id="console-scroll-surface">
-                  <div class="ribbon-track-inner">
-                    <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">UP</span>
-                    <div class="ribbon-thumb" id="console-scroll-thumb"></div>
-                    <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">DOWN</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- View 3: Keynote Remote -->
-              <div class="hardware-view-panel" id="panel-remote">
-                <div class="remote-clicker-stack">
-                  <button class="btn-keynote-big" id="btn-next-keynote" type="button">
-                    <span>Next Slide</span>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                    </svg>
-                  </button>
-                  <div class="remote-sub-row">
-                    <button class="btn-keynote-small" id="btn-prev-keynote" type="button">Prev Slide</button>
-                    <button class="btn-keynote-small" id="btn-blank-screen" type="button">Black Screen</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right: Computer Screen Response -->
-            <div class="output-unit">
-              <div class="output-unit-header">
-                <span id="output-feed-title">DESKTOP WORKSPACE STREAM</span>
-                <div class="beacon-live"><span class="beacon-dot"></span><span>LIVE SYNC</span></div>
-              </div>
-
-              <div class="output-content-stage">
-                <!-- Screen 1: Desktop Workspace -->
-                <div class="output-mode-layer active" id="output-view-trackpad">
-                  <div class="screen-grid-workspace" id="console-workspace-area">
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
-                      <div class="sim-app-card" style="height: 64px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 8px;"></div>
-                      <div class="sim-app-card" style="height: 64px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 8px;"></div>
-                      <div class="sim-app-card" style="height: 64px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 8px;"></div>
-                    </div>
-                    <div class="workspace-cursor-elem" id="console-workspace-cursor">
-                      <svg class="pointer-icon-svg" width="22" height="22" viewBox="0 0 24 24">
-                        <path d="M4 2L20 10L12 13L8 21L4 2Z"/>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Screen 2: Scroll Document -->
-                <div class="output-mode-layer" id="output-view-scroll">
-                  <div class="screen-document-scroll">
-                    <div class="doc-flow-inner" id="doc-flow-container">
-                      <div class="doc-bar-title"></div>
-                      <div class="doc-bar-line" style="width: 90%;"></div>
-                      <div class="doc-bar-line" style="width: 85%;"></div>
-                      <div class="doc-bar-line" style="width: 70%;"></div>
-                      <div class="doc-bar-line" style="width: 95%;"></div>
-                      <div class="doc-bar-title" style="width: 40%; margin-top: 24px;"></div>
-                      <div class="doc-bar-line" style="width: 92%;"></div>
-                      <div class="doc-bar-line" style="width: 80%;"></div>
-                      <div class="doc-bar-line" style="width: 88%;"></div>
-                      <div class="doc-bar-title" style="width: 60%; margin-top: 24px;"></div>
-                      <div class="doc-bar-line" style="width: 90%;"></div>
-                      <div class="doc-bar-line" style="width: 75%;"></div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Screen 3: Keynote Deck -->
-                <div class="output-mode-layer" id="output-view-remote">
-                  <div class="screen-slide-stage">
-                    <div class="keynote-card-box" id="keynote-slide-card">
-                      <div class="mono-tag" id="keynote-slide-num">SLIDE 01 / 03</div>
-                      <h4 style="font-size: 1.5rem; color: #ffffff;" id="keynote-slide-title">System Architecture and Handshake</h4>
-                      <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
-                        <span>Easy Mouse Deck</span>
-                        <span>Use Phone Remote</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ACT 06: HIGH-IMPACT CLOSING STAGE & DOWNLOAD -->
-      <section class="closing-download-section" id="download">
-        <div class="container">
-          <div class="closing-card-hero">
-            <div class="mono-tag" style="margin-bottom: 16px;">Zero Extra Hardware</div>
-            <h2 class="closing-h2">Your phone. Your computer. One simple connection.</h2>
-            <p class="closing-lead">
-              Download Easy Mouse today and experience instantaneous wireless desktop control from the device already in your hand.
-            </p>
-
-            <div class="closing-actions-col">
-              <a href="#download" class="btn-magnetic-cta" id="download-app-footer" data-download="true" style="padding: 20px 42px; font-size: 1.08rem;">
-                <span>Download Easy Mouse</span>
-                <svg width="22" height="22" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-
-              <div class="platform-badges-cluster">
-                <span class="platform-pill">Windows 10/11</span>
-                <span class="platform-pill">macOS 12+</span>
-                <span class="platform-pill">Linux</span>
-                <span class="platform-pill">Android 9+</span>
-                <span class="platform-pill">iOS 15+</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- MINIMALIST TECHNICAL FOOTER -->
-    <footer class="site-footer">
-      <div class="container footer-flex-row">
-        <div class="footer-brand-wrap">
-          <a href="#" class="brand-link" style="font-size: 0.95rem;">
-            <div class="brand-symbol" style="width: 20px; height: 20px;" aria-hidden="true"></div>
-            <span>Easy Mouse</span>
-          </a>
-          <span class="footer-status-pill">
-            <span class="beacon-dot"></span>
-            <span>SYSTEM READY</span>
-          </span>
-        </div>
-
-        <nav aria-label="Footer Navigation">
-          <ul class="footer-links-list">
-            <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#capabilities">Capabilities</a></li>
-            <li><a href="#controller-modes">Modes</a></li>
-            <li><a href="#download">Download</a></li>
-            <li><a href="#hero">Top &uarr;</a></li>
-          </ul>
-        </nav>
-      </div>
-    </footer>
-
-    <!-- Download Notification Toast -->
-    <div class="download-toast-popup" id="download-toast" role="status" aria-live="polite">
-      <span class="beacon-dot"></span>
-      <span id="toast-message">Easy Mouse download package ready for production URL assignment.</span>
+      <button class="mobile-menu-trigger" id="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+      </button>
     </div>
 
-    <!-- Desktop Custom Cursor Elements -->
-    <div class="cursor-core-dot" id="cursor-dot" aria-hidden="true"></div>
-    <div class="cursor-smooth-ring" id="cursor-ring" aria-hidden="true"></div>
-    <canvas class="cursor-smoke-canvas" id="cursor-canvas" aria-hidden="true"></canvas>
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-drawer" aria-hidden="true">
+      <a href="#narrative-phone" class="mobile-link">The Phone</a>
+      <a href="#narrative-connection" class="mobile-link">Connection</a>
+      <a href="#narrative-control" class="mobile-link">Control</a>
+      <a href="#capabilities" class="mobile-link">Features</a>
+      <a href="#modes" class="mobile-link">Modes</a>
+      <a href="#download" class="btn-hero-primary mobile-link" style="justify-content: center; margin-top: 10px;">Download Easy Mouse</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- HERO: DRAMATIC PROGRESSIVE TYPOGRAPHY & 3D SPATIAL VISUAL -->
+    <section class="hero-stage" id="hero">
+      <div class="container hero-split-grid">
+        <!-- Progressive Line-by-Line Entrance -->
+        <div class="hero-editorial-col">
+          <div class="editorial-label">Wireless Desktop Control</div>
+
+          <div class="hero-title-stage">
+            <span class="title-line-mask line-1">
+              <span class="title-line-inner">TURN</span>
+            </span>
+            <span class="title-line-mask line-2">
+              <span class="title-line-inner">YOUR PHONE</span>
+            </span>
+            <span class="title-line-mask line-3">
+              <span class="title-line-inner">INTO A</span>
+            </span>
+            <span class="title-line-mask line-4">
+              <span class="title-line-inner accent-word">WIRELESS MOUSE.</span>
+            </span>
+          </div>
+
+          <p class="hero-summary-copy">
+            Transform the touchscreen in your hand into an instant, high-precision trackpad and remote navigator for your computer. No extra hardware. Zero friction.
+          </p>
+
+          <div class="hero-actions-row">
+            <a href="#download" class="btn-hero-primary" id="download-app" data-download="true">
+              <span>Download Easy Mouse</span>
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="#narrative-phone" class="btn-hero-secondary">
+              <span>Explore Experience</span>
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 3D Smartphone & Interactive Companion Monitor -->
+        <div class="hero-3d-scene" id="hero-3d-scene">
+          <div class="spatial-phone-rig" id="spatial-phone-rig">
+            <div class="phone-chassis">
+              <div class="phone-dynamic-island"></div>
+              <div class="phone-glass-screen">
+                <div class="phone-trackpad-area" id="hero-phone-surface" tabindex="0" role="region" aria-label="Interactive Phone Trackpad Surface">
+                  <span class="trackpad-instruction" id="hero-trackpad-hint">Touch or glide to drive pointer</span>
+                  <div class="phone-touch-ripple" id="hero-phone-touch"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Laptop View Responding in Spatial Depth Behind -->
+            <div class="laptop-companion-card" id="laptop-companion">
+              <div class="laptop-card-header">
+                <div class="dot-mini red"></div>
+                <div class="dot-mini"></div>
+                <div class="dot-mini"></div>
+                <span style="font-size: 0.7rem; color: var(--text-muted); margin-left: 6px; font-weight: 600;">Computer Screen</span>
+              </div>
+              <div class="laptop-canvas-preview" id="laptop-screen-preview">
+                <svg class="laptop-pointer-icon" id="hero-laptop-pointer" viewBox="0 0 24 24">
+                  <path d="M4 2L20 10L12 13L8 21L4 2Z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flowing Energy Connection Beam SVG -->
+          <svg class="spatial-beam-svg" viewBox="0 0 360 220" fill="none" aria-hidden="true">
+            <path id="hero-energy-beam" d="M120 150 C 200 120, 240 70, 290 50" stroke="url(#hero-beam-gradient)" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 6"/>
+            <defs>
+              <linearGradient id="hero-beam-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#ff2a4b" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#ff2a4b" stop-opacity="0.2"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- KINETIC ROLLING TYPOGRAPHY BANDS (DUAL OPPOSITE VELOCITY) -->
+    <section class="kinetic-bands-wrap" aria-hidden="true">
+      <div class="kinetic-track" id="kinetic-track-forward">
+        <div class="kinetic-group">
+          <span class="kinetic-word highlight">MOVE</span> <span class="kinetic-dot">&bull;</span>
+          <span class="kinetic-word">CLICK</span> <span class="kinetic-dot">&bull;</span>
+          <span class="kinetic-word highlight">SCROLL</span> <span class="kinetic-dot">&bull;</span>
+          <span class="kinetic-word">CONTROL</span> <span class="kinetic-dot">&bull;</span>
+          <span class="kinetic-word highlight">CONNECT</span> <span class="kinetic-dot">&bull;</span>
+        </div>
+        <div class="kinetic-group">
+          <span class="kinetic-word highlight">MOVE</span> <span class="kinetic-dot">&bull;</span>
+          <span class="kinetic-word">CLICK</span> <span class="kinetic-dot">&bull;</span>
+          <span class="kinetic-word highlight">SCROLL</span> <span class="kinetic-dot">&bull;</span>
+          <span class="kinetic-word">CONTROL</span> <span class="kinetic-dot">&bull;</span>
+          <span class="kinetic-word highlight">CONNECT</span> <span class="kinetic-dot">&bull;</span>
+        </div>
+      </div>
+      <div class="kinetic-track track-reverse" id="kinetic-track-reverse">
+        <div class="kinetic-group">
+          <span class="kinetic-word">YOUR PHONE</span> <span class="kinetic-dot">/</span>
+          <span class="kinetic-word">YOUR POINTER</span> <span class="kinetic-dot">/</span>
+          <span class="kinetic-word">YOUR COMPUTER</span> <span class="kinetic-dot">/</span>
+        </div>
+        <div class="kinetic-group">
+          <span class="kinetic-word">YOUR PHONE</span> <span class="kinetic-dot">/</span>
+          <span class="kinetic-word">YOUR POINTER</span> <span class="kinetic-dot">/</span>
+          <span class="kinetic-word">YOUR COMPUTER</span> <span class="kinetic-dot">/</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 01: THE PHONE (SCROLL STORYTELLING) -->
+    <section class="section-phone section-spacing" id="narrative-phone">
+      <div class="container">
+        <div class="narrative-editorial-row">
+          <div>
+            <div class="editorial-label">Act 01: The Device</div>
+            <h2 class="editorial-statement-huge">
+              Your phone is already the controller.
+            </h2>
+            <p class="statement-lead-paragraph">
+              You do not need to carry another peripheral. The glass screen already resting in your pocket has capacitive sensitivity and multi-touch fidelity ready to drive your workspace with surgical accuracy.
+            </p>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+              <span class="platform-pill" style="border-color: var(--accent-red); color: var(--accent-red);">Capacitive Glass</span>
+              <span class="platform-pill">Multi-Touch Detection</span>
+              <span class="platform-pill">Haptic Confirmation</span>
+            </div>
+          </div>
+
+          <div class="narrative-visual-chassis">
+            <img src="assets/trackpad-macro.jpg" alt="Macro view of fingertip glide across glass trackpad surface" class="macro-photo-art" loading="lazy">
+            <div class="visual-art-caption">Smooth Sub-Pixel Tracking</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 02: THE FLOWING CONNECTION -->
+    <section class="section-connection section-spacing" id="narrative-connection">
+      <div class="container">
+        <div class="connection-story-grid">
+          <div>
+            <div class="editorial-label">Act 02: The Link</div>
+            <h2 class="editorial-statement-huge" style="margin-bottom: 20px;">
+              An invisible thread of instant control.
+            </h2>
+            <p class="statement-lead-paragraph">
+              A light stream of continuous connection between phone and computer across your local network. No external cloud intermediaries, no cables, and no Bluetooth dongles required.
+            </p>
+
+            <div class="flow-card-stack">
+              <div class="flow-card active" data-flow="1">
+                <div class="flow-card-num">01 / DISCOVERY</div>
+                <div class="flow-card-title">Instant Network Presence</div>
+                <p>Both devices detect each other automatically within milliseconds on your private local network.</p>
+              </div>
+              <div class="flow-card" data-flow="2">
+                <div class="flow-card-num">02 / SECURE LINK</div>
+                <div class="flow-card-title">Direct Device Conduit</div>
+                <p>Telemetry flows directly between phone and laptop with ultra-low latency and zero accounts.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow-canvas-box">
+            <!-- Fluid Flowing Red Light & Smoke Canvas Graphic -->
+            <svg class="connection-smoke-svg" viewBox="0 0 500 400" fill="none" aria-hidden="true">
+              <!-- Background Ambient Haze -->
+              <circle cx="250" cy="200" r="160" fill="url(#haze-radial)" opacity="0.4"/>
+              
+              <!-- Flowing Wave Paths -->
+              <path id="flowing-path-1" d="M 60 200 C 180 80, 320 320, 440 200" stroke="url(#flow-gradient-1)" stroke-width="4" stroke-linecap="round" fill="none"/>
+              <path id="flowing-path-2" d="M 60 200 C 180 300, 320 100, 440 200" stroke="url(#flow-gradient-2)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              
+              <!-- Phone Node -->
+              <g transform="translate(60, 200)">
+                <circle r="28" fill="#151822" stroke="var(--border-refined)" stroke-width="2"/>
+                <circle r="10" fill="var(--accent-red)"/>
+                <circle r="18" stroke="var(--accent-red)" stroke-width="1.5" stroke-dasharray="3 3"/>
+              </g>
+
+              <!-- Computer Node -->
+              <g transform="translate(440, 200)">
+                <circle r="34" fill="#151822" stroke="var(--border-refined)" stroke-width="2"/>
+                <circle r="14" fill="#ffffff"/>
+                <circle r="24" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.5"/>
+              </g>
+
+              <defs>
+                <radialGradient id="haze-radial" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#ff2a4b" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="#ff2a4b" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="flow-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#ff2a4b" stop-opacity="0.9"/>
+                  <stop offset="50%" stop-color="#ffffff" stop-opacity="0.8"/>
+                  <stop offset="100%" stop-color="#ff2a4b" stop-opacity="0.9"/>
+                </linearGradient>
+                <linearGradient id="flow-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#ff2a4b" stop-opacity="0.3"/>
+                  <stop offset="50%" stop-color="#ff4765" stop-opacity="0.7"/>
+                  <stop offset="100%" stop-color="#ff2a4b" stop-opacity="0.3"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 03: THE CONTROL (MOVE. CLICK. SCROLL.) -->
+    <section class="section-control section-spacing" id="narrative-control">
+      <div class="container">
+        <div class="editorial-label">Act 03: Precision Navigation</div>
+        
+        <div class="control-big-words" id="control-words-row">
+          <span class="action-reveal-word active-word" data-word="move">MOVE</span>
+          <span class="action-reveal-word" data-word="click">CLICK</span>
+          <span class="action-reveal-word" data-word="scroll">SCROLL</span>
+        </div>
+
+        <div class="workspace-interactive-stage">
+          <div class="stage-sub-header">
+            <div class="stage-title">Desktop Workspace Preview</div>
+            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500;">Glide your mouse or touch below</span>
+          </div>
+
+          <div class="simulated-screen-grid" id="control-workspace-canvas">
+            <div class="mock-desktop-window">
+              <div class="mock-doc-bar" style="width: 40%; background: var(--accent-red);"></div>
+              <div class="mock-doc-bar" style="width: 85%;"></div>
+              <div class="mock-doc-bar" style="width: 70%;"></div>
+              <div class="mock-doc-bar" style="width: 90%;"></div>
+              <div class="mock-doc-bar" style="width: 60%; margin-top: 14px;"></div>
+              <div class="mock-doc-bar" style="width: 80%;"></div>
+            </div>
+
+            <!-- Controlled Pointer Element -->
+            <svg class="interactive-stage-pointer" id="control-stage-pointer" viewBox="0 0 24 24">
+              <path d="M4 2L20 10L12 13L8 21L4 2Z" fill="var(--accent-red)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 04: EDITORIAL CAPABILITIES (ASYMMETRIC LAYOUT) -->
+    <section class="section-capabilities section-spacing" id="capabilities">
+      <div class="container">
+        <div class="editorial-label">Engineered Utility</div>
+        <h2 style="font-size: clamp(2.4rem, 4vw, 3.8rem); margin-bottom: 16px;">
+          Designed for pure convenience.
+        </h2>
+        <p style="max-width: 52ch; font-size: 1.15rem; margin-bottom: 40px;">
+          No extra chargers, cables, or AA batteries in your bag. Easy Mouse turns what you already carry into your main navigation tool.
+        </p>
+
+        <div class="capabilities-asymmetric-layout">
+          <!-- Left Main Hero Card -->
+          <div class="capability-hero-feature">
+            <div>
+              <div class="editorial-label" style="margin-bottom: 12px;">Zero Extra Baggage</div>
+              <h3 class="capability-h3">The end of physical mouse dongles.</h3>
+              <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 28px;">
+                Never find yourself stranded during an airport layover, a coffee shop work sprint, or a client presentation without a working mouse.
+              </p>
+
+              <div style="display: flex; flex-direction: column; gap: 14px;">
+                <div class="comparison-item-row">
+                  <span class="glyph-mark-bad">&#10005;</span>
+                  <span>No proprietary USB receivers to misplace</span>
+                </div>
+                <div class="comparison-item-row">
+                  <span class="glyph-mark-bad">&#10005;</span>
+                  <span>No dead batteries inside your laptop backpack</span>
+                </div>
+                <div class="comparison-item-row">
+                  <span class="glyph-mark-bad">&#10005;</span>
+                  <span>No uneven desk surfaces causing laser tracking skips</span>
+                </div>
+                <div class="comparison-item-row">
+                  <span class="glyph-mark-good">&#10003;</span>
+                  <span style="color: var(--text-hero); font-weight: 600;">Always ready on the smartphone in your palm</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Feature Stack -->
+          <div class="capability-side-stack">
+            <div class="capability-feature-panel">
+              <div class="editorial-label" style="margin-bottom: 10px;">Zero Setup Friction</div>
+              <h3 style="font-size: 1.6rem; color: var(--text-hero); margin-bottom: 10px;">Instant Auto-Discovery</h3>
+              <p style="font-size: 1.02rem;">
+                No manual IP address typing or complicated configuration. Easy Mouse links phone and laptop smoothly on local Wi-Fi.
+              </p>
+            </div>
+
+            <div class="capability-feature-panel">
+              <div class="editorial-label" style="margin-bottom: 10px;">Universal Support</div>
+              <h3 style="font-size: 1.6rem; color: var(--text-hero); margin-bottom: 10px;">Cross-Platform Freedom</h3>
+              <p style="font-size: 1.02rem;">
+                Compatible with Windows, macOS, and Linux desktop environments, controlled from both iOS and Android handsets.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 05: CLEAN CONSUMER CONTROLLER MODES -->
+    <section class="section-modes section-spacing" id="modes">
+      <div class="container">
+        <div style="margin-bottom: 40px;">
+          <div class="editorial-label">Interactive Experience</div>
+          <h2 style="font-size: clamp(2.4rem, 4vw, 3.8rem); margin-bottom: 14px;">
+            Three ways to steer your workflow.
+          </h2>
+          <p style="max-width: 52ch; font-size: 1.15rem;">
+            Switch between control modes below to explore the responsive feedback directly in your browser.
+          </p>
+        </div>
+
+        <!-- Mode Nav Pills -->
+        <div class="modes-selector-nav" role="tablist" aria-label="Controller Modes Selector">
+          <button class="mode-tab-button active" id="tab-btn-trackpad" role="tab" aria-selected="true" aria-controls="view-trackpad">Trackpad</button>
+          <button class="mode-tab-button" id="tab-btn-scroll" role="tab" aria-selected="false" aria-controls="view-scroll">Scroll Wheel</button>
+          <button class="mode-tab-button" id="tab-btn-remote" role="tab" aria-selected="false" aria-controls="view-remote">Presentation Remote</button>
+        </div>
+
+        <!-- Interactive Sandbox -->
+        <div class="modes-interactive-stage">
+          <!-- Smartphone Controller -->
+          <div class="phone-controller-simulator">
+            <div class="controller-unit-header" id="active-mode-caption">Mode: Trackpad</div>
+
+            <!-- Panel 1: Trackpad -->
+            <div class="controller-panel active" id="view-trackpad">
+              <div class="simulator-touch-pad" id="sim-touchpad" tabindex="0">
+                <span style="font-size: 0.9rem; color: var(--text-muted); pointer-events: none;">Drag to drive pointer</span>
+                <div class="simulator-touch-indicator" id="sim-touch-dot"></div>
+              </div>
+            </div>
+
+            <!-- Panel 2: Scroll Ribbon -->
+            <div class="controller-panel" id="view-scroll">
+              <div class="scroll-wheel-ribbon" id="sim-scroll-surface">
+                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">UP</span>
+                <div class="scroll-thumb-handle" id="sim-scroll-thumb"></div>
+                <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">DOWN</span>
+              </div>
+            </div>
+
+            <!-- Panel 3: Keynote Remote -->
+            <div class="controller-panel" id="view-remote">
+              <div class="keynote-remote-layout">
+                <button class="btn-keynote-action" id="btn-next-slide" type="button">
+                  <span>Next Slide</span>
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                    <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <button class="btn-keynote-action" id="btn-prev-slide" type="button" style="padding: 16px; font-size: 0.95rem;">
+                  <span>Previous Slide</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Computer Screen Display -->
+          <div class="computer-response-display">
+            <div class="computer-display-title" id="screen-display-caption">Desktop Workspace View</div>
+
+            <!-- Output 1: Workspace -->
+            <div class="output-panel-layer active" id="output-trackpad">
+              <div class="workspace-canvas-field" id="output-canvas-field">
+                <svg class="screen-pointer-arrow" id="output-screen-pointer" viewBox="0 0 24 24">
+                  <path d="M4 2L20 10L12 13L8 21L4 2Z"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Output 2: Scroll Document -->
+            <div class="output-panel-layer" id="output-scroll">
+              <div class="document-stream-sheet">
+                <div class="document-flow-inner" id="document-flow-lines">
+                  <div class="doc-bar accent"></div>
+                  <div class="doc-bar" style="width: 90%;"></div>
+                  <div class="doc-bar" style="width: 80%;"></div>
+                  <div class="doc-bar" style="width: 85%;"></div>
+                  <div class="doc-bar" style="width: 70%;"></div>
+                  <div class="doc-bar accent" style="width: 35%; margin-top: 20px;"></div>
+                  <div class="doc-bar" style="width: 95%;"></div>
+                  <div class="doc-bar" style="width: 75%;"></div>
+                  <div class="doc-bar" style="width: 88%;"></div>
+                  <div class="doc-bar" style="width: 65%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Output 3: Keynote Slide -->
+            <div class="output-panel-layer" id="output-remote">
+              <div class="keynote-slide-display" id="slide-stage-card">
+                <div>
+                  <div class="editorial-label" id="slide-index-tag" style="margin-bottom: 8px;">Slide 01 / 03</div>
+                  <h3 id="slide-heading-text" style="font-size: 1.8rem; color: var(--text-hero);">Effortless Slide Transitions</h3>
+                </div>
+                <p id="slide-body-text" style="color: var(--text-secondary); font-size: 1.05rem;">
+                  Step away from your laptop. Advance decks fluidly during pitches and keynote lectures.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 06: CINEMATIC DOWNLOAD CTA -->
+    <section class="section-download" id="download">
+      <div class="container">
+        <div class="download-central-box">
+          <div class="editorial-label" style="justify-content: center;">Instant Wireless Control</div>
+          <h2 class="download-giant-h2">
+            Your phone. Your computer. One simple connection.
+          </h2>
+          <p class="download-supporting-p">
+            Download Easy Mouse today and experience smooth, wireless desktop control from the device already in your hands.
+          </p>
+
+          <a href="#download" class="download-btn-prominent" id="download-app-footer" data-download="true">
+            <span>Download Easy Mouse</span>
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+
+          <div class="platform-specs-cluster">
+            <span class="platform-pill">Windows 10 / 11</span>
+            <span class="platform-pill">macOS 12+</span>
+            <span class="platform-pill">Linux</span>
+            <span class="platform-pill">iOS 15+</span>
+            <span class="platform-pill">Android 9+</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- EDITORIAL FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-content-row">
+      <a href="#" class="brand-mark" style="font-size: 1.05rem;">
+        <div class="brand-icon-gem" style="width: 22px; height: 22px;" aria-hidden="true">
+          <svg viewBox="0 0 24 24" style="width: 12px; height: 12px;">
+            <path d="M12 2C7.58 2 4 5.58 4 10v4c0 4.42 3.58 8 8 8s8-3.58 8-8v-4c0-4.42-3.58-8-8-8zm6 12c0 3.31-2.69 6-6 6s-6-2.69-6-6v-4h12v4zm-7-9.93C8.04 4.47 6 6.99 6 10h5V4.07zm2 0V10h5c0-3.01-2.04-5.53-5-5.93z"/>
+          </svg>
+        </div>
+        <span>Easy Mouse</span>
+      </a>
+
+      <nav aria-label="Footer Navigation">
+        <ul class="footer-links-cluster">
+          <li><a href="#narrative-phone">The Phone</a></li>
+          <li><a href="#narrative-connection">Connection</a></li>
+          <li><a href="#narrative-control">Control</a></li>
+          <li><a href="#capabilities">Features</a></li>
+          <li><a href="#modes">Modes</a></li>
+          <li><a href="#download">Download</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Popup -->
+  <div class="download-toast" id="download-toast-box" role="status" aria-live="polite">
+    <div class="brand-icon-gem" style="width: 20px; height: 20px;" aria-hidden="true">
+      <svg viewBox="0 0 24 24" style="width: 11px; height: 11px; fill: #fff;">
+        <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span id="toast-text-msg">Easy Mouse package ready for deployment.</span>
   </div>
+
+  <!-- Custom Sharp Red Pointer & Fluid Light Trail Canvas -->
+  <svg class="custom-pointer-arrow" id="custom-cursor-pointer" viewBox="0 0 24 24" aria-hidden="true">
+    <polygon points="2,2 22,10 13,13 10,22" fill="#ff2a4b" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
+  </svg>
+  <canvas class="custom-pointer-canvas" id="custom-cursor-canvas" aria-hidden="true"></canvas>
 
   <script>
     /* -------------------------------------------------------------
-       MOBILE MENU DRAWER TOGGLE
+       HERO PROGRESSIVE ENTRANCE TRIGGER
        ------------------------------------------------------------- */
-    (function initMobileMenu() {
-      const toggleBtn = document.getElementById('mobile-toggle');
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('hero-entered');
+    });
+
+    /* -------------------------------------------------------------
+       STICKY NAVBAR SCROLL REACTION & MOBILE DRAWER
+       ------------------------------------------------------------- */
+    (function initNavigation() {
+      const header = document.getElementById('site-header');
+      const toggle = document.getElementById('mobile-toggle');
       const drawer = document.getElementById('mobile-drawer');
       const mobileLinks = document.querySelectorAll('.mobile-link');
-      const header = document.getElementById('site-header');
-
-      if (!toggleBtn || !drawer) return;
-
-      function toggle() {
-        const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
-        toggleBtn.setAttribute('aria-expanded', !isOpen);
-        drawer.setAttribute('aria-hidden', isOpen);
-        drawer.classList.toggle('is-open', !isOpen);
-        document.body.style.overflow = !isOpen ? 'hidden' : '';
-      }
-
-      function close() {
-        toggleBtn.setAttribute('aria-expanded', 'false');
-        drawer.setAttribute('aria-hidden', 'true');
-        drawer.classList.remove('is-open');
-        document.body.style.overflow = '';
-      }
-
-      toggleBtn.addEventListener('click', toggle);
-      mobileLinks.forEach(link => link.addEventListener('click', close));
 
       window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
+        if (window.scrollY > 25) {
           header.classList.add('scrolled');
         } else {
           header.classList.remove('scrolled');
         }
       }, { passive: true });
+
+      if (toggle && drawer) {
+        toggle.addEventListener('click', () => {
+          const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', !isOpen);
+          drawer.classList.toggle('active', !isOpen);
+          drawer.setAttribute('aria-hidden', isOpen);
+        });
+
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            toggle.setAttribute('aria-expanded', 'false');
+            drawer.classList.remove('active');
+            drawer.setAttribute('aria-hidden', 'true');
+          });
+        });
+      }
     })();
 
     /* -------------------------------------------------------------
-       HERO LIVE DUAL-SURFACE CONTROLLER SIMULATOR
+       HERO: 3D SMARTPHONE INTERACTION & COMPUTER RESPONSE
        ------------------------------------------------------------- */
-    (function initHeroDualSurface() {
-      const touchpad = document.getElementById('hero-interactive-touchpad');
-      const touchDot = document.getElementById('hero-live-dot');
-      const monitorPointer = document.getElementById('hero-monitor-pointer');
-      const monitorCanvas = document.getElementById('hero-monitor-canvas');
+    (function initHero3DInteraction() {
+      const surface = document.getElementById('hero-phone-surface');
+      const ripple = document.getElementById('hero-phone-touch');
+      const pointer = document.getElementById('hero-laptop-pointer');
+      const phoneRig = document.getElementById('spatial-phone-rig');
+      const hint = document.getElementById('hero-trackpad-hint');
 
-      if (!touchpad || !monitorPointer || !monitorCanvas) return;
+      if (!surface || !pointer || !ripple || !phoneRig) return;
 
       let isInteracting = false;
       let idleTimer = null;
-      let animId = null;
       let animTime = 0;
+      let animId = null;
 
-      function spawnClickRipple(x, y) {
-        const ripple = document.createElement('div');
-        ripple.className = 'click-flash-ripple';
-        ripple.style.left = x + '%';
-        ripple.style.top = y + '%';
-        monitorCanvas.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 500);
-      }
+      function updateCoords(relX, relY) {
+        const x = Math.max(0.1, Math.min(0.9, relX));
+        const y = Math.max(0.1, Math.min(0.9, relY));
 
-      function setCoords(relX, relY, click = false) {
-        const cx = Math.max(0.06, Math.min(0.94, relX));
-        const cy = Math.max(0.08, Math.min(0.92, relY));
+        ripple.style.left = (x * 100) + '%';
+        ripple.style.top = (y * 100) + '%';
 
-        touchDot.style.left = (cx * 100) + '%';
-        touchDot.style.top = (cy * 100) + '%';
+        pointer.style.left = (x * 100) + '%';
+        pointer.style.top = (y * 100) + '%';
 
-        monitorPointer.style.left = (cx * 100) + '%';
-        monitorPointer.style.top = (cy * 100) + '%';
-
-        if (click) spawnClickRipple(cx * 100, cy * 100);
+        // Subtle 3D perspective shift on interaction
+        const rotY = -14 + (x - 0.5) * 16;
+        const rotX = 12 - (y - 0.5) * 14;
+        phoneRig.style.transform = `rotateY(${rotY}deg) rotateX(${rotX}deg) rotateZ(-3deg)`;
       }
 
       function handleMove(e) {
         isInteracting = true;
         clearTimeout(idleTimer);
-        const rect = touchpad.getBoundingClientRect();
+        if (hint) hint.style.opacity = '0';
+
+        const rect = surface.getBoundingClientRect();
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
         const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
         const relX = (clientX - rect.left) / rect.width;
         const relY = (clientY - rect.top) / rect.height;
-        setCoords(relX, relY);
+        updateCoords(relX, relY);
 
         idleTimer = setTimeout(() => {
           isInteracting = false;
-          startAutoDemo();
+          startAmbientGlide();
         }, 3000);
       }
 
-      touchpad.addEventListener('mousemove', handleMove);
-      touchpad.addEventListener('touchmove', (e) => {
+      surface.addEventListener('mousemove', handleMove);
+      surface.addEventListener('touchmove', (e) => {
         e.preventDefault();
         handleMove(e);
       }, { passive: false });
 
-      touchpad.addEventListener('touchstart', (e) => {
-        touchpad.classList.add('is-active');
-        handleMove(e);
-      }, { passive: false });
-
-      touchpad.addEventListener('touchend', () => {
-        touchpad.classList.remove('is-active');
-      });
-
-      touchpad.addEventListener('click', (e) => {
-        const rect = touchpad.getBoundingClientRect();
-        const relX = (e.clientX - rect.left) / rect.width;
-        const relY = (e.clientY - rect.top) / rect.height;
-        setCoords(relX, relY, true);
-      });
-
-      function startAutoDemo() {
+      function startAmbientGlide() {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          setCoords(0.5, 0.5);
+          updateCoords(0.5, 0.5);
           return;
         }
 
         function loop() {
           if (isInteracting) return;
-          animTime += 0.024;
-          const x = 0.5 + 0.34 * Math.cos(animTime * 0.9);
-          const y = 0.5 + 0.28 * Math.sin(animTime * 1.5);
-          setCoords(x, y);
-
-          if (Math.floor(animTime * 10) % 90 === 0) {
-            spawnClickRipple(x * 100, y * 100);
-          }
-
+          animTime += 0.022;
+          const x = 0.5 + 0.32 * Math.cos(animTime * 0.9);
+          const y = 0.5 + 0.28 * Math.sin(animTime * 1.4);
+          updateCoords(x, y);
           animId = requestAnimationFrame(loop);
         }
 
@@ -2326,79 +2256,102 @@
         animId = requestAnimationFrame(loop);
       }
 
-      startAutoDemo();
+      startAmbientGlide();
     })();
 
     /* -------------------------------------------------------------
-       NARRATIVE PIPELINE INTERACTION (ACT 03)
+       KINETIC TYPOGRAPHY SCROLL-VELOCITY CONTROLLER
+       Dual opposite directions responding dynamically to scroll
        ------------------------------------------------------------- */
-    (function initNarrativePipeline() {
-      const stepCards = document.querySelectorAll('.story-step-card');
-      const stepLabel = document.getElementById('story-step-label');
-      const layers = {
-        1: document.getElementById('phase-layer-1'),
-        2: document.getElementById('phase-layer-2'),
-        3: document.getElementById('phase-layer-3')
-      };
+    (function initKineticBands() {
+      const trackFwd = document.getElementById('kinetic-track-forward');
+      const trackRev = document.getElementById('kinetic-track-reverse');
+      if (!trackFwd || !trackRev) return;
 
-      const labels = {
-        1: 'PHASE 01: AUTO-DISCOVERY BEACON',
-        2: 'PHASE 02: ENCRYPTED LOCAL LINK',
-        3: 'PHASE 03: FLUID DESKTOP CONTROL'
-      };
+      let lastScrollY = window.scrollY;
+      let posFwd = 0;
+      let posRev = 0;
+      let velocity = 1;
 
-      stepCards.forEach(card => {
-        card.addEventListener('click', () => {
-          const step = card.getAttribute('data-step');
-          stepCards.forEach(c => c.classList.remove('active'));
-          card.classList.add('active');
+      window.addEventListener('scroll', () => {
+        const delta = Math.abs(window.scrollY - lastScrollY);
+        velocity = Math.min(10, 1 + delta * 0.12);
+        lastScrollY = window.scrollY;
+      }, { passive: true });
 
-          Object.keys(layers).forEach(k => {
-            if (layers[k]) layers[k].classList.toggle('active', k === step);
-          });
+      function animate() {
+        velocity += (1 - velocity) * 0.06;
 
-          if (stepLabel && labels[step]) stepLabel.textContent = labels[step];
-        });
+        posFwd -= 0.8 * velocity;
+        posRev += 0.8 * velocity;
 
-        card.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            card.click();
-          }
-        });
+        trackFwd.style.transform = `translateX(${posFwd % 600}px)`;
+        trackRev.style.transform = `translateX(${posRev % 600}px)`;
+
+        requestAnimationFrame(animate);
+      }
+
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        requestAnimationFrame(animate);
+      }
+    })();
+
+    /* -------------------------------------------------------------
+       SECTION 03: MOVE / CLICK / SCROLL SEQUENTIAL WORD ENTRANCE
+       ------------------------------------------------------------- */
+    (function initControlWords() {
+      const words = document.querySelectorAll('.action-reveal-word');
+      const stagePointer = document.getElementById('control-stage-pointer');
+      const canvasField = document.getElementById('control-workspace-canvas');
+
+      if (!words.length || !stagePointer || !canvasField) return;
+
+      let wordIndex = 0;
+      setInterval(() => {
+        words.forEach(w => w.classList.remove('active-word'));
+        wordIndex = (wordIndex + 1) % words.length;
+        words[wordIndex].classList.add('active-word');
+      }, 2400);
+
+      canvasField.addEventListener('mousemove', (e) => {
+        const rect = canvasField.getBoundingClientRect();
+        const rx = (e.clientX - rect.left) / rect.width;
+        const ry = (e.clientY - rect.top) / rect.height;
+        stagePointer.style.left = (rx * 100) + '%';
+        stagePointer.style.top = (ry * 100) + '%';
       });
     })();
 
     /* -------------------------------------------------------------
-       CONSOLE CONTROLLER MODES SANDBOX (ACT 05)
+       SECTION 05: CLEAN CONSUMER CONTROLLER MODES
        ------------------------------------------------------------- */
-    (function initConsoleModes() {
-      const tabTrackpad = document.getElementById('tab-trackpad');
-      const tabScroll = document.getElementById('tab-scroll');
-      const tabRemote = document.getElementById('tab-remote');
+    (function initControllerModes() {
+      const tabTrackpad = document.getElementById('tab-btn-trackpad');
+      const tabScroll = document.getElementById('tab-btn-scroll');
+      const tabRemote = document.getElementById('tab-btn-remote');
       const allTabs = [tabTrackpad, tabScroll, tabRemote];
 
       const panels = {
-        trackpad: document.getElementById('panel-trackpad'),
-        scroll: document.getElementById('panel-scroll'),
-        remote: document.getElementById('panel-remote')
+        trackpad: document.getElementById('view-trackpad'),
+        scroll: document.getElementById('view-scroll'),
+        remote: document.getElementById('view-remote')
       };
 
       const outputs = {
-        trackpad: document.getElementById('output-view-trackpad'),
-        scroll: document.getElementById('output-view-scroll'),
-        remote: document.getElementById('output-view-remote')
+        trackpad: document.getElementById('output-trackpad'),
+        scroll: document.getElementById('output-scroll'),
+        remote: document.getElementById('output-remote')
       };
 
-      const modeTag = document.getElementById('hardware-active-mode-tag');
-      const outputTitle = document.getElementById('output-feed-title');
+      const modeCaption = document.getElementById('active-mode-caption');
+      const displayCaption = document.getElementById('screen-display-caption');
 
-      function switchMode(key) {
-        allTabs.forEach(t => {
-          if (!t) return;
-          const isTarget = t.id === 'tab-' + key;
-          t.classList.toggle('active', isTarget);
-          t.setAttribute('aria-selected', isTarget);
+      function setMode(key) {
+        allTabs.forEach(tab => {
+          if (!tab) return;
+          const isTarget = tab.id === 'tab-btn-' + key;
+          tab.classList.toggle('active', isTarget);
+          tab.setAttribute('aria-selected', isTarget);
         });
 
         Object.keys(panels).forEach(k => {
@@ -2406,148 +2359,141 @@
           if (outputs[k]) outputs[k].classList.toggle('active', k === key);
         });
 
-        if (modeTag) modeTag.textContent = 'MODE: ' + key.toUpperCase();
-        if (outputTitle) {
-          if (key === 'trackpad') outputTitle.textContent = 'DESKTOP WORKSPACE STREAM';
-          if (key === 'scroll') outputTitle.textContent = 'DOCUMENT PANNER - INERTIA SCROLL';
-          if (key === 'remote') outputTitle.textContent = 'KEYNOTE PRESENTATION FEED';
+        if (modeCaption) modeCaption.textContent = 'Mode: ' + key.charAt(0).toUpperCase() + key.slice(1);
+        if (displayCaption) {
+          if (key === 'trackpad') displayCaption.textContent = 'Desktop Workspace View';
+          if (key === 'scroll') displayCaption.textContent = 'Continuous Document View';
+          if (key === 'remote') displayCaption.textContent = 'Presentation Slide View';
         }
       }
 
-      if (tabTrackpad) tabTrackpad.addEventListener('click', () => switchMode('trackpad'));
-      if (tabScroll) tabScroll.addEventListener('click', () => switchMode('scroll'));
-      if (tabRemote) tabRemote.addEventListener('click', () => switchMode('remote'));
+      if (tabTrackpad) tabTrackpad.addEventListener('click', () => setMode('trackpad'));
+      if (tabScroll) tabScroll.addEventListener('click', () => setMode('scroll'));
+      if (tabRemote) tabRemote.addEventListener('click', () => setMode('remote'));
 
-      // Mode 1: Console Trackpad
-      const consoleTouchpad = document.getElementById('console-touchpad-surface');
-      const consoleTouchDot = document.getElementById('console-touch-dot');
-      const consoleWorkspaceCursor = document.getElementById('console-workspace-cursor');
-      const consoleWorkspaceArea = document.getElementById('console-workspace-area');
+      // Mode 1: Simulator Touchpad
+      const simTouchpad = document.getElementById('sim-touchpad');
+      const simDot = document.getElementById('sim-touch-dot');
+      const outputPointer = document.getElementById('output-screen-pointer');
 
-      if (consoleTouchpad && consoleWorkspaceCursor && consoleWorkspaceArea) {
-        function moveConsoleCursor(e) {
-          const rect = consoleTouchpad.getBoundingClientRect();
+      if (simTouchpad && simDot && outputPointer) {
+        function moveSimulatorPointer(e) {
+          const rect = simTouchpad.getBoundingClientRect();
           const clientX = e.touches ? e.touches[0].clientX : e.clientX;
           const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-          const rx = Math.max(0.05, Math.min(0.95, (clientX - rect.left) / rect.width));
+          const rx = Math.max(0.06, Math.min(0.94, (clientX - rect.left) / rect.width));
           const ry = Math.max(0.08, Math.min(0.92, (clientY - rect.top) / rect.height));
 
-          if (consoleTouchDot) {
-            consoleTouchDot.style.left = (rx * 100) + '%';
-            consoleTouchDot.style.top = (ry * 100) + '%';
-            consoleTouchDot.style.opacity = '1';
-          }
+          simDot.style.left = (rx * 100) + '%';
+          simDot.style.top = (ry * 100) + '%';
+          simDot.style.opacity = '1';
 
-          consoleWorkspaceCursor.style.left = (rx * 100) + '%';
-          consoleWorkspaceCursor.style.top = (ry * 100) + '%';
+          outputPointer.style.left = (rx * 100) + '%';
+          outputPointer.style.top = (ry * 100) + '%';
         }
 
-        consoleTouchpad.addEventListener('mousemove', moveConsoleCursor);
-        consoleTouchpad.addEventListener('touchmove', (e) => {
+        simTouchpad.addEventListener('mousemove', moveSimulatorPointer);
+        simTouchpad.addEventListener('touchmove', (e) => {
           e.preventDefault();
-          moveConsoleCursor(e);
+          moveSimulatorPointer(e);
         }, { passive: false });
 
-        consoleTouchpad.addEventListener('click', () => {
-          const rip = document.createElement('div');
-          rip.className = 'click-flash-ripple';
-          rip.style.left = consoleWorkspaceCursor.style.left;
-          rip.style.top = consoleWorkspaceCursor.style.top;
-          consoleWorkspaceArea.appendChild(rip);
-          setTimeout(() => rip.remove(), 500);
+        simTouchpad.addEventListener('mouseleave', () => {
+          simDot.style.opacity = '0';
         });
       }
 
       // Mode 2: Scroll Ribbon
-      const scrollSurface = document.getElementById('console-scroll-surface');
-      const scrollThumb = document.getElementById('console-scroll-thumb');
-      const docFlow = document.getElementById('doc-flow-container');
-      let currentProgress = 0.5;
+      const simScroll = document.getElementById('sim-scroll-surface');
+      const simThumb = document.getElementById('sim-scroll-thumb');
+      const docLines = document.getElementById('document-flow-lines');
+      let scrollFrac = 0.5;
 
-      if (scrollSurface && scrollThumb && docFlow) {
-        function updateScrollPosition(yFraction) {
-          currentProgress = Math.max(0.1, Math.min(0.9, yFraction));
-          scrollThumb.style.top = (currentProgress * 100) + '%';
-          const shift = (currentProgress - 0.5) * 260;
-          docFlow.style.transform = `translateY(-${shift}px)`;
+      if (simScroll && simThumb && docLines) {
+        function updateScroll(frac) {
+          scrollFrac = Math.max(0.12, Math.min(0.88, frac));
+          simThumb.style.top = (scrollFrac * 100) + '%';
+          const shift = (scrollFrac - 0.5) * 200;
+          docLines.style.transform = `translateY(-${shift}px)`;
         }
 
-        scrollSurface.addEventListener('mousemove', (e) => {
+        simScroll.addEventListener('mousemove', (e) => {
           if (e.buttons === 1) {
-            const rect = scrollSurface.getBoundingClientRect();
-            updateScrollPosition((e.clientY - rect.top) / rect.height);
+            const rect = simScroll.getBoundingClientRect();
+            updateScroll((e.clientY - rect.top) / rect.height);
           }
         });
 
-        scrollSurface.addEventListener('touchmove', (e) => {
+        simScroll.addEventListener('wheel', (e) => {
           e.preventDefault();
-          const rect = scrollSurface.getBoundingClientRect();
-          updateScrollPosition((e.touches[0].clientY - rect.top) / rect.height);
-        }, { passive: false });
-
-        scrollSurface.addEventListener('wheel', (e) => {
-          e.preventDefault();
-          updateScrollPosition(currentProgress + e.deltaY * 0.002);
+          updateScroll(scrollFrac + e.deltaY * 0.002);
         }, { passive: false });
       }
 
       // Mode 3: Keynote Deck
-      const keynoteDeck = [
-        { num: 'SLIDE 01 / 03', title: 'System Architecture & Wireless Bridge' },
-        { num: 'SLIDE 02 / 03', title: 'Sub-Millisecond Touch Tracking Pipeline' },
-        { num: 'SLIDE 03 / 03', title: 'Zero Physical Dongles or Cables Required' }
+      const keynoteSlides = [
+        {
+          index: 'Slide 01 / 03',
+          title: 'Effortless Slide Transitions',
+          body: 'Step away from your laptop. Advance decks fluidly during pitches and keynote lectures.'
+        },
+        {
+          index: 'Slide 02 / 03',
+          title: 'Low Latency Network Control',
+          body: 'Immediate response across local Wi-Fi with zero perceptible lag during critical moments.'
+        },
+        {
+          index: 'Slide 03 / 03',
+          title: 'Zero Dongles or Peripherals',
+          body: 'Walk into any conference room and command the screen without digging for USB adapters.'
+        }
       ];
-      let activeSlideIndex = 0;
-      const numElem = document.getElementById('keynote-slide-num');
-      const titleElem = document.getElementById('keynote-slide-title');
-      const cardBox = document.getElementById('keynote-slide-card');
-      const btnNextSlide = document.getElementById('btn-next-keynote');
-      const btnPrevSlide = document.getElementById('btn-prev-keynote');
-      const btnBlank = document.getElementById('btn-blank-screen');
 
-      function updateSlide() {
-        if (!cardBox || !numElem || !titleElem) return;
-        cardBox.style.opacity = '0';
-        cardBox.style.transform = 'scale(0.97)';
+      let activeSlide = 0;
+      const btnNext = document.getElementById('btn-next-slide');
+      const btnPrev = document.getElementById('btn-prev-slide');
+      const slideCard = document.getElementById('slide-stage-card');
+      const slideTag = document.getElementById('slide-index-tag');
+      const slideHead = document.getElementById('slide-heading-text');
+      const slideBody = document.getElementById('slide-body-text');
+
+      function renderSlide() {
+        if (!slideCard || !slideTag || !slideHead || !slideBody) return;
+        slideCard.style.opacity = '0';
+        slideCard.style.transform = 'scale(0.98)';
         setTimeout(() => {
-          numElem.textContent = keynoteDeck[activeSlideIndex].num;
-          titleElem.textContent = keynoteDeck[activeSlideIndex].title;
-          cardBox.style.opacity = '1';
-          cardBox.style.transform = 'scale(1)';
+          slideTag.textContent = keynoteSlides[activeSlide].index;
+          slideHead.textContent = keynoteSlides[activeSlide].title;
+          slideBody.textContent = keynoteSlides[activeSlide].body;
+          slideCard.style.opacity = '1';
+          slideCard.style.transform = 'scale(1)';
         }, 120);
       }
 
-      if (btnNextSlide) {
-        btnNextSlide.addEventListener('click', () => {
-          activeSlideIndex = (activeSlideIndex + 1) % keynoteDeck.length;
-          updateSlide();
+      if (btnNext) {
+        btnNext.addEventListener('click', () => {
+          activeSlide = (activeSlide + 1) % keynoteSlides.length;
+          renderSlide();
         });
       }
 
-      if (btnPrevSlide) {
-        btnPrevSlide.addEventListener('click', () => {
-          activeSlideIndex = (activeSlideIndex - 1 + keynoteDeck.length) % keynoteDeck.length;
-          updateSlide();
-        });
-      }
-
-      if (btnBlank && cardBox) {
-        btnBlank.addEventListener('click', () => {
-          const isBlack = cardBox.style.visibility === 'hidden';
-          cardBox.style.visibility = isBlack ? 'visible' : 'hidden';
-          btnBlank.textContent = isBlack ? 'Blank Screen' : 'Show Screen';
+      if (btnPrev) {
+        btnPrev.addEventListener('click', () => {
+          activeSlide = (activeSlide - 1 + keynoteSlides.length) % keynoteSlides.length;
+          renderSlide();
         });
       }
     })();
 
     /* -------------------------------------------------------------
-       DOWNLOAD PLACEHOLDER NOTICE HANDLER
+       DOWNLOAD CTA ROUTING & TOAST NOTIFICATION
+       Preserves id="download-app" and data-download="true"
        ------------------------------------------------------------- */
-    (function initDownloadRouting() {
+    (function initDownloadToast() {
       const downloadButtons = document.querySelectorAll('[data-download="true"], #download-app, #download-app-nav, #download-app-footer');
-      const toast = document.getElementById('download-toast');
-      const toastMsg = document.getElementById('toast-message');
+      const toast = document.getElementById('download-toast-box');
+      const toastText = document.getElementById('toast-text-msg');
       let timer = null;
 
       downloadButtons.forEach(btn => {
@@ -2557,10 +2503,10 @@
             e.preventDefault();
             if (toast) {
               clearTimeout(timer);
-              toast.classList.add('is-visible');
-              if (toastMsg) toastMsg.textContent = 'Easy Mouse production download endpoint ready for build attachment.';
+              toast.classList.add('active');
+              if (toastText) toastText.textContent = 'Easy Mouse download package ready for production URL attachment.';
               timer = setTimeout(() => {
-                toast.classList.remove('is-visible');
+                toast.classList.remove('active');
               }, 4000);
             }
           }
@@ -2569,26 +2515,23 @@
     })();
 
     /* -------------------------------------------------------------
-       FLUID SMOKY DESKTOP CURSOR & CANVAS TRAIL ENGINE
+       CUSTOM SHARP RED POINTER & SHORT FLUID RED LIGHT TRAIL
        ------------------------------------------------------------- */
-    (function initSmokyCursorEngine() {
+    (function initCustomPointer() {
       if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
-      const dot = document.getElementById('cursor-dot');
-      const ring = document.getElementById('cursor-ring');
-      const canvas = document.getElementById('cursor-canvas');
-      if (!dot || !ring || !canvas) return;
+      const pointer = document.getElementById('custom-cursor-pointer');
+      const canvas = document.getElementById('custom-cursor-canvas');
+      if (!pointer || !canvas) return;
 
       const ctx = canvas.getContext('2d');
       let mouseX = window.innerWidth / 2;
       let mouseY = window.innerHeight / 2;
-      let ringX = mouseX;
-      let ringY = mouseY;
       let isVisible = false;
       let fadeTimer = null;
 
       const trail = [];
-      const MAX_TRAIL_LENGTH = 16;
+      const MAX_TRAIL = 12;
 
       function resize() {
         canvas.width = window.innerWidth;
@@ -2603,50 +2546,38 @@
 
         if (!isVisible) {
           isVisible = true;
-          dot.classList.remove('cursor-fade-out');
-          ring.classList.remove('cursor-fade-out');
+          pointer.classList.remove('cursor-hidden');
         }
 
-        dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+        pointer.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
 
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          trail.unshift({ x: mouseX, y: mouseY, alpha: 1.0, size: 3.5 });
-          if (trail.length > MAX_TRAIL_LENGTH) trail.pop();
+          trail.unshift({ x: mouseX + 4, y: mouseY + 4, alpha: 0.9, size: 2.8 });
+          if (trail.length > MAX_TRAIL) trail.pop();
         }
 
         clearTimeout(fadeTimer);
         fadeTimer = setTimeout(() => {
-          dot.classList.add('cursor-fade-out');
-          ring.classList.add('cursor-fade-out');
+          pointer.classList.add('cursor-hidden');
           isVisible = false;
-        }, 2600);
+        }, 2500);
       });
 
-      window.addEventListener('mousedown', () => ring.classList.add('click-active'));
-      window.addEventListener('mouseup', () => ring.classList.remove('click-active'));
-
-      const hoverTargets = 'a, button, [role="tab"], .console-phone-touchpad, .tactile-trackpad-surface, .story-step-card';
+      const hoverElements = 'a, button, [role="tab"], .simulator-touch-pad, .scroll-wheel-ribbon, .phone-trackpad-area';
       document.addEventListener('mouseover', (e) => {
-        if (e.target.closest(hoverTargets)) ring.classList.add('hover-active');
+        if (e.target.closest(hoverElements)) pointer.classList.add('hover-scale');
       });
       document.addEventListener('mouseout', (e) => {
-        if (e.target.closest(hoverTargets)) ring.classList.remove('hover-active');
+        if (e.target.closest(hoverElements)) pointer.classList.remove('hover-scale');
       });
 
-      function render() {
-        // Smooth physics lerp
-        const lerpFactor = 0.18;
-        ringX += (mouseX - ringX) * lerpFactor;
-        ringY += (mouseY - ringY) * lerpFactor;
-        ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
-
-        // Canvas smoky spline trail
+      function renderTrail() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && trail.length > 1) {
           for (let i = 0; i < trail.length; i++) {
-            trail[i].alpha *= 0.88;
-            trail[i].size *= 0.92;
+            trail[i].alpha *= 0.86;
+            trail[i].size *= 0.90;
           }
 
           for (let i = 0; i < trail.length - 1; i++) {
@@ -2656,17 +2587,17 @@
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(255, 40, 77, ${p1.alpha * 0.5})`;
+            ctx.strokeStyle = `rgba(255, 42, 75, ${p1.alpha * 0.45})`;
             ctx.lineWidth = Math.max(0.6, p1.size);
             ctx.lineCap = 'round';
             ctx.stroke();
           }
         }
 
-        requestAnimationFrame(render);
+        requestAnimationFrame(renderTrail);
       }
 
-      requestAnimationFrame(render);
+      requestAnimationFrame(renderTrail);
     })();
   </script>
 </body>
