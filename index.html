@@ -805,6 +805,30 @@
       box-shadow: 0 2px 8px rgba(224, 198, 83, 0.3);
     }
 
+    /* Hero Non-Clickable Dangle Instruction Banner (Same size & prominence, clearly an instruction) */
+    .hero-dangle-instruction-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 18px 32px;
+      background: rgba(224, 198, 83, 0.08);
+      border: 1.5px solid rgba(224, 198, 83, 0.42);
+      border-radius: 10px;
+      color: var(--yellow-gold);
+      font-family: var(--font-ui);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 18px rgba(224, 198, 83, 0.08), inset 0 1px 0 rgba(224, 198, 83, 0.18);
+      pointer-events: none;
+      user-select: none;
+      cursor: default;
+      text-align: center;
+      white-space: nowrap;
+    }
+
     .btn-hero-secondary {
       display: inline-flex;
       align-items: center;
@@ -995,8 +1019,10 @@
       pointer-events: none;
     }
 
-    /* Dynamic Island Pill with Optical Lens Reflection */
-    .phone-dynamic-island {
+    /* Dynamic Island Pill with Optical Lens Reflection
+       Scoped so the Device section cannot override hero island placement. */
+    .phone-chassis .phone-dynamic-island,
+    .narrative-visual-chassis .phone-dynamic-island {
       position: absolute;
       top: 9px;
       left: 50%;
@@ -1005,21 +1031,24 @@
       height: 13px;
       background: #000000;
       border-radius: 9999px;
-      z-index: 10;
+      z-index: 20;
       border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), inset 0 1px 0.5px rgba(255, 255, 255, 0.08);
       display: flex;
       align-items: center;
       justify-content: flex-end;
       padding-right: 9px;
+      margin: 0;
     }
 
-    .island-camera-lens {
+    .phone-chassis .island-camera-lens,
+    .narrative-visual-chassis .island-camera-lens {
       width: 3.5px;
       height: 3.5px;
       background: radial-gradient(circle at 40% 40%, #1c1d22 0%, #080809 80%);
       border-radius: 50%;
       box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.4);
+      border: none;
     }
 
     /* Active Touchpad Glass Field */
@@ -1036,41 +1065,42 @@
       outline: none;
     }
 
-    /* Screen Branding Content: Centered EASY MOUSE + CONNECTED */
+    /* Screen Branding: visually centered within usable display area, clear of Dynamic Island */
     .phone-screen-os-display {
       position: absolute;
-      top: 50%;
+      top: 42%;
       left: 50%;
       transform: translate(-50%, -50%);
+      width: calc(100% - 32px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       pointer-events: none;
       user-select: none;
-      z-index: 1;
+      z-index: 2;
       text-align: center;
     }
 
     .phone-os-brand-title {
-      font-family: var(--font-heading);
-      font-size: 2.15rem;
-      font-weight: 700;
-      line-height: 1.1;
+      font-family: var(--font-brand);
+      font-size: 1.55rem;
+      font-weight: 400;
+      line-height: 1.15;
       color: var(--yellow-gold);
-      letter-spacing: 0.08em;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+      letter-spacing: 0.03em;
+      text-shadow: 0 2px 14px rgba(224, 198, 83, 0.32), 0 2px 8px rgba(0, 0, 0, 0.95);
       opacity: 0.92;
     }
 
     .phone-os-status {
       font-family: var(--font-ui);
-      font-size: 0.72rem;
+      font-size: 0.64rem;
       font-weight: 600;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--text-hero);
-      opacity: 0.38;
+      color: var(--yellow-gold);
+      opacity: 0.52;
       margin-top: 6px;
     }
 
@@ -1346,53 +1376,487 @@
       color: var(--text-secondary);
     }
 
-    /* Functional Live Touchpad Simulation Box */
+    /* Section 01: The Device (Realistic Smartphone Trackpad) */
     .narrative-visual-chassis {
       position: relative;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid var(--yellow-border);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
-      background: #11110f;
-      height: 400px;
+      width: 326px;
+      max-width: 100%;
+      height: 580px;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
+      border-radius: 46px;
+      padding: 11px;
+      background: linear-gradient(150deg, #25262a 0%, #151619 36%, #0b0c0e 100%);
+      box-shadow:
+        -24px 34px 75px rgba(0, 0, 0, 0.95),
+        -10px 14px 28px rgba(0, 0, 0, 0.8),
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        inset 0 -1.5px 2px rgba(0, 0, 0, 0.9),
+        inset 1px 0 1.5px rgba(255, 255, 255, 0.14),
+        inset -1px 0 1.5px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      user-select: none;
     }
 
-    .feature-panel-meta-card {
-      padding: 16px 22px;
-      background: #141410;
-      border-bottom: 1px solid var(--yellow-border);
-      transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .feature-panel-topline {
+    .sec1-phone-screen {
+      flex: 1;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      border-radius: 36px;
+      background: radial-gradient(circle at 50% 16%, #131417 0%, #060607 80%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        inset 0 0 16px rgba(0, 0, 0, 0.95),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      user-select: none;
+    }
+
+    /* Top Status & Brand Header (Safe Display Area below Dynamic Island) */
+    .sec1-phone-top-bar {
+      margin-top: 26px;
+      padding: 2px 18px 4px;
+      display: flex;
       align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 15;
+    }
+
+    .sec1-phone-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1px;
+    }
+
+    .sec1-brand-title {
+      font-family: var(--font-brand);
+      font-size: 1.18rem;
+      color: var(--yellow-gold);
+      line-height: 1.05;
+      letter-spacing: 0.01em;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
+    }
+
+    .sec1-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-ui);
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      opacity: 0.75;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .sec1-status-dot {
+      width: 4.5px;
+      height: 4.5px;
+      border-radius: 50%;
+      background: var(--yellow-gold);
+      box-shadow: 0 0 6px var(--yellow-gold);
+    }
+
+    /* Small Native RESET Button in Top-Right Phone Header */
+    .sec1-reset-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      font-family: var(--font-ui);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+      transition: all 0.2s var(--ease-cinema);
+    }
+
+    .sec1-reset-btn:hover {
+      background: rgba(224, 198, 83, 0.14);
+      border-color: rgba(224, 198, 83, 0.4);
+      color: var(--yellow-gold);
+      box-shadow: 0 0 10px rgba(224, 198, 83, 0.2);
+    }
+
+    .sec1-reset-btn:active {
+      transform: scale(0.95);
+    }
+
+    .sec1-reset-btn.hidden {
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    /* Feature Banner Inside Phone */
+    .sec1-feature-banner {
+      padding: 8px 18px 4px;
+      text-align: left;
+      position: relative;
+      z-index: 10;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .sec1-banner-title {
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-hero);
+      margin-bottom: 2px;
+      line-height: 1.2;
+    }
+
+    .sec1-banner-desc {
+      font-family: var(--font-ui);
+      font-size: 0.68rem;
+      letter-spacing: 0.02em;
+      color: var(--text-secondary);
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    /* Large Interactive Surface Stage Inside Phone */
+    .sec1-interactive-stage {
+      flex: 1;
+      margin: 8px 12px 6px;
+      border-radius: 20px;
+      background: radial-gradient(circle at 50% 30%, #151619 0%, #0a0a0c 90%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.75);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .sec1-stage-panel {
+      position: absolute;
+      inset: 0;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sec1-stage-panel.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    /* Mode 1: Capacitive Glass Drawing Canvas */
+    .sec1-draw-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      touch-action: none;
+      cursor: crosshair;
+    }
+
+    .sec1-canvas-hint {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--yellow-muted);
+      opacity: 0.65;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      text-align: center;
+    }
+
+    .sec1-draw-pointer {
+      position: absolute;
+      pointer-events: none;
+      width: 18px;
+      height: 22px;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.18s ease;
+      transform: translate(-2px, -2px);
+      filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.85));
+    }
+
+    /* Mode 2: Multi-Touch Detection Surface */
+    .sec1-multitouch-pad {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      touch-action: none;
+      user-select: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sec1-touch-grid {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(224, 198, 83, 0.08) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity: 0.75;
+    }
+
+    .sec1-touch-point {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sec1-touch-point.active {
+      opacity: 1;
+    }
+
+    .touch-ring {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1.5px solid var(--yellow-gold);
+      background: rgba(224, 198, 83, 0.14);
+      box-shadow: 0 0 16px rgba(224, 198, 83, 0.35);
+      animation: touchPulseRing 1.8s ease-in-out infinite;
+    }
+
+    @keyframes touchPulseRing {
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .touch-label {
+      position: absolute;
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--yellow-gold);
+    }
+
+    .sec1-multitouch-status {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10, 10, 12, 0.88);
+      border: 1px solid rgba(224, 198, 83, 0.22);
+      border-radius: 100px;
+      padding: 5px 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--font-ui);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--yellow-gold);
+      white-space: nowrap;
+      pointer-events: none;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    .sec1-touch-led {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--yellow-gold);
+      box-shadow: 0 0 6px var(--yellow-gold);
+    }
+
+    /* Mode 3: Haptic Feedback Surface */
+    .sec1-haptic-pad {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      touch-action: manipulation;
+      user-select: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sec1-haptic-target {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 24px 30px;
+      background: rgba(224, 198, 83, 0.04);
+      border: 1px solid rgba(224, 198, 83, 0.18);
+      border-radius: 18px;
+      transition: all 0.22s var(--ease-cinema);
+      z-index: 5;
+    }
+
+    .sec1-haptic-target:hover {
+      background: rgba(224, 198, 83, 0.09);
+      border-color: rgba(224, 198, 83, 0.38);
+      box-shadow: 0 0 22px rgba(224, 198, 83, 0.18);
+    }
+
+    .sec1-haptic-target:active {
+      transform: scale(0.96);
+      background: rgba(224, 198, 83, 0.16);
+      border-color: var(--yellow-gold);
+    }
+
+    .haptic-target-icon {
+      color: var(--yellow-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .haptic-target-label {
+      font-family: var(--font-ui);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--text-hero);
+      text-transform: uppercase;
+    }
+
+    .haptic-ripple-ring {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--yellow-gold);
+      transform: translate(-50%, -50%) scale(0.2);
+      pointer-events: none;
+      opacity: 0;
+      z-index: 4;
+    }
+
+    .haptic-ripple-ring.firing {
+      animation: hapticWavePulse 0.5s ease-out forwards;
+    }
+
+    @keyframes hapticWavePulse {
+      0% {
+        transform: translate(-50%, -50%) scale(0.3);
+        opacity: 0.95;
+        border-width: 3px;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(3.5);
+        opacity: 0;
+        border-width: 1px;
+      }
+    }
+
+    .sec1-haptic-status {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10, 10, 12, 0.88);
+      border: 1px solid rgba(224, 198, 83, 0.22);
+      border-radius: 100px;
+      padding: 5px 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--font-ui);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-hero);
+      white-space: nowrap;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    .sec1-haptic-status.active {
+      border-color: var(--yellow-gold);
+      color: var(--yellow-gold);
+      box-shadow: 0 0 14px rgba(224, 198, 83, 0.35);
+    }
+
+    .sec1-haptic-led {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--yellow-gold);
+      box-shadow: 0 0 6px var(--yellow-gold);
+    }
+
+    .phone-home-indicator {
+      width: 95px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.26);
+      border-radius: 2px;
+      margin: 8px auto 4px;
+      flex-shrink: 0;
+    }
+
+    /* Clean Haptic Feedback Card */
+    .haptic-info-card {
+      margin-top: 28px;
+      padding: 16px 20px;
+      background: #11110f;
+      border: 1px solid var(--yellow-border);
+      border-radius: 12px;
+      max-width: 440px;
+    }
+
+    .haptic-info-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       margin-bottom: 6px;
     }
 
-    .feature-panel-kicker {
+    .haptic-led-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--yellow-gold);
+      box-shadow: 0 0 8px var(--yellow-gold);
+    }
+
+    .haptic-info-title {
       font-family: var(--font-ui);
-      font-size: 0.76rem;
+      font-size: 0.82rem;
       font-weight: 700;
       letter-spacing: 0.12em;
-      color: var(--yellow-muted);
+      color: var(--yellow-gold);
       text-transform: uppercase;
     }
 
-    .feature-panel-state-pill {
-      font-family: var(--font-ui);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      color: var(--yellow-gold);
-      background: rgba(224, 198, 83, 0.1);
-      border: 1px solid var(--yellow-border);
-      padding: 3px 10px;
-      border-radius: 999px;
-      text-transform: uppercase;
+    .haptic-info-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin: 0;
     }
 
     .feature-panel-title {
@@ -1568,14 +2032,15 @@
 
     .touchpad-live-canvas {
       flex: 1;
-      position: relative;
-      background: radial-gradient(circle at center, rgba(224, 198, 83, 0.02) 0%, #0d0d0a 80%);
-      cursor: crosshair;
-      touch-action: none; /* Pointer Events enabled */
+      position: absolute;
+      inset: 0;
+      background: transparent;
+      touch-action: none;
       user-select: none;
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 3;
     }
 
     .touchpad-active-dot {
@@ -2100,36 +2565,189 @@
     /* Two-Pane Persistent Feature Product Stage */
     .features-stage-grid {
       display: grid;
-      grid-template-columns: 340px 1fr;
+      grid-template-columns: 360px 1fr;
       gap: 36px;
       background: #11110f;
       border: 1px solid var(--yellow-border);
-      border-radius: 22px;
+      border-radius: 24px;
       padding: 32px;
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+      align-items: start;
     }
 
-    /* Left: Feature Phone Controller View */
+    /* Left: Feature Phone Controller View (Realistic Smartphone Hardware) */
     .feature-phone-unit {
-      background: #080808;
-      border: 2px solid #22221c;
-      border-radius: 26px;
-      padding: 16px;
-      height: 420px;
+      position: relative;
+      background: linear-gradient(150deg, #25262a 0%, #151619 36%, #0b0c0e 100%);
+      border-radius: 46px;
+      padding: 12px;
+      min-height: 530px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 
+        -15px 30px 70px rgba(0, 0, 0, 0.9),
+        -6px 12px 24px rgba(0, 0, 0, 0.75),
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        inset 0 -1.5px 2px rgba(0, 0, 0, 0.9),
+        inset 1px 0 1.5px rgba(255, 255, 255, 0.14),
+        inset -1px 0 1.5px rgba(0, 0, 0, 0.6);
       display: flex;
       flex-direction: column;
-      position: relative;
     }
 
-    .feature-phone-header {
-      font-family: var(--font-ui);
-      font-size: 0.85rem;
+    /* Physical Machined Side Buttons */
+    .feature-phone-unit .phone-btn-vol-up {
+      position: absolute;
+      left: -3px;
+      top: 110px;
+      width: 3.5px;
+      height: 42px;
+      background: #1e1f23;
+      border-radius: 3px 0 0 3px;
+      box-shadow: -1px 0 2px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .feature-phone-unit .phone-btn-vol-down {
+      position: absolute;
+      left: -3px;
+      top: 164px;
+      width: 3.5px;
+      height: 42px;
+      background: #1e1f23;
+      border-radius: 3px 0 0 3px;
+      box-shadow: -1px 0 2px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .feature-phone-unit .phone-btn-power {
+      position: absolute;
+      right: -3px;
+      top: 130px;
+      width: 3.5px;
+      height: 60px;
+      background: #1e1f23;
+      border-radius: 0 3px 3px 0;
+      box-shadow: 1px 0 2px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    /* Front OLED Glass Screen with Realistic Depth & Sheen */
+    .feature-phone-screen-chassis {
+      flex: 1;
+      background: radial-gradient(circle at 50% 16%, #131417 0%, #060607 80%);
+      border-radius: 36px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 
+        inset 0 0 16px rgba(0, 0, 0, 0.95),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      padding: 12px 14px 10px;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+
+    .feature-phone-screen-chassis::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      left: -70px;
+      width: 380px;
+      height: 640px;
+      background: linear-gradient(125deg, 
+        rgba(255, 255, 255, 0.045) 0%, 
+        rgba(255, 255, 255, 0.012) 28%, 
+        transparent 55%);
+      transform: rotate(20deg);
+      pointer-events: none;
+    }
+
+    /* Dynamic Island */
+    .feature-dynamic-island {
+      position: relative;
+      width: 72px;
+      height: 13px;
+      background: #000000;
+      border-radius: 9999px;
+      margin: 0 auto 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), inset 0 1px 0.5px rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 9px;
+      flex-shrink: 0;
+      z-index: 10;
+    }
+
+    .feature-dynamic-island .island-camera-lens {
+      width: 3.5px;
+      height: 3.5px;
+      background: radial-gradient(circle at 40% 40%, #1c1d22 0%, #080809 80%);
+      border-radius: 50%;
+      box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.4);
+    }
+
+    /* Screen Safe-Area Branding */
+    .feature-phone-screen-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 10px;
+      flex-shrink: 0;
+      z-index: 5;
+    }
+
+    .feat-brand-script {
+      font-family: var(--font-brand);
+      font-size: 1.05rem;
       color: var(--yellow-gold);
-      letter-spacing: 0.08em;
+      opacity: 0.9;
+    }
+
+    .feat-brand-tag {
+      font-family: var(--font-ui);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      margin-bottom: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Real-Time Live Phone Pointer */
+    .feature-phone-pointer {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--yellow-gold);
+      box-shadow: 0 0 10px var(--yellow-gold);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      z-index: 15;
+    }
+
+    /* Feature Panel Layer Transitions & Headings */
+    .feature-panel-intro {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 10px;
+    }
+
+    .feat-heading {
+      font-family: var(--font-ui);
+      font-size: 0.88rem;
+      color: var(--text-hero);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .feat-subline {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.3;
     }
 
     .feature-panel-layer {
@@ -2147,7 +2765,7 @@
     .shortcuts-key-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 10px;
       flex: 1;
       align-content: center;
     }
@@ -2156,9 +2774,9 @@
       background: #141410;
       border: 1px solid var(--yellow-border);
       border-radius: 12px;
-      padding: 18px 10px;
+      padding: 16px 8px;
       font-family: var(--font-ui);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--text-hero);
@@ -2166,8 +2784,15 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 4px;
       transition: all 0.2s var(--ease-cinema);
+      cursor: pointer;
+    }
+
+    .btn-macro-shortcut small {
+      color: var(--yellow-gold);
+      font-size: 0.72rem;
+      transition: color 0.2s ease;
     }
 
     .btn-macro-shortcut:hover, .btn-macro-shortcut:active {
@@ -2177,23 +2802,30 @@
       transform: scale(0.97);
     }
 
+    .btn-macro-shortcut:hover small, .btn-macro-shortcut:active small {
+      color: #080808;
+    }
+
     /* Keyboard Phone Screen */
     .soft-keyboard-view {
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 12px 0;
+      padding: 6px 0;
     }
 
     .keyboard-input-preview {
       background: #12120e;
       border: 1px solid var(--yellow-border);
       border-radius: 8px;
-      padding: 10px;
-      font-size: 0.9rem;
+      padding: 8px 10px;
+      font-size: 0.85rem;
       color: var(--yellow-gold);
-      min-height: 42px;
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      font-family: monospace;
     }
 
     .keyboard-keys-rack {
@@ -2204,19 +2836,20 @@
 
     .keyboard-row {
       display: flex;
-      gap: 4px;
+      gap: 5px;
       justify-content: center;
     }
 
     .key-cap {
       background: #1a1a15;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 6px;
-      padding: 8px 10px;
+      padding: 8px 12px;
       font-family: var(--font-ui);
-      font-size: 0.8rem;
+      font-size: 0.84rem;
       color: var(--text-hero);
       cursor: pointer;
+      transition: all 0.15s ease;
     }
 
     .key-cap:hover {
@@ -2235,6 +2868,28 @@
       align-items: center;
       justify-content: center;
       position: relative;
+      min-height: 160px;
+      cursor: crosshair;
+    }
+
+    .gestures-surface-indicator {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      pointer-events: none;
+      text-align: center;
+    }
+
+    .touchpad-active-dot {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(224, 198, 83, 0.8) 0%, rgba(224, 198, 83, 0.2) 60%, transparent 80%);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.2s ease;
+      top: 50%;
+      left: 50%;
     }
 
     /* Screenshots Phone Screen */
@@ -2244,28 +2899,32 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 16px;
+      gap: 14px;
     }
 
     .btn-capture-flash {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
+      padding: 18px 26px;
+      border-radius: 16px;
       background: #141410;
       border: 2px solid var(--yellow-gold);
       color: var(--yellow-gold);
       font-family: var(--font-ui);
-      font-size: 1rem;
+      font-size: 0.95rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       box-shadow: 0 0 20px var(--yellow-glow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
       transition: all 0.2s var(--ease-cinema);
     }
 
     .btn-capture-flash:hover {
       background: var(--yellow-gold);
       color: #080808;
-      transform: scale(1.05);
+      transform: scale(1.04);
     }
 
     /* System Locks Phone Screen */
@@ -2275,20 +2934,24 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 18px;
+      gap: 14px;
     }
 
     .btn-lock-toggle {
-      padding: 16px 28px;
+      padding: 14px 24px;
       background: #151511;
       border: 1.5px solid var(--yellow-gold);
-      border-radius: 10px;
+      border-radius: 12px;
       color: var(--yellow-gold);
       font-family: var(--font-ui);
-      font-size: 1rem;
-      letter-spacing: 0.08em;
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
+      cursor: pointer;
       transition: all 0.25s var(--ease-cinema);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .btn-lock-toggle:hover {
@@ -2296,23 +2959,90 @@
       color: #080808;
     }
 
-    /* Right: Realistic OS Computer Application Window */
+    .lock-state-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .feature-phone-home-bar {
+      width: 84px;
+      height: 3.5px;
+      background: rgba(255, 255, 255, 0.22);
+      border-radius: 2px;
+      margin: 10px auto 2px;
+      flex-shrink: 0;
+    }
+
+    /* Right: Realistic Desktop Workstation Object & Monitor Stand */
+    .feature-desktop-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
     .feature-desktop-display {
-      background: #080808;
-      border: 1px solid var(--yellow-border);
+      width: 100%;
+      background: linear-gradient(155deg, #222326 0%, #151619 45%, #0b0c0e 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 18px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+      padding: 10px 12px;
+      box-shadow: 
+        0 25px 65px rgba(0, 0, 0, 0.95),
+        inset 0 1px 1.5px rgba(255, 255, 255, 0.25),
+        inset 0 -1.5px 2px rgba(0, 0, 0, 0.85);
+      display: flex;
+      flex-direction: column;
+      min-height: 480px;
+      position: relative;
+    }
+
+    .desktop-monitor-bezel-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 10px;
+      margin-bottom: 6px;
+    }
+
+    .monitor-webcam-lens {
+      width: 4.5px;
+      height: 4.5px;
+      border-radius: 50%;
+      background: #000;
+      border: 0.5px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .desktop-screen-glass {
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 20%, #151619 0%, #070709 85%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.95);
       display: flex;
       flex-direction: column;
       position: relative;
-      overflow: hidden;
-      min-height: 420px;
+    }
+
+    .desktop-live-cursor {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+      z-index: 30;
+      top: 48%;
+      left: 50%;
+      transform: translate(-10%, -10%);
+      transition: top 0.06s ease-out, left 0.06s ease-out;
+      fill: var(--yellow-gold);
+      filter: drop-shadow(0 0 5px rgba(224, 198, 83, 0.65));
     }
 
     .desktop-window-titlebar {
-      background: #151512;
-      border-bottom: 1px solid var(--yellow-border);
-      padding: 10px 16px;
+      background: #16171a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -2325,8 +3055,8 @@
     }
 
     .win-control-dot {
-      width: 10px;
-      height: 10px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: #2b2b25;
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -2335,14 +3065,14 @@
 
     .window-title-text {
       font-family: var(--font-ui);
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       letter-spacing: 0.04em;
       color: var(--text-hero);
     }
 
     .window-status-pill {
       font-family: var(--font-ui);
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       color: var(--yellow-gold);
@@ -2353,13 +3083,13 @@
     }
 
     .desktop-window-menubar {
-      background: #11110f;
+      background: #111214;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      padding: 6px 16px;
+      padding: 6px 14px;
       display: flex;
-      gap: 16px;
+      gap: 14px;
       font-family: var(--font-ui);
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--text-muted);
       letter-spacing: 0.04em;
     }
@@ -2368,9 +3098,9 @@
       display: none;
       flex: 1;
       position: relative;
-      background: #0c0c0a;
+      background: #09090b;
       overflow: hidden;
-      padding: 20px;
+      padding: 18px;
     }
 
     .desktop-scene-layer.active {
@@ -2378,11 +3108,182 @@
       flex-direction: column;
     }
 
+    .desktop-scene-header {
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .desktop-doc-body {
+      background: #121316;
+      border: 1px solid var(--yellow-border);
+      border-radius: 8px;
+      padding: 16px;
+      min-height: 150px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--text-hero);
+      transition: background 0.2s ease;
+    }
+
+    .desktop-terminal-body {
+      background: #121316;
+      border: 1px solid var(--yellow-border);
+      border-radius: 8px;
+      padding: 16px;
+      min-height: 150px;
+      font-family: 'Courier New', monospace;
+      font-size: 1.1rem;
+      color: var(--yellow-gold);
+    }
+
+    .cursor-blink {
+      animation: blink 1s infinite;
+    }
+
+    .desktop-scroll-doc {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.15s ease-out;
+      background: #121316;
+      border: 1px solid var(--yellow-border);
+      border-radius: 8px;
+      padding: 16px;
+      min-height: 150px;
+    }
+
+    .screenshot-flash-layer {
+      position: absolute;
+      inset: 0;
+      background: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 5;
+    }
+
+    .screenshot-badge-card {
+      background: #141410;
+      border: 1px solid var(--yellow-gold);
+      padding: 20px 30px;
+      border-radius: 12px;
+      font-family: var(--font-ui);
+      color: var(--yellow-gold);
+      text-transform: uppercase;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.85);
+      margin: auto;
+    }
+
+    .desktop-lock-box {
+      text-align: center;
+      margin: auto;
+    }
+
+    .desktop-monitor-chin {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 8px;
+      margin-top: 6px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .monitor-brand-tag {
+      font-family: var(--font-ui);
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      opacity: 0.6;
+    }
+
+    .monitor-power-led {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--yellow-gold);
+      box-shadow: 0 0 5px var(--yellow-gold);
+    }
+
+    .desktop-monitor-stand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: -1px;
+      width: 100%;
+      pointer-events: none;
+    }
+
+    .monitor-stand-neck {
+      width: 44px;
+      height: 26px;
+      background: linear-gradient(180deg, #18191c 0%, #0f1012 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: none;
+    }
+
+    .monitor-stand-base {
+      width: 150px;
+      height: 8px;
+      background: linear-gradient(180deg, #222327 0%, #111214 100%);
+      border-radius: 4px 4px 2px 2px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.9);
+    }
+
     @media (max-width: 900px) {
       .narrative-editorial-row,
       .connection-story-grid,
       .features-stage-grid {
         grid-template-columns: 1fr;
+      }
+      .features-stage-grid {
+        gap: 28px;
+        padding: 22px;
+      }
+      .feature-phone-unit {
+        width: 100%;
+        max-width: 360px;
+        margin: 0 auto;
+      }
+      .narrative-visual-chassis {
+        width: 308px;
+        height: 550px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .features-stage-grid {
+        padding: 14px 10px;
+        gap: 20px;
+      }
+      .feature-phone-unit {
+        border-radius: 40px;
+        padding: 10px;
+        min-height: 480px;
+      }
+      .feature-phone-screen-chassis {
+        border-radius: 30px;
+        padding: 10px;
+      }
+      .desktop-window-titlebar {
+        padding: 8px 10px;
+      }
+      .desktop-window-menubar {
+        gap: 8px;
+        font-size: 0.7rem;
+        padding: 6px 10px;
+      }
+      .narrative-visual-chassis {
+        width: 288px;
+        height: 510px;
+        border-radius: 42px;
+        padding: 10px;
       }
     }
 
@@ -2650,6 +3551,8 @@
         z-index: 999999;
         will-change: transform;
         transform: translate3d(-999px, -999px, 0);
+        image-rendering: pixelated;
+        image-rendering: crisp-edges;
         /* Strictly NO transition on transform: must follow pointer instantly */
       }
 
@@ -2756,7 +3659,6 @@
       <a href="#narrative-connection" class="mobile-link">Connection</a>
       <a href="#features" class="mobile-link">Features</a>
       <a href="#capabilities" class="mobile-link">Capabilities</a>
-      <button type="button" class="btn-hero-primary mobile-link" id="mobile-download-btn" data-download="true" style="justify-content: center; margin-top: 10px; width: 100%;">Download Easy Mouse</button>
     </div>
   </header>
 
@@ -2818,12 +3720,9 @@
           </p>
 
           <div class="hero-actions-row">
-            <a href="#download" class="btn-hero-primary" id="download-app" data-download="true" role="button">
-              <span>Download Easy Mouse</span>
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
+            <div class="hero-dangle-instruction-box" aria-label="Instruction: Pull down the dangle to download">
+              <span>PULL DOWN THE DANGLE TO DOWNLOAD</span>
+            </div>
             <a href="#narrative-phone" class="btn-hero-secondary">
               <span>Explore Experience</span>
               <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -2890,7 +3789,7 @@
                   <div class="island-camera-lens"></div>
                 </div>
                 <div class="phone-screen-os-display" aria-hidden="true">
-                  <div class="phone-os-brand-title">EASY MOUSE</div>
+                  <div class="phone-os-brand-title">Easy Mouse</div>
                   <div class="phone-os-status">CONNECTED</div>
                 </div>
                 <div class="phone-trackpad-area" id="hero-phone-surface" tabindex="0" role="region" aria-label="Interactive Phone Trackpad Surface">
@@ -2946,12 +3845,11 @@
       </div>
     </section>
 
-    <!-- SECTION 01: THE DEVICE (FUNCTIONAL TOUCHPAD INTERACTION) -->
+    <!-- SECTION 01: THE DEVICE (REALISTIC SMARTPHONE TRACKPAD) -->
     <section class="section-phone section-spacing" id="narrative-phone">
       <div class="container">
         <div class="narrative-editorial-row">
           <div>
-            <div class="editorial-label">Act 01: The Device</div>
             <h2 class="editorial-statement-huge liquid-heading">
               <span class="liquid-base-text">The glass in your palm is already a trackpad.</span>
               <span class="liquid-ink-overlay" aria-hidden="true">The glass in your palm is already a trackpad.</span>
@@ -2959,6 +3857,7 @@
             <p class="statement-lead-paragraph">
               You do not need another plastic peripheral. The capacitive glass surface in your hand provides fluid multi-touch tracking, single taps, and two-finger scrolling with surgical physical accuracy.
             </p>
+
             <div class="device-modes-nav" role="tablist" aria-label="Touch Surface Demonstration Modes">
               <button type="button" class="device-mode-btn active" data-mode="glass" role="tab" aria-selected="true">
                 <span class="mode-led"></span>
@@ -2973,34 +3872,118 @@
                 <span>Haptic Feedback</span>
               </button>
             </div>
+
+            <div class="haptic-info-card" style="margin-top: 18px;">
+              <div class="haptic-info-header">
+                <span class="haptic-led-dot" aria-hidden="true"></span>
+                <span class="haptic-info-title" id="touchpad-feature-title">Capacitive Glass</span>
+              </div>
+              <p class="haptic-info-desc" id="touchpad-feature-desc">The phone's touchscreen acts as the surface used to control the computer pointer.</p>
+            </div>
           </div>
 
-          <!-- Functional Pointer/Touch Demonstration Stage -->
+          <!-- Realistic Easy Mouse Smartphone Trackpad Chassis -->
           <div class="narrative-visual-chassis">
-            <div class="feature-panel-meta-card" id="feature-panel-meta">
-              <div class="feature-panel-topline">
-                <span class="feature-panel-kicker" id="touchpad-feature-kicker">INTERACTIVE MODE</span>
-                <span class="feature-panel-state-pill" id="touchpad-action-state">Glide / Tap / Drag</span>
+            <div class="phone-btn-vol-up" aria-hidden="true"></div>
+            <div class="phone-btn-vol-down" aria-hidden="true"></div>
+            <div class="phone-btn-power" aria-hidden="true"></div>
+            <div class="phone-glass-screen sec1-phone-screen">
+              <!-- Physical Dynamic Island -->
+              <div class="phone-dynamic-island">
+                <div class="island-camera-lens"></div>
               </div>
-              <h3 class="feature-panel-title" id="touchpad-feature-title">CAPACITIVE GLASS</h3>
-              <p class="feature-panel-desc" id="touchpad-feature-desc">
-                Your phone's touchscreen becomes the physical surface used to move the computer pointer.
-              </p>
-            </div>
-            <div class="touchpad-live-canvas" id="section1-touch-surface" tabindex="0" role="region" aria-label="Interactive Touchpad Simulator">
-              <!-- Grid mesh for precision capacitive tracking -->
-              <div class="touchpad-grid-mesh"></div>
-              <!-- Primary Touch Point -->
-              <div class="touchpad-active-dot" id="section1-touch-dot"></div>
-              <!-- Secondary Multi-Touch Point -->
-              <div class="touchpad-active-dot-2" id="section1-touch-dot-2"></div>
-              <!-- Gesture Vector Line -->
-              <div class="touchpad-vector-line" id="section1-touch-vector"></div>
-              <!-- Linear Resonant Haptic Pulse Ring -->
-              <div class="haptic-pulse-ring" id="section1-haptic-ring"></div>
-              <!-- Haptic Instruction Overlay -->
-              <div class="haptic-surface-hint" id="section1-haptic-hint">Tap anywhere on the surface to trigger tactile confirmation</div>
-              <div class="touchpad-status-badge" id="touchpad-coords-badge">X: 50% &bull; Y: 50%</div>
+
+              <!-- Top Status & Product Bar (Safe area below Dynamic Island) -->
+              <div class="sec1-phone-top-bar">
+                <div class="sec1-phone-brand">
+                  <span class="sec1-brand-title">Easy Mouse</span>
+                  <span class="sec1-status-badge">
+                    <span class="sec1-status-dot" aria-hidden="true"></span>
+                    <span>CONNECTED</span>
+                  </span>
+                </div>
+                <button type="button" class="sec1-reset-btn" id="sec1-canvas-reset" aria-label="Reset drawing canvas">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                    <path d="M3 3v5h5"/>
+                  </svg>
+                  <span>RESET</span>
+                </button>
+              </div>
+
+              <!-- Feature Information Banner (Inside Phone) -->
+              <div class="sec1-feature-banner" id="sec1-phone-banner">
+                <div class="sec1-banner-title" id="sec1-phone-mode-title">Capacitive Glass</div>
+                <p class="sec1-banner-desc" id="sec1-phone-mode-desc">Your phone screen becomes the surface for pointer control.</p>
+              </div>
+
+              <!-- Large Interactive Demonstration Stage -->
+              <div class="sec1-interactive-stage">
+                <!-- Mode 1: Capacitive Glass (Drawing Canvas) -->
+                <div class="sec1-stage-panel active" id="sec1-panel-glass" role="tabpanel" aria-label="Capacitive Glass Drawing Surface">
+                  <canvas id="sec1-draw-canvas" class="sec1-draw-canvas"></canvas>
+                  <div class="sec1-canvas-hint" id="sec1-canvas-hint" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                      <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                      <path d="M2 2l7.586 7.586"/>
+                      <circle cx="11" cy="11" r="2"/>
+                    </svg>
+                    <span>Touch or drag to draw</span>
+                  </div>
+                  <div class="sec1-draw-pointer" id="sec1-draw-pointer" aria-hidden="true">
+                    <svg width="18" height="22" viewBox="0 0 24 24" fill="none">
+                      <polygon points="2,2 22,10 13,13 10,22" fill="#E0C653" stroke="#080808" stroke-width="1.8" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Mode 2: Multi-Touch Detection Surface -->
+                <div class="sec1-stage-panel" id="sec1-panel-multitouch" role="tabpanel" aria-label="Multi-Touch Detection Surface">
+                  <div class="sec1-multitouch-pad" id="sec1-multitouch-pad">
+                    <div class="sec1-touch-grid" aria-hidden="true"></div>
+                    <div class="sec1-touch-point" id="sec1-touch-pt-1">
+                      <div class="touch-ring"></div>
+                      <span class="touch-label">1</span>
+                    </div>
+                    <div class="sec1-touch-point" id="sec1-touch-pt-2">
+                      <div class="touch-ring"></div>
+                      <span class="touch-label">2</span>
+                    </div>
+                    <div class="sec1-touch-point" id="sec1-touch-pt-3">
+                      <div class="touch-ring"></div>
+                      <span class="touch-label">3</span>
+                    </div>
+                    <div class="sec1-multitouch-status" id="sec1-multitouch-status">
+                      <span class="sec1-touch-led"></span>
+                      <span id="sec1-touch-status-text">Touch surface with 1 or 2 fingers</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Mode 3: Haptic Feedback Surface -->
+                <div class="sec1-stage-panel" id="sec1-panel-haptic" role="tabpanel" aria-label="Haptic Feedback Surface">
+                  <div class="sec1-haptic-pad" id="sec1-haptic-pad">
+                    <div class="sec1-haptic-target" id="sec1-haptic-target">
+                      <div class="haptic-target-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/>
+                          <circle cx="12" cy="12" r="3" fill="#E0C653"/>
+                        </svg>
+                      </div>
+                      <span class="haptic-target-label">TAP TO TRIGGER HAPTIC</span>
+                    </div>
+                    <div class="haptic-ripple-ring" id="sec1-haptic-ripple" aria-hidden="true"></div>
+                    <div class="sec1-haptic-status" id="sec1-haptic-status-badge">
+                      <span class="sec1-haptic-led"></span>
+                      <span id="sec1-haptic-status-text">READY FOR TOUCH</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Phone Bottom Home Bar -->
+              <div class="phone-home-indicator" aria-hidden="true"></div>
             </div>
           </div>
         </div>
@@ -3012,7 +3995,7 @@
       <div class="container">
         <div class="connection-story-grid">
           <div>
-            <div class="editorial-label">Act 02: The Link</div>
+
             <h2 class="editorial-statement-huge liquid-heading" style="margin-bottom: 20px;">
               <span class="liquid-base-text">An invisible physical conduit.</span>
               <span class="liquid-ink-overlay" aria-hidden="true">An invisible physical conduit.</span>
@@ -3125,146 +4108,227 @@
 
         <!-- Persistent Feature Stage -->
         <div class="features-stage-grid">
-          <!-- Left: Phone Interface View -->
-          <div class="feature-phone-unit">
-            <div class="feature-phone-header" id="feature-phone-caption">Mode: Shortcuts</div>
+          <!-- Left: Phone Interface View (Realistic Smartphone Hardware Model) -->
+          <div class="feature-phone-unit" id="feature-phone-hardware">
+            <!-- Physical Machined Side Buttons -->
+            <div class="phone-btn-vol-up" aria-hidden="true"></div>
+            <div class="phone-btn-vol-down" aria-hidden="true"></div>
+            <div class="phone-btn-power" aria-hidden="true"></div>
 
-            <!-- Panel 1: Shortcuts -->
-            <div class="feature-panel-layer active" id="feat-panel-shortcuts">
-              <div class="shortcuts-key-grid">
-                <button class="btn-macro-shortcut" id="btn-macro-copy" type="button">
-                  <span>Copy</span>
-                  <small style="color: var(--yellow-gold); font-size: 0.75rem;">Ctrl + C</small>
-                </button>
-                <button class="btn-macro-shortcut" id="btn-macro-paste" type="button">
-                  <span>Paste</span>
-                  <small style="color: var(--yellow-gold); font-size: 0.75rem;">Ctrl + V</small>
-                </button>
-                <button class="btn-macro-shortcut" id="btn-macro-undo" type="button">
-                  <span>Undo</span>
-                  <small style="color: var(--yellow-gold); font-size: 0.75rem;">Ctrl + Z</small>
-                </button>
-                <button class="btn-macro-shortcut" id="btn-macro-switch" type="button">
-                  <span>Switch</span>
-                  <small style="color: var(--yellow-gold); font-size: 0.75rem;">Alt + Tab</small>
-                </button>
+            <div class="feature-phone-screen-chassis" id="feature-phone-screen">
+              <!-- Dynamic Island -->
+              <div class="feature-dynamic-island" aria-hidden="true">
+                <div class="island-camera-lens"></div>
               </div>
-            </div>
 
-            <!-- Panel 2: Keyboard Typing -->
-            <div class="feature-panel-layer" id="feat-panel-typing">
-              <div class="soft-keyboard-view">
-                <div class="keyboard-input-preview" id="phone-typing-echo">Tap keyboard to type...</div>
-                <div class="keyboard-keys-rack">
-                  <div class="keyboard-row">
-                    <span class="key-cap" data-key="E">E</span>
-                    <span class="key-cap" data-key="A">A</span>
-                    <span class="key-cap" data-key="S">S</span>
-                    <span class="key-cap" data-key="Y">Y</span>
-                  </div>
-                  <div class="keyboard-row">
-                    <span class="key-cap" data-key="M">M</span>
-                    <span class="key-cap" data-key="O">O</span>
-                    <span class="key-cap" data-key="U">U</span>
-                    <span class="key-cap" data-key="S">S</span>
-                    <span class="key-cap" data-key="E">E</span>
+              <!-- Phone Screen Safe-Area Branding -->
+              <div class="feature-phone-screen-header">
+                <span class="feat-brand-script">Easy Mouse</span>
+                <span class="feat-brand-tag" id="feature-phone-caption">Shortcuts</span>
+              </div>
+
+              <!-- Real-Time Interactive Phone Pointer -->
+              <div class="feature-phone-pointer" id="feature-phone-live-pointer" aria-hidden="true"></div>
+
+              <!-- Panel 1: Shortcuts -->
+              <div class="feature-panel-layer active" id="feat-panel-shortcuts">
+                <div class="feature-panel-intro">
+                  <span class="feat-heading">Quick Shortcuts</span>
+                  <span class="feat-subline">Tap to trigger desktop command</span>
+                </div>
+                <div class="shortcuts-key-grid">
+                  <button class="btn-macro-shortcut" id="btn-macro-copy" type="button">
+                    <span>Copy</span>
+                    <small>Ctrl + C</small>
+                  </button>
+                  <button class="btn-macro-shortcut" id="btn-macro-paste" type="button">
+                    <span>Paste</span>
+                    <small>Ctrl + V</small>
+                  </button>
+                  <button class="btn-macro-shortcut" id="btn-macro-undo" type="button">
+                    <span>Undo</span>
+                    <small>Ctrl + Z</small>
+                  </button>
+                  <button class="btn-macro-shortcut" id="btn-macro-switch" type="button">
+                    <span>Switch</span>
+                    <small>Alt + Tab</small>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Panel 2: Keyboard Typing -->
+              <div class="feature-panel-layer" id="feat-panel-typing">
+                <div class="feature-panel-intro">
+                  <span class="feat-heading">Keyboard Input</span>
+                  <span class="feat-subline">Type on phone to input on computer</span>
+                </div>
+                <div class="soft-keyboard-view">
+                  <div class="keyboard-input-preview" id="phone-typing-echo">Tap keys to type...</div>
+                  <div class="keyboard-keys-rack">
+                    <div class="keyboard-row">
+                      <button class="key-cap" data-key="E" type="button">E</button>
+                      <button class="key-cap" data-key="A" type="button">A</button>
+                      <button class="key-cap" data-key="S" type="button">S</button>
+                      <button class="key-cap" data-key="Y" type="button">Y</button>
+                    </div>
+                    <div class="keyboard-row">
+                      <button class="key-cap" data-key="M" type="button">M</button>
+                      <button class="key-cap" data-key="O" type="button">O</button>
+                      <button class="key-cap" data-key="U" type="button">U</button>
+                      <button class="key-cap" data-key="S" type="button">S</button>
+                      <button class="key-cap" data-key="E" type="button">E</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Panel 3: Gestures -->
-            <div class="feature-panel-layer" id="feat-panel-gestures">
-              <div class="gestures-surface-view" id="gestures-phone-pad">
-                <span style="font-size: 0.9rem; color: var(--text-muted); pointer-events: none;">Drag 2 fingers or wheel</span>
-                <div class="touchpad-active-dot" id="gestures-touch-dot" style="opacity: 1;"></div>
+              <!-- Panel 3: Gestures -->
+              <div class="feature-panel-layer" id="feat-panel-gestures">
+                <div class="feature-panel-intro">
+                  <span class="feat-heading">Gesture Surface</span>
+                  <span class="feat-subline">Glide to navigate document</span>
+                </div>
+                <div class="gestures-surface-view" id="gestures-phone-pad">
+                  <div class="gestures-surface-indicator">
+                    <span>&uarr; &darr; Two-finger scroll &bull; Glide</span>
+                  </div>
+                  <div class="touchpad-active-dot" id="gestures-touch-dot"></div>
+                </div>
               </div>
-            </div>
 
-            <!-- Panel 4: Screenshots -->
-            <div class="feature-panel-layer" id="feat-panel-screenshots">
-              <div class="screenshots-trigger-view">
-                <button class="btn-capture-flash" id="btn-snap-trigger" type="button">Capture</button>
-                <span style="font-size: 0.85rem; color: var(--text-muted);">Tap to trigger screenshot</span>
+              <!-- Panel 4: Screenshots -->
+              <div class="feature-panel-layer" id="feat-panel-screenshots">
+                <div class="feature-panel-intro">
+                  <span class="feat-heading">Screen Capture</span>
+                  <span class="feat-subline">Instant full display snapshot</span>
+                </div>
+                <div class="screenshots-trigger-view">
+                  <button class="btn-capture-flash" id="btn-snap-trigger" type="button">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                      <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                    <span>Capture Screen</span>
+                  </button>
+                </div>
               </div>
-            </div>
 
-            <!-- Panel 5: System Locks -->
-            <div class="feature-panel-layer" id="feat-panel-locks">
-              <div class="locks-toggle-view">
-                <button class="btn-lock-toggle" id="btn-system-lock-toggle" type="button">Toggle Lock</button>
-                <span style="font-size: 0.85rem; color: var(--text-muted);" id="lock-state-desc">Desktop is Unlocked</span>
+              <!-- Panel 5: System Locks -->
+              <div class="feature-panel-layer" id="feat-panel-locks">
+                <div class="feature-panel-intro">
+                  <span class="feat-heading">System Security</span>
+                  <span class="feat-subline">Remote workstation lock</span>
+                </div>
+                <div class="locks-toggle-view">
+                  <button class="btn-lock-toggle" id="btn-system-lock-toggle" type="button">
+                    <span id="lock-btn-icon">&#128274;</span>
+                    <span id="lock-btn-label">Lock Workstation</span>
+                  </button>
+                  <span class="lock-state-desc" id="lock-state-desc">Desktop is Unlocked</span>
+                </div>
               </div>
+
+              <!-- Phone Home Bar -->
+              <div class="feature-phone-home-bar" aria-hidden="true"></div>
             </div>
           </div>
 
-          <!-- Right: Desktop Workspace View (Realistic OS Application Window) -->
-          <div class="feature-desktop-display">
-            <div class="desktop-window-titlebar">
-              <div class="window-controls-group">
-                <span class="win-control-dot"></span>
-                <span class="win-control-dot"></span>
-                <span class="win-control-dot active"></span>
+          <!-- Right: Desktop Computer Object (Realistic Workstation Monitor & Stand) -->
+          <div class="feature-desktop-wrapper">
+            <div class="feature-desktop-display" id="feat-desktop-monitor">
+              <!-- Monitor Top Bezel with Webcam -->
+              <div class="desktop-monitor-bezel-top">
+                <div class="monitor-webcam-lens" aria-hidden="true"></div>
               </div>
-              <span class="window-title-text" id="feat-desktop-title">Easy Mouse Remote Session - Notes.txt</span>
-              <span class="window-status-pill">Connected Host</span>
-            </div>
-            <div class="desktop-window-menubar">
-              <span>File</span>
-              <span>Edit</span>
-              <span>Selection</span>
-              <span>View</span>
-              <span>Window</span>
+
+              <!-- Monitor Screen Display Area -->
+              <div class="desktop-screen-glass" id="feat-desktop-screen">
+                <div class="desktop-window-titlebar">
+                  <div class="window-controls-group">
+                    <span class="win-control-dot"></span>
+                    <span class="win-control-dot"></span>
+                    <span class="win-control-dot active"></span>
+                  </div>
+                  <span class="window-title-text" id="feat-desktop-title">Easy Mouse Remote Session - Notes.txt</span>
+                  <span class="window-status-pill">Remote Control Active</span>
+                </div>
+                <div class="desktop-window-menubar">
+                  <span>File</span>
+                  <span>Edit</span>
+                  <span>View</span>
+                  <span>Terminal</span>
+                  <span>Help</span>
+                </div>
+
+                <!-- Synchronized Desktop Pointer Tracking Phone Controller -->
+                <div class="desktop-live-cursor" id="feat-desktop-cursor" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <polygon points="2,2 22,10 13,13 10,22" fill="#E0C653" stroke="#080808" stroke-width="1.8" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+
+                <!-- Scene 1: Shortcuts Desktop Feedback -->
+                <div class="desktop-scene-layer active" id="feat-scene-shortcuts">
+                  <div class="desktop-scene-header">
+                    <span>Active Buffer: document.txt</span>
+                    <span id="shortcuts-action-status">Ready for phone command</span>
+                  </div>
+                  <div id="desktop-doc-content" class="desktop-doc-body">
+                    Easy Mouse brings desktop control directly to your smartphone. Tap [Copy] or [Paste] on phone.
+                  </div>
+                </div>
+
+                <!-- Scene 2: Keyboard Typing Desktop Feed -->
+                <div class="desktop-scene-layer" id="feat-scene-typing">
+                  <div class="desktop-scene-header">Terminal Input Stream:</div>
+                  <div id="desktop-typing-target" class="desktop-terminal-body">
+                    &gt; <span id="typed-text-receiver">READY</span><span class="cursor-blink">_</span>
+                  </div>
+                </div>
+
+                <!-- Scene 3: Gestures Desktop Pan -->
+                <div class="desktop-scene-layer" id="feat-scene-gestures">
+                  <div class="desktop-scene-header">Document Viewer - Specifications.pdf</div>
+                  <div id="gestures-panning-container" class="desktop-scroll-doc">
+                    <div style="height: 14px; width: 45%; background: var(--yellow-gold); border-radius: 4px;"></div>
+                    <div style="height: 12px; width: 90%; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                    <div style="height: 12px; width: 85%; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                    <div style="height: 12px; width: 75%; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                    <div style="height: 12px; width: 95%; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
+                  </div>
+                </div>
+
+                <!-- Scene 4: Screenshots Flash -->
+                <div class="desktop-scene-layer" id="feat-scene-screenshots">
+                  <div id="screenshot-flash-box" class="screenshot-flash-layer"></div>
+                  <div id="screenshot-card-badge" class="screenshot-badge-card">
+                    <div style="font-size: 1.6rem; margin-bottom: 6px;">&#128248;</div>
+                    <div style="font-weight: 600; letter-spacing: 0.05em;">Snapshot Saved to Desktop</div>
+                    <small style="color: var(--text-muted); font-size: 0.78rem;">Resolution: 1920 &times; 1080 &bull; PNG</small>
+                  </div>
+                </div>
+
+                <!-- Scene 5: System Locks State -->
+                <div class="desktop-scene-layer" id="feat-scene-locks">
+                  <div id="desktop-lock-overlay" class="desktop-lock-box">
+                    <div id="desktop-lock-icon" style="font-size: 2.6rem; color: var(--yellow-gold); margin-bottom: 8px;">&#128275;</div>
+                    <h3 id="desktop-lock-heading" style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--text-hero); margin-bottom: 6px;">Workstation Active</h3>
+                    <p id="desktop-lock-sub" style="font-size: 0.95rem; color: var(--text-muted);">Direct phone connection established</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Monitor Bottom Chin with Power LED -->
+              <div class="desktop-monitor-chin">
+                <span class="monitor-brand-tag">EASY MOUSE WORKSTATION</span>
+                <span class="monitor-power-led" aria-hidden="true"></span>
+              </div>
             </div>
 
-            <!-- Scene 1: Shortcuts Desktop Feedback -->
-            <div class="desktop-scene-layer active" id="feat-scene-shortcuts">
-              <div style="font-family: var(--font-ui); font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; display: flex; justify-content: space-between;">
-                <span>Active Document Buffer</span>
-                <span id="shortcuts-action-status" style="color: var(--yellow-gold);">Ready for phone command</span>
-              </div>
-              <div id="desktop-doc-content" style="background: #141410; border: 1px solid var(--yellow-border); border-radius: 8px; padding: 18px; min-height: 160px; font-family: 'Courier New', monospace; font-size: 0.95rem; line-height: 1.6; color: var(--text-hero); transition: background 0.2s ease;">
-                Easy Mouse brings desktop control directly to your smartphone. Tap [Copy] or [Paste] on phone.
-              </div>
-            </div>
-
-            <!-- Scene 2: Keyboard Typing Desktop Feed -->
-            <div class="desktop-scene-layer" id="feat-scene-typing">
-              <div style="font-family: var(--font-ui); font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Live Text Input Stream:</div>
-              <div id="desktop-typing-target" style="background: #141410; border: 1px solid var(--yellow-border); border-radius: 8px; padding: 18px; min-height: 160px; font-family: 'Courier New', monospace; font-size: 1.15rem; color: var(--yellow-gold);">
-                &gt; <span id="typed-text-receiver">READY</span><span style="animation: blink 1s infinite;">_</span>
-              </div>
-            </div>
-
-            <!-- Scene 3: Gestures Desktop Pan -->
-            <div class="desktop-scene-layer" id="feat-scene-gestures" style="position: relative;">
-              <div style="font-family: var(--font-ui); font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Two-Finger Document Scroll:</div>
-              <div id="gestures-panning-container" style="display: flex; flex-direction: column; gap: 12px; transition: transform 0.15s ease-out; background: #141410; border: 1px solid var(--yellow-border); border-radius: 8px; padding: 18px; min-height: 160px;">
-                <div style="height: 14px; width: 45%; background: var(--yellow-gold); border-radius: 4px;"></div>
-                <div style="height: 12px; width: 90%; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
-                <div style="height: 12px; width: 85%; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
-                <div style="height: 12px; width: 75%; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
-                <div style="height: 12px; width: 95%; background: rgba(255,255,255,0.08); border-radius: 4px;"></div>
-              </div>
-            </div>
-
-            <!-- Scene 4: Screenshots Flash -->
-            <div class="desktop-scene-layer" id="feat-scene-screenshots" style="display: none; align-items: center; justify-content: center; position: relative;">
-              <div id="screenshot-flash-box" style="position: absolute; inset: 0; background: #ffffff; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 5;"></div>
-              <div id="screenshot-card-badge" style="background: #141410; border: 1px solid var(--yellow-gold); padding: 18px 28px; border-radius: 12px; font-family: var(--font-ui); color: var(--yellow-gold); text-transform: uppercase; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.8);">
-                <div style="font-size: 1.4rem; margin-bottom: 6px;">&#128248;</div>
-                <div>Snapshot Stored to Desktop</div>
-                <small style="color: var(--text-muted); font-size: 0.75rem;">Resolution: 1920 &times; 1080 &bull; PNG</small>
-              </div>
-            </div>
-
-            <!-- Scene 5: System Locks State -->
-            <div class="desktop-scene-layer" id="feat-scene-locks" style="display: none; align-items: center; justify-content: center; flex-direction: column;">
-              <div id="desktop-lock-overlay" style="text-align: center;">
-                <div style="font-size: 2.6rem; color: #FAF8F2; margin-bottom: 8px;">&#128275;</div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--text-hero); margin-bottom: 6px;">Workstation Active</h3>
-                <p style="font-size: 0.95rem; color: var(--text-muted);">Direct phone connection established</p>
-              </div>
+            <!-- Realistic Desktop Monitor Stand Neck & Base -->
+            <div class="desktop-monitor-stand" aria-hidden="true">
+              <div class="monitor-stand-neck"></div>
+              <div class="monitor-stand-base"></div>
             </div>
           </div>
         </div>
@@ -3382,12 +4446,12 @@
             Download Easy Mouse today and experience smooth, wireless desktop control from the device already in your hands.
           </p>
 
-          <a href="#download" class="download-btn-prominent" id="download-app-footer" data-download="true" role="button">
-            <span>Download Easy Mouse</span>
-            <svg width="22" height="22" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <button type="button" class="download-btn-prominent" id="download-app-footer" aria-label="Pull down the dangle to download">
+            <span>PULL DOWN THE DANGLE TO DOWNLOAD</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M10 16V4M10 4L6 8M10 4L14 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </a>
+          </button>
 
           <div class="platform-specs-cluster">
             <span class="platform-pill">WINDOWS</span>
@@ -3413,7 +4477,6 @@
           <li><a href="#narrative-connection">Connection</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="#capabilities">Capabilities</a></li>
-          <li><a href="#download">Download</a></li>
         </ul>
       </nav>
     </div>
@@ -3425,28 +4488,126 @@
     <span id="toast-text-msg">Easy Mouse installer ready for integration (Coming Soon).</span>
   </div>
 
-  <!-- Custom Sharp Warm Gold Pointer & Organic Water Trail Canvas -->
-  <svg class="custom-pointer-arrow" id="custom-cursor-pointer" viewBox="0 0 32 32" width="34" height="34" aria-hidden="true">
+  <!-- Custom cursor: Exact Minecraft Knife / Sword silhouette with Easy Mouse Golden-Yellow Gradient + Subtle White Highlight -->
+  <svg class="custom-pointer-arrow" id="custom-cursor-pointer" viewBox="0 0 16 16" width="32" height="32" aria-hidden="true" shape-rendering="crispEdges">
     <defs>
-      <linearGradient id="cursor-gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#FAF8F2"/>
-        <stop offset="35%" stop-color="#E5CD6C"/>
-        <stop offset="100%" stop-color="#C4A836"/>
+      <linearGradient id="cursor-gold-grad" x1="16" y1="16" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#946E19"/>
+        <stop offset="28%" stop-color="#BF982A"/>
+        <stop offset="58%" stop-color="#E0C653"/>
+        <stop offset="84%" stop-color="#FCEB88"/>
+        <stop offset="100%" stop-color="#FFFDF2"/>
       </linearGradient>
-      <filter id="cursor-soft-glow" x="-30%" y="-30%" width="160%" height="160%">
-        <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000000" flood-opacity="0.85"/>
-        <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#E0C653" flood-opacity="0.38"/>
+      <filter id="cursor-sword-glow" x="-40%" y="-40%" width="180%" height="180%">
+        <feDropShadow dx="0" dy="1.2" stdDeviation="0.8" flood-color="#000000" flood-opacity="0.85"/>
+        <feDropShadow dx="0" dy="0" stdDeviation="1.6" flood-color="#E0C653" flood-opacity="0.55"/>
       </filter>
     </defs>
-    <g class="pointer-body" filter="url(#cursor-soft-glow)">
-      <!-- Precision arrow tip exactly at (1,1) for pixel-accurate hardware coordinates -->
-      <path d="M 1 1 L 1 23.5 L 6.8 18 L 11.5 28 L 15 26.2 L 10.2 16.2 L 17.5 16.2 Z" 
-            fill="url(#cursor-gold-grad)" 
-            stroke="#080808" 
-            stroke-width="1.6" 
-            stroke-linejoin="round"/>
+    <g class="pointer-body" filter="url(#cursor-sword-glow)">
+      <!-- Row 0 -->
+      <rect x="0" y="0" width="1" height="1" fill="#1c1708"/>
+      <rect x="1" y="0" width="1" height="1" fill="#1c1708"/>
+      <rect x="2" y="0" width="1" height="1" fill="#1c1708"/>
+      <!-- Row 1 -->
+      <rect x="0" y="1" width="1" height="1" fill="#1c1708"/>
+      <rect x="1" y="1" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="2" y="1" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="3" y="1" width="1" height="1" fill="#1c1708"/>
+      <!-- Row 2 -->
+      <rect x="0" y="2" width="1" height="1" fill="#1c1708"/>
+      <rect x="1" y="2" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="2" y="2" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="3" y="2" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="4" y="2" width="1" height="1" fill="#1c1708"/>
+      <!-- Row 3 -->
+      <rect x="1" y="3" width="1" height="1" fill="#1c1708"/>
+      <rect x="2" y="3" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="3" y="3" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="4" y="3" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="5" y="3" width="1" height="1" fill="#1c1708"/>
+      <!-- Row 4 -->
+      <rect x="2" y="4" width="1" height="1" fill="#1c1708"/>
+      <rect x="3" y="4" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="4" y="4" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="5" y="4" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="6" y="4" width="1" height="1" fill="#1c1708"/>
+      <!-- Row 5 -->
+      <rect x="3" y="5" width="1" height="1" fill="#1c1708"/>
+      <rect x="4" y="5" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="5" y="5" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="6" y="5" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="7" y="5" width="1" height="1" fill="#1c1708"/>
+      <!-- Row 6 -->
+      <rect x="4" y="6" width="1" height="1" fill="#1c1708"/>
+      <rect x="5" y="6" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="6" y="6" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="7" y="6" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="8" y="6" width="1" height="1" fill="#1c1708"/>
+      <rect x="12" y="6" width="1" height="1" fill="#1c1708"/>
+      <rect x="13" y="6" width="1" height="1" fill="#1c1708"/>
+      <!-- Row 7 -->
+      <rect x="5" y="7" width="1" height="1" fill="#1c1708"/>
+      <rect x="6" y="7" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="7" y="7" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="8" y="7" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="9" y="7" width="1" height="1" fill="#1c1708"/>
+      <rect x="11" y="7" width="1" height="1" fill="#1c1708"/>
+      <rect x="12" y="7" width="1" height="1" fill="#1c1708"/>
+      <rect x="13" y="7" width="1" height="1" fill="#1c1708"/>
+      <!-- Row 8 -->
+      <rect x="6" y="8" width="1" height="1" fill="#1c1708"/>
+      <rect x="7" y="8" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="8" y="8" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="9" y="8" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="10" y="8" width="1" height="1" fill="#1c1708"/>
+      <rect x="11" y="8" width="1" height="1" fill="#1c1708"/>
+      <rect x="12" y="8" width="1" height="1" fill="#1c1708"/>
+      <!-- Row 9 -->
+      <rect x="7" y="9" width="1" height="1" fill="#1c1708"/>
+      <rect x="8" y="9" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="9" y="9" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="10" y="9" width="1" height="1" fill="#1c1708"/>
+      <rect x="11" y="9" width="1" height="1" fill="#1c1708"/>
+      <rect x="12" y="9" width="1" height="1" fill="#1c1708"/>
+      <!-- Row 10 -->
+      <rect x="8" y="10" width="1" height="1" fill="#1c1708"/>
+      <rect x="9" y="10" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="10" y="10" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="11" y="10" width="1" height="1" fill="#1c1708"/>
+      <!-- Row 11 -->
+      <rect x="7" y="11" width="1" height="1" fill="#1c1708"/>
+      <rect x="8" y="11" width="2" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="10" y="11" width="1" height="1" fill="#1c1708"/>
+      <rect x="11" y="11" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="12" y="11" width="1" height="1" fill="#1c1708"/>
+      <!-- Row 12 -->
+      <rect x="6" y="12" width="1" height="1" fill="#1c1708"/>
+      <rect x="7" y="12" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="8" y="12" width="1" height="1" fill="#1c1708"/>
+      <rect x="9" y="12" width="1" height="1" fill="#1c1708"/>
+      <rect x="11" y="12" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="12" y="12" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="13" y="12" width="1" height="1" fill="#1c1708"/>
+      <!-- Row 13 -->
+      <rect x="6" y="13" width="1" height="1" fill="#1c1708"/>
+      <rect x="7" y="13" width="1" height="1" fill="#1c1708"/>
+      <rect x="12" y="13" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="13" y="13" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="14" y="13" width="1" height="1" fill="#1c1708"/>
+      <rect x="15" y="13" width="1" height="1" fill="#1c1708"/>
+      <!-- Row 14 -->
+      <rect x="13" y="14" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="14" y="14" width="1" height="1" fill="url(#cursor-gold-grad)"/>
+      <rect x="15" y="14" width="1" height="1" fill="#1c1708"/>
+      <!-- Row 15 -->
+      <rect x="13" y="15" width="1" height="1" fill="#1c1708"/>
+      <rect x="14" y="15" width="1" height="1" fill="#1c1708"/>
+      <rect x="15" y="15" width="1" height="1" fill="#1c1708"/>
     </g>
   </svg>
+  <!-- Flame/Smoke Canvas (rendered behind the trail) -->
+  <canvas class="custom-pointer-canvas" id="custom-cursor-flame-canvas" aria-hidden="true" style="position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:999997;"></canvas>
+  <!-- Existing Trail Canvas -->
   <canvas class="custom-pointer-canvas" id="custom-cursor-canvas" aria-hidden="true"></canvas>
 
   <script>
@@ -3494,6 +4655,22 @@
        Threshold download trigger: pulling past defined threshold triggers real download!
        CRITICAL: Single global cursor only. NO hand cursor, NO grab, NO duplicate pointer.
        ------------------------------------------------------------- */
+    /* -------------------------------------------------------------
+       HANGING EASY MOUSE LOGO ORNAMENT: REALISTIC ELASTIC ROPE CORD PHYSICS
+       Suspended on top-right hero area between top anchor (70, 3) and dangle eyelet (x, y).
+       Physically believable thin elastic/rubber cord:
+       - Progressive elastic tension on pull
+       - Natural catenary sag & dynamic Bézier curvature (never a rigid line)
+       - Stable spring-damper harmonic recoil on release:
+         1. Recoils upward smoothly
+         2. Pulls dangle back toward resting position
+         3. Slightly overshoots resting height
+         4. Rebounds downward slightly
+         5. Oscillates with decreasing amplitude
+         6. Gradually & naturally settles at rest
+       - Continuous visual connection: Anchor (70, 3) <-> Cord <-> Dangle eyelet (x, y)
+       - Retains download trigger at thresholdY
+       ------------------------------------------------------------- */
     (function initHangingMouseEasterEgg() {
       const rig = document.getElementById('hanging-mouse');
       const emblem = document.getElementById('dangle-emblem');
@@ -3506,6 +4683,7 @@
       const anchorY = 3;
       const restX = 70;
       const restY = 85;
+      const restDist = restY - anchorY; // 82px
       const thresholdY = 145; // Pull threshold to trigger download (~60px down)
 
       let posX = restX;
@@ -3514,35 +4692,55 @@
       let velY = 0;
       let isDragging = false;
       let dragPointerId = null;
+
       let startClientX = 0;
       let startClientY = 0;
       let startPosX = restX;
       let startPosY = restY;
       let thresholdMet = false;
 
+      // Pointer velocity tracking during drag for natural release momentum
+      let prevPointerX = 0;
+      let prevPointerY = 0;
+      let prevPointerTime = 0;
+      let releaseVelX = 0;
+      let releaseVelY = 0;
+
       let animFrameId = null;
       let lastTime = 0;
 
-      // Render the rubber cord SVG curve and emblem position/rotation
+      // Realistic Elastic Cord Deformation & Dangle Placement
       function renderDangle(x, y, rot) {
-        const midX = (anchorX + x) * 0.5;
-        const midY = (anchorY + y) * 0.5;
-        // Natural sag decreases under stretch tension
-        const distFromRest = Math.hypot(x - anchorX, y - restY);
-        const sag = Math.max(0, 12 - distFromRest * 0.18);
+        const dx = x - anchorX;
+        const dy = y - anchorY;
+        const dist = Math.hypot(dx, dy);
+        const stretchRatio = dist / restDist;
+
+        // When compressed/slack (during upward recoil overshoot, dist < restDist),
+        // the elastic cord flexes naturally rather than shrinking rigidly
+        const slack = Math.max(0, restDist - dist);
+        const slackBow = slack * 0.35;
+
+        // Top anchor (70, 3) eyelet holds the cord vertically
+        // Curve leaves anchor with a gentle vertical lead-in and smoothly arches toward the dangle
+        const cp1X = anchorX + dx * 0.20 + (dx >= 0 ? slackBow : -slackBow);
+        const cp1Y = anchorY + dy * 0.38 + slack * 0.45;
+
+        const cp2X = anchorX + dx * 0.70 + (dx >= 0 ? slackBow * 0.6 : -slackBow * 0.6);
+        const cp2Y = anchorY + dy * 0.68 + slack * 0.25;
+
+        // Continuous smooth cubic Bézier curve firmly attached at anchor (70, 3) and dangle eyelet (x, y)
         cordCurve.setAttribute(
           'd',
-          `M ${anchorX} ${anchorY} Q ${midX.toFixed(1)} ${(midY + sag).toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)}`
+          `M ${anchorX} ${anchorY} C ${cp1X.toFixed(2)} ${cp1Y.toFixed(2)}, ${cp2X.toFixed(2)} ${cp2Y.toFixed(2)}, ${x.toFixed(2)} ${y.toFixed(2)}`
         );
 
-        // Cord thins slightly under stretch (real rubber behavior)
-        const currentLen = Math.hypot(x - anchorX, y - anchorY);
-        const stretchRatio = Math.max(0.7, currentLen / (restY - anchorY));
-        const cordW = Math.max(1.1, Math.min(2.4, 2.0 / Math.sqrt(stretchRatio)));
-        cordCurve.setAttribute('stroke-width', cordW.toFixed(2));
+        // Cord thins subtly under stretch (realistic rubber Poisson effect)
+        const strokeW = Math.max(1.3, Math.min(2.4, 2.2 / Math.sqrt(Math.max(0.65, stretchRatio))));
+        cordCurve.setAttribute('stroke-width', strokeW.toFixed(2));
 
         // Position emblem Box precisely aligned to eyelet ring top-center (x=16, y=3.5)
-        emblem.style.transform = `translate3d(${(x - 16).toFixed(1)}px, ${(y - 3.5).toFixed(1)}px, 0) rotate(${rot.toFixed(2)}deg)`;
+        emblem.style.transform = `translate3d(${(x - 16).toFixed(2)}px, ${(y - 3.5).toFixed(2)}px, 0) rotate(${rot.toFixed(2)}deg)`;
       }
 
       function startPhysicsLoop() {
@@ -3565,27 +4763,33 @@
           return;
         }
 
-        // Bounded delta-time: prevents explosive jumps on tab-switching or delayed frames
+        // Bounded delta-time for numerical stability
         const dt = Math.min(Math.max((currentTime - lastTime) / 1000, 0.001), 0.033);
         lastTime = currentTime;
 
         if (isDragging) {
-          const rot = (posX - anchorX) * 0.22;
+          const cordAngle = Math.atan2(posX - anchorX, posY - anchorY) * (180 / Math.PI);
+          const rot = cordAngle * 0.85;
           renderDangle(posX, posY, rot);
           animFrameId = requestAnimationFrame(physicsTick);
           return;
         }
 
-        // Calibrated rubber cord spring-damper dynamics
-        const k = 68.0;  // Spring stiffness (1/s^2)
-        const c = 11.0;  // Damping coefficient (1/s)
+        // Calibrated elastic spring-damper dynamics
+        // k = spring stiffness, c = viscous damping coefficient
+        // Yields natural ~3.5 Hz oscillation with ~25% overshoot, gentle rebound, and smooth settling
+        const kY = 280.0;
+        const cY = 9.5;
+        const kX = 240.0;
+        const cX = 8.5;
 
         const dispX = posX - restX;
         const dispY = posY - restY;
 
-        const accelX = -k * dispX - c * velX;
-        const accelY = -k * dispY - c * velY;
+        const accelX = -kX * dispX - cX * velX;
+        const accelY = -kY * dispY - cY * velY;
 
+        // Symplectic Euler integration (energy-preserving & unconditionally stable)
         velX += accelX * dt;
         velY += accelY * dt;
 
@@ -3595,18 +4799,20 @@
         const disp = Math.hypot(posX - restX, posY - restY);
         const speed = Math.hypot(velX, velY);
 
-        // Explicit settling condition: when motion is subpixel and virtually stationary, lock to rest
-        if (disp < 0.8 && speed < 3.0) {
+        // Natural settling threshold: when motion is subpixel and slow, gently lock to rest
+        if (disp < 0.35 && speed < 1.0) {
           posX = restX;
           posY = restY;
           velX = 0;
           velY = 0;
           renderDangle(restX, restY, 0);
-          animFrameId = null; // Loop stops cleanly. Zero CPU consumption while idle.
+          animFrameId = null; // Loop stops cleanly. Zero CPU usage when resting.
           return;
         }
 
-        const rot = (velX * 0.05) + (dispX * 0.16);
+        // Pendulum angle + rotational velocity inertia for the emblem
+        const cordAngle = Math.atan2(posX - anchorX, posY - anchorY) * (180 / Math.PI);
+        const rot = cordAngle * 0.85 + (velX * 0.04);
         renderDangle(posX, posY, rot);
 
         animFrameId = requestAnimationFrame(physicsTick);
@@ -3631,6 +4837,12 @@
         startPosY = posY;
         thresholdMet = false;
 
+        prevPointerX = e.clientX;
+        prevPointerY = e.clientY;
+        prevPointerTime = performance.now();
+        releaseVelX = 0;
+        releaseVelY = 0;
+
         emblem.classList.add('is-dragging');
         if (pointerCursor) pointerCursor.classList.add('is-dragging');
 
@@ -3644,23 +4856,44 @@
           e.preventDefault();
         }
 
+        // Track pointer velocity for release momentum
+        const now = performance.now();
+        const dtMove = (now - prevPointerTime) / 1000;
+        if (dtMove > 0.004) {
+          const vx = (e.clientX - prevPointerX) / dtMove;
+          const vy = (e.clientY - prevPointerY) / dtMove;
+          releaseVelX = releaseVelX * 0.35 + vx * 0.65;
+          releaseVelY = releaseVelY * 0.35 + vy * 0.65;
+          prevPointerX = e.clientX;
+          prevPointerY = e.clientY;
+          prevPointerTime = now;
+        }
+
         const deltaX = e.clientX - startClientX;
         const deltaY = e.clientY - startClientY;
 
-        // Rubber physical resistance: stretches further down with progressive resistance
-        const stretchY = deltaY > 0 ? Math.pow(deltaY, 0.92) : deltaY * 0.4;
-        const targetX = startPosX + deltaX * 0.55;
-        const targetY = startPosY + stretchY;
+        // Progressive rubber elastic resistance
+        // Small pulls stretch easily; further pulls meet increasing physical tension
+        let elasticDeltaY;
+        if (deltaY >= 0) {
+          const maxDownStretch = 105;
+          elasticDeltaY = maxDownStretch * Math.tanh(deltaY / (maxDownStretch * 1.25));
+        } else {
+          const maxUpSlack = 28;
+          elasticDeltaY = -maxUpSlack * Math.tanh(-deltaY / 35);
+        }
 
-        // Clamping within physical realistic limits
-        const clampedX = Math.max(25, Math.min(115, targetX));
-        const clampedY = Math.max(45, Math.min(195, targetY));
+        const maxSideStretch = 48;
+        const elasticDeltaX = maxSideStretch * Math.tanh(deltaX / 58);
 
-        // Smooth physical following
-        posX += (clampedX - posX) * 0.45;
-        posY += (clampedY - posY) * 0.45;
+        const targetX = startPosX + elasticDeltaX;
+        const targetY = startPosY + elasticDeltaY;
 
-        // Threshold detection
+        // Smooth physical following with slight elastic lag
+        posX += (targetX - posX) * 0.52;
+        posY += (targetY - posY) * 0.52;
+
+        // Download threshold detection (~60px down from rest)
         if (posY >= thresholdY) {
           if (!thresholdMet) {
             thresholdMet = true;
@@ -3699,26 +4932,23 @@
               if (pullStatus) pullStatus.textContent = 'PULL DOWN';
             }, 2500);
           }
-          // Snappy rubber recoil impulse (proportional to release displacement)
-          velY = (posY - restY) * -3.0;
-          velX = (posX - anchorX) * -3.0;
-        } else {
-          // Normal release snap
-          velY = (posY - restY) * -3.0;
-          velX = (posX - anchorX) * -3.0;
         }
 
         thresholdMet = false;
         emblem.classList.remove('ready-to-trigger');
 
-        // Ensure physics loop runs to simulate recoil until settled
+        // Transfer gentle release velocity if flicked, bounded so it never launches wildly
+        const maxFlingVel = 260;
+        velX = Math.max(-maxFlingVel, Math.min(maxFlingVel, releaseVelX * 0.35));
+        velY = Math.max(-maxFlingVel, Math.min(maxFlingVel, releaseVelY * 0.35));
+
+        // Start physics loop to let natural spring-damper handle recoil, overshoot, and settling
         startPhysicsLoop();
       }
 
       emblem.addEventListener('pointerup', handleDragEnd);
       emblem.addEventListener('pointercancel', handleDragEnd);
       emblem.addEventListener('lostpointercapture', handleDragEnd);
-      emblem.addEventListener('mouseup', handleDragEnd);
       window.addEventListener('pointerup', handleDragEnd);
       window.addEventListener('pointercancel', handleDragEnd);
       window.addEventListener('mouseup', handleDragEnd);
@@ -3737,7 +4967,8 @@
               if (pullStatus) pullStatus.textContent = 'PULL DOWN';
             }, 2500);
           }
-          velY = -45;
+          // Slight physical downward tug that springs back
+          velY = 48;
           startPhysicsLoop();
         }
       });
@@ -3748,7 +4979,6 @@
       velX = 0;
       velY = 0;
       renderDangle(restX, restY, 0);
-      // NOTE: Physics loop is intentionally NOT started on load; remains 100% idle and stable until interacted with.
     })();
 
     /* -------------------------------------------------------------
@@ -3868,241 +5098,444 @@
     })();
 
     /* -------------------------------------------------------------
-       SECTION 01: FUNCTIONAL TOUCHPAD SIMULATOR & MULTI-TOUCH
-       Interactive Mode Switcher: Capacitive Glass | Multi-Touch | Haptic
-       Features update title, explanation, and visual demonstration with 300-500ms transitions
+       SECTION 01: SMARTPHONE INTERACTIVE DEMO ENGINE
+       - Real Canvas 2D Drawing Engine with quadratic interpolation
+       - Reset Button inside phone clears drawing instantly
+       - Multi-Touch Detection Surface with multi-contact rings
+       - Haptic Feedback Surface with real vibration / touch confirmation
+       - Smooth synchronized feature switching & phone banner sync
        ------------------------------------------------------------- */
     (function initSection1Touchpad() {
-      const surface = document.getElementById('section1-touch-surface');
-      const dot1 = document.getElementById('section1-touch-dot');
-      const dot2 = document.getElementById('section1-touch-dot-2');
-      const vector = document.getElementById('section1-touch-vector');
-      const hapticRing = document.getElementById('section1-haptic-ring');
-      const hapticHint = document.getElementById('section1-haptic-hint');
-      const badge = document.getElementById('touchpad-coords-badge');
-      const actionState = document.getElementById('touchpad-action-state');
-      const titleEl = document.getElementById('touchpad-feature-title');
-      const descEl = document.getElementById('touchpad-feature-desc');
-      const metaCard = document.getElementById('feature-panel-meta');
+      // Feature Selectors & Copy Elements
       const modeBtns = document.querySelectorAll('.device-mode-btn');
+      const leftFeatureTitle = document.getElementById('touchpad-feature-title');
+      const leftFeatureDesc = document.getElementById('touchpad-feature-desc');
 
-      if (!surface || !dot1 || !badge || !actionState) return;
+      // Phone Internal Elements
+      const phoneBannerTitle = document.getElementById('sec1-phone-mode-title');
+      const phoneBannerDesc = document.getElementById('sec1-phone-mode-desc');
+      const resetBtn = document.getElementById('sec1-canvas-reset');
 
-      let currentMode = 'glass';
-      const activePointers = new Map();
-      let startX = 0, startY = 0;
+      // Panels
+      const panelGlass = document.getElementById('sec1-panel-glass');
+      const panelMultitouch = document.getElementById('sec1-panel-multitouch');
+      const panelHaptic = document.getElementById('sec1-panel-haptic');
 
-      const featureContent = {
+      if (!panelGlass || !panelMultitouch || !panelHaptic) return;
+
+      const MODE_DATA = {
         glass: {
-          title: 'CAPACITIVE GLASS',
-          desc: "Your phone's touchscreen becomes the physical surface used to move the computer pointer.",
-          state: 'Glide / Tap / Drag',
-          badge: 'Surface: Precision Coordinate Grid'
+          leftTitle: 'Capacitive Glass',
+          leftDesc: "The phone's touchscreen acts as the surface used to control the computer pointer.",
+          phoneTitle: 'Capacitive Glass',
+          phoneDesc: 'Your phone screen becomes the surface for pointer control.',
+          panel: panelGlass
         },
         multitouch: {
-          title: 'MULTI-TOUCH DETECTION',
-          desc: 'Use multiple touch points to trigger gesture-based desktop interactions.',
-          state: 'Multi-Point Gesture Active',
-          badge: 'Two-Point Vector Span Tracked'
+          leftTitle: 'Multi-Touch Detection',
+          leftDesc: 'Supported multi-touch interactions can enable scrolling and gestures.',
+          phoneTitle: 'Multi-Touch',
+          phoneDesc: 'Use multiple fingers for supported gestures and scrolling.',
+          panel: panelMultitouch
         },
         haptic: {
-          title: 'HAPTIC FEEDBACK',
-          desc: 'Touch feedback provides subtle confirmation when supported by the device.',
-          state: 'Tap Anywhere on Surface',
-          badge: 'Linear Resonant Impulse Engine'
+          leftTitle: 'Haptic Feedback',
+          leftDesc: 'Subtle touch vibration when supported by the device.',
+          phoneTitle: 'Haptic Feedback',
+          phoneDesc: 'Subtle touch vibration when supported by the device.',
+          panel: panelHaptic
         }
       };
 
-      // Mode Switcher Buttons with smooth 350ms transition
-      modeBtns.forEach(btn => {
+      let currentMode = 'glass';
+
+      // 1. Feature Switching
+      function switchMode(modeKey) {
+        if (!MODE_DATA[modeKey]) return;
+        currentMode = modeKey;
+
+        // Update selector buttons
+        modeBtns.forEach((btn) => {
+          const isActive = btn.getAttribute('data-mode') === modeKey;
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+
+        const data = MODE_DATA[modeKey];
+
+        // Update left card
+        if (leftFeatureTitle) leftFeatureTitle.textContent = data.leftTitle;
+        if (leftFeatureDesc) leftFeatureDesc.textContent = data.leftDesc;
+
+        // Update phone banner with subtle fade
+        const banner = document.getElementById('sec1-phone-banner');
+        if (banner) {
+          banner.style.opacity = '0';
+          banner.style.transform = 'translateY(-3px)';
+          setTimeout(() => {
+            if (phoneBannerTitle) phoneBannerTitle.textContent = data.phoneTitle;
+            if (phoneBannerDesc) phoneBannerDesc.textContent = data.phoneDesc;
+            banner.style.opacity = '1';
+            banner.style.transform = 'translateY(0)';
+          }, 120);
+        }
+
+        // Switch phone stage panel
+        [panelGlass, panelMultitouch, panelHaptic].forEach((panel) => {
+          if (panel === data.panel) {
+            panel.classList.add('active');
+          } else {
+            panel.classList.remove('active');
+          }
+        });
+
+        // Toggle reset button visibility/state
+        if (resetBtn) {
+          if (modeKey === 'glass') {
+            resetBtn.classList.remove('hidden');
+          } else {
+            resetBtn.classList.add('hidden');
+          }
+        }
+
+        if (modeKey === 'glass') {
+          setTimeout(resizeCanvas, 40);
+        }
+      }
+
+      modeBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
-          modeBtns.forEach(b => {
-            b.classList.remove('active');
-            b.setAttribute('aria-selected', 'false');
-          });
-          btn.classList.add('active');
-          btn.setAttribute('aria-selected', 'true');
-          currentMode = btn.getAttribute('data-mode') || 'glass';
-
-          // Reset demonstration state
-          if (dot2) dot2.style.opacity = currentMode === 'multitouch' ? '1' : '0';
-          if (vector) vector.style.opacity = currentMode === 'multitouch' ? '0.85' : '0';
-          if (hapticHint) hapticHint.style.opacity = currentMode === 'haptic' ? '1' : '0';
-
-          // Smooth transition (opacity 1 -> 0 -> 1 with subtle translateY)
-          if (metaCard) {
-            metaCard.style.opacity = '0';
-            metaCard.style.transform = 'translateY(-5px)';
-            setTimeout(() => {
-              const data = featureContent[currentMode];
-              if (titleEl) titleEl.textContent = data.title;
-              if (descEl) descEl.textContent = data.desc;
-              if (actionState) actionState.textContent = data.state;
-              if (badge) badge.textContent = data.badge;
-
-              metaCard.style.opacity = '1';
-              metaCard.style.transform = 'translateY(0)';
-            }, 160);
-          }
-
-          if (currentMode === 'multitouch') {
-            // Display initial dual touch points and gesture vector
-            dot1.style.opacity = '1';
-            dot1.style.left = '35%';
-            dot1.style.top = '48%';
-            if (dot2) {
-              dot2.style.opacity = '1';
-              dot2.style.left = '65%';
-              dot2.style.top = '52%';
-            }
-            if (vector) {
-              const rect = surface.getBoundingClientRect();
-              const x1 = 0.35 * rect.width;
-              const y1 = 0.48 * rect.height;
-              const x2 = 0.65 * rect.width;
-              const y2 = 0.52 * rect.height;
-              const dist = Math.hypot(x2 - x1, y2 - y1);
-              const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
-              vector.style.left = x1 + 'px';
-              vector.style.top = y1 + 'px';
-              vector.style.width = dist + 'px';
-              vector.style.transform = `rotate(${angle}deg)`;
-              vector.style.opacity = '0.85';
-            }
-          }
+          const mode = btn.getAttribute('data-mode');
+          if (mode) switchMode(mode);
         });
       });
 
-      function updateVisualization() {
-        const rect = surface.getBoundingClientRect();
-        const pts = Array.from(activePointers.values());
+      // -------------------------------------------------------------
+      // 2. Capacitive Glass Mode: Real Canvas Drawing Engine
+      // -------------------------------------------------------------
+      const canvas = document.getElementById('sec1-draw-canvas');
+      const hint = document.getElementById('sec1-canvas-hint');
+      const drawPointer = document.getElementById('sec1-draw-pointer');
+      let ctx = null;
+      let isDrawing = false;
+      let lastX = 0;
+      let lastY = 0;
+      let hasDrawn = false;
 
-        if (pts.length === 0) return;
+      function resizeCanvas() {
+        if (!canvas) return;
+        ctx = canvas.getContext('2d');
+        const rect = canvas.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+        const dpr = window.devicePixelRatio || 1;
 
-        const p1 = pts[0];
-        const rx1 = Math.max(0.05, Math.min(0.95, (p1.x - rect.left) / rect.width));
-        const ry1 = Math.max(0.08, Math.min(0.92, (p1.y - rect.top) / rect.height));
+        // Snapshot existing drawing if present
+        let tempCanvas = null;
+        if (hasDrawn && canvas.width > 0 && canvas.height > 0) {
+          tempCanvas = document.createElement('canvas');
+          tempCanvas.width = canvas.width;
+          tempCanvas.height = canvas.height;
+          const tempCtx = tempCanvas.getContext('2d');
+          tempCtx.drawImage(canvas, 0, 0);
+        }
 
-        dot1.style.left = (rx1 * 100) + '%';
-        dot1.style.top = (ry1 * 100) + '%';
-        dot1.style.opacity = '1';
+        canvas.width = Math.round(rect.width * dpr);
+        canvas.height = Math.round(rect.height * dpr);
 
-        if (currentMode === 'glass') {
-          badge.textContent = `X: ${Math.round(rx1 * 100)}% • Y: ${Math.round(ry1 * 100)}%`;
-        } else if (currentMode === 'multitouch') {
-          let rx2 = rx1 + 0.16;
-          let ry2 = ry1 + 0.12;
+        ctx.scale(dpr, dpr);
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.strokeStyle = '#E0C653';
+        ctx.lineWidth = 3;
+        ctx.shadowColor = 'rgba(224, 198, 83, 0.45)';
+        ctx.shadowBlur = 6;
 
-          if (pts.length > 1) {
-            const p2 = pts[1];
-            rx2 = Math.max(0.05, Math.min(0.95, (p2.x - rect.left) / rect.width));
-            ry2 = Math.max(0.08, Math.min(0.92, (p2.y - rect.top) / rect.height));
-          }
-
-          if (dot2) {
-            dot2.style.left = (rx2 * 100) + '%';
-            dot2.style.top = (ry2 * 100) + '%';
-            dot2.style.opacity = '1';
-          }
-
-          if (vector) {
-            const x1 = rx1 * rect.width;
-            const y1 = ry1 * rect.height;
-            const x2 = rx2 * rect.width;
-            const y2 = ry2 * rect.height;
-            const dist = Math.hypot(x2 - x1, y2 - y1);
-            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
-
-            vector.style.left = x1 + 'px';
-            vector.style.top = y1 + 'px';
-            vector.style.width = dist + 'px';
-            vector.style.transform = `rotate(${angle}deg)`;
-            vector.style.opacity = '0.85';
-          }
-
-          const spanPx = Math.round(Math.hypot((rx2 - rx1) * rect.width, (ry2 - ry1) * rect.height));
-          badge.textContent = `P1: (${Math.round(rx1*100)}%, ${Math.round(ry1*100)}%) • P2: Span ${spanPx}px`;
-          actionState.textContent = 'Two-Finger Gesture / Scroll Tracking';
-        } else if (currentMode === 'haptic') {
-          badge.textContent = `Coordinate (${Math.round(rx1 * 100)}%, ${Math.round(ry1 * 100)}%)`;
+        if (tempCanvas) {
+          ctx.drawImage(tempCanvas, 0, 0, tempCanvas.width / dpr, tempCanvas.height / dpr);
         }
       }
 
-      function triggerHapticFeedback(clientX, clientY) {
-        if (!hapticRing) return;
-        const rect = surface.getBoundingClientRect();
-        const rx = clientX - rect.left;
-        const ry = clientY - rect.top;
+      if (canvas) {
+        ctx = canvas.getContext('2d');
+        window.addEventListener('resize', resizeCanvas);
+        setTimeout(resizeCanvas, 60);
 
-        hapticRing.style.left = rx + 'px';
-        hapticRing.style.top = ry + 'px';
-        hapticRing.classList.remove('firing');
-        void hapticRing.offsetWidth; // Force reflow
-        hapticRing.classList.add('firing');
+        function getPos(e) {
+          const rect = canvas.getBoundingClientRect();
+          return {
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
+          };
+        }
 
-        actionState.textContent = 'Tactile Impulse: 14ms @ 175Hz';
-        badge.textContent = 'Haptic Ring Fired (Linear Resonant)';
+        canvas.addEventListener('pointerdown', (e) => {
+          try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+          isDrawing = true;
+          const pos = getPos(e);
+          lastX = pos.x;
+          lastY = pos.y;
+
+          if (hint && !hasDrawn) {
+            hint.style.opacity = '0';
+            hasDrawn = true;
+          }
+
+          if (ctx) {
+            ctx.beginPath();
+            ctx.arc(lastX, lastY, 1.6, 0, Math.PI * 2);
+            ctx.fillStyle = '#E0C653';
+            ctx.fill();
+          }
+
+          if (drawPointer) {
+            drawPointer.style.opacity = '1';
+            drawPointer.style.left = lastX + 'px';
+            drawPointer.style.top = lastY + 'px';
+          }
+        });
+
+        canvas.addEventListener('pointermove', (e) => {
+          const pos = getPos(e);
+
+          if (drawPointer) {
+            drawPointer.style.opacity = '1';
+            drawPointer.style.left = pos.x + 'px';
+            drawPointer.style.top = pos.y + 'px';
+          }
+
+          if (!isDrawing || !ctx) return;
+
+          ctx.beginPath();
+          ctx.moveTo(lastX, lastY);
+          const midX = (lastX + pos.x) / 2;
+          const midY = (lastY + pos.y) / 2;
+          ctx.quadraticCurveTo(lastX, lastY, midX, midY);
+          ctx.stroke();
+
+          lastX = pos.x;
+          lastY = pos.y;
+        });
+
+        function endStroke(e) {
+          if (!isDrawing) return;
+          isDrawing = false;
+          try {
+            if (canvas.hasPointerCapture(e.pointerId)) {
+              canvas.releasePointerCapture(e.pointerId);
+            }
+          } catch (err) {}
+        }
+
+        canvas.addEventListener('pointerup', endStroke);
+        canvas.addEventListener('pointercancel', endStroke);
+        canvas.addEventListener('pointerleave', (e) => {
+          if (drawPointer) drawPointer.style.opacity = '0';
+          endStroke(e);
+        });
+
+        // 3. Reset Button Behavior
+        if (resetBtn) {
+          resetBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!ctx) return;
+            const dpr = window.devicePixelRatio || 1;
+            ctx.save();
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.restore();
+
+            // Reapply drawing styles
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.strokeStyle = '#E0C653';
+            ctx.lineWidth = 3;
+            ctx.shadowColor = 'rgba(224, 198, 83, 0.45)';
+            ctx.shadowBlur = 6;
+
+            hasDrawn = false;
+            if (hint) hint.style.opacity = '0.65';
+            if (drawPointer) drawPointer.style.opacity = '0';
+          });
+        }
       }
 
-      surface.addEventListener('pointerdown', (e) => {
-        activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-        startX = e.clientX;
-        startY = e.clientY;
+      // -------------------------------------------------------------
+      // 4. Multi-Touch Detection Surface
+      // -------------------------------------------------------------
+      const mtPad = document.getElementById('sec1-multitouch-pad');
+      const pt1 = document.getElementById('sec1-touch-pt-1');
+      const pt2 = document.getElementById('sec1-touch-pt-2');
+      const pt3 = document.getElementById('sec1-touch-pt-3');
+      const mtStatusText = document.getElementById('sec1-touch-status-text');
 
-        if (currentMode === 'haptic') {
-          triggerHapticFeedback(e.clientX, e.clientY);
-        } else {
-          actionState.textContent = activePointers.size > 1 ? 'Dual Touch Active' : 'Touch Down / Press';
-          dot1.style.transform = 'translate(-50%, -50%) scale(1.35)';
-        }
+      if (mtPad) {
+        let isMouseDown = false;
 
-        updateVisualization();
-      });
+        function updateTouchPoints(touches) {
+          const rect = mtPad.getBoundingClientRect();
+          const count = touches.length;
 
-      surface.addEventListener('pointermove', (e) => {
-        if (activePointers.has(e.pointerId)) {
-          activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-        } else if (activePointers.size === 0) {
-          activePointers.set('hover', { x: e.clientX, y: e.clientY });
-        }
-        updateVisualization();
-      });
+          if (count === 0) {
+            if (pt1) pt1.classList.remove('active');
+            if (pt2) pt2.classList.remove('active');
+            if (pt3) pt3.classList.remove('active');
+            if (mtStatusText) mtStatusText.textContent = 'Touch surface with 1 or 2 fingers';
+            return;
+          }
 
-      function handlePointerEnd(e) {
-        activePointers.delete(e.pointerId);
-        activePointers.delete('hover');
+          if (mtStatusText) {
+            mtStatusText.textContent = count === 1 ? '1 Active Contact Point' : `${count} Active Contact Points (Gesture Active)`;
+          }
 
-        if (activePointers.size === 0) {
-          dot1.style.transform = 'translate(-50%, -50%) scale(1)';
-          if (currentMode !== 'haptic') {
-            const dist = Math.hypot(e.clientX - startX, e.clientY - startY);
-            if (dist < 8) {
-              actionState.textContent = 'Single Tap Registered';
+          const points = [pt1, pt2, pt3];
+          for (let i = 0; i < points.length; i++) {
+            if (!points[i]) continue;
+            if (i < count) {
+              const t = touches[i];
+              const x = t.clientX - rect.left;
+              const y = t.clientY - rect.top;
+              points[i].style.left = x + 'px';
+              points[i].style.top = y + 'px';
+              points[i].classList.add('active');
             } else {
-              actionState.textContent = 'Touch Released';
+              points[i].classList.remove('active');
             }
           }
-          if (dot2 && currentMode !== 'multitouch') dot2.style.opacity = '0';
-          if (vector) vector.style.opacity = '0';
         }
+
+        // Real touch events for mobile / tablet
+        mtPad.addEventListener('touchstart', (e) => {
+          e.preventDefault();
+          updateTouchPoints(e.targetTouches);
+        }, { passive: false });
+
+        mtPad.addEventListener('touchmove', (e) => {
+          e.preventDefault();
+          updateTouchPoints(e.targetTouches);
+        }, { passive: false });
+
+        mtPad.addEventListener('touchend', (e) => {
+          updateTouchPoints(e.targetTouches);
+        });
+
+        mtPad.addEventListener('touchcancel', (e) => {
+          updateTouchPoints(e.targetTouches);
+        });
+
+        // Desktop mouse interaction simulation
+        mtPad.addEventListener('mouseenter', (e) => {
+          if ('ontouchstart' in window && navigator.maxTouchPoints > 1) return;
+          const rect = mtPad.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          if (pt1) {
+            pt1.style.left = x + 'px';
+            pt1.style.top = y + 'px';
+            pt1.classList.add('active');
+          }
+          if (mtStatusText) mtStatusText.textContent = '1 Active Contact Point';
+        });
+
+        mtPad.addEventListener('mousemove', (e) => {
+          if ('ontouchstart' in window && navigator.maxTouchPoints > 1) return;
+          const rect = mtPad.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          if (pt1) {
+            pt1.style.left = x + 'px';
+            pt1.style.top = y + 'px';
+          }
+          if (isMouseDown && pt2) {
+            pt2.style.left = (x + 36) + 'px';
+            pt2.style.top = (y + 16) + 'px';
+          }
+        });
+
+        mtPad.addEventListener('mousedown', (e) => {
+          if ('ontouchstart' in window && navigator.maxTouchPoints > 1) return;
+          isMouseDown = true;
+          const rect = mtPad.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          if (pt2) {
+            pt2.style.left = (x + 36) + 'px';
+            pt2.style.top = (y + 16) + 'px';
+            pt2.classList.add('active');
+          }
+          if (mtStatusText) mtStatusText.textContent = '2 Contact Points — Two-Finger Scroll Simulation';
+        });
+
+        window.addEventListener('mouseup', () => {
+          if (isMouseDown) {
+            isMouseDown = false;
+            if (pt2) pt2.classList.remove('active');
+            if (mtStatusText && pt1 && pt1.classList.contains('active')) {
+              mtStatusText.textContent = '1 Active Contact Point';
+            }
+          }
+        });
+
+        mtPad.addEventListener('mouseleave', () => {
+          if ('ontouchstart' in window && navigator.maxTouchPoints > 1) return;
+          if (pt1) pt1.classList.remove('active');
+          if (pt2) pt2.classList.remove('active');
+          if (mtStatusText) mtStatusText.textContent = 'Touch surface with 1 or 2 fingers';
+        });
       }
 
-      surface.addEventListener('pointerup', handlePointerEnd);
-      surface.addEventListener('pointercancel', handlePointerEnd);
-      surface.addEventListener('pointerleave', (e) => {
-        dot1.style.opacity = '0';
-        if (dot2) dot2.style.opacity = '0';
-        if (vector) vector.style.opacity = '0';
-        activePointers.clear();
-      });
+      // -------------------------------------------------------------
+      // 5. Haptic Feedback Mode
+      // -------------------------------------------------------------
+      const hapticPad = document.getElementById('sec1-haptic-pad');
+      const hapticRipple = document.getElementById('sec1-haptic-ripple');
+      const hapticStatusBadge = document.getElementById('sec1-haptic-status-badge');
+      const hapticStatusText = document.getElementById('sec1-haptic-status-text');
+      let hapticResetTimer = null;
 
-      surface.addEventListener('wheel', (e) => {
-        e.preventDefault();
-        actionState.textContent = e.deltaY < 0 ? 'Two-Finger Scroll Up' : 'Two-Finger Scroll Down';
-        setTimeout(() => {
-          actionState.textContent = currentMode === 'haptic' ? 'Tap Anywhere to Fire Haptic Pulse' : 'Glide / Tap / Drag';
-        }, 800);
-      }, { passive: false });
+      if (hapticPad) {
+        function triggerHaptic(clientX, clientY) {
+          const rect = hapticPad.getBoundingClientRect();
+          const rx = clientX - rect.left;
+          const ry = clientY - rect.top;
+
+          if (hapticRipple) {
+            hapticRipple.style.left = rx + 'px';
+            hapticRipple.style.top = ry + 'px';
+            hapticRipple.classList.remove('firing');
+            void hapticRipple.offsetWidth;
+            hapticRipple.classList.add('firing');
+          }
+
+          let didVibrate = false;
+          if (typeof navigator !== 'undefined' && navigator.vibrate) {
+            try {
+              didVibrate = navigator.vibrate(15);
+            } catch (err) {}
+          }
+
+          if (hapticStatusText && hapticStatusBadge) {
+            if (didVibrate) {
+              hapticStatusText.textContent = 'HAPTIC VIBRATION TRIGGERED';
+            } else {
+              hapticStatusText.textContent = 'TOUCH REGISTERED';
+            }
+            hapticStatusBadge.classList.add('active');
+
+            if (hapticResetTimer) clearTimeout(hapticResetTimer);
+            hapticResetTimer = setTimeout(() => {
+              hapticStatusText.textContent = 'READY FOR TOUCH';
+              hapticStatusBadge.classList.remove('active');
+            }, 900);
+          }
+        }
+
+        hapticPad.addEventListener('pointerdown', (e) => {
+          triggerHaptic(e.clientX, e.clientY);
+        });
+      }
+
+      // Initialize default mode
+      switchMode('glass');
     })();
 
     /* -------------------------------------------------------------
@@ -4178,6 +5611,9 @@
       const tabs = document.querySelectorAll('.feature-tab-btn');
       const phoneCaption = document.getElementById('feature-phone-caption');
       const desktopTitle = document.getElementById('feat-desktop-title');
+      const phoneScreen = document.getElementById('feature-phone-screen');
+      const phonePointer = document.getElementById('feature-phone-live-pointer');
+      const desktopCursor = document.getElementById('feat-desktop-cursor');
 
       const phonePanels = {
         shortcuts: document.getElementById('feat-panel-shortcuts'),
@@ -4210,7 +5646,7 @@
           }
         });
 
-        if (phoneCaption) phoneCaption.textContent = 'Mode: ' + feat.charAt(0).toUpperCase() + feat.slice(1);
+        if (phoneCaption) phoneCaption.textContent = feat.charAt(0).toUpperCase() + feat.slice(1);
         if (desktopTitle) {
           if (feat === 'shortcuts') desktopTitle.textContent = 'Easy Mouse Remote Session - Notes.txt';
           if (feat === 'typing') desktopTitle.textContent = 'Active Terminal - bash';
@@ -4226,6 +5662,32 @@
         });
       });
 
+      // Synchronized Real-Time Pointer Tracking (Phone Controller -> Desktop Host)
+      if (phoneScreen && phonePointer && desktopCursor) {
+        phoneScreen.addEventListener('pointerenter', () => {
+          phonePointer.style.opacity = '1';
+        });
+
+        phoneScreen.addEventListener('pointermove', (e) => {
+          const rect = phoneScreen.getBoundingClientRect();
+          if (rect.width === 0 || rect.height === 0) return;
+          const rx = Math.max(0.06, Math.min(0.94, (e.clientX - rect.left) / rect.width));
+          const ry = Math.max(0.12, Math.min(0.92, (e.clientY - rect.top) / rect.height));
+
+          phonePointer.style.opacity = '1';
+          phonePointer.style.left = (rx * 100).toFixed(1) + '%';
+          phonePointer.style.top = (ry * 100).toFixed(1) + '%';
+
+          // Desktop cursor mirrors phone movement in real time
+          desktopCursor.style.left = (rx * 100).toFixed(1) + '%';
+          desktopCursor.style.top = (ry * 100).toFixed(1) + '%';
+        });
+
+        phoneScreen.addEventListener('pointerleave', () => {
+          phonePointer.style.opacity = '0';
+        });
+      }
+
       // Feature 1: Shortcuts Interaction
       const docContent = document.getElementById('desktop-doc-content');
       const shortcutsStatus = document.getElementById('shortcuts-action-status');
@@ -4239,7 +5701,7 @@
         if (btnCopy) btnCopy.addEventListener('click', () => {
           docContent.style.background = 'rgba(224, 198, 83, 0.18)';
           if (shortcutsStatus) shortcutsStatus.textContent = 'Copied selected line (Ctrl+C)';
-          setTimeout(() => docContent.style.background = '#141410', 350);
+          setTimeout(() => docContent.style.background = '#121316', 350);
         });
         if (btnPaste) btnPaste.addEventListener('click', () => {
           docContent.textContent += '\nactiveController.listen({ haptic: true });';
@@ -4290,6 +5752,9 @@
             gesturesDot.style.left = `${(e.clientX - rect.left)}px`;
             gesturesDot.style.top = `${(e.clientY - rect.top)}px`;
           }
+          if (desktopCursor) {
+            desktopCursor.style.top = (ry * 100) + '%';
+          }
         });
       }
 
@@ -4308,18 +5773,21 @@
       const btnLock = document.getElementById('btn-system-lock-toggle');
       const lockOverlay = document.getElementById('desktop-lock-overlay');
       const lockDesc = document.getElementById('lock-state-desc');
+      const lockIcon = document.getElementById('lock-btn-icon');
+      const lockLabel = document.getElementById('lock-btn-label');
       let isLocked = false;
 
       if (btnLock && lockOverlay && lockDesc) {
         btnLock.addEventListener('click', () => {
           isLocked = !isLocked;
-          btnLock.textContent = isLocked ? 'Unlock Workstation' : 'Lock Workstation';
+          if (lockLabel) lockLabel.textContent = isLocked ? 'Unlock Workstation' : 'Lock Workstation';
+          if (lockIcon) lockIcon.textContent = isLocked ? '🔓' : '🔒';
           lockDesc.textContent = isLocked ? 'Desktop is Locked' : 'Desktop is Unlocked';
           lockOverlay.innerHTML = isLocked
-            ? `<div style="font-size: 2.6rem; color: #E0C653; margin-bottom: 8px;">&#128274;</div>
+            ? `<div style="font-size: 2.6rem; color: var(--yellow-gold); margin-bottom: 8px;">🔒</div>
                <h3 style="font-family: var(--font-heading); font-size: 1.8rem; color: #FAF8F2; margin-bottom: 6px;">Workstation Locked</h3>
                <p style="font-size: 0.95rem; color: #9E9C91;">Secured remotely by Easy Mouse</p>`
-            : `<div style="font-size: 2.6rem; color: #FAF8F2; margin-bottom: 8px;">&#128275;</div>
+            : `<div style="font-size: 2.6rem; color: #FAF8F2; margin-bottom: 8px;">🔓</div>
                <h3 style="font-family: var(--font-heading); font-size: 1.8rem; color: #FAF8F2; margin-bottom: 6px;">Workstation Active</h3>
                <p style="font-size: 0.95rem; color: #9E9C91;">Direct phone connection established</p>`;
         });
@@ -4391,8 +5859,24 @@
     };
 
     (function initDownloadRouting() {
-      const downloadButtons = document.querySelectorAll('[data-download="true"], #download-app, #download-app-footer');
+      // Final CTA smooth-scroll to hero where the physical dangle is located
+      const footerCta = document.getElementById('download-app-footer');
+      if (footerCta) {
+        footerCta.addEventListener('click', (e) => {
+          e.preventDefault();
+          const hero = document.getElementById('hero');
+          if (hero) {
+            hero.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
+      }
+
+      // Any remaining explicit data-download elements (safe placeholder)
+      const downloadButtons = document.querySelectorAll('[data-download="true"]');
       downloadButtons.forEach(btn => {
+        if (btn.id === 'download-app-footer') return;
         btn.addEventListener('click', (e) => {
           e.preventDefault();
           window.triggerEasyMouseDownload(btn.id || 'button');
@@ -4401,33 +5885,84 @@
     })();
 
     /* -------------------------------------------------------------
-       ORGANIC CUSTOM POINTER & VISIBLY THICKER GOLDEN LIGHT TRAIL
-       Single global pointer, zero lag, flowing continuous ink stroke
+       FLAME CURSOR ENGINE — Reference Silhouette + Continuous Trail + Responsive Flame
+       Single global pointer, zero input lag, 100% continuous trail (interpolated, zero breaking),
+       fluid velocity-responsive golden flame + smoke + subtle breathing glow.
+       Disabled on touch devices.
        ------------------------------------------------------------- */
-    (function initOrganicPointer() {
+    (function initFlameCursor() {
       if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
       const pointer = document.getElementById('custom-cursor-pointer');
       const canvas = document.getElementById('custom-cursor-canvas');
+      const flameCanvas = document.getElementById('custom-cursor-flame-canvas');
       if (!pointer || !canvas) return;
 
       const ctx = canvas.getContext('2d');
+      const fCtx = flameCanvas ? flameCanvas.getContext('2d') : null;
       let mouseX = window.innerWidth / 2;
       let mouseY = window.innerHeight / 2;
       let prevMouseX = mouseX;
       let prevMouseY = mouseY;
+      let velX = 0;
+      let velY = 0;
       let isVisible = false;
       let fadeTimer = null;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+      // Continuous Trail System (interpolated with zero breaks)
       const trail = [];
-      const MAX_TRAIL = 24;
+      const MAX_TRAIL = 36;
+
+      // Dynamic Flame Particle System
+      const flameParticles = [];
+      const MAX_FLAME = 45;
+
+      // Subtle Smoke Particle System
+      const smokeParticles = [];
+      const MAX_SMOKE = 20;
 
       function resize() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        if (flameCanvas) {
+          flameCanvas.width = window.innerWidth;
+          flameCanvas.height = window.innerHeight;
+        }
       }
       window.addEventListener('resize', resize, { passive: true });
       resize();
+
+      function spawnFlame(x, y, vx, vy, speed) {
+        const count = Math.min(3, Math.max(1, Math.ceil(speed / 16)));
+        for (let i = 0; i < count && flameParticles.length < MAX_FLAME; i++) {
+          flameParticles.push({
+            x: x + (Math.random() - 0.5) * 8,
+            y: y + (Math.random() - 0.5) * 6,
+            // Flow backwards opposite to motion with natural fluid turbulence
+            vx: -vx * 0.28 + (Math.random() - 0.5) * 1.4,
+            vy: -vy * 0.28 - (Math.random() * 2.2 + 0.6),
+            size: Math.random() * 4.5 + 2.5 + (speed / 60) * 3,
+            life: 1.0,
+            decay: 0.03 + Math.random() * 0.02
+          });
+        }
+      }
+
+      function spawnSmoke(x, y) {
+        if (smokeParticles.length >= MAX_SMOKE) return;
+        smokeParticles.push({
+          x: x + (Math.random() - 0.5) * 8,
+          y: y + (Math.random() - 0.5) * 4,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: -(Math.random() * 0.6 + 0.2),
+          size: Math.random() * 7 + 4,
+          life: 1.0,
+          decay: 0.015 + Math.random() * 0.01
+        });
+      }
+
+      let smokeThrottle = 0;
 
       window.addEventListener('pointermove', (e) => {
         mouseX = e.clientX;
@@ -4438,22 +5973,46 @@
           pointer.classList.remove('cursor-hidden');
         }
 
-        // Hardware-synchronized instant coordinate tracking (Tip at 1,1)
+        // Hardware-synchronized instant coordinate tracking:
+        // Hotspot tip is at (0, 0) (blade tip) inside SVG viewBox, so offset by 0 for 100% pixel-perfect clicks!
         pointer.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
 
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          const dist = Math.hypot(mouseX - prevMouseX, mouseY - prevMouseY);
-          const speed = Math.min(dist, 60);
-          // Visibly thicker golden/crimson ribbon: base 8.0px widening up to 16.5px on rapid movement
-          const thickness = 8.0 + (speed / 60) * 8.5;
+        if (!reducedMotion.matches) {
+          const dx = mouseX - prevMouseX;
+          const dy = mouseY - prevMouseY;
+          const dist = Math.hypot(dx, dy);
 
-          trail.unshift({
-            x: mouseX + 1,
-            y: mouseY + 1,
-            alpha: 1.0,
-            size: thickness
-          });
-          if (trail.length > MAX_TRAIL) trail.pop();
+          velX = dx;
+          velY = dy;
+          const speed = Math.min(dist, 60);
+          const thickness = 7.5 + (speed / 60) * 8.5;
+
+          // CONTINUOUS TRAIL FIX: Interpolate intermediate points on long/fast moves so trail NEVER breaks
+          const stepDist = 10;
+          const steps = Math.min(10, Math.max(1, Math.floor(dist / stepDist)));
+          for (let s = 1; s <= steps; s++) {
+            const t = s / steps;
+            const ix = prevMouseX + dx * t;
+            const iy = prevMouseY + dy * t;
+            trail.unshift({
+              x: ix,
+              y: iy,
+              alpha: 1.0,
+              size: thickness
+            });
+          }
+          while (trail.length > MAX_TRAIL) trail.pop();
+
+          // Responsive Flame: spawn when moving
+          if (speed > 2) {
+            spawnFlame(mouseX + 12, mouseY + 18, velX, velY, speed);
+          }
+
+          // Subtle Smoke: throttled when moving rapidly
+          smokeThrottle++;
+          if (speed > 5 && smokeThrottle % 3 === 0) {
+            spawnSmoke(mouseX + 12, mouseY + 14);
+          }
 
           prevMouseX = mouseX;
           prevMouseY = mouseY;
@@ -4475,89 +6034,180 @@
         if (e.target.closest(hoverElements)) pointer.classList.remove('hover-scale');
       }, { passive: true });
 
+      function updateParticles() {
+        // Smoothly decay velocity when pointer slows or stops
+        velX *= 0.85;
+        velY *= 0.85;
+
+        // Update flame particles
+        for (let i = flameParticles.length - 1; i >= 0; i--) {
+          const p = flameParticles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life -= p.decay;
+          p.size *= 0.96;
+          p.vx += (Math.random() - 0.5) * 0.2; // Gentle wisp flutter
+          if (p.life <= 0 || p.size < 0.3) {
+            flameParticles.splice(i, 1);
+          }
+        }
+
+        // Update smoke particles
+        for (let i = smokeParticles.length - 1; i >= 0; i--) {
+          const p = smokeParticles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life -= p.decay;
+          p.size *= 1.008;
+          if (p.life <= 0 || p.size < 0.3) {
+            smokeParticles.splice(i, 1);
+          }
+        }
+      }
+
+      function renderFlameAndSmoke() {
+        if (!fCtx) return;
+        fCtx.clearRect(0, 0, flameCanvas.width, flameCanvas.height);
+
+        // Render smoke first (behind flame)
+        for (let i = 0; i < smokeParticles.length; i++) {
+          const p = smokeParticles[i];
+          const alpha = p.life * 0.1;
+          if (alpha < 0.005) continue;
+          fCtx.beginPath();
+          fCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          fCtx.fillStyle = `rgba(70, 60, 45, ${alpha})`;
+          fCtx.fill();
+        }
+
+        // Render flame particles with soft golden glow
+        fCtx.save();
+        fCtx.shadowColor = 'rgba(224, 198, 83, 0.45)';
+        fCtx.shadowBlur = 10;
+
+        for (let i = 0; i < flameParticles.length; i++) {
+          const p = flameParticles[i];
+          if (p.life < 0.02) continue;
+
+          const grad = fCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
+          // Bright warm white core → warm gold → amber → soft edge
+          const coreAlpha = Math.min(1, p.life * 0.9);
+          const midAlpha = Math.min(1, p.life * 0.65);
+          const outerAlpha = Math.min(1, p.life * 0.3);
+
+          grad.addColorStop(0, `rgba(255, 252, 235, ${coreAlpha})`);
+          grad.addColorStop(0.35, `rgba(224, 198, 83, ${midAlpha})`);
+          grad.addColorStop(0.7, `rgba(201, 173, 58, ${outerAlpha})`);
+          grad.addColorStop(1, 'rgba(140, 116, 30, 0)');
+
+          fCtx.beginPath();
+          fCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          fCtx.fillStyle = grad;
+          fCtx.fill();
+        }
+        fCtx.restore();
+
+        // Real-Time Localized Glow following the flame & pointer
+        if (isVisible) {
+          const currentSpeed = Math.hypot(velX, velY);
+          // Glow intensifies slightly with movement, settles to calm subtle glow when stopped
+          const glowAlpha = Math.min(0.18, 0.06 + currentSpeed * 0.004 + flameParticles.length * 0.003);
+          const glowRadius = 24 + Math.min(14, currentSpeed * 0.3);
+
+          const glowGrad = fCtx.createRadialGradient(mouseX + 10, mouseY + 14, 0, mouseX + 10, mouseY + 14, glowRadius);
+          glowGrad.addColorStop(0, `rgba(224, 198, 83, ${glowAlpha})`);
+          glowGrad.addColorStop(0.5, `rgba(201, 173, 58, ${glowAlpha * 0.5})`);
+          glowGrad.addColorStop(1, 'rgba(224, 198, 83, 0)');
+
+          fCtx.fillStyle = glowGrad;
+          fCtx.fillRect(mouseX - glowRadius, mouseY - glowRadius, glowRadius * 2 + 20, glowRadius * 2 + 20);
+        }
+      }
+
       function renderTrail() {
         if (document.hidden) {
           requestAnimationFrame(renderTrail);
           return;
         }
 
+        updateParticles();
+
+        if (!reducedMotion.matches) {
+          renderFlameAndSmoke();
+        }
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && trail.length > 1) {
+        // Gapless, fully continuous 3-pass molten golden trail rendering
+        if (!reducedMotion.matches && trail.length > 1) {
           for (let i = 0; i < trail.length; i++) {
-            trail[i].alpha *= 0.88; // Natural opacity decay
-            trail[i].size *= 0.94;  // Smooth physical tapering
+            trail[i].alpha *= 0.88;
+            trail[i].size *= 0.94;
           }
 
-          // Pass 1: Deep Crimson & Amber Atmospheric Undertone
-          ctx.save();
-          ctx.lineCap = 'round';
-          ctx.lineJoin = 'round';
-          ctx.shadowBlur = 12;
-          ctx.shadowColor = 'rgba(195, 36, 26, 0.4)';
+          const passes = [
+            // Pass 1: Deep Crimson & Amber Atmospheric Undertone
+            { blur: 12, shadow: 'rgba(195, 36, 26, 0.4)', colorPrefix: 'rgba(180, 36, 26, ', widthMult: 1.25, alphaMult: 0.45, minW: 3.2 },
+            // Pass 2: Rich Molten Golden Ribbon
+            { blur: 8, shadow: 'rgba(224, 198, 83, 0.5)', colorPrefix: 'rgba(224, 198, 83, ', widthMult: 1.0, alphaMult: 0.85, minW: 2.5 },
+            // Pass 3: Luminous Warm-White Core
+            { blur: 0, shadow: 'transparent', colorPrefix: 'rgba(254, 252, 245, ', widthMult: 0.35, alphaMult: 0.72, minW: 1.2 }
+          ];
 
-          for (let i = 0; i < trail.length - 1; i++) {
-            const p1 = trail[i];
-            const p2 = trail[i + 1];
-            const midX = (p1.x + p2.x) / 2;
-            const midY = (p1.y + p2.y) / 2;
+          passes.forEach(p => {
+            ctx.save();
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            if (p.blur > 0) {
+              ctx.shadowBlur = p.blur;
+              ctx.shadowColor = p.shadow;
+            }
 
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.quadraticCurveTo(p1.x, p1.y, midX, midY);
-            ctx.strokeStyle = `rgba(180, 36, 26, ${p1.alpha * 0.45})`;
-            ctx.lineWidth = Math.max(3.2, p1.size * 1.25);
-            ctx.stroke();
-          }
-          ctx.restore();
+            // Draw gapless connected Bezier segments: segment i+1 starts exactly where segment i ends
+            for (let i = 0; i < trail.length - 1; i++) {
+              const p1 = trail[i];
+              const p2 = trail[i + 1];
+              const startX = (i === 0) ? p1.x : (trail[i - 1].x + p1.x) * 0.5;
+              const startY = (i === 0) ? p1.y : (trail[i - 1].y + p1.y) * 0.5;
+              const endX = (p1.x + p2.x) * 0.5;
+              const endY = (p1.y + p2.y) * 0.5;
 
-          // Pass 2: Rich Molten Golden Ribbon
-          ctx.save();
-          ctx.lineCap = 'round';
-          ctx.lineJoin = 'round';
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = 'rgba(224, 198, 83, 0.5)';
+              ctx.beginPath();
+              ctx.moveTo(startX, startY);
+              ctx.quadraticCurveTo(p1.x, p1.y, endX, endY);
+              ctx.strokeStyle = `${p.colorPrefix}${Math.max(0, p1.alpha * p.alphaMult)})`;
+              ctx.lineWidth = Math.max(p.minW, p1.size * p.widthMult);
+              ctx.stroke();
+            }
 
-          for (let i = 0; i < trail.length - 1; i++) {
-            const p1 = trail[i];
-            const p2 = trail[i + 1];
-            const midX = (p1.x + p2.x) / 2;
-            const midY = (p1.y + p2.y) / 2;
+            // Connect final segment smoothly to last point
+            if (trail.length > 2) {
+              const last = trail[trail.length - 1];
+              const prev = trail[trail.length - 2];
+              ctx.beginPath();
+              ctx.moveTo((prev.x + last.x) * 0.5, (prev.y + last.y) * 0.5);
+              ctx.lineTo(last.x, last.y);
+              ctx.strokeStyle = `${p.colorPrefix}${Math.max(0, last.alpha * p.alphaMult)})`;
+              ctx.lineWidth = Math.max(p.minW * 0.7, last.size * p.widthMult);
+              ctx.stroke();
+            }
 
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.quadraticCurveTo(p1.x, p1.y, midX, midY);
-            ctx.strokeStyle = `rgba(224, 198, 83, ${p1.alpha * 0.85})`;
-            ctx.lineWidth = Math.max(2.5, p1.size);
-            ctx.stroke();
-          }
-          ctx.restore();
-
-          // Pass 3: Luminous Warm-White Core for Molten Light Effect
-          ctx.save();
-          ctx.lineCap = 'round';
-          ctx.lineJoin = 'round';
-
-          for (let i = 0; i < trail.length - 1; i++) {
-            const p1 = trail[i];
-            const p2 = trail[i + 1];
-            const midX = (p1.x + p2.x) / 2;
-            const midY = (p1.y + p2.y) / 2;
-
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.quadraticCurveTo(p1.x, p1.y, midX, midY);
-            ctx.strokeStyle = `rgba(254, 252, 245, ${p1.alpha * 0.72})`;
-            ctx.lineWidth = Math.max(1.2, p1.size * 0.35);
-            ctx.stroke();
-          }
-          ctx.restore();
+            ctx.restore();
+          });
         }
 
         requestAnimationFrame(renderTrail);
       }
 
       requestAnimationFrame(renderTrail);
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          flameParticles.length = 0;
+          smokeParticles.length = 0;
+          if (fCtx) fCtx.clearRect(0, 0, flameCanvas.width, flameCanvas.height);
+        }
+      });
     })();
   </script>
 </body>
